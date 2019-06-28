@@ -276,7 +276,7 @@ In this section, you will configure and execute an ARM template that will create
 
 8. Update the values for the various keys so that they match your environment:
 
-    - **Suffix**: Enter something like "SUF"
+    - **Suffix**: Enter something like "SUF" with max of 3 chars
     - **VirtualMachineAdminUsername**: The Windows 10 Development VM admin username (example: `"adminfabmedical"`)
     - **VirtualMachineAdminPassword**: The Windows 10 Development VM admin password (example: `"Password$123"`)
     - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`)
@@ -364,8 +364,13 @@ In this section, you will validate that you can connect to the new build agent V
     :wq
     <Enter>
     ```
+8. Update the permission for the fabmedical file 
 
-8. Connect to the new VM you created by typing the following command:
+    ```text
+     sudo chmod 600 ~/.ssh/fabmedical
+     ```
+
+9. Connect to the new VM you created by typing the following command:
 
     ``` bash
      ssh -i [PRIVATEKEYNAME] [BUILDAGENTUSERNAME]@[BUILDAGENTIP]
@@ -383,11 +388,11 @@ In this section, you will validate that you can connect to the new build agent V
     ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
     ```
 
-9. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
+10. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
 
-10. When asked for the passphrase for the private key you created previously, enter this value.
+11. When asked for the passphrase for the private key you created previously, enter this value.
 
-11. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
+12. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
 
     `adminfabmedical@fabmedical-SUFFIX:~$`
 
@@ -459,7 +464,7 @@ In this task, you will update the packages and install Docker engine.
 10. Install `bower`
 
     ```bash
-    npm install -g bower
+    sudo npm install -g bower
     sudo ln -s /usr/bin/nodejs /usr/bin/node
     ```
 
@@ -532,6 +537,9 @@ In later exercises, you will need the Kubernetes CLI (kubectl) to deploy to your
 
     sudo az aks install-cli --install-location /usr/local/bin/kubectl
     ```
+    Note you may see this message but try kubectl version to confirm cli is working
+
+    ![In this screenshot of a Command Prompt window, installing kubectl.](media/b4-image61.png)
 
 ### Task 11: Install Helm
 
