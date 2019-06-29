@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-April 2019
+June 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,39 +26,39 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Containers and DevOps - Developer edition hands-on lab step-by-step](#containers-and-devops-developer-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
-    - [Task 1: Test the application](#task-1-test-the-application)
-    - [Task 2: Enable browsing to the web application](#task-2-enable-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
-    - [Task 4: Create Docker images](#task-4-create-docker-images)
-    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
-    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
-    - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
-    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
-    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
-  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
-  - [Exercise 4: Setup load balancing and service discovery](#exercise-4-setup-load-balancing-and-service-discovery)
-    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
-  - [After the hands-on lab](#after-the-hands-on-lab)
+- [Containers and DevOps - Developer edition hands-on lab step-by-step](#Containers-and-DevOps---Developer-edition-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
+  - [Overview](#Overview)
+  - [Solution architecture](#Solution-architecture)
+  - [Requirements](#Requirements)
+  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
+    - [Task 1: Test the application](#Task-1-Test-the-application)
+    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
+    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
+    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
+    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
+    - [Task 7: Push images to Azure Container Registry](#Task-7-Push-images-to-Azure-Container-Registry)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
+    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
+    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
+  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
+  - [Exercise 4: Setup load balancing and service discovery](#Exercise-4-Setup-load-balancing-and-service-discovery)
+    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
+  - [After the hands-on lab](#After-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -106,9 +106,9 @@ Each tenant will have the following containers:
 
     - Trial subscriptions will *not* work.
 
-    - You must have rights to create a service principal as discussed in Before the Hands on Lab Task 9: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+    - You must have rights to create a service principal as discussed in Before the Hands on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
 
-    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands on Lab Task 5: Create a build agent VM and Task 10: Create an Azure Kubernetes Service cluster. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. Local machine or a virtual machine configured with:
 
@@ -252,57 +252,21 @@ The purpose of this task is to make sure you can run the application successfull
 
 17. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
 
-### Task 2: Enable browsing to the web application
+### Task 2: Browsing to the web application
 
-In this task, you will open a port range on the agent VM so that you can browse to the web application for testing.
+In this task, you will browse to the web application for testing.
 
 1. From the Azure portal select the resource group you created named fabmedical-SUFFIX.
 
-2. Select the Network Security Group associated with the build agent from your list of available resources.
-
-    ![In this screenshot of your list of available resources, the sixth item is selected: fabmedical-(suffix obscured)-nsg (Network security group).](media/image49.png)
-
-3. From the Network interface essentials blade, select **Inbound security rules**.
-
-    ![In the Network interface essentials blade, Inbound security rules is highlighted under Settings.](media/image50.png)
-
-4. Select **Add** to add a new rule.
-
-    ![In this screenshot of the Inbound security rules windows, a red arrow points at Add.](media/image51.png)
-
-5. From the Add inbound security rule blade, enter the values as shown in the screenshot below:
-
-    - **Source**: Any
-
-    - **Source port ranges**: *
-
-    - **Destination**: Any
-
-    - **Destination port ranges**: 3000-3010
-
-    - **Protocol**: Any
-
-    - **Action**: Allow
-
-    - **Priority**: Leave at the default priority setting.
-
-    - **Name**: Enter "allow-app-endpoints".
-
-        ![In the Add inbound security rule blade, the values listed above appear in the corresponding boxes.](media/image52.png)
-
-6. Select **OK** to save the new rule.
-
-    ![In this screenshot, a table has the following columns: Priority, Name, Port, Protocol, Source, Destination, and Action. The first row is highlighted with the following values: 100, allow-app-endpoints, 3000-3010, Any, Any, Any, and Allow (which has a green check mark next to it).](media/image53.png)
-
-7. From the resource list shown in step 2, select the build agent VM named fabmedical-SUFFIX.
+2. Select the build agent VM named fabmedical-SUFFIX from your list of available resources.
 
     ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
 
-8. From the Virtual Machine blade overview, find the IP address of the VM.
+3. From the Virtual Machine blade overview, find the IP address of the VM.
 
     ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
 
-9. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
+4. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
 
     ```text
     http://[BUILDAGENTIP]:3000
@@ -310,9 +274,9 @@ In this task, you will open a port range on the agent VM so that you can browse 
     EXAMPLE: http://13.68.113.176:3000
     ```
 
-10. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
+5. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
 
-11. Once you have verified the application is accessible through a browser, go to your WSL window and stop the running node processes.
+6. Once you have verified the application is accessible through a browser, go to your WSL window and stop the running node processes.
 
     ```bash
     killall nodejs
@@ -920,7 +884,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 16. Enter the required information using the service principal information you created before the lab.
 
-    > **Note:** I you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created and you can use the already shared Service Principal details.
+    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created and you can use the already shared Service Principal details.
 
     - **Connection name**: azurecloud-sol
 
@@ -1014,7 +978,7 @@ In this task, you will gather the information you need about your Azure Kubernet
     az --version
     ```
 
-    -  This should produce output similar to this:
+    - This should produce output similar to this:
 
     ![In this screenshot of the WSL console, example output from running az --version appears. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image73.png)
 
@@ -1030,7 +994,7 @@ In this task, you will gather the information you need about your Azure Kubernet
 
     ![In this screenshot of the WSL console, kubectl version has been typed and run at the command prompt, which displays Kubernetes CLI client information.](media/image74.png)
 
-    - If the output is not correct, review the steps from the instructions in Task 12: Install Kubernetes CLI from the instructions before the lab exercises.
+    - If the output is not correct, review the steps from the instructions in Task 10: Install Kubernetes CLI from the instructions before the lab exercises.
 
 3. Once you have installed and verified Azure CLI and Kubernetes CLI, login with the following command, and follow the instructions to complete your login as presented:
 
@@ -1131,49 +1095,29 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![This screenshot of the Kubernetes management dashboard shows logs output for the api container.](media/Ex2-Task1.6.png)
 
-7. Open the Azure portal in your browser and click "+ Create a resource".  Search for "Azure Cosmos DB", select the result and click "Create".
-
-    ![A screenshot of the Azure Portal selection to create Azure Cosmos DB.](media/Ex2-Task1.7.1.png)
-
-8. Configure Azure Cosmos DB as follows and click "Review + create" and then click "Create":
-
-    - **Subscription**: Use the same subscription you have used for all your other work.
-
-    - **Resource Group**: fabmedical-SUFFIX
-
-    - **Account Name**: fabmedical-SUFFIX
-
-    - **API**: Azure Cosmos DB for MongoDB API
-
-    - **Location**: Choose the same region that you did before.
-
-    - **Geo-redundancy**: Enabled (checked)
-
-    ![A screenshot of the Azure Portal settings blade for Cosmos DB.](media/Ex2-Task1.8.1.png)
-
-9. Navigate to your resource group and find your new CosmosDb resource.  Click on the CosmosDb resource to view details.
+7. Open the Azure portal in your browser and navigate to your resource group and find your CosmosDb resource. Click on the CosmosDb resource to view details.
 
     ![A screenshot of the Azure Portal showing the Cosmos DB among existing resources.](media/Ex2-Task1.9.png)
 
-10. Under "Quick Start" select the "Node.js" tab and copy the Node 3.0 connection string.
+8. Under "Quick Start" select the "Node.js" tab and copy the Node 3.0 connection string.
 
     ![A screenshot of the Azure Portal showing the quick start for setting up Cosmos DB with MongoDB API.](media/Ex2-Task1.10.png)
 
-11. Update the provided connection string with a database "contentdb" and a replica set "globaldb".
+9. Update the provided connection string with a database "contentdb" and a replica set "globaldb".
 
-    >**Note**: User name and password redacted for brevity.
+    >**Note**: Username and password redacted for brevity.
 
     ```text
     mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol2.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
     ```
 
-12. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret.  First, you must base64 encode the secret value.  Open your WSL window and use the following command to encode the connection string and then, copy the output.
+10. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret.  First, you must base64 encode the secret value.  Open your WSL window and use the following command to encode the connection string and then, copy the output.
 
     ```bash
     echo -n "<connection string value>" | base64 -w 0
     ```
 
-13. Return to the Kubernetes UI in your browser and click "+ Create".  Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and click "Upload".
+11. Return to the Kubernetes UI in your browser and click "+ Create".  Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and click "Upload".
 
     ```yaml
     apiVersion: v1
@@ -1187,21 +1131,21 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing the YAML file for creating a deployment.](media/Ex2-Task1.13.png)
 
-14. Scroll down in the Kubernetes dashboard until you can see "Secrets" in the left-hand menu.  Click it.
+12. Scroll down in the Kubernetes dashboard until you can see "Secrets" in the left-hand menu.  Click it.
 
     ![A screenshot of the Kubernetes management dashboard showing secrets.](media/Ex2-Task1.14.png)
 
-15. View the details for the "mongodb" secret.  Click the eyeball icon to show the secret.
+13. View the details for the "mongodb" secret.  Click the eyeball icon to show the secret.
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
 
-16. Next, download the api deployment configuration using the following command in your WSL window:
+14. Next, download the api deployment configuration using the following command in your WSL window:
 
     ```bash
     kubectl get -o=yaml --export=true deployment api > api.deployment.yml
     ```
 
-17. Edit the downloaded file:
+15. Edit the downloaded file:
 
     ```bash
     vi api.deployment.yml
@@ -1221,13 +1165,13 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing part of the deployment file.](media/Ex2-Task1.17.png)
 
-18. Update the api deployment by using `kubectl` to apply the new configuration.
+16. Update the api deployment by using `kubectl` to apply the new configuration.
 
     ```bash
     kubectl apply -f api.deployment.yml
     ```
 
-19. Select "Deployments" then "api" to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
+17. Select "Deployments" then "api" to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
 
     ![A screenshot of the Kubernetes management dashboard showing logs output.](media/Ex2-Task1.19.png)
 
@@ -1817,7 +1761,7 @@ In this task, you will access and review the various logs and dashboards made av
 9. For each log entry you can display more information by expanding the log entry to view the below details.
 
     ![Log entry details](media/monitor_6.png)
-    
+
 ## Exercise 3: Scale the application and test HA
 
 **Duration**: 20 minutes
@@ -2083,67 +2027,35 @@ In this task, you will modify the CPU requirements for the web service so that i
 
 In this task, you will edit the web application source code to add Application Insights and update the Docker image used by the deployment. Then you will perform a rolling update to demonstrate how to deploy a code change.
 
-1. First create an Application Insights key for content-web using the Azure Portal.
-
-2. Select "+ Create a Resource" and search for "Application Insights" and select "Application Insights".
-
-    ![A screenshot of the Azure Portal showing a listing of Application Insights resources from search results.](media/Ex4-Task4.2.png)
-
-3. Configure the resource as follows, then select "Create":
-
-    - **Name**: content-web
-
-    - **Application Type**: Node.js Application
-
-    - **Subscription**: Use the same subscription you have been using throughout the lab.
-
-    - **Resource Group**: Use the existing resource group fabmedical-SUFFIX.
-
-    - **Location**: Use the same location you have been using throughout the lab.
-
-    ![A screenshot of the Azure Portal showing the new Application Insights blade.](media/Ex4-Task4.3.png)
-
-4. While the Application Insights resource for content-web deploys, create a second Application Insights resource for content-api.  Configure the resource as follows, then select "Create":
-
-   - **Name**: content-api
-
-   - **Application Type**: Node.js Application
-
-   - **Subscription**: Use the same subscription you have been using throughout the lab.
-
-   - **Resource Group**: Use the existing resource group fabmedical-SUFFIX.
-
-   - **Location**: Use the same location you have been using throughout the lab.
-
-5. When both resources have deployed, locate them in your resource group.
+1. Go to your resource group and locate the app insight for both web and api.
 
     ![A screenshot of the Azure Portal showing the new Application Insights resources in the resource group.](media/Ex4-Task4.5.png)
 
-6. Select the content-web resource to view the details.  Make a note of the Instrumentation Key; you will need it when configuring the content-web application.
+2. Select the content-web resource to view the details.  Make a note of the Instrumentation Key; you will need it when configuring the content-web application.
 
     ![A screenshot of the Azure Portal showing the Instrumentation Key for an Application Insights resource.](media/Ex4-Task4.6.png)
 
-7. Return to your resource group and view the details of the content-api Application Insights resource.  Make a note of its unique Instrumentation Key as well.
+3. Return to your resource group and view the details of the content-api Application Insights resource.  Make a note of its unique Instrumentation Key as well.
 
-8. Connect to your build agent VM using ssh as you did in Task 6: Connect securely to the build agent before the hands-on lab.
+4. Connect to your build agent VM using ssh as you did in Task 7: Connect securely to the build agent before the hands-on lab.
 
-9. From the command line, navigate to the content-web directory.
+5. From the command line, navigate to the content-web directory.
 
-10. Install support for Application Insights.
+6. Install support for Application Insights.
 
     ```bash
     npm install applicationinsights --save
     ```
 
-11. Open the server.js file using VI:
+7. Open the server.js file using VI:
 
     ```bash
     vi server.js
     ```
 
-12. Enter insert mode by pressing `<i>`.
+8. Enter insert mode by pressing `<i>`.
 
-13. Add the following lines immediately after the config is loaded.
+9. Add the following lines immediately after the config is loaded.
 
     ```javascript
     const appInsights = require("applicationinsights");
@@ -2153,7 +2065,7 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing the modified lines.](media/Ex4-Task4.13.png)
 
-14. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+10. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
     ```text
     <Esc>
@@ -2161,14 +2073,14 @@ In this task, you will edit the web application source code to add Application I
     <Enter>
     ```
 
-15. Update your config files to include the Application Insights Key.
+11. Update your config files to include the Application Insights Key.
 
     ```bash
     vi config/env/production.js
     <i>
     ```
 
-16. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+12. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2176,24 +2088,24 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing the modified lines.](media/Ex4-Task4.16.png)
 
-17. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+13. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-18. Now update the development config:
+14. Now update the development config:
 
     ```bash
     vi config/env/development.js
     <i>
     ```
 
-19. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+15. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
     ```
 
-20. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+16. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-21. Push these changes to your repository so that Azure DevOps CI will build a new image while you work on updating the content-api application.
+17. Push these changes to your repository so that Azure DevOps CI will build a new image while you work on updating the content-api application.
 
     ```bash
     git add .
@@ -2201,22 +2113,22 @@ In this task, you will edit the web application source code to add Application I
     git push
     ```
 
-22. Now update the content-api application.
+18. Now update the content-api application.
 
     ```bash
     cd ../content-api
     npm install applicationinsights --save
     ```
 
-23. Open the server.js file using VI:
+19. Open the server.js file using VI:
 
     ```bash
     vi server.js
     ```
 
-24. Enter insert mode by pressing `<i>`.
+20. Enter insert mode by pressing `<i>`.
 
-25. Add the following lines immediately after the config is loaded:
+21. Add the following lines immediately after the config is loaded:
 
     ```javascript
     const appInsights = require("applicationinsights");
@@ -2226,7 +2138,7 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing ](media/Ex4-Task4.25.png)
 
-26. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+22. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
     ```text
     <Esc>
@@ -2234,14 +2146,14 @@ In this task, you will edit the web application source code to add Application I
     <Enter>
     ```
 
-27. Update your config files to include the Application Insights Key.
+23. Update your config files to include the Application Insights Key.
 
     ```bash
     vi config/config.js
     <i>
     ```
 
-28. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key for **content-api** from the Azure portal.
+24. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key for **content-api** from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2249,9 +2161,9 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing updating the Application Insights key.](media/Ex4-Task4.28.png)
 
-29. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+25. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-30. Push these changes to your repository so that Azure DevOps CI will build a new image.
+26. Push these changes to your repository so that Azure DevOps CI will build a new image.
 
     ```bash
     git add .
@@ -2259,7 +2171,7 @@ In this task, you will edit the web application source code to add Application I
     git push
     ```
 
-31. Visit your ACR to see the new images and make a note of the tags assigned by Azure DevOps.
+27. Visit your ACR to see the new images and make a note of the tags assigned by Azure DevOps.
 
      - Make a note of the latest tag for content-web.
 
@@ -2269,29 +2181,29 @@ In this task, you will edit the web application source code to add Application I
 
         ![A screenshot of the Azure Container Registry listing showing the tagged versions of the content-api image.](media/Ex4-Task4.31b.png)
 
-32. Now that you have finished updating the source code, you can exit the build agent.
+28. Now that you have finished updating the source code, you can exit the build agent.
 
     ```bash
     exit
     ```
 
-33. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
+29. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
 
-34. From WSL, request a rolling update for the content-api application using this kubectl command:
+30. From WSL, request a rolling update for the content-api application using this kubectl command:
 
     ```bash
     kubectl set image deployment/api api=[LOGINSERVER]/content-api:[LATEST TAG]
     ```
 
-35. While this updates run, return the Kubernetes management dashboard in the browser.
+31. While this updates run, return the Kubernetes management dashboard in the browser.
 
-36. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
+32. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-37. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+33. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
-    ![On the Stats page, the webTaskId is highlighted. ](media/image145.png)
+    ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
 ### Task 5: Configure Kubernetes Ingress
 
@@ -2412,7 +2324,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 12. Now you can create a certificate object.
 
-    > **NOTE:**
+    > **Note**:
     >
     > Cert-manager might have already created a certificate object for you using ingress-shim.
     >
@@ -2521,7 +2433,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 20. Test TLS termination by visiting both services again using `https`.
 
-    > It can take a few minutes before the SSL site becomes available.  This is due to the delay involved with provisioning a TLS cert from letsencrypt.
+    > It can take a few minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
 ## After the hands-on lab
 
@@ -2535,7 +2447,7 @@ In this exercise, you will de-provision any Azure resources created in support o
 
     - Confirm the deletion by re-typing the resource group name and selecting Delete.
 
-2. Delete the Service Principal created on Task 9: Create a Service Principal before the hands-on lab.
+2. Delete the Service Principal created on Task 3: Create a Service Principal before the hands-on lab.
 
     ```bash
     az ad sp delete --id "Fabmedical-sp"
