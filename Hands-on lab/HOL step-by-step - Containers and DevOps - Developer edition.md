@@ -909,6 +909,9 @@ In this task, you will push images to your ACR account, version images with tagg
 18. Now create your first build. Select "Pipelines", then select "New pipeline"
 
     ![A screenshot of Azure DevOps build definitions.](media/Ex1-Task7.18.png)
+19. The New pipline page will have a link all the way at the bottom to switch to the classic editor like below, click on the highlighted link
+
+    ![A screenshot of Azure DevOps new build definitions.](media/Ext-Task7.18.1.png)
 
 19. Choose the content-web repository and accept the other defaults.
 
