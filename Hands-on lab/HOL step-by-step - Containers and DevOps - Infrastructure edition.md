@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Containers and DevOps - Infrastructure edition
@@ -105,9 +105,9 @@ Each tenant will have the following containers:
 
     - Trial subscriptions will *not* work.
 
-    - You must have rights to create a service principal as discussed in Before the Hands on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+    - You must have rights to create a service principal as discussed in Before the Hands-on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
 
-    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands-on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. Local machine or a virtual machine configured with:
 
@@ -742,7 +742,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 16. Enter the required information using the service principal information you created before the lab.
 
-    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created and you can use the already shared Service Principal details.
+    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created, and you can use the already shared Service Principal details.
 
     - **Connection name**: azurecloud-sol
 
@@ -949,11 +949,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
 
-6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with.  You will resolve this issue by migrating your data workload to CosmosDb.
+6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with.  You will resolve this issue by migrating your data workload to Cosmos DB.
 
     ![This screenshot of the Kubernetes management dashboard shows logs output for the api container.](media/Ex2-Task1.6.png)
 
-7. Open the Azure portal in your browser and navigate to your resource group and find your CosmosDb resource. Click on the CosmosDb resource to view details.
+7. Open the Azure portal in your browser and navigate to your resource group and find your Cosmos DB resource. Click on the Cosmos DB resource to view details.
 
     ![A screenshot of the Azure Portal showing the Cosmos DB among existing resources.](media/Ex2-Task1.9.png)
 
@@ -1160,7 +1160,7 @@ In this task, deploy the web service using `kubectl`.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
-11. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our CosmosDb instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
+11. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
@@ -1370,7 +1370,7 @@ In this task, deploy the web service using a helm chart.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
-26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our CosmosDb instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
+26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
@@ -1437,7 +1437,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
     ![A screenshot of the Kubernetes management dashboard showing log output.](media/Ex2-Task5.7.png)
 
-8. Next view your CosmosDb instance in the Azure portal and see that it now contains two collections.
+8. Next view your Cosmos DB instance in the Azure portal and see that it now contains two collections.
 
     ![A screenshot of the Azure Portal showing Cosmos DB collections.](media/Ex2-Task5.8.png)
 
@@ -1935,7 +1935,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-11. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+11. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -1952,7 +1952,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-14. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+14. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -1981,7 +1981,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-19. Search for the following line in the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key for **content-api** from the Azure portal.
+19. Search for the following line in the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key for **content-api** from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2049,7 +2049,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
     ```
 
-3. Set a DNS prefix on the IP address allocated to the ingress controller.  Visit the `kube-system` namespace in your Kubeneretes dashboard to find the IP.
+3. Set a DNS prefix on the IP address allocated to the ingress controller.  Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP.
 
     http://localhost:8001/#!/service?namespace=kube-system
 
