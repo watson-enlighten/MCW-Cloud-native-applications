@@ -229,7 +229,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 
 ### Task 4: ARM Template
 
-In this section, you will configure and execute an ARM template that will create all the resources that you will need throughtout the exercises.
+In this section, you will configure and execute an ARM template that will create all the resources that you will need throughout the exercises.
 
 1. Open cloud shell by selecting the cloud shell icon in the menu bar.
 
@@ -276,11 +276,11 @@ In this section, you will configure and execute an ARM template that will create
 
 8. Update the values for the various keys so that they match your environment:
 
-    - **Suffix**: Enter something like "SUF" with max of 3 chars
-    - **VirtualMachineAdminUsername**: The Windows 10 Development VM admin username (example: `"adminfabmedical"`)
-    - **VirtualMachineAdminPassword**: The Windows 10 Development VM admin password (example: `"Password$123"`)
-    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`)
-    - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`)
+    - **Suffix**: Enter something like "SUF" with max of 3 chars.
+    - **VirtualMachineAdminUsername**: The Windows 10 Development VM admin username (example: `"adminfabmedical"`).
+    - **VirtualMachineAdminPassword**: The Windows 10 Development VM admin password (example: `"Password$123"`).
+    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
+    - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
     - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
     - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
     - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
@@ -364,7 +364,7 @@ In this section, you will validate that you can connect to the new build agent V
     :wq
     <Enter>
     ```
-8. Update the permission for the fabmedical file 
+8. Update the permission for the fabmedical file.
 
     ```text
      sudo chmod 600 ~/.ssh/fabmedical
@@ -537,7 +537,7 @@ In later exercises, you will need the Kubernetes CLI (kubectl) to deploy to your
 
     sudo az aks install-cli --install-location /usr/local/bin/kubectl
     ```
-    Note you may see this message but try kubectl version to confirm cli is working
+    >**Note**: You may see this message but try kubectl version to confirm cli is working.
 
     ![In this screenshot of a Command Prompt window, installing kubectl.](media/b4-image61.png)
 
@@ -571,9 +571,7 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
     curl -L -o FabMedical.tgz http://bit.ly/2uhZseT
     ```
 
-    > **NOTE**
-    >
-    > If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
+    > **Important note**: If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
     > 
     > ```bash
     > curl -L -o FabMedical.tgz https://bit.ly/2uDDZNq
