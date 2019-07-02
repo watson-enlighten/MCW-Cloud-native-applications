@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Containers and DevOps - Developer edition
@@ -106,9 +106,9 @@ Each tenant will have the following containers:
 
     - Trial subscriptions will *not* work.
 
-    - You must have rights to create a service principal as discussed in Before the Hands on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+    - You must have rights to create a service principal as discussed in Before the Hands-on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
 
-    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands-on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. Local machine or a virtual machine configured with:
 
@@ -884,7 +884,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 16. Enter the required information using the service principal information you created before the lab.
 
-    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created and you can use the already shared Service Principal details.
+    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created, and you can use the already shared Service Principal details.
 
     - **Connection name**: azurecloud-sol
 
@@ -909,23 +909,24 @@ In this task, you will push images to your ACR account, version images with tagg
 18. Now create your first build. Select "Pipelines", then select "New pipeline"
 
     ![A screenshot of Azure DevOps build definitions.](media/Ex1-Task7.18.png)
-19. The New pipline page will have a link all the way at the bottom to switch to the classic editor like below, click on the highlighted link
+    
+19. The New pipeline page will have a link all the way at the bottom to switch to the classic editor like below, click on the highlighted link
 
     ![A screenshot of Azure DevOps new build definitions.](media/Ext-Task7.18.1.png)
 
-19. Choose the content-web repository and accept the other defaults.
+20. Choose the content-web repository and accept the other defaults.
 
     ![A screenshot of the source selection showing Azure DevOps highlighted.](media/Ex1-Task7.19.png)
 
-20. Next, search for "Docker" templates and choose "Docker Container" then select "Apply".
+21. Next, search for "Docker" templates and choose "Docker Container" then select "Apply".
 
     ![A screenshot of template selection showing Docker Container selected.](media/Ex1-Task7.20.png)
 
-21. Change the build name to "content-web-Container-CI".
+22. Change the build name to "content-web-Container-CI".
 
     ![A screenshot of the dialog where you can enter the name for the build.](media/Ex1-Task7.21.png)
 
-22. Select "Build an image":
+23. Select "Build an image":
 
     - **Azure subscription**: Choose "azurecloud-sol".
 
@@ -935,7 +936,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![A screenshot of the dialog where you can describe the image build.](media/Ex1-Task7.22.png)
 
-23. Select "Push an image".
+24. Select "Push an image".
 
     - **Azure subscription**: Choose "azurecloud-sol".
 
@@ -945,7 +946,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![A screenshot of the dialog where you can describe the image push.](media/Ex1-Task7.23.png)
 
-24. Select "Triggers".
+25. Select "Triggers".
 
     - **Enable continuous integration**: Checked
 
@@ -953,15 +954,15 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![A screenshot of the dialog where you can setup triggers.](media/Ex1-Task7.24.png)
 
-25. Select "Save & queue"; then select "Save & queue" two more times to kick off the first build.
+26. Select "Save & queue"; then select "Save & queue" two more times to kick off the first build.
 
     ![A screenshot showing the queued build.](media/Ex1-Task7.26.png)
 
-26. While that build runs, create the content-api build. Select "Builds", then select "+ New", and then select "New build pipeline". Configure content-api by following the same steps used to configure content-web.
+27. While that build runs, create the content-api build. Select "Builds", then select "+ New", and then select "New build pipeline". Configure content-api by following the same steps used to configure content-web.
 
-27. While the content-api build runs, setup one last build for content-init by following the same steps as the previous two builds.
+28. While the content-api build runs, setup one last build for content-init by following the same steps as the previous two builds.
 
-28. Visit your ACR instance in the Azure portal, you should see new containers tagged with the Azure DevOps build number.
+29. Visit your ACR instance in the Azure portal, you should see new containers tagged with the Azure DevOps build number.
 
     ![A screenhot of the container images in ACR.](media/Ex1-Task7.28.png)
 
@@ -1094,11 +1095,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
 
-6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with.  You will resolve this issue by migrating your data workload to CosmosDb.
+6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with.  You will resolve this issue by migrating your data workload to Cosmos DB.
 
     ![This screenshot of the Kubernetes management dashboard shows logs output for the api container.](media/Ex2-Task1.6.png)
 
-7. Open the Azure portal in your browser and navigate to your resource group and find your CosmosDb resource. Click on the CosmosDb resource to view details.
+7. Open the Azure portal in your browser and navigate to your resource group and find your Cosmos DB resource. Click on the Cosmos DB resource to view details.
 
     ![A screenshot of the Azure Portal showing the Cosmos DB among existing resources.](media/Ex2-Task1.9.png)
 
@@ -1305,7 +1306,7 @@ In this task, deploy the web service using `kubectl`.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
-11. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our CosmosDb instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
+11. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
@@ -1518,7 +1519,7 @@ In this task, deploy the web service using a helm chart.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
-26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our CosmosDb instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
+26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
@@ -1585,7 +1586,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
     ![A screenshot of the Kubernetes management dashboard showing log output.](media/Ex2-Task5.7.png)
 
-8. Next view your CosmosDb instance in the Azure portal and see that it now contains two collections.
+8. Next view your Cosmos DB instance in the Azure portal and see that it now contains two collections.
 
     ![A screenshot of the Azure Portal showing Cosmos DB collections.](media/Ex2-Task5.8.png)
 
@@ -2083,7 +2084,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-12. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+12. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2100,7 +2101,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-15. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key from the Azure portal.
+15. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2156,7 +2157,7 @@ In this task, you will edit the web application source code to add Application I
     <i>
     ```
 
-24. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the your Application Insights Key for **content-api** from the Azure portal.
+24. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key for **content-api** from the Azure portal.
 
     ```javascript
     appInsightKey: '[YOUR APPINSIGHTS KEY]'
@@ -2224,7 +2225,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
     ```
 
-3. Set a DNS prefix on the IP address allocated to the ingress controller.  Visit the `kube-system` namespace in your Kubeneretes dashboard to find the IP.
+3. Set a DNS prefix on the IP address allocated to the ingress controller.  Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP.
 
     http://localhost:8001/#!/service?namespace=kube-system
 
