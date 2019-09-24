@@ -1,7 +1,7 @@
 ![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-Containers and DevOps
+Cloud Native Applications
 </div>
 
 <div class="MCWHeader2">
@@ -23,25 +23,25 @@ The names of manufacturers, products, or URLs are provided for informational pur
 **Contents**
 <!-- TOC -->
 
-- [Containers and DevOps before the hands-on lab setup guide](#Containers-and-DevOps-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Resource Group](#Task-1-Resource-Group)
-    - [Task 2: Create an SSH key](#Task-2-Create-an-SSH-key)
-    - [Task 3: Create a Service Principal](#Task-3-Create-a-Service-Principal)
-    - [Task 4: ARM Template](#Task-4-ARM-Template)
-    - [Task 5: Connect to the Windows 10 Development VM](#Task-5-Connect-to-the-Windows-10-Development-VM)
-    - [Task 6: Install WSL (Bash on Ubuntu on Windows)](#Task-6-Install-WSL-Bash-on-Ubuntu-on-Windows)
-    - [Task 7: Connect securely to the build agent](#Task-7-Connect-securely-to-the-build-agent)
-    - [Task 8: Complete the build agent setup](#Task-8-Complete-the-build-agent-setup)
-    - [Task 9: Install Azure CLI](#Task-9-Install-Azure-CLI)
-    - [Task 10: Install Kubernetes CLI](#Task-10-Install-Kubernetes-CLI)
-    - [Task 11: Install Helm](#Task-11-Install-Helm)
-    - [Task 12: Download the FabMedical starter files](#Task-12-Download-the-FabMedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Resource Group](#task-1-resource-group)
+    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
+    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
+    - [Task 4: ARM Template](#task-4-arm-template)
+    - [Task 5: Connect to the Windows 10 Development VM](#task-5-connect-to-the-windows-10-development-vm)
+    - [Task 6: Install WSL (Bash on Ubuntu on Windows)](#task-6-install-wsl-bash-on-ubuntu-on-windows)
+    - [Task 7: Connect securely to the build agent](#task-7-connect-securely-to-the-build-agent)
+    - [Task 8: Complete the build agent setup](#task-8-complete-the-build-agent-setup)
+    - [Task 9: Install Azure CLI](#task-9-install-azure-cli)
+    - [Task 10: Install Kubernetes CLI](#task-10-install-kubernetes-cli)
+    - [Task 11: Install Helm](#task-11-install-helm)
+    - [Task 12: Download the FabMedical starter files](#task-12-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
 
-# Containers and DevOps before the hands-on lab setup guide
+# Cloud Native Applications before the hands-on lab setup guide
 
 ## Requirements
 
