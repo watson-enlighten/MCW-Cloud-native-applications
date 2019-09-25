@@ -157,6 +157,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
        mkdir .ssh
    ```
 
+<!-- TODO: The portal no longer accepts admin as a user name, we should update example to something else -->
 7. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
 
    ```bash
