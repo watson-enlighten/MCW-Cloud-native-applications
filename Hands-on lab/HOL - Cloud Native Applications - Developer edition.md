@@ -38,6 +38,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 4: Create Docker images](#task-4-create-docker-images)
     - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
     - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
+    - [Task XX: Run several containers with Docker compose](#task-xx-run-several-containers-with-docker-compose)
     - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)
   - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
     - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
@@ -143,6 +144,7 @@ In this exercise, you will take the starter files and run the node.js applicatio
 The purpose of this task is to make sure you can run the application successfully before applying changes to run it as a Docker application.
 
 <!-- TODO: Remove references to WSL, replace with cloudshell -->
+
 1. From the WSL window, connect to your build agent if you are not already connected.
 
 2. Type the following command to create a Docker network named "fabmedical":
@@ -163,7 +165,9 @@ The purpose of this task is to make sure you can run the application successfull
    docker container list
    docker logs mongo
    ```
-<!-- TODO: replace screenshots with cloudshell screenshots -->
+
+   <!-- TODO: replace screenshots with cloudshell screenshots -->
+
    ![In this screenshot of the WSL window, docker container list has been typed and run at the command prompt, and the “api” container is in the list. Below this the log output is shown.](media/Ex1-Task1.4.png)
 
 5. Connect to the mongo instance using the mongo shell and test some basic commands:
@@ -176,7 +180,8 @@ The purpose of this task is to make sure you can run the application successfull
    show dbs
    quit()
    ```
-<!-- TODO: replace screenshots with cloudshell screenshots -->
+
+   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows the output from connecting to mongo.](media/Ex1-Task1.5.png)
 
@@ -192,7 +197,8 @@ The purpose of this task is to make sure you can run the application successfull
    ```bash
    nodejs server.js
    ```
-<!-- TODO: replace screenshots with cloudshell screenshots -->
+
+   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows output from running the database initialization.](media/Ex1-Task1.7.png)
 
@@ -212,7 +218,8 @@ The purpose of this task is to make sure you can run the application successfull
    ```
 
    This should produce output similar to the following:
-<!-- TODO: replace screenshots with cloudshell screenshots -->
+
+   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows the data output.](media/Ex1-Task1.8.png)
 
@@ -302,13 +309,16 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 > **Note**: You will be working in a Linux VM without friendly editor tools. You must follow the steps very carefully to work with Vim for a few editing exercises if you are not already familiar with Vim.
 
 <!-- TODO replace references to WSL with cloudshell -->
+
 1. From WSL, navigate to the content-api folder. List the files in the folder with this command. The output should look like the screenshot below.
 
    ```bash
    cd ../content-api
    ll
    ```
-<!-- TODO: Replace with cloudshell screenshot -->
+
+   <!-- TODO: Replace with cloudshell screenshot -->
+
    ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
 
 1. Create a new file named "Dockerfile" and note the casing in the name. Use the following Vim command to create a new file. The WSL window should look as shown in the following screenshot.
@@ -318,7 +328,8 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    ```
 
 <!-- TODO: Replace with cloudshell screenshot -->
-   ![This is a screenshot of a new file named Dockerfile in the WSL window.](media/image56.png)
+
+![This is a screenshot of a new file named Dockerfile in the WSL window.](media/image56.png)
 
 2. Select "i" on your keyboard. You'll see the bottom of the window showing INSERT mode.
 
@@ -356,29 +367,31 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
      - Indicates the command to start the node application when the container is run.
 
-   > **Note**: Type the following into the editor, as you may have errors with copying and pasting:
+<!-- TODO: Update dockerfile to build the new angular app -->
 
-   ```Dockerfile
-   FROM node:alpine AS base
-   RUN apk -U add curl
-   WORKDIR /usr/src/app
-   EXPOSE 3001
+> **Note**: Type the following into the editor, as you may have errors with copying and pasting:
 
-   FROM node:argon AS build
-   WORKDIR /usr/src/app
+```Dockerfile
+FROM node:alpine AS base
+RUN apk -U add curl
+WORKDIR /usr/src/app
+EXPOSE 3001
 
-   # Install app dependencies
-   COPY package.json /usr/src/app/
-   RUN npm install
+FROM node:argon AS build
+WORKDIR /usr/src/app
 
-   # Bundle app source
-   COPY . /usr/src/app
+# Install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
 
-   FROM base AS final
-   WORKDIR /usr/src/app
-   COPY --from=build /usr/src/app .
-   CMD [ "npm", "start" ]
-   ```
+# Bundle app source
+COPY . /usr/src/app
+
+FROM base AS final
+WORKDIR /usr/src/app
+COPY --from=build /usr/src/app .
+CMD [ "npm", "start" ]
+```
 
 4. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
 
@@ -395,7 +408,8 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    ```
 
 <!-- TODO: Replace with cloudshell screenshot -->
-   ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The Dockerfile file is highlighted at the top of list.](media/image58.png)
+
+![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The Dockerfile file is highlighted at the top of list.](media/image58.png)
 
 6. Verify the file contents to ensure it was saved as expected. Type the following command to see the output of the Dockerfile in the command window.
 
@@ -406,6 +420,8 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 ### Task 4: Create Docker images
 
 In this task, you will create Docker images for the application --- one for the API application and another for the web application. Each image will be created via Docker commands that rely on a Dockerfile.
+
+<!-- TODO: replace reference to WSL -->
 
 1. From WSL, type the following command to view any Docker images on the VM. The list will only contain the mongodb image downloaded earlier.
 
@@ -432,6 +448,8 @@ In this task, you will create Docker images for the application --- one for the 
    ```
 
    Notice the untagged image. This is the build stage which contains all the intermediate files not needed in your final image.
+
+   <!-- TODO: replace with cloudshell screenshot -->
 
    ![The node image (node) and your container image (content-api) are visible in this screenshot of the WSL window.](media/image59.png)
 
@@ -471,6 +489,8 @@ In this task, you will create Docker images for the application --- one for the 
    ```bash
    docker images
    ```
+
+   <!-- TODO: replace with cloudshell screenshot -->
 
    ![Three images are now visible in this screenshot of the WSL window: content-web, content-api, and node.](media/image60.png)
 
@@ -527,6 +547,8 @@ The web application container will be calling endpoints exposed by the API appli
    docker logs api
    ```
 
+   <!-- TODO: Replace with cloudshell screenshot -->
+
    ![In this screenshot of the WSL window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 548d25a1449f, content-api, "npm start", 8 seconds ago, Up 6 seconds, 0.0.0.0:3001->3001/tcp, and api.](media/image61.png)
 
 5. Test the API by curling the URL. You will see JSON output as you did when testing previously.
@@ -547,9 +569,11 @@ The web application container will be calling endpoints exposed by the API appli
    docker container ls
    ```
 
+   <!-- TODO: Replace with cloudshell screenshot -->
+
    ![In this screenshot of the WSL window, docker container ls has again been typed and run at the command prompt. 0.0.0.0:32768->3000/tcp is highlighted under Ports, and a red arrow is pointing at it.](media/image62.png)
 
-8. Test the web application by curling the URL. For the port, use the dynamically assigned port, which you can find in the output from the previous command. You will see HTML output, as you did when testing previously.
+8. Test the web application by fetching the URL with curl. For the port, use the dynamically assigned port, which you can find in the output from the previous command. You will see HTML output, as you did when testing previously.
 
    ```bash
    curl http://localhost:[PORT]/speakers.html
@@ -559,73 +583,79 @@ The web application container will be calling endpoints exposed by the API appli
 
 In this task, you will configure the "web" container to communicate with the API container using an environment variable, similar to the way the mongodb connection string is provided to the api. You will modify the web application to read the URL from the environment variable, rebuild the Docker image, and then run the container again to test connectivity.
 
-1. From WSL, stop and remove the web container using the following commands.
+<!-- TODO: Replace with cloudshell reference -->
 
-   ```bash
-   docker stop web
-   docker rm web
-   ```
+1.  From WSL, stop and remove the web container using the following commands.
 
-2. Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
+    ```bash
+    docker stop web
+    docker rm web
+    ```
 
-   ```bash
-   docker container ls -a
-   ```
+2.  Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
 
-3. Navigate to the `content-web/data-access` directory. From there, open the index.js file for editing using Vim, and press the "i" key to go into edit mode.
+    ```bash
+    docker container ls -a
+    ```
 
-   ```bash
-   cd data-access
-   vi index.js
-   <i>
-   ```
+3.  Navigate to the `content-web/data-access` directory. From there, open the index.js file for editing using Vim, and press the "i" key to go into edit mode.
 
-4. Locate the following TODO item and modify the code to comment the first line and uncomment the second. The result is that the contentApiUrl variable will be set to an environment variable.
+    ```bash
+    cd data-access
+    vi index.js
+    <i>
+    ```
 
-   ```javascript
-   //TODO: Exercise 2 - Task 6 - Step 4
+    <!-- TODO: Update if needed for the new app -->
 
-   //const contentApiUrl = "http://localhost:3001";
-   const contentApiUrl = process.env.CONTENT_API_URL;
-   ```
+4.  Locate the following TODO item and modify the code to comment the first line and uncomment the second. The result is that the contentApiUrl variable will be set to an environment variable.
 
-5. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+    ```javascript
+    //TODO: Exercise 2 - Task 6 - Step 4
 
-   ```text
-   <Esc>
-   :wq
-   <Enter>
-   ```
+    //const contentApiUrl = "http://localhost:3001";
+    const contentApiUrl = process.env.CONTENT_API_URL;
+    ```
 
-6. Navigate to the content-web directory. From there open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
+5.  Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-   ```bash
-   cd ..
-   vi Dockerfile
-   <i>
-   ```
+    ```text
+    <Esc>
+    :wq
+    <Enter>
+    ```
 
-7. Locate the EXPOSE line shown below, and add a line above it that sets the default value for the environment variable as shown in the screenshot.
+6.  Navigate to the content-web directory. From there open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
 
-   ```Dockerfile
-   ENV CONTENT_API_URL http://localhost:3001
-   ```
+    ```bash
+    cd ..
+    vi Dockerfile
+    <i>
+    ```
 
-   ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above Expose 3000.](media/image63.png)
+7.  Locate the EXPOSE line shown below, and add a line above it that sets the default value for the environment variable as shown in the screenshot.
 
-8. Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+    ```Dockerfile
+    ENV CONTENT_API_URL http://localhost:3001
+    ```
 
-   ```text
-   <Esc>
-   :wq
-   <Enter>
-   ```
+    <!-- TODO: replace with dockerfile screenshot from dockerfile for new web app -->
 
-9. Rebuild the web application Docker image using the same command as you did previously.
+    ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/image63.png)
 
-   ```bash
-   docker build -t content-web .
-   ```
+8.  Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+
+    ```text
+    <Esc>
+    :wq
+    <Enter>
+    ```
+
+9.  Rebuild the web application Docker image using the same command as you did previously.
+
+    ```bash
+    docker build -t content-web .
+    ```
 
 10. Create and start the image passing the correct URI to the API container as an environment variable. This variable will address the API application using its container name over the Docker network you created. After running the container, check to see the container is running and note the dynamic port assignment for the next step.
 
@@ -656,21 +686,13 @@ In this task, you will configure the "web" container to communicate with the API
 
 14. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace [BUILDAGENTIP] with the IP address you used previously.
 
-    ```bash
-    http://[BUILDAGENTIP]:3000
+        ```bash
+        http://[BUILDAGENTIP]:3000
 
-    EXAMPLE: http://13.68.113.176:3000
-    ```
+        EXAMPLE: http://13.68.113.176:3000
+        ```
 
-15. Managing several containers with all their command line options can become difficult as the solution grows. `docker-compose` allows us to declare options for several containers and run them together. First, cleanup the existing containers.
-
-    ```bash
-    docker stop web && docker rm web
-    docker stop api && docker rm api
-    docker stop mongo && docker rm mongo
-    ```
-
-16. Commit your changes and push to the repository.
+15. Commit your changes and push to the repository.
 
     ```bash
     git add .
@@ -678,7 +700,23 @@ In this task, you will configure the "web" container to communicate with the API
     git push
     ```
 
-17. Navigate to your home directory (where you checked out the content repositories) and create a docker compose file.
+    <!-- TODO: Update task numbers -->
+
+### Task XX: Run several containers with Docker compose
+
+Managing several containers with all their command line options can become
+difficult as the solution grows. `docker-compose` allows us to declare options
+for several containers and run them together.
+
+1.  First, cleanup the existing containers.
+
+    ```bash
+    docker stop web && docker rm web
+    docker stop api && docker rm api
+    docker stop mongo && docker rm mongo
+    ```
+
+2.  Navigate to your home directory (where you checked out the content repositories) and create a docker compose file.
 
     ```bash
     cd ~
@@ -723,19 +761,19 @@ In this task, you will configure the "web" container to communicate with the API
     <Enter>
     ```
 
-18. Start the applications with the `up` command.
+3.  Start the applications with the `up` command.
 
     ```bash
     docker-compose -f docker-compose.yml -p fabmedical up -d
     ```
-
+<!-- TODO: replace with cloudshell screenshot -->
     ![This screenshot of the WSL window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
 
-19. Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
+4.  Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
 
     ![Browser view of the web site.](media/Ex1-Task6.18.png)
 
-20. We stopped and removed our previous mongodb container; all the data contained in it has been removed. Docker compose has created a new, empty mongodb instance that must be reinitialized. If we care to persist our data between container instances, the docker has several mechanisms to do so. First we will update our compose file to persist mongodb data to a directory on the build agent.
+5.  We stopped and removed our previous mongodb container; all the data contained in it has been removed. Docker compose has created a new, empty mongodb instance that must be reinitialized. If we care to persist our data between container instances, the docker has several mechanisms to do so. First we will update our compose file to persist mongodb data to a directory on the build agent.
 
     ```bash
     mkdir data
@@ -756,7 +794,7 @@ In this task, you will configure the "web" container to communicate with the API
 
     ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
 
-21. Next we will add a second file to our composition so that we can initialize the mongodb data when needed.
+6.  Next we will add a second file to our composition so that we can initialize the mongodb data when needed.
 
     ```bash
     vi docker-compose.init.yml
@@ -777,29 +815,30 @@ In this task, you will configure the "web" container to communicate with the API
           MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
     ```
 
-22. To reconfigure the mongodb volume, we need to bring down the mongodb service first.
+7.  To reconfigure the mongodb volume, we need to bring down the mongodb service first.
 
     ```bash
     docker-compose -f docker-compose.yml -p fabmedical down
     ```
-
+<!-- TODO replace with cloudshell screenshot -->
     ![This screenshot of the WSL window shows the running containers stopping.](media/Ex1-Task6.21.png)
 
-23. Now run `up` again with both files to update the mongodb configuration, and run the initialization script.
+8.  Now run `up` again with both files to update the mongodb configuration, and run the initialization script.
 
     ```bash
     docker-compose -f docker-compose.yml -f docker-compose.init.yml -p fabmedical up -d
     ```
 
-24. Check the data folder to see that mongodb is now writing data files to the host.
+9.  Check the data folder to see that mongodb is now writing data files to the host.
 
     ```bash
     ls ./data/
     ```
+<!-- TODO replace with cloudshell screenshot -->
 
     ![This screenshot of the WSL window shows the output of the data folder.](media/Ex1-Task6.23.png)
 
-25. Check the results in the browser. The speaker and session data are now available.
+10. Check the results in the browser. The speaker and session data are now available.
 
     ![A screenshot of the sessions page.](media/Ex1-Task6.24.png)
 
@@ -830,7 +869,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
    ```
-
+<!-- TODO: replace with cloudshell screenshot -->
    ![In this screenshot of the WSL window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
 
    **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
@@ -856,6 +895,7 @@ In this task, you will push images to your ACR account, version images with tagg
    docker push [LOGINSERVER]/content-web
    docker push [LOGINSERVER]/content-api
    ```
+<!-- TODO replace with cloudshell screenshot -->
 
    ![In this screenshot of the WSL window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/fabmedical/content-web.](media/image67.png)
 
@@ -867,6 +907,8 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
+<!-- TODO replace with cloudshell reference -->
+
 10. From WSL, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
@@ -874,6 +916,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
     docker images
     ```
+<!-- TODO replace with cloudshell screenshot -->
 
     ![In this screenshot of the WSL window is an example of tags being added and displayed.](media/image70.png)
 
