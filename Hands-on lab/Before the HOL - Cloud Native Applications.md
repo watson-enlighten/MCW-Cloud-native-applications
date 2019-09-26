@@ -25,21 +25,16 @@ The names of manufacturers, products, or URLs are provided for informational pur
 <!-- TODO: Remove windows 10 development vm section and renumber tasks -->
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Resource Group](#task-1-resource-group)
-    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
-    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
-    - [Task 4: ARM Template](#task-4-arm-template)
-    - [Task 5: Connect to the Windows 10 Development VM](#task-5-connect-to-the-windows-10-development-vm)
-    - [Task 6: Install WSL (Bash on Ubuntu on Windows)](#task-6-install-wsl-bash-on-ubuntu-on-windows)
-    - [Task 7: Connect securely to the build agent](#task-7-connect-securely-to-the-build-agent)
-    - [Task 8: Complete the build agent setup](#task-8-complete-the-build-agent-setup)
-    - [Task 9: Install Azure CLI](#task-9-install-azure-cli)
-    - [Task 10: Install Kubernetes CLI](#task-10-install-kubernetes-cli)
-    - [Task 11: Install Helm](#task-11-install-helm)
-    - [Task 12: Download the FabMedical starter files](#task-12-download-the-fabmedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#Requirements)
+  - [Before the hands-on lab](#Before-the-hands-on-lab)
+    - [Task 1: Resource Group](#Task-1-Resource-Group)
+    - [Task 2: Create an SSH key](#Task-2-Create-an-SSH-key)
+    - [Task 3: Create a Service Principal](#Task-3-Create-a-Service-Principal)
+    - [Task 4: ARM Template](#Task-4-ARM-Template)
+    - [Task 5: Connect securely to the build agent](#Task-5-Connect-securely-to-the-build-agent)
+    - [Task 6: Complete the build agent setup](#Task-6-Complete-the-build-agent-setup)
+    - [Task 7: Download the FabMedical starter files](#Task-7-Download-the-FabMedical-starter-files)
 
 <!-- /TOC -->
 
@@ -63,14 +58,6 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - A browser, preferably Chrome for consistency with the lab implementation tests.
 
-<!-- TODO: Remove since we will be using cloud shell, Chrome is the only requirement, remove references to WSL and Terminal -->
-
-    - Command prompt.
-
-         - On Windows, you will be using Bash on Ubuntu on Windows, hereon referred to as WSL.
-
-         - On Mac, all instructions should be executed using bash in Terminal.
-
 4. You will be asked to install other tools throughout the exercises.
 
 ## Before the hands-on lab
@@ -82,8 +69,9 @@ You should follow all of the steps provided in this section _before_ taking part
 ### Task 1: Resource Group
 
 <!-- TODO: Update language to indicate that the RG is a input to the ARM deployment, the comment that new resources will be created in remaining exercises should no longer be the case -->
+<!-- Comment remove DONE -->
 
-You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later. You will be instructed to create new resources in this Resource Group during the remaining exercises.
+You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later.
 
 1. In your browser, navigate to the **Azure Portal** (<https://portal.azure.com>).
 
@@ -106,12 +94,13 @@ You will create an Azure Resource Group to hold most of the resources that you c
    - **Resource group:** Enter something like "fabmedical-SUFFIX", as shown in the following screenshot.
 
 <!-- TODO: Update to include acceptable regions for cosmos db -->
+<!-- everywhere where ACR is available, Cosmos is also available -->
 
-    - **Region:** Choose a region where all Azure Container Registry SKUs are available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region.
+   - **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
 
     ![In the Resource group blade, the value for the Resource group box is fabmedical-sol, and the value of the Region box is East US.](media/b4-image7.png)
 
-    - Select **Review + Create** and then **Create**.
+   - Select **Review + Create** and then **Create**.
 
 6. When this completes, your Resource Group will be listed in the Azure Portal.
 
@@ -158,6 +147,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
    ```
 
 <!-- TODO: The portal no longer accepts admin as a user name, we should update example to something else -->
+<!-- Not getting the issue here. Since we are deploying using an ARM template, whatever validations the portal does, doesn't affect us. Changing this username implies that all the screenshots would also have to be updated. -->
 7. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
 
    ```bash
@@ -195,6 +185,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
    ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
 
 <!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
+<!-- An idea: would it be better to have a task in order to "Setup Azure Cloud Shell" and then reference that in all the other tasks that might need it and remove all this recurrent steps? -->
 
 2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
 
@@ -251,12 +242,13 @@ In this section, you will configure and execute an ARM template that will create
    ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
 
 <!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
+<!-- Same comment as above -->
 
-2.  The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
+2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
 
     ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
 
-3.  Before completing the steps to create the service principal, you should make sure to set your default subscription correctly. To view your current subscription type:
+3. Before completing the steps to create the service principal, you should make sure to set your default subscription correctly. To view your current subscription type:
 
     ```bash
     az account show
@@ -264,7 +256,7 @@ In this section, you will configure and execute an ARM template that will create
 
     ![In this screenshot of a Bash window, az account show has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image37.png)
 
-4.  To list all of your subscriptions, type:
+4. To list all of your subscriptions, type:
 
     ```bash
     az account list
@@ -272,89 +264,93 @@ In this section, you will configure and execute an ARM template that will create
 
     ![In this screenshot of a Bash window, az account list has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image38.png)
 
-5.  To set your default subscription to something other than the current selection, type the following, replacing {id} with the desired subscription id value:
+5. To set your default subscription to something other than the current selection, type the following, replacing {id} with the desired subscription id value:
 
-        ``` bash
-        az account set --subscription {id}
-        ```
+    ``` bash
+    az account set --subscription {id}
+    ```
 
     <!-- TODO: Evaluate the list of bitly here; talk to tim/kyle to see if they have an alternative -->
 
-6.  Download the parameters starter file by typing the following curl instruction (case sensitive):
+6. Download the parameters starter file by typing the following curl instruction (case sensitive):
 
     ```bash
     curl -L -o azuredeploy.parameters.json https://bit.ly/2XHyVaY
     ```
 
 <!-- TODO: Replace all usages of VIM with Azure Cloud Shell editor https://azure.microsoft.com/en-us/blog/cloudshelleditor/ -->
+<!-- DONE -->
 
-2.  Open the azuredeploy.parameters.json file for editing using Vim, and press the "i" key to go into edit mode.
+7. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
 
-        ```bash
-        vi azuredeploy.parameters.json
-        <i>
-        ```
+    ```bash
+    code azuredeploy.parameters.json
+    ```
 
     <!-- TODO: Update to reflect new ARM template parameters that dont include Windows 10 vm -->
+    <!-- DONE -->
 
-3.  Update the values for the various keys so that they match your environment:
+8. Update the values for the various keys so that they match your environment:
 
     - **Suffix**: Enter something like "SUF" with max of 3 chars.
-    - **VirtualMachineAdminUsername**: The Windows 10 Development VM admin username (example: `"adminfabmedical"`).
-    - **VirtualMachineAdminPassword**: The Windows 10 Development VM admin password (example: `"Password$123"`).
     - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
     - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
     - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
     - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
     - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
+    - **CosmosLocation**: The primary location of the Azure Cosmos DB. Use the same location as the resource group previously created (example: `"eastus"`).
+    - **CosmosLocationName**:  The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
+    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
+    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
+
+      > |Location|Location Name|
+      > |--------|-------------|
+      > |canadacentral|Canada Central|
+      > |canadaeast|Canada East|
+      > |northcentralus|North Central US|
+      > |centralus|Central US|
+      > |southcentralus|South Central US|
+      > |eastus|East US|
+      > |eastus2|East US 2|
+      > |westus|West US|
+      > |westus2|West US 2|
+      > |westcentralus|West Central US|
+      > |francecentral|France Central|
+      > |uksouth|UK South|
+      > |ukwest|UK West|
+      > |northeurope|North Europe|
+      > |westeurope|West Europe|
+      > |australiaeast|Australia East|
+      > |australiasoutheast|Australia Southeast|
+      > |brazilsouth|Brazil South|
+      > |centralindia|Central India|
+      > |southindia|South India|
+      > |japaneast|Japan East|
+      > |japanwest|Japan West|
+      > |koreacentral|Korea Central|
+      > |southeastasia|Southeast Asia|
+      > |eastasia|East Asia|
+
+9. Click the **...** button and select **Save**.
+
+    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
+
+10. Click the **...** button again and select **Close Editor**.
+
+    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
 <!-- TODO: Replace with instructions on how to save and close cloud shell editor -->
-
-4. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-   ```text
-   <Esc>
-   :wq
-   <Enter>
-   ```
+<!-- DONE -->
 
 <!-- TODO: Bitly -->
 
-5.  Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
+11. Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
 
-        ```bash
-        az group deployment create --resource-group {resourceGroup} --template-uri https://bit.ly/2XCaXh2 --parameters azuredeploy.parameters.json
-        ```
+    ```bash
+    az group deployment create --resource-group {resourceGroup} --template-uri https://bit.ly/2XCaXh2 --parameters azuredeploy.parameters.json
+    ```
 
-    <!-- TODO: Remove Task -->
-
-### Task 5: Connect to the Windows 10 Development VM
-
-> **Note**: Setting up the development machine is optional for Mac OS since you will use Terminal for commands. Setting up the development machine is also optional if you are certain you have a working installation of WSL on your current Windows 10 VM.
-
-In this section, you will connect to the created Windows 10 VM to act as your development machine. You will install the required components to complete the lab using this machine. You will use this machine instead of your local machine to carry out the instructions during the lab.
-
-1. From the Azure Portal, you will see the VM in your list of resources belonging to the resource group you created previously and select the new VM.
-
-   ![This screenshot of your resource list has the following columns: Name, Type, and Location. The first row is highlighted with the following values: fabmedicald-(suffix obscured), Virtual machine, and West Europe.](media/b4-image14.png)
-
-2. In the Overview area for the VM, select Connect to establish a Remote Desktop Connection (RDP) for the VM.
-
-   ![In this screenshot of the Overview area for the VM, a red arrow points at the Connect icon.](media/b4-image15.png)
-
-3. Complete the steps to establish the RDP session and ensure that you are connected to the new VM.
-
-<!-- TODO: Remove Task -->
-
-### Task 6: Install WSL (Bash on Ubuntu on Windows)
-
-> **Note**: If you are using a Windows 10 development machine, follow these steps. For Mac OS you can ignore this step since you will be using Terminal for all commands.
-
-You will need WSL to complete various steps. A complete list of instructions for supported Windows 10 versions is available on this page:
-
-<https://docs.microsoft.com/en-us/windows/wsl/install-win10>
-
-### Task 7: Connect securely to the build agent
+### Task 5: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent VM.
 
@@ -372,39 +368,13 @@ In this section, you will validate that you can connect to the new build agent V
 
    ![In this screenshot of the cloud shell window, cat .ssh/fabmedical has been typed and run at the command prompt, which displays the private key that you generated.](media/b4-image60.png)
 
-<!-- TODO: Remove steps 4 through 7 as we will continue in cloudshell -->
-
-4. From your development machine, return to your open WSL window and make sure you are in your user directory **\~** where you will save the SSH key pair that was previously created. This command will take you there:
-
-   ```bash
-   cd ~
-   ```
-
-5. Create the .ssh directory and the fabmedical file for editing using Vim, and press the "i" key to go into edit mode.
-
-   ```bash
-   mkdir .ssh
-   vi .ssh/fabmedical
-   <i>
-   ```
-
-6. Paste the private key information that you copied earlier.
-
-7. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-   ```text
-   <Esc>
-   :wq
-   <Enter>
-   ```
-
-8. Update the permission for the fabmedical file.
+4. Update the permission for the fabmedical file.
 
    ```text
     sudo chmod 600 ~/.ssh/fabmedical
    ```
 
-9. Connect to the new VM you created by typing the following command:
+5. Connect to the new VM you created by typing the following command:
 
    ```bash
     ssh -i [PRIVATEKEYNAME] [BUILDAGENTUSERNAME]@[BUILDAGENTIP]
@@ -422,13 +392,15 @@ In this section, you will validate that you can connect to the new build agent V
    ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
    ```
 
-10. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
+6.  When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
 
-11. When asked for the passphrase for the private key you created previously, enter this value.
+7.  When asked for the passphrase for the private key you created previously, enter this value.
 
-12. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
+8.  You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
 
     `adminfabmedical@fabmedical-SUFFIX:~$`
+
+<!-- TODO: screenshot needs updating while testing this (no longer WSL, cloud shell now) -->
 
     ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
 
@@ -436,13 +408,11 @@ In this section, you will validate that you can connect to the new build agent V
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
-### Task 8: Complete the build agent setup
+### Task 6: Complete the build agent setup
 
 In this task, you will update the packages and install Docker engine.
 
-<!-- TODO: Replace references to WSL with references to cloud shell -->
-
-1. Go to the WSL window that has the SSH connection open to the build agent VM.
+1. Go to the cloud shell window that has the SSH connection open to the build agent VM.
 
 2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
@@ -516,7 +486,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
-12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Repeat the commands in Task 6: Connect securely to the build agent from step 4 to establish the SSH session again.
+12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Reconnect to the build agent VM as you did previously in Task 5: Connect securely to the build agent using the SSH command.
 
 13. Run the Docker version command again, and note the output now shows the server version as well.
 
@@ -540,75 +510,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-<!-- TODO: Remove Task, Azure CLI already installed on cloud shell -->
-
-### Task 9: Install Azure CLI
-
-In later exercises, you will need the Azure CLI 2.0 to connect to your Kubernetes cluster and run commands from your local machine. A complete list of instructions for supported platforms is available on this page:
-
-<https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest>
-
-1. For MacOS -- use homebrew:
-
-   ```bash
-   brew update
-
-   brew install azure-cli
-   ```
-
-2. For Windows -- using WSL _on your local machine (not the build agent)_:
-
-   ```bash
-   AZ_REPO=$(lsb_release -cs)
-   echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
-
-   curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-
-   sudo apt-get install apt-transport-https
-   sudo apt-get update && sudo apt-get install azure-cli
-   ```
-
-<!-- TODO: Remove Task, kubectl already installed on cloud shell -->
-
-### Task 10: Install Kubernetes CLI
-
-In later exercises, you will need the Kubernetes CLI (kubectl) to deploy to your Kubernetes cluster and run commands from your local machine.
-
-1. Install the Kubernetes client using Azure CLI:
-
-   ```bash
-   az login
-
-   sudo az aks install-cli --install-location /usr/local/bin/kubectl
-   ```
-
-   > **Note**: You may see this message but try kubectl version to confirm cli is working.
-
-   ![In this screenshot of a Command Prompt window, installing kubectl.](media/b4-image61.png)
-
-<!-- TODO: Remove Task, helm already installed on cloud shell -->
-
-### Task 11: Install Helm
-
-In later exercises, you will need the Helm client to deploy to your Kubernetes cluster and run commands from your local machine.
-
-1. For MacOS -- use homebrew:
-
-   ```bash
-   brew update
-
-   brew install kubernetes-helm
-   ```
-
-2. For Windows -- using WSL _on your local machine (not the build agent)_:
-
-   ```bash
-   curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > get_helm.sh
-   chmod 700 get_helm.sh
-   ./get_helm.sh
-   ```
-
-### Task 12: Download the FabMedical starter files
+### Task 7: Download the FabMedical starter files
 
 FabMedical has provided starter files for you. They have taken a copy of one of 
 their websites, for their customer Contoso Neuro, and refactored it from a 
@@ -619,9 +521,8 @@ that validates the development workflow for running the website and API as
 Docker containers and managing them within the Azure Kubernetes Service 
 environment.
 
-<!-- TODO: Replace WSL references with cloudshell -->
 <!-- TODO: Remove bitly if possible -->
-1. From WSL, download the starter files by typing the following curl instruction (case sensitive):
+1. From Azure Cloud Shell, download the starter files by typing the following curl instruction (case sensitive):
 
    ```bash
    curl -L -o FabMedical.tgz http://bit.ly/2uhZseT
@@ -647,13 +548,10 @@ environment.
    tar -C FabMedical -xzf FabMedical.tgz --strip-components=1
    ```
 
-<!-- Remove reference to MAC -->
 4. Navigate to FabMedical folder and list the contents.
 
    ```bash
    cd FabMedical
-
-   # on Mac bash you may need to type `ls`
    ll
    ```
 
@@ -697,8 +595,7 @@ environment.
      - Confirm the password.
      - Select "Save Git Credentials".
 
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Using your WSL window, set your username and email which are used in Azure DevOps for Git Commits.
+   - Using your cloud shell window, set your username and email which are used in Azure DevOps for Git Commits.
 
      ```bash
      git config --global user.email "you@example.com"
@@ -712,14 +609,13 @@ environment.
      git config --global user.name "you@example.onmicrosoft.com"
      ```
 
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Using your WSL window, configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
+   - Using your cloud shell window, configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
 
      ```bash
      git config --global credential.helper cache
      ```
 
-   - Using your WSL window, initialize a new git repository.
+   - Using your cloud shell window, initialize a new git repository.
 
      ```bash
      cd content-web
@@ -742,14 +638,13 @@ environment.
      "git remote add origin https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
       git push -u origin --all"
      ```
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-     Paste these commands into your WSL window.
+     Paste these commands into your cloud shell window.
 
      - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
 
    - Use the repository dropdown to create a second repository called "content-api".
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Using your WSL window, initialize a new git repository in the content-api directory.
+
+   - Using your cloud shell window, initialize a new git repository in the content-api directory.
 
      ```bash
      cd ../content-api
@@ -757,14 +652,14 @@ environment.
      git add .
      git commit -m "Initial Commit"
      ```
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Setup your Azure DevOps repository as a new remote for push. Use the repository dropdown to switch to the "content-api" repository. You can then copy the commands for the setting up the content-api repository from your browser, then update the HTTPS URL as you did earlier for content-web repository HTTPS url. Paste these commands into your WSL window.
+
+   - Setup your Azure DevOps repository as a new remote for push. Use the repository dropdown to switch to the "content-api" repository. You can then copy the commands for the setting up the content-api repository from your browser, then update the HTTPS URL as you did earlier for content-web repository HTTPS url. Paste these commands into your cloud shell window.
 
      - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
 
    - Use the repository drop down to create a third repository called "content-init".
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Using your WSL window, initialize a new git repository in the content-init directory.
+
+   - Using your cloud shell window, initialize a new git repository in the content-init directory.
 
      ```bash
      cd ../content-init
@@ -772,14 +667,14 @@ environment.
      git add .
      git commit -m "Initial Commit"
      ```
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - Setup your Azure DevOps repository as a new remote for push. Use the repository drop down to switch to the "content-init" repository. You can then copy the commands for the setting up the content-init repository from your browser, then update the HTTPS URL as you did earlier for other repo's HTTPS url. Paste these commands into your WSL window.
+
+   - Setup your Azure DevOps repository as a new remote for push. Use the repository drop down to switch to the "content-init" repository. You can then copy the commands for the setting up the content-init repository from your browser, then update the HTTPS URL as you did earlier for other repo's HTTPS url. Paste these commands into your cloud shell window.
 
      - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
 
 8. Clone your repositories to the build agent.
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-   - From WSL, connect to the build agent VM as you did previously in Before the hands-on lab - Task 6: Connect securely to the build agent using the SSH command.
+
+   - From cloud shell, connect to the build agent VM as you did previously in Task 5: Connect securely to the build agent using the SSH command.
 
    - In your browser, switch to the "content-web" repository and click "Clone" in the right corner.
 
@@ -807,7 +702,8 @@ environment.
    - Use the repository url and `git clone` to copy the content-init code to your build agent.
 
 <!-- TODO: replace reference to WSL with reference to cloudshell -->
-> **Note**: Keep this WSL window open as your build agent SSH connection. You will later open new WSL sessions to other machines.
+<!-- DONE, but we need to check if the last sentence is actually still valid -->
+> **Note**: Keep this cloud shell window open as your build agent SSH connection. You will later open new cloud shell sessions to other machines.
 
 You should follow all steps provided _before_ performing the Hands-on lab.
 
