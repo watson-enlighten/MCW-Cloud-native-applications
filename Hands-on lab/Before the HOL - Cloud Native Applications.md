@@ -22,19 +22,18 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 **Contents**
 
-<!-- TODO: Remove windows 10 development vm section and renumber tasks -->
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Resource Group](#Task-1-Resource-Group)
-    - [Task 2: Create an SSH key](#Task-2-Create-an-SSH-key)
-    - [Task 3: Create a Service Principal](#Task-3-Create-a-Service-Principal)
-    - [Task 4: ARM Template](#Task-4-ARM-Template)
-    - [Task 5: Connect securely to the build agent](#Task-5-Connect-securely-to-the-build-agent)
-    - [Task 6: Complete the build agent setup](#Task-6-Complete-the-build-agent-setup)
-    - [Task 7: Download the FabMedical starter files](#Task-7-Download-the-FabMedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Resource Group](#task-1-resource-group)
+    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
+    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
+    - [Task 4: ARM Template](#task-4-arm-template)
+    - [Task 5: Connect securely to the build agent](#task-5-connect-securely-to-the-build-agent)
+    - [Task 6: Complete the build agent setup](#task-6-complete-the-build-agent-setup)
+    - [Task 7: Download the FabMedical starter files](#task-7-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
 
@@ -46,11 +45,12 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-<!-- TODO: update to indicate user must be a subscription owner and in the "Application Administrators" AAD role -->
+   - To complete this lab (including [Task 3: Create a Service Principal](#task-3-create-a-service-principal)) ensure your account has the following roles:
 
-    - You must have rights to create a service principal as discussed in Task 9: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+     - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
+     - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
 
-    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Task 5: Create a build agent VM and Task 10: Create an Azure Kubernetes Service cluster. You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+   - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Task 5: Create a build agent VM and Task 10: Create an Azure Kubernetes Service cluster. You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. An Azure DevOps account
 
@@ -67,9 +67,6 @@ The names of manufacturers, products, or URLs are provided for informational pur
 You should follow all of the steps provided in this section _before_ taking part in the hands-on lab ahead of time as some of these steps take time.
 
 ### Task 1: Resource Group
-
-<!-- TODO: Update language to indicate that the RG is a input to the ARM deployment, the comment that new resources will be created in remaining exercises should no longer be the case -->
-<!-- Comment remove DONE -->
 
 You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later.
 
@@ -93,16 +90,14 @@ You will create an Azure Resource Group to hold most of the resources that you c
 
    - **Resource group:** Enter something like "fabmedical-SUFFIX", as shown in the following screenshot.
 
-<!-- TODO: Update to include acceptable regions for cosmos db -->
-<!-- everywhere where ACR is available, Cosmos is also available -->
+- **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
 
-   - **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
 
     ![In the Resource group blade, the value for the Resource group box is fabmedical-sol, and the value of the Region box is East US.](media/b4-image7.png)
 
-   - Select **Review + Create** and then **Create**.
+- Select **Review + Create** and then **Create**.
 
-6. When this completes, your Resource Group will be listed in the Azure Portal.
+1. When this completes, your Resource Group will be listed in the Azure Portal.
 
    ![In this screenshot of the Azure Portal, the fabmedical-sol Resource group is listed.](media/b4-image8.png)
 
@@ -146,8 +141,6 @@ In this section, you will create an SSH key to securely access the VMs you creat
        mkdir .ssh
    ```
 
-<!-- TODO: The portal no longer accepts admin as a user name, we should update example to something else -->
-<!-- Not getting the issue here. Since we are deploying using an ARM template, whatever validations the portal does, doesn't affect us. Changing this username implies that all the screenshots would also have to be updated. -->
 7. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
 
    ```bash
@@ -176,9 +169,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
 Azure Kubernetes Service requires an Azure Active Directory service principal to interact with Azure APIs. The service principal is needed to dynamically manage resources such as user-defined routes and the Layer 4 Azure Load Balancer. The easiest way to set up the service principal is using the Azure cloud shell.
 
-<!-- TODO: Account Owner = Subscription Owner + Application Administrator for the purposes of this lab, update to reflect -->
-
-> **Note**: By default, creating a service principal in Azure AD requires account owner permission. You may have trouble creating a service principal if you are not the account owner.
+> **Note**: To complete this task ensure your account has the following roles: [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use and [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you are using.  You may have trouble creating a service principal if you do not have these role assignments.
 
 1. Open cloud shell by selecting the cloud shell icon in the menu bar.
 
@@ -186,6 +177,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 
 <!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
 <!-- An idea: would it be better to have a task in order to "Setup Azure Cloud Shell" and then reference that in all the other tasks that might need it and remove all this recurrent steps? -->
+<!-- JC: Yes I like that idea, please make it so -->
 
 2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
 
@@ -246,105 +238,96 @@ In this section, you will configure and execute an ARM template that will create
 
 2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
 
-    ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
+   ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
 
 3. Before completing the steps to create the service principal, you should make sure to set your default subscription correctly. To view your current subscription type:
 
-    ```bash
-    az account show
-    ```
+   ```bash
+   az account show
+   ```
 
-    ![In this screenshot of a Bash window, az account show has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image37.png)
+   ![In this screenshot of a Bash window, az account show has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image37.png)
 
 4. To list all of your subscriptions, type:
 
-    ```bash
-    az account list
-    ```
+   ```bash
+   az account list
+   ```
 
-    ![In this screenshot of a Bash window, az account list has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image38.png)
+   ![In this screenshot of a Bash window, az account list has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image38.png)
 
 5. To set your default subscription to something other than the current selection, type the following, replacing {id} with the desired subscription id value:
 
-    ``` bash
-    az account set --subscription {id}
-    ```
+   ```bash
+   az account set --subscription {id}
+   ```
 
-    <!-- TODO: Evaluate the list of bitly here; talk to tim/kyle to see if they have an alternative -->
+   <!-- TODO: Update to not use bitly.  Include the src files as a directory in the MCW without zipping them. Per Joel, most MCW no longer use Bitly: We've moved to having people download the repo. This way, all the source code is included in GitHub instead of having zip files we have to manage, a la bit.ly. Example: https://github.com/microsoft/MCW-Cosmos-DB-Real-Time-Advanced-Analytics/blob/master/Hands-on%20lab/Before%20the%20HOL%20-%20Cosmos%20DB%20real-time%20advanced%20analytics.md#task-1-download-the-starter-files (edited) -->
 
 6. Download the parameters starter file by typing the following curl instruction (case sensitive):
 
-    ```bash
-    curl -L -o azuredeploy.parameters.json https://bit.ly/2XHyVaY
-    ```
-
-<!-- TODO: Replace all usages of VIM with Azure Cloud Shell editor https://azure.microsoft.com/en-us/blog/cloudshelleditor/ -->
-<!-- DONE -->
+   ```bash
+   curl -L -o azuredeploy.parameters.json https://bit.ly/2XHyVaY
+   ```
 
 7. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
 
-    ```bash
-    code azuredeploy.parameters.json
-    ```
-
-    <!-- TODO: Update to reflect new ARM template parameters that dont include Windows 10 vm -->
-    <!-- DONE -->
+   ```bash
+   code azuredeploy.parameters.json
+   ```
 
 8. Update the values for the various keys so that they match your environment:
 
-    - **Suffix**: Enter something like "SUF" with max of 3 chars.
-    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
-    - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
-    - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
-    - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
-    - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
-    - **CosmosLocation**: The primary location of the Azure Cosmos DB. Use the same location as the resource group previously created (example: `"eastus"`).
-    - **CosmosLocationName**:  The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
-    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
-    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
+   - **Suffix**: Enter something like "SUF" with max of 3 chars.
+   - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
+   - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
+   - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
+   - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
+   - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
+   - **CosmosLocation**: The primary location of the Azure Cosmos DB. Use the same location as the resource group previously created (example: `"eastus"`).
+   - **CosmosLocationName**: The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
+   - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
+   - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
 
-      > |Location|Location Name|
-      > |--------|-------------|
-      > |canadacentral|Canada Central|
-      > |canadaeast|Canada East|
-      > |northcentralus|North Central US|
-      > |centralus|Central US|
-      > |southcentralus|South Central US|
-      > |eastus|East US|
-      > |eastus2|East US 2|
-      > |westus|West US|
-      > |westus2|West US 2|
-      > |westcentralus|West Central US|
-      > |francecentral|France Central|
-      > |uksouth|UK South|
-      > |ukwest|UK West|
-      > |northeurope|North Europe|
-      > |westeurope|West Europe|
-      > |australiaeast|Australia East|
-      > |australiasoutheast|Australia Southeast|
-      > |brazilsouth|Brazil South|
-      > |centralindia|Central India|
-      > |southindia|South India|
-      > |japaneast|Japan East|
-      > |japanwest|Japan West|
-      > |koreacentral|Korea Central|
-      > |southeastasia|Southeast Asia|
-      > |eastasia|East Asia|
+     > | Location           | Location Name       |
+     > | ------------------ | ------------------- |
+     > | canadacentral      | Canada Central      |
+     > | canadaeast         | Canada East         |
+     > | northcentralus     | North Central US    |
+     > | centralus          | Central US          |
+     > | southcentralus     | South Central US    |
+     > | eastus             | East US             |
+     > | eastus2            | East US 2           |
+     > | westus             | West US             |
+     > | westus2            | West US 2           |
+     > | westcentralus      | West Central US     |
+     > | francecentral      | France Central      |
+     > | uksouth            | UK South            |
+     > | ukwest             | UK West             |
+     > | northeurope        | North Europe        |
+     > | westeurope         | West Europe         |
+     > | australiaeast      | Australia East      |
+     > | australiasoutheast | Australia Southeast |
+     > | brazilsouth        | Brazil South        |
+     > | centralindia       | Central India       |
+     > | southindia         | South India         |
+     > | japaneast          | Japan East          |
+     > | japanwest          | Japan West          |
+     > | koreacentral       | Korea Central       |
+     > | southeastasia      | Southeast Asia      |
+     > | eastasia           | East Asia           |
 
 9. Click the **...** button and select **Save**.
 
-    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
+   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
 10. Click the **...** button again and select **Close Editor**.
 
     ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
-<!-- TODO: Replace with instructions on how to save and close cloud shell editor -->
-<!-- DONE -->
+<!-- TODO: Assuming this is all cloned locally, can we get rid of bitly and just refer to the file saved in cloudshell for the template? -->
 
-<!-- TODO: Bitly -->
-
-11. Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
+1.  Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
 
     ```bash
     az group deployment create --resource-group {resourceGroup} --template-uri https://bit.ly/2XCaXh2 --parameters azuredeploy.parameters.json
@@ -392,15 +375,13 @@ In this section, you will validate that you can connect to the new build agent V
    ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
    ```
 
-6.  When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
+6. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
 
-7.  When asked for the passphrase for the private key you created previously, enter this value.
+7. When asked for the passphrase for the private key you created previously, enter this value.
 
-8.  You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
+8. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
 
-    `adminfabmedical@fabmedical-SUFFIX:~$`
-
-<!-- TODO: screenshot needs updating while testing this (no longer WSL, cloud shell now) -->
+   `adminfabmedical@fabmedical-SUFFIX:~$`
 
     ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
 
@@ -512,16 +493,18 @@ In this task, you will update the packages and install Docker engine.
 
 ### Task 7: Download the FabMedical starter files
 
-FabMedical has provided starter files for you. They have taken a copy of one of 
-their websites, for their customer Contoso Neuro, and refactored it from a 
-single node.js site into a website with a content API that serves up the 
-speakers and sessions. This is a starting point to validate the containerization 
-of their websites. They have asked you to use this to help them complete a POC 
-that validates the development workflow for running the website and API as 
-Docker containers and managing them within the Azure Kubernetes Service 
+FabMedical has provided starter files for you. They have taken a copy of one of
+their websites, for their customer Contoso Neuro, and refactored it from a
+single node.js site into a website with a content API that serves up the
+speakers and sessions. This is a starting point to validate the containerization
+of their websites. They have asked you to use this to help them complete a POC
+that validates the development workflow for running the website and API as
+Docker containers and managing them within the Azure Kubernetes Service
 environment.
 
-<!-- TODO: Remove bitly if possible -->
+<!-- TODO: Remove bitly reference, replace with instructions on how to find the downloaded code.   Since code will not be a tarball we can get rid of instructions on how to 
+unpack it -->
+
 1. From Azure Cloud Shell, download the starter files by typing the following curl instruction (case sensitive):
 
    ```bash
@@ -638,6 +621,7 @@ environment.
      "git remote add origin https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
       git push -u origin --all"
      ```
+
      Paste these commands into your cloud shell window.
 
      - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
@@ -701,9 +685,9 @@ environment.
 
    - Use the repository url and `git clone` to copy the content-init code to your build agent.
 
-<!-- TODO: replace reference to WSL with reference to cloudshell -->
-<!-- DONE, but we need to check if the last sentence is actually still valid -->
-> **Note**: Keep this cloud shell window open as your build agent SSH connection. You will later open new cloud shell sessions to other machines.
+> **Note**: Keep this cloud shell window open as your build agent SSH 
+> connection.  The lab will instruct you to open additional cloudshell sessions
+> as and when needed. 
 
 You should follow all steps provided _before_ performing the Hands-on lab.
 
