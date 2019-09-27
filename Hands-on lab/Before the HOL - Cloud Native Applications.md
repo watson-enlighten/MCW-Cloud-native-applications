@@ -24,16 +24,16 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Resource Group](#task-1-resource-group)
-    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
-    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
-    - [Task 4: ARM Template](#task-4-arm-template)
-    - [Task 5: Connect securely to the build agent](#task-5-connect-securely-to-the-build-agent)
-    - [Task 6: Complete the build agent setup](#task-6-complete-the-build-agent-setup)
-    - [Task 7: Download the FabMedical starter files](#task-7-download-the-fabmedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#Requirements)
+  - [Before the hands-on lab](#Before-the-hands-on-lab)
+    - [Task 1: Resource Group](#Task-1-Resource-Group)
+    - [Task 2: Create an SSH key](#Task-2-Create-an-SSH-key)
+    - [Task 3: Create a Service Principal](#Task-3-Create-a-Service-Principal)
+    - [Task 4: ARM Template](#Task-4-ARM-Template)
+    - [Task 5: Connect securely to the build agent](#Task-5-Connect-securely-to-the-build-agent)
+    - [Task 6: Complete the build agent setup](#Task-6-Complete-the-build-agent-setup)
+    - [Task 7: Download the FabMedical starter files](#Task-7-Download-the-FabMedical-starter-files)
 
 <!-- /TOC -->
 
@@ -176,7 +176,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
    ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
 
 <!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
-<!-- An idea: would it be better to have a task in order to "Setup Azure Cloud Shell" and then reference that in all the other tasks that might need it and remove all this recurrent steps? -->
+<!-- An idea: would it be better to have a task in order to "Setup Azure Cloud Shell" and then reference that in all the other tasks that might need it and remove all this recurrent steps? | Create as Task 2 and update everything else accordingly -->
 <!-- JC: Yes I like that idea, please make it so -->
 
 2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
@@ -263,6 +263,7 @@ In this section, you will configure and execute an ARM template that will create
    ```
 
    <!-- TODO: Update to not use bitly.  Include the src files as a directory in the MCW without zipping them. Per Joel, most MCW no longer use Bitly: We've moved to having people download the repo. This way, all the source code is included in GitHub instead of having zip files we have to manage, a la bit.ly. Example: https://github.com/microsoft/MCW-Cosmos-DB-Real-Time-Advanced-Analytics/blob/master/Hands-on%20lab/Before%20the%20HOL%20-%20Cosmos%20DB%20real-time%20advanced%20analytics.md#task-1-download-the-starter-files (edited) -->
+   <!-- Clone the repo first and remove references to untar the zip file -->
 
 6. Download the parameters starter file by typing the following curl instruction (case sensitive):
 
@@ -384,8 +385,6 @@ In this section, you will validate that you can connect to the new build agent V
    `adminfabmedical@fabmedical-SUFFIX:~$`
 
     ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
-
-<!-- TODO: I think there is an az cli command to fix this, but we should just note that fixing it is outside the scope of the lab and tell them to recreate -->
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
