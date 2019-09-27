@@ -292,6 +292,7 @@ In this task, you will browse to the web application for testing.
    ```
 
 5. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
+<!-- TODO: Should be cloudshell -->
 
 6. Once you have verified the application is accessible through a browser, go to your WSL window and stop the running node processes.
 
@@ -320,6 +321,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    <!-- TODO: Replace with cloudshell screenshot -->
 
    ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
+<!-- TODO: Should be cloudshell -->
 
 1. Create a new file named "Dockerfile" and note the casing in the name. Use the following Vim command to create a new file. The WSL window should look as shown in the following screenshot.
 
@@ -857,6 +859,7 @@ In this task, you will push images to your ACR account, version images with tagg
 3. The Access keys blade displays the Login server, username, and password that will be required for the next step. Keep this handy as you perform actions on the build VM.
 
    > **Note**: If the username and password do not appear, select Enable on the Admin user option.
+<!-- TODO: Should be cloudshell -->
 
 4. From the WSL session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
 
@@ -931,6 +934,8 @@ In this task, you will push images to your ACR account, version images with tagg
     docker pull [LOGINSERVER]/content-web:v1
     ```
 
+<!-- TODO: Move 13-17 to Before hands on lab document: it requires Application Administrator access, and so if they are having someone else do those steps for them then that person needs to do this too. -->
+<!-- TODO: To use the build yaml we have prototyped they will need to opt in to preview UI, make sure that is included in the BHOL document too -->
 13. Next we will use Azure DevOps to automate the process for creating images and pushing to ACR. First, you need to add an Azure Service Principal to your Azure DevOps account. Login to your Azure DevOps account and click the Project settings gear icon to access your settings. Then select Service connections.
 
 14. Choose "+ New service connection". Then pick "Azure Resource Manager" from the menu.
@@ -965,6 +970,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
     > **Note**: If the connection does not verify, then recheck and reenter the required data.
 
+<!-- TODO: Replace with instructions for creating/using the build yaml.  We can start by just showing them the build stage, and add the deployment in later tasks -->
 18. Now create your first build. Select "Pipelines", then select "New pipeline"
 
     ![A screenshot of Azure DevOps build definitions.](media/Ex1-Task7.18.png)
@@ -1023,7 +1029,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 29. Visit your ACR instance in the Azure portal, you should see new containers tagged with the Azure DevOps build number.
 
-    ![A screenhot of the container images in ACR.](media/Ex1-Task7.28.png)
+    ![A screenshot of the container images in ACR.](media/Ex1-Task7.28.png)
 
 ## Exercise 2: Deploy the solution to Azure Kubernetes Service
 
@@ -1033,39 +1039,9 @@ In this exercise, you will connect to the Azure Kubernetes Service cluster you c
 
 ### Task 1: Tunnel into the Azure Kubernetes Service cluster
 
-In this task, you will gather the information you need about your Azure Kubernetes Service cluster to connect to the cluster and execute commands to connect to the Kubernetes management dashboard from your local machine.
+In this task, you will gather the information you need about your Azure Kubernetes Service cluster to connect to the cluster and execute commands to connect to the Kubernetes management dashboard from cloud shell.
 
-1. Open your WSL console (close the connection to the build agent if you are connected). From this WSL console, ensure that you installed the Azure CLI correctly by running the following command:
-
-   ```bash
-   az --version
-   ```
-
-   - This should produce output similar to this:
-
-   ![In this screenshot of the WSL console, example output from running az --version appears. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image73.png)
-
-   - If the output is not correct, review your steps from the instructions in Task 11: Install Azure CLI from the instructions before the lab exercises.
-
-2. Also, check the installation of the Kubernetes CLI (kubectl) by running the following command:
-
-   ```bash
-   kubectl version
-   ```
-
-   - This should produce output similar to this:
-
-   ![In this screenshot of the WSL console, kubectl version has been typed and run at the command prompt, which displays Kubernetes CLI client information.](media/image74.png)
-
-   - If the output is not correct, review the steps from the instructions in Task 10: Install Kubernetes CLI from the instructions before the lab exercises.
-
-3. Once you have installed and verified Azure CLI and Kubernetes CLI, login with the following command, and follow the instructions to complete your login as presented:
-
-   ```bash
-   az login
-   ```
-
-4. Verify that you are connected to the correct subscription with the following command to show your default subscription:
+1. Verify that you are connected to the correct subscription with the following command to show your default subscription:
 
    ```bash
    az account show
@@ -1078,17 +1054,18 @@ In this task, you will gather the information you need about your Azure Kubernet
    az account set --subscription {id}
    ```
 
-5. Configure kubectl to connect to the Kubernetes cluster:
+2. Configure kubectl to connect to the Kubernetes cluster:
 
    ```bash
    az aks get-credentials --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
    ```
 
-6. Test that the configuration is correct by running a simple kubectl command to produce a list of nodes:
+3. Test that the configuration is correct by running a simple kubectl command to produce a list of nodes:
 
    ```bash
    kubectl get nodes
    ```
+<!-- TODO: Should be cloudshell -->
 
    ![In this screenshot of the WSL console, kubectl get nodes has been typed and run at the command prompt, which produces a list of nodes.](media/image75.png)
 
@@ -1098,6 +1075,7 @@ In this task, you will gather the information you need about your Azure Kubernet
    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
    ```
 
+<!-- TODO: this does work but we need to update language and screenshot for cloudshell, a new browser tab will open automatically with dashboard.  Test this please. -->
 8. Create an SSH tunnel linking a local port (8001) on your machine to port 80 on the management node of the cluster. Execute the command below replacing the values as follows:
 
    > **Note**: After you run this command, it may work at first and later lose its connection, so you may have to run this again to reestablish the connection. If the Kubernetes dashboard becomes unresponsive in the browser this is an indication to return here and check your tunnel or rerun the command.
@@ -1105,9 +1083,11 @@ In this task, you will gather the information you need about your Azure Kubernet
    ```bash
    az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
    ```
+<!-- TODO: Should be cloudshell -->
 
    ![In this screenshot of the WSL console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001](media/image76.png)
 
+<!-- TODO: Believe we can remove this because this is automatic in cloudshell -->
 9. Open a browser window and access the Kubernetes management dashboard at the Services view. To reach the dashboard, you must access the following address:
 
    ```bash
@@ -1173,6 +1153,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
    ```text
    mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol2.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
    ```
+<!-- TODO: Should be cloudshell -->
 
 10. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your WSL window and use the following command to encode the connection string and then, copy the output.
 
@@ -1201,6 +1182,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 13. View the details for the "mongodb" secret. Click the eyeball icon to show the secret.
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
+<!-- TODO: Should be cloudshell -->
 
 14. Next, download the api deployment configuration using the following command in your WSL window:
 
@@ -1241,6 +1223,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 ### Task 3: Deploy a service using kubectl
 
 In this task, deploy the web service using `kubectl`.
+<!-- TODO: Should be cloudshell -->
 
 1. Open a **new** WSL console.
 
@@ -1358,6 +1341,7 @@ In this task, deploy the web service using `kubectl`.
    ```bash
    kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
    ```
+<!-- TODO: Should be cloudshell -->
 
    ![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
@@ -1384,6 +1368,7 @@ In this task, deploy the web service using a helm chart.
 4. Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
+<!-- TODO: Should be cloudshell -->
 
 5. Open a **new** WSL console.
 
@@ -1571,6 +1556,7 @@ In this task, deploy the web service using a helm chart.
     cd ../..
     helm install --name web ./web
     ```
+<!-- TODO: Should be cloudshell -->
 
     ![In this screenshot of the WSL console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
@@ -1595,6 +1581,7 @@ In this task, deploy the web service using a helm chart.
 ### Task 5: Initialize database with a Kubernetes Job
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
+<!-- TODO: Should be cloudshell -->
 
 1. In your WSL window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
 
@@ -2251,6 +2238,7 @@ In this task, you will edit the web application source code to add Application I
     ```
 
 29. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
+<!-- TODO: Should be cloudshell -->
 
 30. From WSL, request a rolling update for the content-api application using this kubectl command:
 
