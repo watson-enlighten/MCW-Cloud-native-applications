@@ -53,7 +53,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
     - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
     - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
-  - [Exercise 4: Setup load balancing and service discovery](#exercise-4-setup-load-balancing-and-service-discovery)
+  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
     - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
     - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
     - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
@@ -1227,6 +1227,7 @@ In this task, deploy the web service using `kubectl`.
 
 1. Open a **new** WSL console.
 
+<!-- TODO: This can be cloud editor -->
 2. Create a text file called web.deployment.yml using Vim and press the "i" key to go into edit mode.
 
    ```bash
@@ -1371,7 +1372,7 @@ In this task, deploy the web service using a helm chart.
 <!-- TODO: Should be cloudshell -->
 
 5. Open a **new** WSL console.
-
+<!-- TODO: should be cloud editor -->
 6. Create a text file called rbac-config.yaml using Vim and press the "i" key to go into edit mode.
 
    ```bash
@@ -1562,7 +1563,7 @@ In this task, deploy the web service using a helm chart.
 
 25. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
-    ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
+    ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
 26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
 
@@ -1581,7 +1582,7 @@ In this task, deploy the web service using a helm chart.
 ### Task 5: Initialize database with a Kubernetes Job
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
-<!-- TODO: Should be cloudshell -->
+<!-- TODO: Should be cloudshell / cloud editor -->
 
 1. In your WSL window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
 
@@ -1654,8 +1655,8 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will update a Build Pipeline and configure a Release Pipeline in your Azure DevOps account so that when new images are pushed to the ACR, they get deployed to the AKS cluster.
-
+In this task, you will update the build pipeline and configure a deployment stage so that when new images are pushed to the ACR, they get deployed to the AKS cluster.
+<!-- TODO: update to reflect adding the deployment stage using YAML -->
 1. We will use Azure DevOps to automate the process for deploying the web image to the AKS cluster. Login to your Azure DevOps account, access the project you created earlier, then select "Pipelines", and then select "Builds".
 
 2. From the builds list, select the `content-web-Container-CI` build and then click `Edit.`
@@ -1997,7 +1998,7 @@ In this task, you will restart containers and validate that the restart does not
 
     ![Workloads is selected in the navigation menu on the left. On the right are the Deployment, Pods, and Replica Sets boxes.](media/image132.png)
 
-## Exercise 4: Setup load balancing and service discovery
+## Exercise 4: Working with services and routing application traffic
 
 **Duration**: 45 minutes
 
@@ -2049,7 +2050,12 @@ In this task, you will update the web service so that it supports dynamic discov
 
    ![Deployments is selected under Workloads in the navigation menu on the left. On the right are the Details and New Replica Set boxes. The web deployment is highlighted in the New Replica Set box, indicating an error.](media/image141.png)
 
-Like the API deployment, the web deployment used a fixed _hostPort_, and your ability to scale was limited by the number of available agent nodes. However, after resolving this issue for the web service by removing the _hostPort_ setting, the web deployment is still unable to scale past two pods due to CPU constraints. The deployment is requesting more CPU than the web application needs, so you will fix this constraint in the next task.
+Like the API deployment, the web deployment used a fixed _hostPort_, and your 
+ability to scale was limited by the number of available agent nodes. However, 
+after resolving this issue for the web service by removing the _hostPort_ 
+setting, the web deployment is still unable to scale past two pods due to CPU 
+constraints. The deployment is requesting more CPU than the web application 
+needs, so you will fix this constraint in the next task.
 
 ### Task 3: Adjust CPU constraints to improve scale
 
@@ -2076,8 +2082,9 @@ In this task, you will modify the CPU requirements for the web service so that i
 ### Task 4: Perform a rolling update
 
 In this task, you will edit the web application source code to add Application Insights and update the Docker image used by the deployment. Then you will perform a rolling update to demonstrate how to deploy a code change.
-
-1. Go to your resource group and locate the app insight for both web and api.
+<!-- TODO: update for angular app -->
+1. Go to your resource group and locate the Application Insights resources for 
+both web and api.
 
    ![A screenshot of the Azure Portal showing the new Application Insights resources in the resource group.](media/Ex4-Task4.5.png)
 
@@ -2105,7 +2112,7 @@ In this task, you will edit the web application source code to add Application I
 
 8. Enter insert mode by pressing `<i>`.
 
-9. Add the following lines immediately after the config is loaded.
+9.  Add the following lines immediately after the config is loaded.
 
    ```javascript
    const appInsights = require("applicationinsights");
@@ -2115,7 +2122,7 @@ In this task, you will edit the web application source code to add Application I
 
    ![A screenshot of the VIM editor showing the modified lines.](media/Ex4-Task4.13.png)
 
-10. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+11. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
     ```text
     <Esc>
@@ -2123,14 +2130,14 @@ In this task, you will edit the web application source code to add Application I
     <Enter>
     ```
 
-11. Update your config files to include the Application Insights Key.
+12. Update your config files to include the Application Insights Key.
 
     ```bash
     vi config/env/production.js
     <i>
     ```
 
-12. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
+13. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: "[YOUR APPINSIGHTS KEY]";
@@ -2138,24 +2145,24 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing the modified lines.](media/Ex4-Task4.16.png)
 
-13. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+14. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-14. Now update the development config:
+15. Now update the development config:
 
     ```bash
     vi config/env/development.js
     <i>
     ```
 
-15. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
+16. Add the following line to the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
 
     ```javascript
     appInsightKey: "[YOUR APPINSIGHTS KEY]";
     ```
 
-16. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+17. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-17. Push these changes to your repository so that Azure DevOps CI will build a new image while you work on updating the content-api application.
+18. Push these changes to your repository so that Azure DevOps CI will build a new image while you work on updating the content-api application.
 
     ```bash
     git add .
@@ -2163,22 +2170,22 @@ In this task, you will edit the web application source code to add Application I
     git push
     ```
 
-18. Now update the content-api application.
+19. Now update the content-api application.
 
     ```bash
     cd ../content-api
     npm install applicationinsights --save
     ```
 
-19. Open the server.js file using VI:
+20. Open the server.js file using VI:
 
     ```bash
     vi server.js
     ```
 
-20. Enter insert mode by pressing `<i>`.
+21. Enter insert mode by pressing `<i>`.
 
-21. Add the following lines immediately after the config is loaded:
+22. Add the following lines immediately after the config is loaded:
 
     ```javascript
     const appInsights = require("applicationinsights");
@@ -2188,7 +2195,7 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing ](media/Ex4-Task4.25.png)
 
-22. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+23. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
     ```text
     <Esc>
@@ -2196,14 +2203,14 @@ In this task, you will edit the web application source code to add Application I
     <Enter>
     ```
 
-23. Update your config files to include the Application Insights Key.
+24. Update your config files to include the Application Insights Key.
 
     ```bash
     vi config/config.js
     <i>
     ```
 
-24. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key for **content-api** from the Azure portal.
+25. Add the following line to the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key for **content-api** from the Azure portal.
 
     ```javascript
     appInsightKey: "[YOUR APPINSIGHTS KEY]";
@@ -2211,9 +2218,9 @@ In this task, you will edit the web application source code to add Application I
 
     ![A screenshot of the VIM editor showing updating the Application Insights key.](media/Ex4-Task4.28.png)
 
-25. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+26. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
 
-26. Push these changes to your repository so that Azure DevOps CI will build a new image.
+27. Push these changes to your repository so that Azure DevOps CI will build a new image.
 
     ```bash
     git add .
@@ -2221,7 +2228,7 @@ In this task, you will edit the web application source code to add Application I
     git push
     ```
 
-27. Visit your ACR to see the new images and make a note of the tags assigned by Azure DevOps.
+28. Visit your ACR to see the new images and make a note of the tags assigned by Azure DevOps.
 
     - Make a note of the latest tag for content-web.
 
@@ -2231,13 +2238,13 @@ In this task, you will edit the web application source code to add Application I
 
       ![A screenshot of the Azure Container Registry listing showing the tagged versions of the content-api image.](media/Ex4-Task4.31b.png)
 
-28. Now that you have finished updating the source code, you can exit the build agent.
+29. Now that you have finished updating the source code, you can exit the build agent.
 
     ```bash
     exit
     ```
 
-29. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
+30. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
 <!-- TODO: Should be cloudshell -->
 
 30. From WSL, request a rolling update for the content-api application using this kubectl command:
@@ -2273,11 +2280,11 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    ```
 
 3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP.
-
+<!-- TODO This URL will not be valid from cloudshell, update instructions -->
    http://localhost:8001/#!/service?namespace=kube-system
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
-
+<!-- TODO this can be cloud editor -->
 4. Create a script to update the public DNS name for the IP.
 
    ```bash
