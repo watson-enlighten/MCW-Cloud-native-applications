@@ -24,16 +24,17 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Resource Group](#task-1-resource-group)
-    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
-    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
-    - [Task 4: ARM Template](#task-4-arm-template)
-    - [Task 5: Connect securely to the build agent](#task-5-connect-securely-to-the-build-agent)
-    - [Task 6: Complete the build agent setup](#task-6-complete-the-build-agent-setup)
-    - [Task 7: Download the FabMedical starter files](#task-7-download-the-fabmedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#Requirements)
+  - [Before the hands-on lab](#Before-the-hands-on-lab)
+    - [Task 1: Resource Group](#Task-1-Resource-Group)
+    - [Task 2: Setup Azure Cloud Shell](#Task-2-Setup-Azure-Cloud-Shell)
+    - [Task 3: Create an SSH key](#Task-3-Create-an-SSH-key)
+    - [Task 4: Create a Service Principal](#Task-4-Create-a-Service-Principal)
+    - [Task 5: ARM Template](#Task-5-ARM-Template)
+    - [Task 6: Connect securely to the build agent](#Task-6-Connect-securely-to-the-build-agent)
+    - [Task 7: Complete the build agent setup](#Task-7-Complete-the-build-agent-setup)
+    - [Task 8: Download the FabMedical starter files](#Task-8-Download-the-FabMedical-starter-files)
 
 <!-- /TOC -->
 
@@ -90,20 +91,17 @@ You will create an Azure Resource Group to hold most of the resources that you c
 
    - **Resource group:** Enter something like "fabmedical-SUFFIX", as shown in the following screenshot.
 
-- **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
-
+   - **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
 
     ![In the Resource group blade, the value for the Resource group box is fabmedical-sol, and the value of the Region box is East US.](media/b4-image7.png)
 
-- Select **Review + Create** and then **Create**.
+   - Select **Review + Create** and then **Create**.
 
-1. When this completes, your Resource Group will be listed in the Azure Portal.
+6. When this completes, your Resource Group will be listed in the Azure Portal.
 
    ![In this screenshot of the Azure Portal, the fabmedical-sol Resource group is listed.](media/b4-image8.png)
 
-### Task 2: Create an SSH key
-
-In this section, you will create an SSH key to securely access the VMs you create during the upcoming exercises.
+### Task 2: Setup Azure Cloud Shell
 
 1. Open cloud shell by selecting the cloud shell icon in the menu bar.
 
@@ -113,7 +111,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
    ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
 
-3. Before completing the steps to create the SSH key, you should make sure to set your default subscription correctly. To view your current subscription type:
+3. You should make sure to set your default subscription correctly. To view your current subscription type:
 
    ```bash
    az account show
@@ -135,29 +133,35 @@ In this section, you will create an SSH key to securely access the VMs you creat
    az account set --subscription {id}
    ```
 
-6. From the cloud shell command line, enter the following command to ensure that a directory for the SSH keys is created. You can ignore any errors you see in the output.
+### Task 3: Create an SSH key
 
-   ```bash
-       mkdir .ssh
-   ```
+In this section, you will create an SSH key to securely access the VMs you create during the upcoming exercises.
 
-7. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
+1. From the cloud shell command line, enter the following command to ensure that a directory for the SSH keys is created. You can ignore any errors you see in the output.
+
+    > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
+
+    ```bash
+        mkdir .ssh
+    ```
+
+2. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
 
    ```bash
    ssh-keygen -t RSA -b 2048 -C admin@fabmedical
    ```
 
-8. You will be asked to save the generated key to a file. Enter \".ssh/fabmedical\" for the name.
+3. You will be asked to save the generated key to a file. Enter \".ssh/fabmedical\" for the name.
 
-9. Enter a passphrase when prompted, and **don't forget it**!
+4. Enter a passphrase when prompted, and **don't forget it**!
 
-10. Because you entered ".ssh/fabmedical", the file will be generated in the ".ssh" folder in your user folder, where cloud shell opens by default.
+5. Because you entered ".ssh/fabmedical", the file will be generated in the ".ssh" folder in your user folder, where cloud shell opens by default.
 
-11. Keep this cloud shell open and remain in the default directory, you will use it in later tasks.
+6. Keep this cloud shell open and remain in the default directory, you will use it in later tasks.
 
     ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
 
-12. Type the following command at the cloud shell prompt to display the public key that you generated and save the entire content of the file because you will need it later:
+7. Type the following command at the cloud shell prompt to display the public key that you generated and save the entire content of the file because you will need it later:
 
     ```bash
     cat .ssh/fabmedical.pub
@@ -165,119 +169,54 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
     ![In this screenshot of the cloud shell window, cat .ssh/fabmedical.pub has been typed and run at the command prompt, which displays the public key that you generated.](media/b4-image59.png)
 
-### Task 3: Create a Service Principal
+### Task 4: Create a Service Principal
 
 Azure Kubernetes Service requires an Azure Active Directory service principal to interact with Azure APIs. The service principal is needed to dynamically manage resources such as user-defined routes and the Layer 4 Azure Load Balancer. The easiest way to set up the service principal is using the Azure cloud shell.
 
-> **Note**: To complete this task ensure your account has the following roles: [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use and [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you are using.  You may have trouble creating a service principal if you do not have these role assignments.
+> **Note**: To complete this task ensure your account has the following roles: [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use and [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you are using. You may have trouble creating a service principal if you do not have these role assignments.
 
-1. Open cloud shell by selecting the cloud shell icon in the menu bar.
+1. To create a service principal, type the following command in the cloud shell command line, replacing {id} with your subscription identifier, and replacing suffix with your chosen suffix to make the name unique:
 
-   ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
-
-<!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
-<!-- An idea: would it be better to have a task in order to "Setup Azure Cloud Shell" and then reference that in all the other tasks that might need it and remove all this recurrent steps? | Create as Task 2 and update everything else accordingly -->
-<!-- JC: Yes I like that idea, please make it so -->
-
-2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
-
-   ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
-
-3. Before completing the steps to create the service principal, you should make sure to set your default subscription correctly. To view your current subscription type:
-
-   ```bash
-   az account show
-   ```
-
-   ![In this screenshot of a Bash window, az account show has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image37.png)
-
-4. To list all of your subscriptions, type:
-
-   ```bash
-   az account list
-   ```
-
-   ![In this screenshot of a Bash window, az account list has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image38.png)
-
-5. To set your default subscription to something other than the current selection, type the following, replacing {id} with the desired subscription id value:
-
-   ```bash
-   az account set --subscription {id}
-   ```
-
-6. To create a service principal, type the following command, replacing {id} with your subscription identifier, and replacing suffix with your chosen suffix to make the name unique:
+   > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
 
    ```bash
    az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/{id}" --name="http://Fabmedical-sp-{SUFFIX}"
    ```
 
-7. The service principal command will produce output like this. Copy this information; you will need it later.
+2. The service principal command will produce output like this. Copy this information; you will need it later.
 
    ![In this screenshot of a Bash window, az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/{id}" --name="Fabmedical-sp-SUFFIX" has been typed and run at the command prompt. Service principal information is visible in the window, but at this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image39.png)
 
-8. To get the service principal object id, type the following command, replacing {appId} with your service principal appId:
+3. To get the service principal object id, type the following command, replacing {appId} with your service principal appId:
 
    ```bash
    az ad sp show --id {appId} --query "{objectId:@.objectId}"
    ```
 
-9. The service principal information command will produce output like this. Copy this information; you will need it later.
+4. The service principal information command will produce output like this. Copy this information; you will need it later.
 
    ![In this screenshot of a Bash window, az ad sp show --id d41261a3-d8b8-4cf0-890d-1fb6efc20a67 --query "{objectId:@.objectId}" has been typed and run at the command prompt. Service Principal information is visible in the window.](media/b4-image58.png)
 
-### Task 4: ARM Template
+### Task 5: ARM Template
 
 In this section, you will configure and execute an ARM template that will create all the resources that you will need throughout the exercises.
-
-1. Open cloud shell by selecting the cloud shell icon in the menu bar.
-
-   ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
-
-<!-- TODO: Remove steps 2 through 5; refer back to previous instructions or remind them that they should be in the same cloudshell we told them not to close -->
-<!-- Same comment as above -->
-
-2. The cloud shell will open in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
-
-   ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
-
-3. Before completing the steps to create the service principal, you should make sure to set your default subscription correctly. To view your current subscription type:
-
-   ```bash
-   az account show
-   ```
-
-   ![In this screenshot of a Bash window, az account show has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image37.png)
-
-4. To list all of your subscriptions, type:
-
-   ```bash
-   az account list
-   ```
-
-   ![In this screenshot of a Bash window, az account list has been typed and run at the command prompt. Some subscription information is visible in the window, and some information is obscured.](media/b4-image38.png)
-
-5. To set your default subscription to something other than the current selection, type the following, replacing {id} with the desired subscription id value:
-
-   ```bash
-   az account set --subscription {id}
-   ```
 
    <!-- TODO: Update to not use bitly.  Include the src files as a directory in the MCW without zipping them. Per Joel, most MCW no longer use Bitly: We've moved to having people download the repo. This way, all the source code is included in GitHub instead of having zip files we have to manage, a la bit.ly. Example: https://github.com/microsoft/MCW-Cosmos-DB-Real-Time-Advanced-Analytics/blob/master/Hands-on%20lab/Before%20the%20HOL%20-%20Cosmos%20DB%20real-time%20advanced%20analytics.md#task-1-download-the-starter-files (edited) -->
    <!-- Clone the repo first and remove references to untar the zip file -->
 
-6. Download the parameters starter file by typing the following curl instruction (case sensitive):
+2. Download the parameters starter file by typing the following curl instruction (case sensitive):
 
    ```bash
    curl -L -o azuredeploy.parameters.json https://bit.ly/2XHyVaY
    ```
 
-7. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
+3. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
 
    ```bash
    code azuredeploy.parameters.json
    ```
 
-8. Update the values for the various keys so that they match your environment:
+4. Update the values for the various keys so that they match your environment:
 
    - **Suffix**: Enter something like "SUF" with max of 3 chars.
    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
@@ -318,11 +257,11 @@ In this section, you will configure and execute an ARM template that will create
      > | southeastasia      | Southeast Asia      |
      > | eastasia           | East Asia           |
 
-9. Click the **...** button and select **Save**.
+5. Click the **...** button and select **Save**.
 
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-10. Click the **...** button again and select **Close Editor**.
+6.  Click the **...** button again and select **Close Editor**.
 
     ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
@@ -334,7 +273,7 @@ In this section, you will configure and execute an ARM template that will create
     az group deployment create --resource-group {resourceGroup} --template-uri https://bit.ly/2XCaXh2 --parameters azuredeploy.parameters.json
     ```
 
-### Task 5: Connect securely to the build agent
+### Task 6: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent VM.
 
@@ -388,7 +327,7 @@ In this section, you will validate that you can connect to the new build agent V
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
-### Task 6: Complete the build agent setup
+### Task 7: Complete the build agent setup
 
 In this task, you will update the packages and install Docker engine.
 
@@ -466,7 +405,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
-12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Reconnect to the build agent VM as you did previously in Task 5: Connect securely to the build agent using the SSH command.
+12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Reconnect to the build agent VM as you did previously in Task 6: Connect securely to the build agent using the SSH command.
 
 13. Run the Docker version command again, and note the output now shows the server version as well.
 
@@ -490,7 +429,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 7: Download the FabMedical starter files
+### Task 8: Download the FabMedical starter files
 
 FabMedical has provided starter files for you. They have taken a copy of one of
 their websites, for their customer Contoso Neuro, and refactored it from a
@@ -657,7 +596,7 @@ unpack it -->
 
 8. Clone your repositories to the build agent.
 
-   - From cloud shell, connect to the build agent VM as you did previously in Task 5: Connect securely to the build agent using the SSH command.
+   - From cloud shell, connect to the build agent VM as you did previously in Task 6: Connect securely to the build agent using the SSH command.
 
    - In your browser, switch to the "content-web" repository and click "Clone" in the right corner.
 
