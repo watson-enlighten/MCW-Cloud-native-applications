@@ -126,23 +126,23 @@ Each tenant will have the following containers:
 
    - Trial subscriptions will _not_ work.
 
-<!-- TODO: Update to indicate user must be Owner equivalent for the subscription and have Application Administrator role in AAD -->
+   - To complete this lab ensure your account has the following roles:
 
-    - You must have rights to create a service principal as discussed in Before the Hands-on Lab Task 3: Create a Service Principal --- and this typically requires a subscription owner to log in. You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+     - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) 
+        built-in role for the subscription you will use.
+     - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) 
+        built-in role for the Azure AD tenant you will use.
 
-    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands-on Lab. You'll need eight cores if following the exact instructions in the lab, or more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+    - You must have enough cores available in your subscription to create the 
+        build agent and Azure Kubernetes Service cluster in Before the Hands-on 
+        Lab. You'll need eight cores if following the exact instructions in the 
+        lab, or more if you choose additional cluster nodes or larger VM sizes. 
+        If you execute the steps required before the lab, you will be able to 
+        see if you need to request more cores in your sub.
 
 2. Local machine or a virtual machine configured with:
 
    - A browser, preferably Chrome for consistency with the lab implementation tests.
-
-<!-- TODO: remove references to WSL and terminal; we use cloudshell now -->
-
-    - Command prompts:
-
-        - On Windows, you will be using Bash on Ubuntu on Windows, hereon referred to as WSL.
-
-        - On Mac, all instructions should be executed using bash in Terminal.
 
 3. You will be asked to install other tools throughout the exercises.
 
@@ -157,10 +157,10 @@ In this exercise, you will take the starter files and run the node.js applicatio
 ### Task 1: Test the application
 
 The purpose of this task is to make sure you can run the application successfully before applying changes to run it as a Docker application.
-
-<!-- TODO: Remove references to WSL, replace with cloudshell -->
-
-1. From the WSL window, connect to your build agent if you are not already connected.
+   
+1. From Azure Cloud Shell, connect to your build agent if you are not already 
+   connected. (If you need to reconnect, please review the instructions in the
+   "Before the HOL" document.)
 
 2. Type the following command to create a Docker network named "fabmedical":
 
@@ -217,7 +217,7 @@ The purpose of this task is to make sure you can run the application successfull
 
    ![This screenshot of the WSL window shows output from running the database initialization.](media/Ex1-Task1.7.png)
 
-8. Confirm that the database now contains test data.
+8.  Confirm that the database now contains test data.
 
    ```bash
    mongo
@@ -238,14 +238,14 @@ The purpose of this task is to make sure you can run the application successfull
 
    ![This screenshot of the WSL window shows the data output.](media/Ex1-Task1.8.png)
 
-9. Now navigate to the content-api directory and run npm install.
+11. Now navigate to the content-api directory and run npm install.
 
    ```bash
    cd ../content-api
    npm install
    ```
 
-10. Start the API as a background process.
+12. Start the API as a background process.
 
     ```bash
     nodejs ./server.js &
@@ -253,15 +253,15 @@ The purpose of this task is to make sure you can run the application successfull
 
     ![In this screenshot, nodejs ./server.js & has been typed and run at the command prompt, which starts the API as a background process.](media/image47.png)
 
-11. Press ENTER again to get to a command prompt for the next step.
+13. Press ENTER again to get to a command prompt for the next step.
 
-12. Test the API using curl. You will request the speaker's content, and this will return a JSON result.
+14. Test the API using curl. You will request the speaker's content, and this will return a JSON result.
 
     ```bash
     curl http://localhost:3001/speakers
     ```
 
-13. Navigate to the web application directory, run npm install and bower install, and then run the application as a background process as well. Ignore any warnings you see in the output; this will not affect running the application.
+15. Navigate to the web application directory, run npm install and bower install, and then run the application as a background process as well. Ignore any warnings you see in the output; this will not affect running the application.
 
     ```bash
     cd ../content-web
@@ -272,17 +272,17 @@ The purpose of this task is to make sure you can run the application successfull
 
     ![In this screenshot, after navigating to the web application directory, nodejs ./server.js & has been typed and run at the command prompt, which runs the application as a background process as well.](media/image48.png)
 
-14. Press ENTER again to get a command prompt for the next step.
+16. Press ENTER again to get a command prompt for the next step.
 
-15. Test the web application using curl. You will see HTML output returned without errors.
+17. Test the web application using curl. You will see HTML output returned without errors.
 
     ```bash
     curl http://localhost:3000
     ```
 
-16. Leave the application running for the next task.
+18. Leave the application running for the next task.
 
-17. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
+19. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
 
 ### Task 2: Browsing to the web application
 
@@ -2529,3 +2529,4 @@ In this exercise, you will de-provision any Azure resources created in support o
 You should follow all steps provided _after_ attending the Hands-on lab.
 
 [logo]: https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png
+[portal]: https://portal.azure.com
