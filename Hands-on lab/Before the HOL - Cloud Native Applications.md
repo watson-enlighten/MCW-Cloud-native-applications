@@ -24,16 +24,16 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Resource Group](#Task-1-Resource-Group)
-    - [Task 2: Create an SSH key](#Task-2-Create-an-SSH-key)
-    - [Task 3: Create a Service Principal](#Task-3-Create-a-Service-Principal)
-    - [Task 4: ARM Template](#Task-4-ARM-Template)
-    - [Task 5: Connect securely to the build agent](#Task-5-Connect-securely-to-the-build-agent)
-    - [Task 6: Complete the build agent setup](#Task-6-Complete-the-build-agent-setup)
-    - [Task 7: Download the FabMedical starter files](#Task-7-Download-the-FabMedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Resource Group](#task-1-resource-group)
+    - [Task 2: Create an SSH key](#task-2-create-an-ssh-key)
+    - [Task 3: Create a Service Principal](#task-3-create-a-service-principal)
+    - [Task 4: ARM Template](#task-4-arm-template)
+    - [Task 5: Connect securely to the build agent](#task-5-connect-securely-to-the-build-agent)
+    - [Task 6: Complete the build agent setup](#task-6-complete-the-build-agent-setup)
+    - [Task 7: Download the FabMedical starter files](#task-7-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
 
@@ -45,7 +45,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab (including [Task 3: Create a Service Principal](#task-3-create-a-service-principal)) ensure your account has the following roles:
+   - To complete this lab setup (including [Task 3: Create a Service Principal](#task-3-create-a-service-principal)) ensure your account has the following roles:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
      - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
