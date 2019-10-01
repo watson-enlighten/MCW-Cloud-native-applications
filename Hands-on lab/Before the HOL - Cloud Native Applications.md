@@ -24,17 +24,18 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Resource Group](#Task-1-Resource-Group)
-    - [Task 2: Setup Azure Cloud Shell](#Task-2-Setup-Azure-Cloud-Shell)
-    - [Task 3: Create an SSH key](#Task-3-Create-an-SSH-key)
-    - [Task 4: Create a Service Principal](#Task-4-Create-a-Service-Principal)
-    - [Task 5: ARM Template](#Task-5-ARM-Template)
-    - [Task 6: Connect securely to the build agent](#Task-6-Connect-securely-to-the-build-agent)
-    - [Task 7: Complete the build agent setup](#Task-7-Complete-the-build-agent-setup)
-    - [Task 8: Download the FabMedical starter files](#Task-8-Download-the-FabMedical-starter-files)
+- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell)
+    - [Task 2: Download Starter Files](#task-2-download-starter-files)
+    - [Task 3: Resource Group](#task-3-resource-group)
+    - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
+    - [Task 4: Create a Service Principal](#task-4-create-a-service-principal)
+    - [Task 5: ARM Template](#task-5-arm-template)
+    - [Task 6: Connect securely to the build agent](#task-6-connect-securely-to-the-build-agent)
+    - [Task 7: Complete the build agent setup](#task-7-complete-the-build-agent-setup)
+    - [Task 8: Download the FabMedical starter files](#task-8-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
 
@@ -67,41 +68,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 You should follow all of the steps provided in this section _before_ taking part in the hands-on lab ahead of time as some of these steps take time.
 
-### Task 1: Resource Group
-
-You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later.
-
-1. In your browser, navigate to the **Azure Portal** (<https://portal.azure.com>).
-
-2. Select **+ Create a resource** in the navigation bar at the left.
-
-   ![This is a screenshot of the + Create a resource link in the navigation bar.](media/b4-image4.png)
-
-3. In the Search the Marketplace search box, type \"Resource group\" and press Enter.
-
-   ![Resource Group is typed in the Marketplace search box.](media/b4-image5.png)
-
-4. Select **Resource group** on the Everything blade and select **Create**.
-
-   ![This is a screenshot of Resource group on the Everything blade.](media/b4-image6.png)
-
-5. On the new Resource group blade, set the following:
-
-   - **Subscription:** Select the subscription you will use for all the steps during the lab.
-
-   - **Resource group:** Enter something like "fabmedical-SUFFIX", as shown in the following screenshot.
-
-   - **Region:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region (example: `East US`).
-
-    ![In the Resource group blade, the value for the Resource group box is fabmedical-sol, and the value of the Region box is East US.](media/b4-image7.png)
-
-   - Select **Review + Create** and then **Create**.
-
-6. When this completes, your Resource Group will be listed in the Azure Portal.
-
-   ![In this screenshot of the Azure Portal, the fabmedical-sol Resource group is listed.](media/b4-image8.png)
-
-### Task 2: Setup Azure Cloud Shell
+### Task 1: Setup Azure Cloud Shell
 
 1. Open cloud shell by selecting the cloud shell icon in the menu bar.
 
@@ -133,17 +100,63 @@ You will create an Azure Resource Group to hold most of the resources that you c
    az account set --subscription {id}
    ```
 
-### Task 3: Create an SSH key
+### Task 2: Download Starter Files
+
+In this task you will use `git` to copy the lab content to your cloud shell so that the lab starter files will be available.
+
+1. Type the following command and press <ENTER>:
+   
+   ```bash
+   git clone https://github.com/microsoft/MCW-Containers-and-DevOps.git
+   ```
+
+2. The lab files will download.
+
+   ![In this screenshot of a Bash window, git clone has been typed and run at the command prompt. The output from git clone is shown.](media/b4-2019-09-30_21-25-06.png)
+
+3. We do not need the `.git` folder and later steps will be 
+   less complex if we remove it.  Run this command:
+   
+   ```bash
+   rm -rf MCW-Containers-and-DevOps/.git
+   ```
+
+### Task 3: Resource Group
+
+You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later.
+
+1. In your cloud shell window, you will type a command 
+   similar to the following command:
+   
+   ```bash
+   az group create -l [LOCATION] -n fabmedical-[SUFFIX]
+   ```
+
+   - **Suffix:** Throughout the lab suffix should be used to make resources unique, like your email prefix or your first initial and last name.
+  
+   - **Location:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently: Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region.
+
+    Example:
+
+    ```bash
+    az group create -l westus -n fabmedical-sol
+    ```
+
+2. When this completes, your Resource Group will be listed in the Azure Portal.
+
+   ![In this screenshot of the Azure Portal, the fabmedical-sol Resource group is listed.](media/b4-image8.png)
+
+### Task 4: Create an SSH key
 
 In this section, you will create an SSH key to securely access the VMs you create during the upcoming exercises.
 
 1. From the cloud shell command line, enter the following command to ensure that a directory for the SSH keys is created. You can ignore any errors you see in the output.
 
-    > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
 
-    ```bash
-        mkdir .ssh
-    ```
+   ```bash
+   mkdir .ssh
+   ```
 
 2. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
 
@@ -159,15 +172,15 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
 6. Keep this cloud shell open and remain in the default directory, you will use it in later tasks.
 
-    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
+   ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
 
 7. Type the following command at the cloud shell prompt to display the public key that you generated and save the entire content of the file because you will need it later:
 
-    ```bash
-    cat .ssh/fabmedical.pub
-    ```
+   ```bash
+   cat .ssh/fabmedical.pub
+   ```
 
-    ![In this screenshot of the cloud shell window, cat .ssh/fabmedical.pub has been typed and run at the command prompt, which displays the public key that you generated.](media/b4-image59.png)
+   ![In this screenshot of the cloud shell window, cat .ssh/fabmedical.pub has been typed and run at the command prompt, which displays the public key that you generated.](media/b4-image59.png)
 
 ### Task 4: Create a Service Principal
 
@@ -261,9 +274,9 @@ In this section, you will configure and execute an ARM template that will create
 
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-6.  Click the **...** button again and select **Close Editor**.
+6. Click the **...** button again and select **Close Editor**.
 
-    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
+   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
 <!-- TODO: Assuming this is all cloned locally, can we get rid of bitly and just refer to the file saved in cloudshell for the template? -->
 
@@ -323,7 +336,7 @@ In this section, you will validate that you can connect to the new build agent V
 
    `adminfabmedical@fabmedical-SUFFIX:~$`
 
-    ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
+   ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
@@ -440,7 +453,7 @@ that validates the development workflow for running the website and API as
 Docker containers and managing them within the Azure Kubernetes Service
 environment.
 
-<!-- TODO: Remove bitly reference, replace with instructions on how to find the downloaded code.   Since code will not be a tarball we can get rid of instructions on how to 
+<!-- TODO: Remove bitly reference, replace with instructions on how to find the downloaded code.   Since code will not be a tarball we can get rid of instructions on how to
 unpack it -->
 
 1. From Azure Cloud Shell, download the starter files by typing the following curl instruction (case sensitive):
@@ -623,9 +636,9 @@ unpack it -->
 
    - Use the repository url and `git clone` to copy the content-init code to your build agent.
 
-> **Note**: Keep this cloud shell window open as your build agent SSH 
-> connection.  The lab will instruct you to open additional cloudshell sessions
-> as and when needed. 
+> **Note**: Keep this cloud shell window open as your build agent SSH
+> connection. The lab will instruct you to open additional cloudshell sessions
+> as and when needed.
 
 You should follow all steps provided _before_ performing the Hands-on lab.
 
