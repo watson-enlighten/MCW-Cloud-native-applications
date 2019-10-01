@@ -34,9 +34,9 @@ The names of manufacturers, products, or URLs are provided for informational pur
     - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
     - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
     - [Task 7: Setup Azure DevOps project](#task-7-setup-azure-devops-project)
-    - [Task 8: Connect securely to the build agent](#task-8-connect-securely-to-the-build-agent)
-    - [Task 9: Complete the build agent setup](#task-9-complete-the-build-agent-setup)
-    - [Task 10: Clone Repositories to the Build Agent](#task-10-clone-repositories-to-the-build-agent)
+    - [Task 9: Connect securely to the build agent](#task-9-connect-securely-to-the-build-agent)
+    - [Task 10: Complete the build agent setup](#task-10-complete-the-build-agent-setup)
+    - [Task 11: Clone Repositories to the Build Agent](#task-11-clone-repositories-to-the-build-agent)
 
 <!-- /TOC -->
 
@@ -290,7 +290,7 @@ that validates the development workflow for running the website and API as
 Docker containers and managing them within the Azure Kubernetes Service
 environment.
 
-<!-- TODO: create infrastructure version of these files -->
+<!-- TODO: create infrastructure version of these files
 
 > **Important note**: If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
 >
@@ -299,6 +299,7 @@ environment.
 > ```
 >
 > This will download the version of the starter files that will be used by that edition of the lab.
+-->
 
 1. Navigate to FabMedical source code folder and list the contents.
 
@@ -340,7 +341,7 @@ environment.
    - Select "Create new account".
    - Enter a fabmedical-SUFFIX for your account name and select Continue.
 
-6. Create repositories to host the code.
+6. Create Azure DevOps Project.
 
    - Enter fabmedical as the project name.
    - Ensure the project is Private.
@@ -350,11 +351,55 @@ environment.
 
      ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
 
-   - Once the project creation has completed, click "Repos" then use the
-     repository dropdown to create a new repository by selecting
-     "+ New repository".
+7. Enable multi-stage pipelines.
 
-     ![Repository dropdown](media/b4-image53.png)
+- Click your user icon in the top right corner
+- Then click the three dots to access the "Preview Features" menu item
+- Toggle multi-stage pipelines to "On"
+
+2. Next add an Azure Service Connection to your Azure DevOps account. Click the
+   Project settings gear icon to access your settings. Then select Service
+   Connections.
+
+3. Choose "+ New service connection". Then pick "Azure Resource Manager" from
+   the menu.
+
+   ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
+
+4. Select the link indicated in the screenshot below to access the advanced
+   settings.
+
+   ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
+
+5. Enter the required information using the service principal information you
+   created earlier.
+
+   - **Connection name**: azurecloud-sol
+
+   - **Environment**: AzureCloud
+
+   - **Subscription ID**: `id` from `az account show` output
+
+   - **Subscription Name**: `name` from `az account show` output
+
+   - **Service Principal Client ID**: `appId` from service principal output.
+
+   - **Service Principal Key**: `password` from service principal output.
+
+   - **Tenant ID**: `tenant` from service principal output.
+
+   ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
+
+6. Select "Verify connection" then select "OK".
+
+   > **Note**: If the connection does not verify, then recheck and reenter the
+   > required data.
+
+7. Next, click "Repos" then use the
+   repository dropdown to create a new repository by selecting
+   "+ New repository".
+
+   ![Repository dropdown](media/b4-image53.png)
 
    - Enter "content-web" as the repository name.
 
@@ -362,78 +407,78 @@ environment.
 
      ![Generate Git Credentials](media/b4-image50.png)
 
-- Copy the Personal Access Token and save it for later steps
+8. Copy the Personal Access Token and save it for later steps
 
-* Copy the commands to add your Azure DevOps repository as a new remote for
-  push. Copy the commands for "**HTTPS**" similar to this example:
+9. Copy the commands to add your Azure DevOps repository as a new remote for
+   push. Copy the commands for "**HTTPS**" similar to this example:
 
-  ```bash
-  git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
-  git push -u origin --all
-  ```
+```bash
+git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
+git push -u origin --all
+```
 
-  Save these commands you will paste them into your cloud shell window soon.
+Save these commands you will paste them into your cloud shell window soon.
 
-* Using your cloud shell window, initialize a new git repository.
+9. Using your cloud shell window, initialize a new git repository.
 
-  ```bash
-  cd content-web
-  git init
-  git add .
-  git commit -m "Initial Commit"
-  ```
+```bash
+cd content-web
+git init
+git add .
+git commit -m "Initial Commit"
+```
 
-- Now use the commands copied from Azure DevOps to configure the remote
-  repository and push the code to Azure DevOps. When prompted for a password,
-  paste your Azure DevOps Personal Access Token you copied earlier in this task.
+10. Now use the commands copied from Azure DevOps to configure the remote
+    repository and push the code to Azure DevOps. When prompted for a password,
+    paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-* Return to Azure DevOps and use the repository dropdown to create a second
-  repository called `content-api`.
+11. Return to Azure DevOps and use the repository dropdown to create a second
+    repository called `content-api`.
 
-  > Note: You do not need to generate git credentials again. The same PAT will
-  > work for both repositories
+> Note: You do not need to generate git credentials again. The same PAT will
+> work for both repositories
 
-* Copy the commands to add your `content-api` repository as a new remote for
-  push. Copy the commands for "**HTTPS**".
+12. Copy the commands to add your `content-api` repository as a new remote for
+    push. Copy the commands for "**HTTPS**".
 
-* Using your cloud shell window, initialize a new git repository in the
-  content-api directory.
+13. Using your cloud shell window, initialize a new git repository in the
+    content-api directory.
 
-  ```bash
-  cd ../content-api
-  git init
-  git add .
-  git commit -m "Initial Commit"
-  ```
+```bash
+cd ../content-api
+git init
+git add .
+git commit -m "Initial Commit"
+```
 
-- Now use the commands copied from Azure DevOps to configure the remote
-  repository and push the code to Azure DevOps. When prompted for a password,
-  paste your Azure DevOps Personal Access Token you copied earlier in this task.
+14. Now use the commands copied from Azure DevOps to configure the remote
+    repository and push the code to Azure DevOps. When prompted for a password,
+    paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-* Use the repository drop down to create a third repository called
-  `content-init`.
+15. Use the repository drop down to create a third repository called
+    `content-init`.
 
-  > Note: You do not need to generate git credentials again. The same PAT will
-  > work for both repositories
+> Note: You do not need to generate git credentials again. The same PAT will
+> work for both repositories
 
-* Copy the commands to add your `content-init` repository as a new remote for
-  push. Copy the commands for "**HTTPS**".
+16. Copy the commands to add your `content-init` repository as a new remote for
+    push. Copy the commands for "**HTTPS**".
 
-* Using your cloud shell window, initialize a new git repository in the
-  content-init directory.
+17. Using your cloud shell window, initialize a new git repository in the
+    content-init directory.
 
-  ```bash
-  cd ../content-init
-  git init
-  git add .
-  git commit -m "Initial Commit"
-  ```
+```bash
+cd ../content-init
+git init
+git add .
+git commit -m "Initial Commit"
+```
 
-- Now use the commands copied from Azure DevOps to configure the remote
-  repository and push the code to Azure DevOps. When prompted for a password,
-  paste your Azure DevOps Personal Access Token you copied earlier in this task.
+18. Now use the commands copied from Azure DevOps to configure the remote
+    repository and push the code to Azure DevOps. When prompted for a password,
+    paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-### Task 8: Connect securely to the build agent
+### Task 9: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent
 VM.
@@ -485,7 +530,7 @@ VM.
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
-### Task 9: Complete the build agent setup
+### Task 10: Complete the build agent setup
 
 In this task, you will update the packages and install Docker engine.
 
@@ -580,7 +625,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 10: Clone Repositories to the Build Agent
+### Task 11: Clone Repositories to the Build Agent
 
 In this task you will clone your repositories from Azure DevOps so you can work
 with them on the build agent.
@@ -605,25 +650,25 @@ with them on the build agent.
 
    ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
 
-  - Copy the repository url.
+- Copy the repository url.
 
-  - Use the repository url to clone the content-web code to your build agent machine.
+- Use the repository url to clone the content-web code to your build agent machine.
 
-     ```bash
-     git clone <REPOSITORY_URL>
-     ```
+  ```bash
+  git clone <REPOSITORY_URL>
+  ```
 
-  - When prompted for password use your PAT token from previous steps.
+- When prompted for password use your PAT token from previous steps.
 
-  - In your browser, switch to the `content-api` repository and select "Clone" 
-    to see and copy the repository url.
+- In your browser, switch to the `content-api` repository and select "Clone"
+  to see and copy the repository url.
 
-  - Use the repository url and `git clone` to copy the content-api code to your build agent.
+- Use the repository url and `git clone` to copy the content-api code to your build agent.
 
-  - In your browser, switch to the `content-init` repository and select "Clone" 
-    to see and copy the repository url.
+- In your browser, switch to the `content-init` repository and select "Clone"
+  to see and copy the repository url.
 
-   - Use the repository url and `git clone` to copy the content-init code to your build agent.
+- Use the repository url and `git clone` to copy the content-init code to your build agent.
 
 > **Note**: Keep this cloud shell window open as your build agent SSH
 > connection. The lab will instruct you to open additional cloudshell sessions

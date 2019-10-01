@@ -947,42 +947,6 @@ In this task, you will push images to your ACR account, version images with tagg
     docker pull [LOGINSERVER]/content-web:v1
     ```
 
-<!-- TODO: Move 13-17 to Before hands on lab document: it requires Application Administrator access, and so if they are having someone else do those steps for them then that person needs to do this too. -->
-<!-- TODO: To use the build yaml we have prototyped they will need to opt in to preview UI, make sure that is included in the BHOL document too -->
-13. Next we will use Azure DevOps to automate the process for creating images and pushing to ACR. First, you need to add an Azure Service Principal to your Azure DevOps account. Login to your Azure DevOps account and click the Project settings gear icon to access your settings. Then select Service connections.
-
-14. Choose "+ New service connection". Then pick "Azure Resource Manager" from the menu.
-
-    ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
-
-15. Select the link indicated in the screenshot below to access the advanced settings.
-
-    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
-
-16. Enter the required information using the service principal information you created before the lab.
-
-    > **Note**: If you don't have your Subscription information handy you can view it using `az account show` on your **local** machine (not the build agent). If you are using pre-provisioned environment, Service Principal is already pre-created, and you can use the already shared Service Principal details.
-
-    - **Connection name**: azurecloud-sol
-
-    - **Environment**: AzureCloud
-
-    - **Subscription ID**: `id` from `az account show` output
-
-    - **Subscription Name**: `name` from `az account show` output
-
-    - **Service Principal Client ID**: `appId` from service principal output.
-
-    - **Service Principal Key**: `password` from service principal output.
-
-    - **Tenant ID**: `tenant` from service principal output.
-
-    ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
-
-17. Select "Verify connection" then select "OK".
-
-    > **Note**: If the connection does not verify, then recheck and reenter the required data.
-
 <!-- TODO: Replace with instructions for creating/using the build yaml.  We can start by just showing them the build stage, and add the deployment in later tasks -->
 18. Now create your first build. Select "Pipelines", then select "New pipeline"
 
