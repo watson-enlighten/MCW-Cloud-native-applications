@@ -33,9 +33,10 @@ The names of manufacturers, products, or URLs are provided for informational pur
     - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
     - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
     - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
+    - [Task 9: Setup Azure DevOps project](#task-9-setup-azure-devops-project)
     - [Task 7: Connect securely to the build agent](#task-7-connect-securely-to-the-build-agent)
     - [Task 8: Complete the build agent setup](#task-8-complete-the-build-agent-setup)
-    - [Task 9: Download the FabMedical starter files](#task-9-download-the-fabmedical-starter-files)
+      - [TASKXXXX](#taskxxxx)
 
 <!-- /TOC -->
 
@@ -47,7 +48,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab setup (including [Task 3: Create a Service Principal](#task-3-create-a-service-principal)) ensure your account has the following roles:
+   - To complete this lab setup (including [Task 5: Create a Service Principal](#task-5-create-a-service-principal)) ensure your account has the following roles:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
      - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
@@ -104,8 +105,8 @@ You should follow all of the steps provided in this section _before_ taking part
 
 In this task you will use `git` to copy the lab content to your cloud shell so that the lab starter files will be available.
 
-1. Type the following command and press <ENTER>:
-   
+1. Type the following command and press `<ENTER>`:
+
    ```bash
    git clone https://github.com/microsoft/MCW-Containers-and-DevOps.git
    ```
@@ -114,9 +115,9 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
 
    ![In this screenshot of a Bash window, git clone has been typed and run at the command prompt. The output from git clone is shown.](media/b4-2019-09-30_21-25-06.png)
 
-3. We do not need the `.git` folder and later steps will be 
-   less complex if we remove it.  Run this command:
-   
+3. We do not need the `.git` folder and later steps will be
+   less complex if we remove it. Run this command:
+
    ```bash
    rm -rf MCW-Containers-and-DevOps/.git
    ```
@@ -125,22 +126,22 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
 
 You will create an Azure Resource Group to hold most of the resources that you create in this hands-on lab. This approach will make it easier to clean up later.
 
-1. In your cloud shell window, you will type a command 
+1. In your cloud shell window, you will type a command
    similar to the following command:
-   
+
    ```bash
    az group create -l [LOCATION] -n fabmedical-[SUFFIX]
    ```
 
    - **Suffix:** Throughout the lab suffix should be used to make resources unique, like your email prefix or your first initial and last name.
-  
+
    - **Location:** Choose a region where all Azure Container Registry SKUs have to be available, which is currently: Canada Central, Canada East, North Central US, Central US, South Central US, East US, East US 2, West US, West US 2, West Central US, France Central, UK South, UK West, North Europe, West Europe, Australia East, Australia Southeast, Brazil South, Central India, South India, Japan East, Japan West, Korea Central, Southeast Asia, East Asia, and remember this for future steps so that the resources you create in Azure are all kept within the same region.
 
-    Example:
+   Example:
 
-    ```bash
-    az group create -l westus -n fabmedical-sol
-    ```
+   ```bash
+   az group create -l westus -n fabmedical-sol
+   ```
 
 2. When this completes, your Resource Group will be listed in the Azure Portal.
 
@@ -231,33 +232,33 @@ In this section, you will configure and execute an ARM template that will create
    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
 
-     > | Location           | Location Name       |
-     > | ------------------ | ------------------- |
-     > | canadacentral      | Canada Central      |
-     > | canadaeast         | Canada East         |
-     > | northcentralus     | North Central US    |
-     > | centralus          | Central US          |
-     > | southcentralus     | South Central US    |
-     > | eastus             | East US             |
-     > | eastus2            | East US 2           |
-     > | westus             | West US             |
-     > | westus2            | West US 2           |
-     > | westcentralus      | West Central US     |
-     > | francecentral      | France Central      |
-     > | uksouth            | UK South            |
-     > | ukwest             | UK West             |
-     > | northeurope        | North Europe        |
-     > | westeurope         | West Europe         |
-     > | australiaeast      | Australia East      |
-     > | australiasoutheast | Australia Southeast |
-     > | brazilsouth        | Brazil South        |
-     > | centralindia       | Central India       |
-     > | southindia         | South India         |
-     > | japaneast          | Japan East          |
-     > | japanwest          | Japan West          |
-     > | koreacentral       | Korea Central       |
-     > | southeastasia      | Southeast Asia      |
-     > | eastasia           | East Asia           |
+   | Location           | Location Name       |
+   | ------------------ | ------------------- |
+   | canadacentral      | Canada Central      |
+   | canadaeast         | Canada East         |
+   | northcentralus     | North Central US    |
+   | centralus          | Central US          |
+   | southcentralus     | South Central US    |
+   | eastus             | East US             |
+   | eastus2            | East US 2           |
+   | westus             | West US             |
+   | westus2            | West US 2           |
+   | westcentralus      | West Central US     |
+   | francecentral      | France Central      |
+   | uksouth            | UK South            |
+   | ukwest             | UK West             |
+   | northeurope        | North Europe        |
+   | westeurope         | West Europe         |
+   | australiaeast      | Australia East      |
+   | australiasoutheast | Australia Southeast |
+   | brazilsouth        | Brazil South        |
+   | centralindia       | Central India       |
+   | southindia         | South India         |
+   | japaneast          | Japan East          |
+   | japanwest          | Japan West          |
+   | koreacentral       | Korea Central       |
+   | southeastasia      | Southeast Asia      |
+   | eastasia           | East Asia           |
 
 4. Click the **...** button and select **Save**.
 
@@ -267,15 +268,160 @@ In this section, you will configure and execute an ARM template that will create
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
-6. Create the needed resources by typing the following instruction (case 
-   sensitive), replacing {resourceGroup} with the name of the previously created 
+6. Create the needed resources by typing the following instruction (case
+   sensitive), replacing {resourceGroup} with the name of the previously created
    resource group:
 
    ```bash
    az group deployment create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
    ```
 
-   This command will take up to 30 minutes to deploy all lab resources.
+   This command will take up to 30 minutes to deploy all lab resources. You can
+   continue to the next task to setup Azure DevOps while the deployment runs.
+
+### Task 9: Setup Azure DevOps project
+
+FabMedical has provided starter files for you. They have taken a copy of one of
+their websites, for their customer Contoso Neuro, and refactored it from a
+single node.js site into a website with a content API that serves up the
+speakers and sessions. This is a starting point to validate the containerization
+of their websites. They have asked you to use this to help them complete a POC
+that validates the development workflow for running the website and API as
+Docker containers and managing them within the Azure Kubernetes Service
+environment.
+
+<!-- TODO: create infrastructure version of these files -->
+
+> **Important note**: If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
+>
+> ```bash
+> curl -L -o FabMedical.tgz https://bit.ly/2uDDZNq
+> ```
+>
+> This will download the version of the starter files that will be used by that edition of the lab.
+
+1. Navigate to FabMedical source code folder and list the contents.
+
+   ```bash
+   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/
+   ll
+   ```
+
+2. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
+
+   ```bash
+   content-api/
+   content-init/
+   content-web/
+   ```
+
+3. Set your username and email which are used for Git Commits.
+
+   ```bash
+   git config --global user.email "you@example.com"
+   git config --global user.name "Your Name"
+   ```
+
+4. Configure git CLI to cache your credentials, so that you don't have to keep
+   re-typing them.
+
+   ```bash
+   git config --global credential.helper cache
+   ```
+
+5. Open a new browser tab to visit [Azure DevOps][devops] and log into your
+   account.
+
+   If this is your first time logging into this account you will be taken
+   through a first-run experience:
+
+   - Confirm your contact information and select next.
+   - Select "Create new account".
+   - Enter a fabmedical-SUFFIX for your account name and select Continue.
+
+6. Create repositories to host the code.
+
+   - Enter fabmedical as the project name.
+   - Ensure the project is Private.
+   - Click the Advanced dropdown.
+   - Ensure the Version control is set to Git.
+   - Click the "Create Project" button.
+
+     ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
+
+   - Once the project creation has completed, click "Repos" then use the
+     repository dropdown to create a new repository by selecting
+     "+ New repository".
+
+     ![Repository dropdown](media/b4-image53.png)
+
+   - Enter "content-web" as the repository name.
+
+<!-- TODO update to reflect that is is now a PAT -->
+
+- Once the project is created click "Generate Git credentials".
+
+  ![Generate Git Credentials](media/b4-image50.png)
+
+  - Copy the Personal Access Token and save it for later steps
+
+* Using your cloud shell window, initialize a new git repository.
+
+  ```bash
+  cd content-web
+  git init
+  git add .
+  git commit -m "Initial Commit"
+  ```
+
+* Setup your Azure DevOps repository as a new remote for push. You can copy the commands for "**HTTPS**" to do this from your browser. Edit the HTTPS URL as given below:
+
+  Remove characters between "https://" and "dev.azure.com" from HTTPS URL of the copied commands.
+  For example:
+
+  ```bash
+  From this https URL
+  "git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
+   git push -u origin --all"
+
+  Remove "fabmedical-sol@" from the above url to make it like below:
+  "git remote add origin https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
+   git push -u origin --all"
+  ```
+
+  Paste these commands into your cloud shell window.
+
+  - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
+
+* Use the repository dropdown to create a second repository called "content-api".
+
+* Using your cloud shell window, initialize a new git repository in the content-api directory.
+
+  ```bash
+  cd ../content-api
+  git init
+  git add .
+  git commit -m "Initial Commit"
+  ```
+
+* Setup your Azure DevOps repository as a new remote for push. Use the repository dropdown to switch to the "content-api" repository. You can then copy the commands for the setting up the content-api repository from your browser, then update the HTTPS URL as you did earlier for content-web repository HTTPS url. Paste these commands into your cloud shell window.
+
+  - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
+
+* Use the repository drop down to create a third repository called "content-init".
+
+* Using your cloud shell window, initialize a new git repository in the content-init directory.
+
+  ```bash
+  cd ../content-init
+  git init
+  git add .
+  git commit -m "Initial Commit"
+  ```
+
+* Setup your Azure DevOps repository as a new remote for push. Use the repository drop down to switch to the "content-init" repository. You can then copy the commands for the setting up the content-init repository from your browser, then update the HTTPS URL as you did earlier for other repo's HTTPS url. Paste these commands into your cloud shell window.
+
+  - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
 
 ### Task 7: Connect securely to the build agent
 
@@ -433,170 +579,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 9: Download the FabMedical starter files
-
-FabMedical has provided starter files for you. They have taken a copy of one of
-their websites, for their customer Contoso Neuro, and refactored it from a
-single node.js site into a website with a content API that serves up the
-speakers and sessions. This is a starting point to validate the containerization
-of their websites. They have asked you to use this to help them complete a POC
-that validates the development workflow for running the website and API as
-Docker containers and managing them within the Azure Kubernetes Service
-environment.
-
-<!-- TODO: Remove bitly reference, replace with instructions on how to find the downloaded code.   Since code will not be a tarball we can get rid of instructions on how to
-unpack it -->
-
-1. From Azure Cloud Shell, download the starter files by typing the following curl instruction (case sensitive):
-
-   ```bash
-   curl -L -o FabMedical.tgz http://bit.ly/2uhZseT
-   ```
-
-   > **Important note**: If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
-   >
-   > ```bash
-   > curl -L -o FabMedical.tgz https://bit.ly/2uDDZNq
-   > ```
-   >
-   > This will download the version of the starter files that will be used by that edition of the lab.
-
-2. Create a new directory named FabMedical by typing in the following command:
-
-   ```bash
-   mkdir FabMedical
-   ```
-
-3. Unpack the archive with the following command. This command will extract the files from the archive to the FabMedical directory you created. The directory is case sensitive when you navigate to it.
-
-   ```bash
-   tar -C FabMedical -xzf FabMedical.tgz --strip-components=1
-   ```
-
-4. Navigate to FabMedical folder and list the contents.
-
-   ```bash
-   cd FabMedical
-   ll
-   ```
-
-5. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
-
-   ```bash
-   content-api/
-   content-init/
-   content-web/
-   ```
-
-6. Next log into your Azure DevOps account.
-
-   If this is your first time logging into this account you will be taken through a first-run experience:
-
-   - Confirm your contact information and select next.
-   - Select "Create new account".
-   - Enter a fabmedical-SUFFIX for your account name and select Continue.
-
-7. Create repositories to host the code.
-
-   - Enter fabmedical as the project name.
-   - Ensure the project is Private.
-   - Click the Advanced dropdown.
-   - Ensure the Version control is set to Git.
-   - Click the "Create Project" button.
-
-     ![Home page icon](media/b4-image51.png)
-
-   - Once the project creation has completed, use the repository dropdown to create a new repository by selecting "+ New repository".
-
-     ![Repository dropdown](media/b4-image53.png)
-
-   - Enter "content-web" as the repository name.
-
-   - Once the project is created click "Generate Git credentials".
-
-     ![Generate Git Credentials](media/b4-image50.png)
-
-     - Enter a password.
-     - Confirm the password.
-     - Select "Save Git Credentials".
-
-   - Using your cloud shell window, set your username and email which are used in Azure DevOps for Git Commits.
-
-     ```bash
-     git config --global user.email "you@example.com"
-     git config --global user.name "Your Name"
-     ```
-
-     For example:
-
-     ```bash
-     git config --global user.email "you@example.onmicrosoft.com"
-     git config --global user.name "you@example.onmicrosoft.com"
-     ```
-
-   - Using your cloud shell window, configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
-
-     ```bash
-     git config --global credential.helper cache
-     ```
-
-   - Using your cloud shell window, initialize a new git repository.
-
-     ```bash
-     cd content-web
-     git init
-     git add .
-     git commit -m "Initial Commit"
-     ```
-
-   - Setup your Azure DevOps repository as a new remote for push. You can copy the commands for "**HTTPS**" to do this from your browser. Edit the HTTPS URL as given below:
-
-     Remove characters between "https://" and "dev.azure.com" from HTTPS URL of the copied commands.
-     For example:
-
-     ```bash
-     From this https URL
-     "git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
-      git push -u origin --all"
-
-     Remove "fabmedical-sol@" from the above url to make it like below:
-     "git remote add origin https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
-      git push -u origin --all"
-     ```
-
-     Paste these commands into your cloud shell window.
-
-     - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
-
-   - Use the repository dropdown to create a second repository called "content-api".
-
-   - Using your cloud shell window, initialize a new git repository in the content-api directory.
-
-     ```bash
-     cd ../content-api
-     git init
-     git add .
-     git commit -m "Initial Commit"
-     ```
-
-   - Setup your Azure DevOps repository as a new remote for push. Use the repository dropdown to switch to the "content-api" repository. You can then copy the commands for the setting up the content-api repository from your browser, then update the HTTPS URL as you did earlier for content-web repository HTTPS url. Paste these commands into your cloud shell window.
-
-     - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
-
-   - Use the repository drop down to create a third repository called "content-init".
-
-   - Using your cloud shell window, initialize a new git repository in the content-init directory.
-
-     ```bash
-     cd ../content-init
-     git init
-     git add .
-     git commit -m "Initial Commit"
-     ```
-
-   - Setup your Azure DevOps repository as a new remote for push. Use the repository drop down to switch to the "content-init" repository. You can then copy the commands for the setting up the content-init repository from your browser, then update the HTTPS URL as you did earlier for other repo's HTTPS url. Paste these commands into your cloud shell window.
-
-     - When prompted, enter your Azure DevOps username and the git credentials password you created earlier in this task.
+#### TASKXXXX
 
 8. Clone your repositories to the build agent.
 
@@ -634,3 +617,4 @@ unpack it -->
 You should follow all steps provided _before_ performing the Hands-on lab.
 
 [logo]: https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png
+[devops]: https://dev.azure.com
