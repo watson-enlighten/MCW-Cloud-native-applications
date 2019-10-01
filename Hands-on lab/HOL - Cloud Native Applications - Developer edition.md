@@ -307,9 +307,9 @@ In this task, you will browse to the web application for testing.
    ```
 
 5. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
-<!-- TODO: Should be cloudshell -->
 
-6. Once you have verified the application is accessible through a browser, go to your WSL window and stop the running node processes.
+6. Once you have verified the application is accessible through a browser, go to 
+   your cloud shell window and stop the running node processes.
 
    ```bash
    killall nodejs
@@ -319,14 +319,11 @@ In this task, you will browse to the web application for testing.
 
 In this task, you will create a new Dockerfile that will be used to run the API application as a containerized application.
 
-<!-- TODO: figure out flow to leverage cloud editor instead of vim maybe edit in cloudshell and push to build agent? -->
-<!-- TODO: perhaps we can give instructions on exposing docker engine port on build agent, then connect remotely via cloud shell https://boxboat.com/2017/06/14/azure-cloud-shell-docker-quickstart-guide/ -->
+> **Note**: You will be working in a Linux VM without friendly editor tools. You 
+> must follow the steps very carefully to work with Vim for a few editing 
+> exercises if you are not already familiar with Vim.
 
-> **Note**: You will be working in a Linux VM without friendly editor tools. You must follow the steps very carefully to work with Vim for a few editing exercises if you are not already familiar with Vim.
-
-<!-- TODO replace references to WSL with cloudshell -->
-
-1. From WSL, navigate to the content-api folder. List the files in the folder with this command. The output should look like the screenshot below.
+1. From cloud shell, navigate to the content-api folder. List the files in the folder with this command. The output should look like the screenshot below.
 
    ```bash
    cd ../content-api
@@ -336,9 +333,10 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    <!-- TODO: Replace with cloudshell screenshot -->
 
    ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
-<!-- TODO: Should be cloudshell -->
 
-1. Create a new file named "Dockerfile" and note the casing in the name. Use the following Vim command to create a new file. The WSL window should look as shown in the following screenshot.
+1. Create a new file named "Dockerfile" and note the casing in the name. Use the 
+   following Vim command to create a new file. The cloud shell window should 
+   look as shown in the following screenshot.
 
    ```bash
    vi Dockerfile
@@ -348,11 +346,11 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
 ![This is a screenshot of a new file named Dockerfile in the WSL window.](media/image56.png)
 
-2. Select "i" on your keyboard. You'll see the bottom of the window showing INSERT mode.
+1. Select "i" on your keyboard. You'll see the bottom of the window showing INSERT mode.
 
    ![-- INSERT -- appears at the bottom of the Dockerfile window.](media/image57.png)
 
-3. Type the following into the file. These statements produce a Dockerfile that describes the following:
+2. Type the following into the file. These statements produce a Dockerfile that describes the following:
 
    - The base stage includes environment setup which we expect to change very rarely, if at all.
 
