@@ -31,11 +31,11 @@ The names of manufacturers, products, or URLs are provided for informational pur
     - [Task 2: Download Starter Files](#task-2-download-starter-files)
     - [Task 3: Resource Group](#task-3-resource-group)
     - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
-    - [Task 4: Create a Service Principal](#task-4-create-a-service-principal)
-    - [Task 5: ARM Template](#task-5-arm-template)
-    - [Task 6: Connect securely to the build agent](#task-6-connect-securely-to-the-build-agent)
-    - [Task 7: Complete the build agent setup](#task-7-complete-the-build-agent-setup)
-    - [Task 8: Download the FabMedical starter files](#task-8-download-the-fabmedical-starter-files)
+    - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
+    - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
+    - [Task 7: Connect securely to the build agent](#task-7-connect-securely-to-the-build-agent)
+    - [Task 8: Complete the build agent setup](#task-8-complete-the-build-agent-setup)
+    - [Task 9: Download the FabMedical starter files](#task-9-download-the-fabmedical-starter-files)
 
 <!-- /TOC -->
 
@@ -164,7 +164,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
    ssh-keygen -t RSA -b 2048 -C admin@fabmedical
    ```
 
-3. You will be asked to save the generated key to a file. Enter \".ssh/fabmedical\" for the name.
+3. You will be asked to save the generated key to a file. Enter `.ssh/fabmedical` for the name.
 
 4. Enter a passphrase when prompted, and **don't forget it**!
 
@@ -174,15 +174,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
 
-7. Type the following command at the cloud shell prompt to display the public key that you generated and save the entire content of the file because you will need it later:
-
-   ```bash
-   cat .ssh/fabmedical.pub
-   ```
-
-   ![In this screenshot of the cloud shell window, cat .ssh/fabmedical.pub has been typed and run at the command prompt, which displays the public key that you generated.](media/b4-image59.png)
-
-### Task 4: Create a Service Principal
+### Task 5: Create a Service Principal
 
 Azure Kubernetes Service requires an Azure Active Directory service principal to interact with Azure APIs. The service principal is needed to dynamically manage resources such as user-defined routes and the Layer 4 Azure Load Balancer. The easiest way to set up the service principal is using the Azure cloud shell.
 
@@ -210,28 +202,25 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 
    ![In this screenshot of a Bash window, az ad sp show --id d41261a3-d8b8-4cf0-890d-1fb6efc20a67 --query "{objectId:@.objectId}" has been typed and run at the command prompt. Service Principal information is visible in the window.](media/b4-image58.png)
 
-### Task 5: ARM Template
+### Task 6: Deploy ARM Template
 
 In this section, you will configure and execute an ARM template that will create all the resources that you will need throughout the exercises.
 
-   <!-- TODO: Update to not use bitly.  Include the src files as a directory in the MCW without zipping them. Per Joel, most MCW no longer use Bitly: We've moved to having people download the repo. This way, all the source code is included in GitHub instead of having zip files we have to manage, a la bit.ly. Example: https://github.com/microsoft/MCW-Cosmos-DB-Real-Time-Advanced-Analytics/blob/master/Hands-on%20lab/Before%20the%20HOL%20-%20Cosmos%20DB%20real-time%20advanced%20analytics.md#task-1-download-the-starter-files (edited) -->
-   <!-- Clone the repo first and remove references to untar the zip file -->
-
-2. Download the parameters starter file by typing the following curl instruction (case sensitive):
+1. In Azure cloud shell, switch to the ARM template directory:
 
    ```bash
-   curl -L -o azuredeploy.parameters.json https://bit.ly/2XHyVaY
+   cd MCW-Containers-and-DevOps/Hands-on\ lab/arm/
    ```
 
-3. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
+2. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
 
    ```bash
    code azuredeploy.parameters.json
    ```
 
-4. Update the values for the various keys so that they match your environment:
+3. Update the values for the various keys so that they match your environment:
 
-   - **Suffix**: Enter something like "SUF" with max of 3 chars.
+   - **Suffix**: Enter a shortened version of your SUFFIX with max of 3 chars.
    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
    - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
    - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
@@ -270,23 +259,25 @@ In this section, you will configure and execute an ARM template that will create
      > | southeastasia      | Southeast Asia      |
      > | eastasia           | East Asia           |
 
-5. Click the **...** button and select **Save**.
+4. Click the **...** button and select **Save**.
 
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-6. Click the **...** button again and select **Close Editor**.
+5. Click the **...** button again and select **Close Editor**.
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
-<!-- TODO: Assuming this is all cloned locally, can we get rid of bitly and just refer to the file saved in cloudshell for the template? -->
+6. Create the needed resources by typing the following instruction (case 
+   sensitive), replacing {resourceGroup} with the name of the previously created 
+   resource group:
 
-1.  Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
+   ```bash
+   az group deployment create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
+   ```
 
-    ```bash
-    az group deployment create --resource-group {resourceGroup} --template-uri https://bit.ly/2XCaXh2 --parameters azuredeploy.parameters.json
-    ```
+   This command will take up to 30 minutes to deploy all lab resources.
 
-### Task 6: Connect securely to the build agent
+### Task 7: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent VM.
 
@@ -340,7 +331,7 @@ In this section, you will validate that you can connect to the new build agent V
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
-### Task 7: Complete the build agent setup
+### Task 8: Complete the build agent setup
 
 In this task, you will update the packages and install Docker engine.
 
@@ -442,7 +433,7 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 8: Download the FabMedical starter files
+### Task 9: Download the FabMedical starter files
 
 FabMedical has provided starter files for you. They have taken a copy of one of
 their websites, for their customer Contoso Neuro, and refactored it from a
