@@ -307,7 +307,7 @@ environment.
    ll
    ```
 
-2. You'll see the listing includes three folders, one for the web site, another 
+2. You'll see the listing includes three folders, one for the web site, another
    for the content API and one to initialize API data:
 
    ```bash
@@ -316,7 +316,7 @@ environment.
    content-web/
    ```
 
-3. Set your username and email which are used for Git Commits.
+3. Set your username and email which are used for git commits.
 
    ```bash
    git config --global user.email "you@example.com"
@@ -435,29 +435,27 @@ environment.
 
 ### Task 8: Connect securely to the build agent
 
-In this section, you will validate that you can connect to the new build agent VM.
+In this section, you will validate that you can connect to the new build agent
+VM.
 
-1. From the Azure portal, navigate to the Resource Group you created previously and select the new VM, fabmedical-SUFFIX.
-
-2. In the Overview area for the VM, take note of the public IP address for the VM.
-
-   ![In this screenshot of the Overview area for the VM, Public IP address 52.174.141.11 is highlighted.](media/b4-image26.png)
-
-3. In the cloud shell window, type the following command and copy the output:
+1. From Azure cloud shell, run the following command to find the IP address for
+   the build agent VM provisioned when you ran the ARM deployment:
 
    ```bash
-   cat .ssh/fabmedical
+   az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT SUFFIX] --query publicIps -o tsv
    ```
 
-   ![In this screenshot of the cloud shell window, cat .ssh/fabmedical has been typed and run at the command prompt, which displays the private key that you generated.](media/b4-image60.png)
+   Example:
 
-4. Update the permission for the fabmedical file.
-
-   ```text
-    sudo chmod 600 ~/.ssh/fabmedical
+   ```bash
+   az vm show -d -g fabmedical-sol -n fabmedical-SOL --query publicIps -o tsv
    ```
 
-5. Connect to the new VM you created by typing the following command:
+2. In the cloud shell output, take note of the public IP address for the VM.
+
+   ![In this screenshot of the clouds shell output the Public IP address is shown.](media/b4-2019-10-01_11-58-05.png)
+
+3. Connect to the new VM you created by typing the following command:
 
    ```bash
     ssh -i [PRIVATEKEYNAME] [BUILDAGENTUSERNAME]@[BUILDAGENTIP]
@@ -469,17 +467,17 @@ In this section, you will validate that you can connect to the new build agent V
 
    - [BUILDAGENTUSERNAME]: Use the username for the VM, such as adminfabmedical.
 
-   - [BUILDAGENTIP]: The IP address for the build agent VM, retrieved from the VM Overview blade in the Azure Portal.
+   - [BUILDAGENTIP]: The IP address for the build agent VM, retrieved in the previous step
 
    ```bash
    ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
    ```
 
-6. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
+4. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
 
-7. When asked for the passphrase for the private key you created previously, enter this value.
+5. When asked for the passphrase for the private key you created previously, enter this value.
 
-8. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
+6. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
 
    `adminfabmedical@fabmedical-SUFFIX:~$`
 
@@ -548,16 +546,7 @@ In this task, you will update the packages and install Docker engine.
    npm -version
    ```
 
-<!-- TODO: Remove Bower -->
-
-10. Install `bower`
-
-    ```bash
-    npm install -g bower
-    sudo ln -s /usr/bin/nodejs /usr/bin/node
-    ```
-
-11. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
+10. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
 
     ```bash
     sudo usermod -aG docker $USER
@@ -565,13 +554,15 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
-12. In order for the user permission changes to take effect, exit the SSH session by typing 'exit', then press \<Enter\>. Reconnect to the build agent VM as you did previously in Task 6: Connect securely to the build agent using the SSH command.
+11. In order for the user permission changes to take effect, exit the SSH
+    session by typing 'exit', then press \<Enter\>. Reconnect to the build agent
+    VM using SSH as you did in the previous task.
 
-13. Run the Docker version command again, and note the output now shows the server version as well.
+12. Run the Docker version command again, and note the output now shows the server version as well.
 
     ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window, in addition to server version information.](media/b4-image30.png)
 
-14. Run a few Docker commands:
+13. Run a few Docker commands:
 
     - One to see if there are any containers presently running.
 
@@ -585,38 +576,52 @@ In this task, you will update the packages and install Docker engine.
       docker container ls -a
       ```
 
-15. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
+14. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 10: Clone Repositories to the Build Agent 
+### Task 10: Clone Repositories to the Build Agent
 
-8. Clone your repositories to the build agent.
+In this task you will clone your repositories from Azure DevOps so you can work
+with them on the build agent.
 
-   - From cloud shell, connect to the build agent VM as you did previously in Task 6: Connect securely to the build agent using the SSH command.
+1. As you previously did in cloud shell, set your username and email which are
+   used for git commits.
 
-   - In your browser, switch to the "content-web" repository and click "Clone" in the right corner.
+   ```bash
+   git config --global user.email "you@example.com"
+   git config --global user.name "Your Name"
+   ```
 
-     ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
+2. Configure git CLI to cache your credentials, so that you don't have to keep
+   re-typing them.
 
-   - Copy the repository url.
+   ```bash
+   git config --global credential.helper cache
+   ```
 
-   - Update the repository url by removing the characters between "https://" and "dev.azure.com".
+3. Visit the `content-web` repository in Azure DevOps and click "Clone" in the
+   right corner.
 
-     For example: modify the repository url "https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web"
-     as "https://dev.azure.com/fabmedical-sol/fabmedical/_git/content-web"
+   ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
 
-   - Use the repository url to clone the content-web code to your build agent machine.
+  - Copy the repository url.
+
+  - Use the repository url to clone the content-web code to your build agent machine.
 
      ```bash
      git clone <REPOSITORY_URL>
      ```
 
-   - In your browser, switch to the "content-api" repository and select "Clone" to see and copy the repository url and update the URL by removing some characters as you did earlier for content-web repository.
+  - When prompted for password use your PAT token from previous steps.
 
-   - Use the repository url and `git clone` to copy the content-api code to your build agent.
+  - In your browser, switch to the `content-api` repository and select "Clone" 
+    to see and copy the repository url.
 
-   - In your browser, switch to the "content-init" repository and select "Clone" to see and copy the repository url and then update the url by removing some characters as you did earlier for other repositories.
+  - Use the repository url and `git clone` to copy the content-api code to your build agent.
+
+  - In your browser, switch to the `content-init` repository and select "Clone" 
+    to see and copy the repository url.
 
    - Use the repository url and `git clone` to copy the content-init code to your build agent.
 
