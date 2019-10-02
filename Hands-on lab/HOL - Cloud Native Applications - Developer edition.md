@@ -2197,17 +2197,22 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    helm repo update
    ```
 
-2. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
+2. Install the ingress controller resource to handle ingress requests as they 
+   come in. The ingress controller will receive a public IP of its own on the 
+   Azure Load Balancer and be able to handle requests for multiple services over 
+   port 80 and 443.
 
    ```bash
    helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
    ```
 
-3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP.
-
-   <!-- TODO This URL will not be valid from cloudshell, update instructions -->
-
-   http://localhost:8001/#!/service?namespace=kube-system
+3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit 
+   the `kube-system` namespace in your Kubernetes dashboard to find the IP. 
+   Append the following path after the `#!/` marker in the URL:
+   
+    ```text
+    service?namespace=kube-system
+    ```
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
@@ -2270,7 +2275,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
        --version v0.6.6
    ```
 
-9. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
+9.  Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
 
    ```bash
    code clusterissuer.yml
@@ -2296,15 +2301,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
        http01: {}
    ```
 
-10. Save changes and close the editor.
+11. Save changes and close the editor.
 
-11. Create the issuer using kubectl.
+12. Create the issuer using kubectl.
 
     ```bash
     kubectl create --save-config=true -f clusterissuer.yml
     ```
 
-12. Now you can create a certificate object.
+13. Now you can create a certificate object.
 
     > **Note**:
     >
@@ -2340,9 +2345,9 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         kind: ClusterIssuer
     ```
 
-13. Save changes and close the editor.
+14. Save changes and close the editor.
 
-14. Create the certificate using kubectl.
+15. Create the certificate using kubectl.
 
     ```bash
     kubectl create --save-config=true -f certificate.yml
@@ -2361,7 +2366,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     >
     > .
 
-15. Now you can create an ingress resource for the content applications.
+16. Now you can create an ingress resource for the content applications.
 
     ```bash
     code content.ingress.yml
@@ -2397,21 +2402,21 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
                   servicePort: 3001
     ```
 
-16. Save changes and close the editor.
+17. Save changes and close the editor.
 
-17. Create the ingress using kubectl.
+18. Create the ingress using kubectl.
 
     ```bash
     kubectl create --save-config=true -f content.ingress.yml
     ```
 
-18. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
+19. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
 
-19. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
+20. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
 
     ![A screenshot showing the output of the sessions content in the browser.](media/Ex4-Task5.19.png)
 
-20. Test TLS termination by visiting both services again using `https`.
+21. Test TLS termination by visiting both services again using `https`.
 
     > It can take a few minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
