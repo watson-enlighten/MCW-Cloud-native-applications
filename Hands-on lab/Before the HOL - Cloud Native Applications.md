@@ -24,19 +24,19 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Setup Azure Cloud Shell](#Task-1-Setup-Azure-Cloud-Shell)
-    - [Task 2: Download Starter Files](#Task-2-Download-Starter-Files)
-    - [Task 3: Resource Group](#Task-3-Resource-Group)
-    - [Task 4: Create an SSH key](#Task-4-Create-an-SSH-key)
-    - [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)
-    - [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template)
-    - [Task 7: Setup Azure DevOps project](#Task-7-Setup-Azure-DevOps-project)
-    - [Task 8: Connect securely to the build agent](#Task-8-Connect-securely-to-the-build-agent)
-    - [Task 9: Complete the build agent setup](#Task-9-Complete-the-build-agent-setup)
-    - [Task 10: Clone Repositories to the Build Agent](#Task-10-Clone-Repositories-to-the-Build-Agent)
+- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell)
+    - [Task 2: Download Starter Files](#task-2-download-starter-files)
+    - [Task 3: Resource Group](#task-3-resource-group)
+    - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
+    - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
+    - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
+    - [Task 7: Setup Azure DevOps project](#task-7-setup-azure-devops-project)
+    - [Task 8: Connect securely to the build agent](#task-8-connect-securely-to-the-build-agent)
+    - [Task 9: Complete the build agent setup](#task-9-complete-the-build-agent-setup)
+    - [Task 10: Clone Repositories to the Build Agent](#task-10-clone-repositories-to-the-build-agent)
 
 <!-- /TOC -->
 
@@ -303,7 +303,8 @@ single node.js site into a website with a content API that serves up the speaker
    >
    > This will take you to the version of the starter files that will be used by that edition of the lab.
 
-2. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
+2. You'll see the listing includes three folders, one for the web site, another 
+   for the content API and one to initialize API data:
 
    ```bash
    content-api/
@@ -318,13 +319,15 @@ single node.js site into a website with a content API that serves up the speaker
    git config --global user.name "Your Name"
    ```
 
-4. Configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
+4. Configure git CLI to cache your credentials, so that you don't have to keep 
+   re-typing them.
 
    ```bash
    git config --global credential.helper cache
    ```
 
-5. Open a new browser tab to visit [Azure DevOps][devops] and log into your account.
+5. Open a new browser tab to visit [Azure DevOps][devops] and log into your 
+   account.
 
    If this is your first time logging into this account you will be taken through a first-run experience:
 
@@ -340,7 +343,7 @@ single node.js site into a website with a content API that serves up the speaker
    - Ensure the Version control is set to Git.
    - Click the "Create Project" button.
 
-     ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
+    ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
 
 7. Enable multi-stage pipelines.
 
@@ -348,46 +351,74 @@ single node.js site into a website with a content API that serves up the speaker
    - Then click the three dots to access the "Preview Features" menu item
    - Toggle multi-stage pipelines to "On"
 
-8. Next add an Azure Service Connection to your Azure DevOps account. Click the Project settings gear icon to access your settings. Then select Service Connections.
+8. Next add an Azure Service Connection to your Azure DevOps account. Click the 
+   Project settings gear icon to access your settings. Then select Service Connections.
 
-9. Choose "+ New service connection". Then pick "Azure Resource Manager" from the menu.
+9.  Choose "+ New service connection". Then pick "Azure Resource Manager" from 
+    the menu.
 
-   ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
+    ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
 
 10. Select the link indicated in the screenshot below to access the advanced settings.
 
    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
 11. Enter the required information using the service principal information you
-   created earlier.
+    created earlier.
 
-   - **Connection name**: azurecloud-sol
-   - **Environment**: AzureCloud
-   - **Subscription ID**: `id` from `az account show` output
-   - **Subscription Name**: `name` from `az account show` output
-   - **Service Principal Client ID**: `appId` from service principal output.
-   - **Service Principal Key**: `password` from service principal output.
-   - **Tenant ID**: `tenant` from service principal output.
+    - **Connection name**: azurecloud-sol
+    - **Environment**: AzureCloud
+    - **Subscription ID**: `id` from `az account show` output
+    - **Subscription Name**: `name` from `az account show` output
+    - **Service Principal Client ID**: `appId` from service principal output.
+    - **Service Principal Key**: `password` from service principal output.
+    - **Tenant ID**: `tenant` from service principal output.
 
-   ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
+    ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
 12. Select "Verify connection" then select "OK".
 
-   > **Note**: If the connection does not verify, then recheck and reenter the required data.
+    > **Note**: If the connection does not verify, then recheck and reenter the 
+    required data.
 
-13. Next, click "Repos" then use the repository dropdown to create a new repository by selecting "+ New repository".
+13. Next add another Azure Service Connection to your Azure DevOps account. 
+    Click the Project settings gear icon to access your settings. Then select 
+    Service Connections.
 
-   ![Repository dropdown](media/b4-image53.png)
+14. Choose "+ New service connection". Then pick "Docker Registry" from
+   the menu.
 
-   - Enter "content-web" as the repository name.
+    ![A screenshot of the Add Docker Registry Service Connection dialog.](media/hol-2019-10-01_20-30-17.png)
 
-   - Once the project is created click "Generate Git credentials".
+15. Enter the required information using the service principal information you
+    created earlier.
 
-     ![Generate Git Credentials](media/b4-image50.png)
+    - **Environment**: Azure Container Registry
 
-14. Copy the Personal Access Token and save it for later steps
+    - **Connection name**: Fabmedical ACR
 
-15. Copy the commands to add your Azure DevOps repository as a new remote for
+    - **Azure Subscription**: Choose the subscription you are using for the lab
+
+    - **Azure Container Registry**: Choose the registry created for you by the ARM deployment
+
+    ![A screenshot of the Add Docker Registry Service Connection dialog with the values entered as described above.](media/hol-2019-10-01_20-33-05.png)
+
+16. Select "OK".
+
+17. Next, click "Repos" then use the repository dropdown to create a new 
+    repository by selecting "+ New repository".
+
+    ![Repository dropdown](media/b4-image53.png)
+
+    - Enter "content-web" as the repository name.
+
+    - Once the project is created click "Generate Git credentials".
+
+    ![Generate Git Credentials](media/b4-image50.png)
+
+18. Copy the Personal Access Token and save it for later steps
+
+19. Copy the commands to add your Azure DevOps repository as a new remote for
    push. Copy the commands for "**HTTPS**" similar to this example:
 
      ```bash
