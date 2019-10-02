@@ -620,25 +620,19 @@ connection string is provided to the api.
     ```bash
     cat app.js
     ```
-<!-- TODO WIP -->
-4.  Locate the following TODO item and modify the code to comment the first line and uncomment the second. The result is that the contentApiUrl variable will be set to an environment variable.
+
+4. Observe that the `/config/content` endpoint allows the contentApiUrl variable 
+   to be set with an environment variable.
 
     ```javascript
-    //TODO: Exercise 2 - Task 6 - Step 4
-
-    //const contentApiUrl = "http://localhost:3001";
-    const contentApiUrl = process.env.CONTENT_API_URL;
+    app.get('/config/content', function (req, res) {
+        const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001/";
+        res.send({ "contentUrl": contentApiUrl });
+    });
     ```
 
-5.  Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
-
-6.  Navigate to the content-web directory. From there open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
+5. Open the Dockerfile for editing using Vim and press the "i" key to go into 
+   edit mode.
 
     ```bash
     cd ..
@@ -646,17 +640,15 @@ connection string is provided to the api.
     <i>
     ```
 
-7.  Locate the EXPOSE line shown below, and add a line above it that sets the default value for the environment variable as shown in the screenshot.
+6. Locate the EXPOSE line shown below, and add a line above it that sets the default value for the environment variable as shown in the screenshot.
 
     ```Dockerfile
     ENV CONTENT_API_URL http://localhost:3001
     ```
 
-    <!-- TODO: replace with dockerfile screenshot from dockerfile for new web app -->
+    ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
 
-    ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/image63.png)
-
-8.  Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+7.  Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
 
     ```text
     <Esc>
@@ -664,26 +656,26 @@ connection string is provided to the api.
     <Enter>
     ```
 
-9.  Rebuild the web application Docker image using the same command as you did previously.
+8.  Rebuild the web application Docker image using the same command as you did previously.
 
     ```bash
     docker build -t content-web .
     ```
 
-10. Create and start the image passing the correct URI to the API container as an environment variable. This variable will address the API application using its container name over the Docker network you created. After running the container, check to see the container is running and note the dynamic port assignment for the next step.
+9.  Create and start the image passing the correct URI to the API container as an environment variable. This variable will address the API application using its container name over the Docker network you created. After running the container, check to see the container is running and note the dynamic port assignment for the next step.
 
     ```bash
     docker run --name web --net fabmedical -P -d -e CONTENT_API_URL=http://api:3001 content-web
     docker container ls
     ```
 
-11. Curl the speakers path again, using the port assigned to the web container. Again, you will see HTML returned, but because curl does not process javascript, you cannot determine if the web application is communicating with the api application. You must verify this connection in a browser.
+10. Curl the speakers path again, using the port assigned to the web container. Again, you will see HTML returned, but because curl does not process javascript, you cannot determine if the web application is communicating with the api application. You must verify this connection in a browser.
 
     ```bash
     curl http://localhost:[PORT]/speakers.html
     ```
 
-12. You will not be able to browse to the web application on the ephemeral port because the VM only exposes a limited port range. Now you will stop the web container and restart it using port 3000 to test in the browser. Type the following commands to stop the container, remove it, and run it again using explicit settings for the port.
+11. You will not be able to browse to the web application on the ephemeral port because the VM only exposes a limited port range. Now you will stop the web container and restart it using port 3000 to test in the browser. Type the following commands to stop the container, remove it, and run it again using explicit settings for the port.
 
     ```bash
     docker stop web
@@ -691,13 +683,13 @@ connection string is provided to the api.
     docker run --name web --net fabmedical -p 3000:3000 -d -e CONTENT_API_URL=http://api:3001 content-web
     ```
 
-13. Curl the speaker path again, using port 3000. You will see the same HTML returned.
+12. Curl the speaker path again, using port 3000. You will see the same HTML returned.
 
     ```bash
     curl http://localhost:3000/speakers.html
     ```
 
-14. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace [BUILDAGENTIP] with the IP address you used previously.
+13. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace [BUILDAGENTIP] with the IP address you used previously.
 
         ```bash
         http://[BUILDAGENTIP]:3000
@@ -705,15 +697,13 @@ connection string is provided to the api.
         EXAMPLE: http://13.68.113.176:3000
         ```
 
-15. Commit your changes and push to the repository.
+14. Commit your changes and push to the repository.
 
     ```bash
     git add .
     git commit -m "Setup Environment Variables"
     git push
     ```
-
-    <!-- TODO: Update task numbers -->
 
 ### Task 7: Run several containers with Docker compose
 
