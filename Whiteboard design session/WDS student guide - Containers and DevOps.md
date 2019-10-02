@@ -1,7 +1,7 @@
 ![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-Containers and DevOps
+Cloud Native Applications
 </div>
 
 <div class="MCWHeader2">
@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-April 2019
+October 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Containers and DevOps whiteboard design session student guide](#containers-and-devops-whiteboard-design-session-student-guide)
+- [Cloud Native Applications whiteboard design session student guide](#cloud-native-applications-whiteboard-design-session-student-guide)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
     - [Customer situation](#customer-situation)
@@ -40,9 +40,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-#  Containers and DevOps whiteboard design session student guide
+#  Cloud Native Applications whiteboard design session student guide
 
-## Abstract and learning objectives 
+## Abstract and learning objectives
 
 In this whiteboard design session, you will learn about the choices related to building and deploying containerized applications in Azure, critical decisions around this, and other aspects of the solution, including ways to lift-and-shift parts of the application to reduce applications changes.
 
@@ -50,16 +50,18 @@ By the end of this design session you will be better able to design solutions th
 
 ## Step 1: Review the customer case study 
 
-**Outcome** 
+**Outcome**
 
-Analyze your customer’s needs.
+Analyze your customer's needs.
 
 Timeframe: 15 minutes
 
-Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips. 
+Directions:  With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
-1.  Meet your table participants and trainer. 
-2.  Read all of the directions for steps 1–3 in the student guide. 
+1.  Meet your table participants and trainer.
+
+2.  Read all of the directions for steps 1-3 in the student guide.
+
 3.  As a table team, review the following customer case study.
 
 ### Customer situation
@@ -122,7 +124,7 @@ Arthur is looking to take a step in this direction with the following goals in m
 
 While multi-tenancy is a goal for the code base, even with this in place, Arthur believes there will always be the need for custom copies of code for a particular tenant who requires a one-off custom implementation. Arthur feels that Docker containers may be a good solution to support their short-term DevOps and development agility needs, while also being the right direction once they reach a majority multi-tenant application solution.
 
-### Customer needs 
+### Customer needs
 
 1.  Reduce the overhead in time, complexity, and cost for deploying new conference tenants.
 
@@ -132,7 +134,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Make it easy to deploy and manage infrastructure. 
 
-    - Provide tooling to help them with monitoring and managing container health.
+    - Provide tooling to help them with monitoring and managing container health and security.
 
     - Make it easier to manage the variable scale requirements of the different tenants, so that they no longer have to allocate tenants to a specific load balanced set of machines.
 
@@ -152,13 +154,15 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     -   Health monitoring and alerts, visualizing status.
 
+    -   Container image scanning.
+
 7.  Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
   
 ### Customer objections
 
-1.  There are many ways to deploy Docker containers on Azure, how do those options compare and what are motivations for each? 
+1.  There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each? 
 
-2.  Is there a PaaS option in Azure that also provides the full container orchestration platform options, that would be easy to migrate to but also handle our scale and management requirements? 
+2.  Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements? 
 
 ### Infographic for common scenarios
 
@@ -178,7 +182,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ## Step 2: Design a proof of concept solution
 
-**Outcome** 
+**Outcome**
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
@@ -192,7 +196,8 @@ Directions: With all participants at your table, answer the following questions 
 
 2.  What customer business needs do you need to address with your solution?
 
-**Design**
+**Design** 
+
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
 *High-level architecture*
@@ -221,11 +226,11 @@ Directions: With all participants at your table, respond to the following questi
 
     -   Run containers using the Kubernetes dashboard.
 
-2.  What options does the customer have for a Docker image registry, and what would you recommend?
+2.  What options does the customer have for a Docker image registry and container scanning, and what would you recommend?
 
 3.  How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
 
-4.  Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443.
+4.  Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
 
 *Scalability considerations*
 
@@ -239,32 +244,41 @@ Directions: With all participants at your table, respond to the following questi
 
 **Prepare**
 
-Directions: With all participants at your table: 
+Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution. 
+1.  Identify any customer needs that are not addressed with the proposed solution.
+
 2.  Identify the benefits of your solution.
-3.  Determine how you will respond to the customer’s objections.
 
-Prepare a 15-minute chalk-talk style presentation to the customer. 
+3.  Determine how you will respond to the customer's objections.
+
+Prepare a 15-minute chalk-talk style presentation to the customer.
 
 ## Step 3: Present the solution
 
 **Outcome**
- 
+
 Present a solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 30 minutes
 
-**Presentation** 
+**Presentation**
 
 Directions:
+
 1.  Pair with another table.
+
 2.  One table is the Microsoft team and the other table is the customer.
+
 3.  The Microsoft team presents their proposed solution to the customer.
+
 4.  The customer makes one of the objections from the list of objections.
+
 5.  The Microsoft team responds to the objection.
+
 6.  The customer team gives feedback to the Microsoft team.
-7.  Tables switch roles and repeat Steps 2–6.
+
+7.  Tables switch roles and repeat Steps 2-6.
 
 ##  Wrap-up
 
@@ -274,14 +288,16 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ##  Additional references
 
-|    |            |
-|----------|:-------------|
-| **Description** | **Links** |
-| Azure Kubernetes Services (AKS) | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/> |
-| Kubernetes | <https://kubernetes.io/docs/home/> |
+|                                       |                                                                |
+|---------------------------------------|:---------------------------------------------------------------|
+| **Description**                       | **Links**                                                      |
+| Azure Kubernetes Services (AKS)       | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/> |
+| Kubernetes                            | <https://kubernetes.io/docs/home/>                             |
 | AKS FAQ |https://docs.microsoft.com/en-us/azure/aks/faq|
 | Autoscaling AKS | https://github.com/kubernetes/autoscaler|
 | AKS Cluster Autoscaler |https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler|
 | Upgrading an AKS cluster | https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster |
-| Azure Pipelines | <https://docs.microsoft.com/en-us/azure/devops/pipelines/>
-|
+| Azure Pipelines                       | <https://docs.microsoft.com/en-us/azure/devops/pipelines/>     |
+| Container Security | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/>
+| Image Quarantine | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>
+| Container Monitoring Solution | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>
