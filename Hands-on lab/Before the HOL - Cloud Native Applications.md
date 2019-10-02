@@ -24,19 +24,19 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell)
-    - [Task 2: Download Starter Files](#task-2-download-starter-files)
-    - [Task 3: Resource Group](#task-3-resource-group)
-    - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
-    - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
-    - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
-    - [Task 7: Setup Azure DevOps project](#task-7-setup-azure-devops-project)
-    - [Task 8: Connect securely to the build agent](#task-8-connect-securely-to-the-build-agent)
-    - [Task 9: Complete the build agent setup](#task-9-complete-the-build-agent-setup)
-    - [Task 10: Clone Repositories to the Build Agent](#task-10-clone-repositories-to-the-build-agent)
+- [Cloud Native Applications before the hands-on lab setup guide](#Cloud-Native-Applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#Requirements)
+  - [Before the hands-on lab](#Before-the-hands-on-lab)
+    - [Task 1: Setup Azure Cloud Shell](#Task-1-Setup-Azure-Cloud-Shell)
+    - [Task 2: Download Starter Files](#Task-2-Download-Starter-Files)
+    - [Task 3: Resource Group](#Task-3-Resource-Group)
+    - [Task 4: Create an SSH key](#Task-4-Create-an-SSH-key)
+    - [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)
+    - [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template)
+    - [Task 7: Setup Azure DevOps project](#Task-7-Setup-Azure-DevOps-project)
+    - [Task 8: Connect securely to the build agent](#Task-8-Connect-securely-to-the-build-agent)
+    - [Task 9: Complete the build agent setup](#Task-9-Complete-the-build-agent-setup)
+    - [Task 10: Clone Repositories to the Build Agent](#Task-10-Clone-Repositories-to-the-Build-Agent)
 
 <!-- /TOC -->
 
@@ -48,12 +48,12 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab setup (including [Task 5: Create a Service Principal](#task-5-create-a-service-principal)) ensure your account has the following roles:
+   - To complete this lab setup (including [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)) ensure your account has the following roles:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
      - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
 
-   - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Task 5: Create a build agent VM and Task 10: Create an Azure Kubernetes Service cluster. You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
+   - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template). You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. An Azure DevOps account
 
@@ -105,6 +105,8 @@ You should follow all of the steps provided in this section _before_ taking part
 
 In this task you will use `git` to copy the lab content to your cloud shell so that the lab starter files will be available.
 
+> **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+
 1. Type the following command and press `<ENTER>`:
 
    ```bash
@@ -128,6 +130,8 @@ You will create an Azure Resource Group to hold most of the resources that you c
 
 1. In your cloud shell window, you will type a command
    similar to the following command:
+
+   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
    az group create -l [LOCATION] -n fabmedical-[SUFFIX]
@@ -153,7 +157,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
 1. From the cloud shell command line, enter the following command to ensure that a directory for the SSH keys is created. You can ignore any errors you see in the output.
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
    mkdir .ssh
@@ -183,7 +187,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 
 1. To create a service principal, type the following command in the cloud shell command line, replacing {id} with your subscription identifier, and replacing suffix with your chosen suffix to make the name unique:
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 2: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
    az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/{id}" --name="http://Fabmedical-sp-{SUFFIX}"
@@ -208,6 +212,8 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 In this section, you will configure and execute an ARM template that will create all the resources that you will need throughout the exercises.
 
 1. In Azure cloud shell, switch to the ARM template directory:
+
+   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
    cd MCW-Containers-and-DevOps/Hands-on\ lab/arm/
@@ -268,38 +274,18 @@ In this section, you will configure and execute an ARM template that will create
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
-6. Create the needed resources by typing the following instruction (case
-   sensitive), replacing {resourceGroup} with the name of the previously created
-   resource group:
+6. Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
 
    ```bash
    az group deployment create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
    ```
 
-   This command will take up to 30 minutes to deploy all lab resources. You can
-   continue to the next task to setup Azure DevOps while the deployment runs.
+   This command will take up to 30 minutes to deploy all lab resources. You can continue to the next task to setup Azure DevOps while the deployment runs.
 
 ### Task 7: Setup Azure DevOps project
 
-FabMedical has provided starter files for you. They have taken a copy of one of
-their websites, for their customer Contoso Neuro, and refactored it from a
-single node.js site into a website with a content API that serves up the
-speakers and sessions. This is a starting point to validate the containerization
-of their websites. They have asked you to use this to help them complete a POC
-that validates the development workflow for running the website and API as
-Docker containers and managing them within the Azure Kubernetes Service
-environment.
-
-<!-- TODO: create infrastructure version of these files
-
-> **Important note**: If you'll be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
->
-> ```bash
-> curl -L -o FabMedical.tgz https://bit.ly/2uDDZNq
-> ```
->
-> This will download the version of the starter files that will be used by that edition of the lab.
--->
+FabMedical has provided starter files for you. They have taken a copy of one of their websites, for their customer Contoso Neuro, and refactored it from a
+single node.js site into a website with a content API that serves up the speakers and sessions. This is a starting point to validate the containerization of their websites. They have asked you to use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
 1. Navigate to FabMedical source code folder and list the contents.
 
@@ -308,8 +294,16 @@ environment.
    ll
    ```
 
-2. You'll see the listing includes three folders, one for the web site, another
-   for the content API and one to initialize API data:
+   > **Important note**: If you will be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
+   >
+   > ```bash
+   > cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/infrastructure/
+   > ll
+   > ```
+   >
+   > This will take you to the version of the starter files that will be used by that edition of the lab.
+
+2. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
 
    ```bash
    content-api/
@@ -324,18 +318,15 @@ environment.
    git config --global user.name "Your Name"
    ```
 
-4. Configure git CLI to cache your credentials, so that you don't have to keep
-   re-typing them.
+4. Configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
 
    ```bash
    git config --global credential.helper cache
    ```
 
-5. Open a new browser tab to visit [Azure DevOps][devops] and log into your
-   account.
+5. Open a new browser tab to visit [Azure DevOps][devops] and log into your account.
 
-   If this is your first time logging into this account you will be taken
-   through a first-run experience:
+   If this is your first time logging into this account you will be taken through a first-run experience:
 
    - Confirm your contact information and select next.
    - Select "Create new account".
@@ -353,51 +344,38 @@ environment.
 
 7. Enable multi-stage pipelines.
 
-- Click your user icon in the top right corner
-- Then click the three dots to access the "Preview Features" menu item
-- Toggle multi-stage pipelines to "On"
+   - Click your user icon in the top right corner
+   - Then click the three dots to access the "Preview Features" menu item
+   - Toggle multi-stage pipelines to "On"
 
-2. Next add an Azure Service Connection to your Azure DevOps account. Click the
-   Project settings gear icon to access your settings. Then select Service
-   Connections.
+8. Next add an Azure Service Connection to your Azure DevOps account. Click the Project settings gear icon to access your settings. Then select Service Connections.
 
-3. Choose "+ New service connection". Then pick "Azure Resource Manager" from
-   the menu.
+9. Choose "+ New service connection". Then pick "Azure Resource Manager" from the menu.
 
    ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
 
-4. Select the link indicated in the screenshot below to access the advanced
-   settings.
+10. Select the link indicated in the screenshot below to access the advanced settings.
 
    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
-5. Enter the required information using the service principal information you
+11. Enter the required information using the service principal information you
    created earlier.
 
    - **Connection name**: azurecloud-sol
-
    - **Environment**: AzureCloud
-
    - **Subscription ID**: `id` from `az account show` output
-
    - **Subscription Name**: `name` from `az account show` output
-
    - **Service Principal Client ID**: `appId` from service principal output.
-
    - **Service Principal Key**: `password` from service principal output.
-
    - **Tenant ID**: `tenant` from service principal output.
 
    ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
-6. Select "Verify connection" then select "OK".
+12. Select "Verify connection" then select "OK".
 
-   > **Note**: If the connection does not verify, then recheck and reenter the
-   > required data.
+   > **Note**: If the connection does not verify, then recheck and reenter the required data.
 
-7. Next, click "Repos" then use the
-   repository dropdown to create a new repository by selecting
-   "+ New repository".
+13. Next, click "Repos" then use the repository dropdown to create a new repository by selecting "+ New repository".
 
    ![Repository dropdown](media/b4-image53.png)
 
@@ -407,76 +385,63 @@ environment.
 
      ![Generate Git Credentials](media/b4-image50.png)
 
-8. Copy the Personal Access Token and save it for later steps
+14. Copy the Personal Access Token and save it for later steps
 
-9. Copy the commands to add your Azure DevOps repository as a new remote for
+15. Copy the commands to add your Azure DevOps repository as a new remote for
    push. Copy the commands for "**HTTPS**" similar to this example:
 
-```bash
-git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
-git push -u origin --all
-```
+     ```bash
+     git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
+     git push -u origin --all
+     ```
 
-Save these commands you will paste them into your cloud shell window soon.
+     > Save these commands you will paste them into your cloud shell window soon.
 
-9. Using your cloud shell window, initialize a new git repository.
+16. Using your cloud shell window, initialize a new git repository.
 
-```bash
-cd content-web
-git init
-git add .
-git commit -m "Initial Commit"
-```
+     ```bash
+     cd content-web
+     git init
+     git add .
+     git commit -m "Initial Commit"
+     ```
 
-10. Now use the commands copied from Azure DevOps to configure the remote
-    repository and push the code to Azure DevOps. When prompted for a password,
-    paste your Azure DevOps Personal Access Token you copied earlier in this task.
+17. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-11. Return to Azure DevOps and use the repository dropdown to create a second
-    repository called `content-api`.
+18. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
 
-> Note: You do not need to generate git credentials again. The same PAT will
-> work for both repositories
+     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-12. Copy the commands to add your `content-api` repository as a new remote for
-    push. Copy the commands for "**HTTPS**".
+19. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-13. Using your cloud shell window, initialize a new git repository in the
-    content-api directory.
+20. Using your cloud shell window, initialize a new git repository in the content-api directory.
 
-```bash
-cd ../content-api
-git init
-git add .
-git commit -m "Initial Commit"
-```
+     ```bash
+     cd ../content-api
+     git init
+     git add .
+     git commit -m "Initial Commit"
+     ```
 
-14. Now use the commands copied from Azure DevOps to configure the remote
-    repository and push the code to Azure DevOps. When prompted for a password,
-    paste your Azure DevOps Personal Access Token you copied earlier in this task.
+21. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-15. Use the repository drop down to create a third repository called
+22. Use the repository drop down to create a third repository called
     `content-init`.
 
-> Note: You do not need to generate git credentials again. The same PAT will
-> work for both repositories
+     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-16. Copy the commands to add your `content-init` repository as a new remote for
-    push. Copy the commands for "**HTTPS**".
+23. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-17. Using your cloud shell window, initialize a new git repository in the
-    content-init directory.
+24. Using your cloud shell window, initialize a new git repository in the content-init directory.
 
-```bash
-cd ../content-init
-git init
-git add .
-git commit -m "Initial Commit"
-```
+     ```bash
+     cd ../content-init
+     git init
+     git add .
+     git commit -m "Initial Commit"
+     ```
 
-18. Now use the commands copied from Azure DevOps to configure the remote
-    repository and push the code to Azure DevOps. When prompted for a password,
-    paste your Azure DevOps Personal Access Token you copied earlier in this task.
+25. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
@@ -485,6 +450,8 @@ VM.
 
 1. From Azure cloud shell, run the following command to find the IP address for
    the build agent VM provisioned when you ran the ARM deployment:
+
+   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
    az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT SUFFIX] --query publicIps -o tsv
@@ -592,7 +559,7 @@ In this task, you will update the packages and install Docker engine.
    ```
 
 10. Install the Angular CLI
-    
+
     ```bash
     sudo npm install -g @angular/cli
     ```
@@ -656,25 +623,23 @@ with them on the build agent.
 
    ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
 
-- Copy the repository url.
+4. Copy the repository url.
 
-- Use the repository url to clone the content-web code to your build agent machine.
+5. Use the repository url to clone the content-web code to your build agent machine.
 
-  ```bash
-  git clone <REPOSITORY_URL>
-  ```
+   ```bash
+   git clone <REPOSITORY_URL>
+   ```
 
-- When prompted for password use your PAT token from previous steps.
+6. When prompted for password use your PAT token from previous steps.
 
-- In your browser, switch to the `content-api` repository and select "Clone"
-  to see and copy the repository url.
+7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository url.
 
-- Use the repository url and `git clone` to copy the content-api code to your build agent.
+8. Use the repository url and `git clone` to copy the content-api code to your build agent.
 
-- In your browser, switch to the `content-init` repository and select "Clone"
-  to see and copy the repository url.
+9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository url.
 
-- Use the repository url and `git clone` to copy the content-init code to your build agent.
+10. Use the repository url and `git clone` to copy the content-init code to your build agent.
 
 > **Note**: Keep this cloud shell window open as your build agent SSH
 > connection. The lab will instruct you to open additional cloudshell sessions
