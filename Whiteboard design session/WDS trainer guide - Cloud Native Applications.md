@@ -622,17 +622,9 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
 
 ## Checklist of preferred objection handling
 
-1.  What is the simplest way to move to containers on Azure, while at the same time considering our scale and growth requirements?
+1.  There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each? 
 
-    The easiest way to move to containers on Azure is to deploy containers to the Linux variant of App Service. However this option does not provide a full-featured container orchestration platform with highly customizable load balancing, dynamic service discovery, and a holistic approach to container monitoring.
-
-    Azure Container Instances also provide a simple way to manage individual containers without management tooling.
-
-    Azure Kubernetes Service (AKS) provides a fully managed service with the full set of orchestration and management tools. This is the best possible choice for reduced management overhead while still having access to the features provided with orchestration platforms like Kubernetes.
-
-2.  With so many platforms and tools for Docker and container orchestration, how should we choose an option for Azure?
-
-    The best of all worlds is to go with a managed orchestration platform like AKS -- native to Azure. It reduces the cost and management overhead of the cluster, while still providing a solution that supports growth, scale, and native management tooling.
+The best of all worlds is to go with a managed orchestration platform like AKS -- native to Azure. It reduces the cost and management overhead of the cluster, while still providing a solution that supports growth, scale, and native management tooling.
 
     With Kubernetes you will have additional features at your fingertips beyond the pure Docker approach including:
 
@@ -641,6 +633,14 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
     -   The kubectl command line tool for engaging remote Kubernetes APIs and assisting with automation.
 
     -   Built-in dynamic service discovery simplifies the deployment of new container instances to a load balanced environment.
+
+2.  Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements? 
+
+    The easiest way to move to containers on Azure is to deploy containers to the Linux variant of App Service. However this option does not provide a full-featured container orchestration platform with highly customizable load balancing, dynamic service discovery, and a holistic approach to container monitoring.
+
+    Azure Container Instances also provide a simple way to manage individual containers without management tooling.
+
+    Azure Kubernetes Service (AKS) provides a fully managed service with the full set of orchestration and management tools. This is the best possible choice for reduced management overhead while still having access to the features provided with orchestration platforms like Kubernetes.
 
 ## Customer quote (to be read back to the attendees at the end)
 
