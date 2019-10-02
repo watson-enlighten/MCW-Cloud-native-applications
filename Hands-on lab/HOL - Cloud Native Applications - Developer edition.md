@@ -2164,21 +2164,21 @@ In this task, you will edit the web application source code to add Application I
 
 7. Push these changes to your repository so that Azure DevOps CI will build and
    deploy a new image.
-   
-    ```bash
-    git add .
-    git commit -m "Added Application Insights"
-    git push
-    ```
 
-8. Visit your Azure DevOps pipeline for the `content-web` application and see 
+   ```bash
+   git add .
+   git commit -m "Added Application Insights"
+   git push
+   ```
+
+8. Visit your Azure DevOps pipeline for the `content-web` application and see
    the new image being deployed into your Kubernetes cluster.
 
-9.  While this updates run, return the Kubernetes management dashboard in the 
-    browser.
+9. While this updates run, return the Kubernetes management dashboard in the
+   browser.
 
-10. From the navigation menu, select Replica Sets under Workloads. From this 
-    view you will see a new replica set for web which may still be in the 
+10. From the navigation menu, select Replica Sets under Workloads. From this
+    view you will see a new replica set for web which may still be in the
     process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
@@ -2211,13 +2211,10 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
-   <!-- TODO this can be cloud editor -->
-
 4. Create a script to update the public DNS name for the IP.
 
    ```bash
-   vi update-ip.sh
-   <i>
+   code update-ip.sh
    ```
 
    Paste the following as the contents and update the IP and SUFFIX values:
@@ -2240,7 +2237,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of VIM editor showing the updated file.](media/Ex4-Task5.6.png)
 
-5. Use `<esc>:wq` to save your script and exit VIM.
+5. Save changes and close the editor.
 
 6. Run the update script.
 
@@ -2276,8 +2273,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 9. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
 
    ```bash
-   vi clusterissuer.yml
-   <i>
+   code clusterissuer.yml
    ```
 
    The following resource configuration should work as is:
@@ -2300,7 +2296,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
        http01: {}
    ```
 
-10. Save the file with `<esc>:wq`.
+10. Save changes and close the editor.
 
 11. Create the issuer using kubectl.
 
@@ -2319,8 +2315,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     > If a certificate is already available, skip to step 15.
 
     ```bash
-    vi certificate.yml
-    <i>
+    code certificate.yml
     ```
 
     Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
@@ -2345,7 +2340,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         kind: ClusterIssuer
     ```
 
-13. Save the file with `<esc>:wq`.
+13. Save changes and close the editor.
 
 14. Create the certificate using kubectl.
 
@@ -2369,8 +2364,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 15. Now you can create an ingress resource for the content applications.
 
     ```bash
-    vi content.ingress.yml
-    <i>
+    code content.ingress.yml
     ```
 
     Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
@@ -2403,7 +2397,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
                   servicePort: 3001
     ```
 
-16. Save the file with `<esc>:wq`.
+16. Save changes and close the editor.
 
 17. Create the ingress using kubectl.
 
