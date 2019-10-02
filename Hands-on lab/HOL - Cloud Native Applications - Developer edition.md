@@ -26,40 +26,41 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud Native Applications - Developer edition hands-on lab](#Cloud-Native-Applications---Developer-edition-hands-on-lab)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
-    - [Task 1: Test the application](#Task-1-Test-the-application)
-    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
-    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
-    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
-    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
-    - [Task 7: Run several containers with Docker compose](#Task-7-Run-several-containers-with-Docker-compose)
-    - [Task 8: Push images to Azure Container Registry](#Task-8-Push-images-to-Azure-Container-Registry)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
-    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
-    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
-  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
-  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
-  - [After the hands-on lab](#After-the-hands-on-lab)
+- [Cloud Native Applications - Developer edition hands-on lab](#cloud-native-applications---developer-edition-hands-on-lab)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
+    - [Task 1: Test the application](#task-1-test-the-application)
+    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
+    - [Task 4: Create Docker images](#task-4-create-docker-images)
+    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
+    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
+    - [Task 7: Run several containers with Docker compose](#task-7-run-several-containers-with-docker-compose)
+    - [Task 8: Push images to Azure Container Registry](#task-8-push-images-to-azure-container-registry)
+    - [Task X: Setup CI Pipeline to Push Images](#task-x-setup-ci-pipeline-to-push-images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
+    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
+    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
+  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
+  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
+    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
+  - [After the hands-on lab](#after-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -797,7 +798,8 @@ for several containers and run them together.
 
     ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
 
-6.  Next we will add a second file to our composition so that we can initialize the mongodb data when needed.
+6. Next we will add a second file to our composition so that we can initialize 
+   the mongodb data when needed.
 
     ```bash
     vi docker-compose.init.yml
@@ -860,9 +862,10 @@ In this task, you will push images to your ACR account, version images with tagg
 3. The Access keys blade displays the Login server, username, and password that will be required for the next step. Keep this handy as you perform actions on the build VM.
 
    > **Note**: If the username and password do not appear, select Enable on the Admin user option.
-<!-- TODO: Should be cloudshell -->
 
-4. From the Azure Cloud Shell session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
+4. From the cloud shell session connected to your build VM, login to your ACR 
+   account by typing the following command. Follow the instructions to complete 
+   the login.
 
    ```bash
    docker login [LOGINSERVER] -u [USERNAME] -p [PASSWORD]
@@ -878,14 +881,14 @@ In this task, you will push images to your ACR account, version images with tagg
 
    **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
 
-5. Run the following commands to properly tag your images to match your ACR account name.
+1. Run the following commands to properly tag your images to match your ACR account name.
 
    ```bash
    docker tag content-web [LOGINSERVER]/content-web
    docker tag content-api [LOGINSERVER]/content-api
    ```
 
-6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
+2. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
 
    ```bash
    docker images
@@ -893,7 +896,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![This is a screenshot of a docker images list example.](media/image66.png)
 
-7. Push the images to your ACR account with the following command:
+3. Push the images to your ACR account with the following command:
 
    ```bash
    docker push [LOGINSERVER]/content-web
@@ -911,9 +914,11 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
-<!-- TODO replace with cloudshell reference -->
-
-10. From Azure Cloud Shell, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
+10. From the cloud shell session attached to the VM, assign the v1 tag to each 
+    image with the following commands. Then list the Docker images to note that 
+    there are now two entries for each image; showing the latest tag and the v1 
+    tag. Also note that the image ID is the same for the two entries, as there 
+    is only one copy of the image.
 
     ```bash
     docker tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
@@ -924,75 +929,120 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![In this screenshot of the WSL window is an example of tags being added and displayed.](media/image70.png)
 
-11. Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
+1.  Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
     ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right. In the Tags blade, latest and v1 appear under Tags.](media/image71.png)
 
-12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
+2.  Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
 
     ```bash
     docker pull [LOGINSERVER]/content-web
     docker pull [LOGINSERVER]/content-web:v1
     ```
 
-<!-- TODO: Replace with instructions for creating/using the build yaml.  We can start by just showing them the build stage, and add the deployment in later tasks -->
-18. Now create your first build. Select "Pipelines", then select "New pipeline"
+### Task X: Setup CI Pipeline to Push Images
 
-    ![A screenshot of Azure DevOps build definitions.](media/Ex1-Task7.18.png)
+In this task you will use YAML to define a pipeline that builds your Docker 
+image and pushes it to your ACR instance automatically.
 
-19. The New pipeline page will have a link all the way at the bottom to switch to the classic editor like below, click on the highlighted link
+1. In your cloud shell session connected to the build agent VM, navigate to the
+   `content-web` directory:
 
-    ![A screenshot of Azure DevOps new build definitions.](media/Ext-Task7.18.1.png)
+   ```bash
+   cd ~/content-web
+   ```
 
-20. Choose the content-web repository and accept the other defaults.
+6. Next create the pipeline yaml file.
 
-    ![A screenshot of the source selection showing Azure DevOps highlighted.](media/Ex1-Task7.19.png)
+    ```bash
+    vi azure-pipelines.yml
+    ```
 
-21. Next, search for "Docker" templates and choose "Docker Container" then select "Apply".
+    Add the following as the content (replacing SHORT_SUFFIX with your short 
+    suffix such as SOL):
 
-    ![A screenshot of template selection showing Docker Container selected.](media/Ex1-Task7.20.png)
+    ```yaml
+    name: 0.1.$(Rev:r)
+    
+    trigger:
+    - master
+    
+    resources:
+    - repo: self
+    
+    variables:
+      dockerRegistryServiceConnection: 'Fabmedical ACR'
+      imageRepository: 'contentweb'
+      containerRegistry: '$(containerRegistryName).azurecr.io'
+      containerRegistryName: 'fabmedical[SHORT_SUFFIX]'
+      dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+      tag: '$(Build.BuildNumber)'
+      vmImageName: 'ubuntu-latest'
+    
+    stages:
+    - stage: Build
+      displayName: Build and Push
+      jobs:  
+      - job: Docker
+        displayName: Build and Push Docker Image
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+        - checkout: self
+          fetchDepth: 1
+    
+        - task: Docker@2
+          displayName: Build and push an image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(imageRepository)
+            dockerfile: $(dockerfilePath)
+            containerRegistry: $(dockerRegistryServiceConnection)
+            tags: |
+              $(tag)
+    ```
 
-22. Change the build name to "content-web-Container-CI".
+1. Save the pipeline YAML, then commit and push it to the Azure DevOps
+   repository:
 
-    ![A screenshot of the dialog where you can enter the name for the build.](media/Ex1-Task7.21.png)
+   ```bash
+   git add azure-pipelines.yml
+   git commit -m 'Added pipeline yaml'
+   git push
+   ```
 
-23. Select "Build an image":
+2. Now login to Azure DevOps to create your first build. Navigate to the 
+   `content-web` repository and choose 'Set up Build'
 
-    - **Azure subscription**: Choose "azurecloud-sol".
+   ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button](media/hol-2019-10-01_19-50-16.png)
 
-    - **Azure Container Registry**: Choose your ACR instance by name.
+3. Azure DevOps will automatically detect the pipeline YAML you added.  You can
+   make additional edits here if needed.  Click `Run` when you are ready to
+   execute the pipeline.    
 
-    - **Include Latest Tag**: Checked
+   ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button](media/hol-2019-10-02_07-33-16.png)
 
-    ![A screenshot of the dialog where you can describe the image build.](media/Ex1-Task7.22.png)
+4. Azure DevOps will queue your first build and execute the pipeline when an
+   agent becomes available.
 
-24. Select "Push an image".
+   ![A screenshot of Azure DevOps Pipeline with a queued job.](media/hol-2019-10-02_07-39-24.png)
 
-    - **Azure subscription**: Choose "azurecloud-sol".
+5. The build should take about five minutes to complete.  
+   
+   ![A screenshot of Azure DevOps Pipeline with a completed job.](media/hol-2019-10-02_08-28-49.png)
 
-    - **Azure Container Registry**: Choose your ACR instance by name.
+   > **Note**: The build may fail due to an authorization error related to the 
+   Docker Registry Service connection, if this is the case then click 
+   "Authorize Resources" and run the build again.
+   > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
 
-    - **Include Latest Tag**: Checked
+6. Next, create the `content-api` build. Select the `content-api` repository. 
+   This repository already includes `azure-pipelines.yaml`.  Click 'Set up 
+   Build', then click `Run` to start the pipeline.
 
-    ![A screenshot of the dialog where you can describe the image push.](media/Ex1-Task7.23.png)
+7.  While the content-api build runs, setup one last build for content-init by following the same steps as the previous two builds.
 
-25. Select "Triggers".
-
-    - **Enable continuous integration**: Checked
-
-    - **Batch changes while a build is in progress**: Checked
-
-    ![A screenshot of the dialog where you can setup triggers.](media/Ex1-Task7.24.png)
-
-26. Select "Save & queue"; then select "Save & queue" two more times to kick off the first build.
-
-    ![A screenshot showing the queued build.](media/Ex1-Task7.26.png)
-
-27. While that build runs, create the content-api build. Select "Builds", then select "+ New", and then select "New build pipeline". Configure content-api by following the same steps used to configure content-web.
-
-28. While the content-api build runs, setup one last build for content-init by following the same steps as the previous two builds.
-
-29. Visit your ACR instance in the Azure portal, you should see new containers tagged with the Azure DevOps build number.
+8.  Visit your ACR instance in the Azure portal, you should see new containers tagged with the Azure DevOps build number.
 
     ![A screenshot of the container images in ACR.](media/Ex1-Task7.28.png)
 
