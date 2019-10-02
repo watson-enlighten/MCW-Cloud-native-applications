@@ -26,40 +26,40 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud Native Applications - Developer edition hands-on lab](#cloud-native-applications---developer-edition-hands-on-lab)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
-    - [Task 1: Test the application](#task-1-test-the-application)
-    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
-    - [Task 4: Create Docker images](#task-4-create-docker-images)
-    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
-    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
-    - [Task 7: Run several containers with Docker compose](#task-7-run-several-containers-with-docker-compose)
-    - [Task 8: Push images to Azure Container Registry](#task-8-push-images-to-azure-container-registry)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
-    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
-    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
-  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
-  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
-  - [After the hands-on lab](#after-the-hands-on-lab)
+- [Cloud Native Applications - Developer edition hands-on lab](#Cloud-Native-Applications---Developer-edition-hands-on-lab)
+  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
+  - [Overview](#Overview)
+  - [Solution architecture](#Solution-architecture)
+  - [Requirements](#Requirements)
+  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
+    - [Task 1: Test the application](#Task-1-Test-the-application)
+    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
+    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
+    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
+    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
+    - [Task 7: Run several containers with Docker compose](#Task-7-Run-several-containers-with-Docker-compose)
+    - [Task 8: Push images to Azure Container Registry](#Task-8-Push-images-to-Azure-Container-Registry)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
+    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
+    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
+  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
+  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
+    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
+  - [After the hands-on lab](#After-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -157,7 +157,7 @@ In this exercise, you will take the starter files and run the node.js applicatio
 ### Task 1: Test the application
 
 The purpose of this task is to make sure you can run the application successfully before applying changes to run it as a Docker application.
-   
+  
 1. From Azure Cloud Shell, connect to your build agent if you are not already 
    connected. (If you need to reconnect, please review the instructions in the
    "Before the HOL" document.)
@@ -872,7 +872,7 @@ In this task, you will push images to your ACR account, version images with tagg
    > **Note**: If the username and password do not appear, select Enable on the Admin user option.
 <!-- TODO: Should be cloudshell -->
 
-4. From the WSL session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
+4. From the Azure Cloud Shell session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
 
    ```bash
    docker login [LOGINSERVER] -u [USERNAME] -p [PASSWORD]
@@ -923,7 +923,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 <!-- TODO replace with cloudshell reference -->
 
-10. From WSL, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
+10. From Azure Cloud Shell, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
     docker tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
@@ -1062,14 +1062,7 @@ In this task, you will gather the information you need about your Azure Kubernet
 
    ![In this screenshot of the WSL console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001](media/image76.png)
 
-<!-- TODO: Believe we can remove this because this is automatic in cloudshell -->
-9. Open a browser window and access the Kubernetes management dashboard at the Services view. To reach the dashboard, you must access the following address:
-
-   ```bash
-   http://localhost:8001
-   ```
-
-10. If the tunnel is successful, you will see the Kubernetes management dashboard.
+9. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
     ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, kubernetes has a green check mark next to it. Below that, default-token-s6kmc is listed under Secrets.](media/image77.png)
 
@@ -1128,9 +1121,8 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
    ```text
    mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol2.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
    ```
-<!-- TODO: Should be cloudshell -->
 
-10. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your WSL window and use the following command to encode the connection string and then, copy the output.
+10. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
 
     ```bash
     echo -n "<connection string value>" | base64 -w 0
@@ -1157,9 +1149,8 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 13. View the details for the "mongodb" secret. Click the eyeball icon to show the secret.
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
-<!-- TODO: Should be cloudshell -->
 
-14. Next, download the api deployment configuration using the following command in your WSL window:
+14. Next, download the api deployment configuration using the following command in your Azure Cloud Shell window:
 
     ```bash
     kubectl get -o=yaml --export=true deployment api > api.deployment.yml
@@ -1198,9 +1189,8 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 ### Task 3: Deploy a service using kubectl
 
 In this task, deploy the web service using `kubectl`.
-<!-- TODO: Should be cloudshell -->
 
-1. Open a **new** WSL console.
+1. Open a **new** Azure Cloud Shell console.
 
 <!-- TODO: This can be cloud editor -->
 2. Create a text file called web.deployment.yml using Vim and press the "i" key to go into edit mode.
@@ -1344,9 +1334,8 @@ In this task, deploy the web service using a helm chart.
 4. Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
-<!-- TODO: Should be cloudshell -->
 
-5. Open a **new** WSL console.
+5. Open a **new** Azure Cloud Shell console.
 <!-- TODO: should be cloud editor -->
 6. Create a text file called rbac-config.yaml using Vim and press the "i" key to go into edit mode.
 
@@ -1559,7 +1548,7 @@ In this task, deploy the web service using a helm chart.
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
 <!-- TODO: Should be cloudshell / cloud editor -->
 
-1. In your WSL window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
+1. In your Azure Cloud Shell window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
 
    ```bash
    vi init.job.yml
@@ -2220,21 +2209,20 @@ both web and api.
     ```
 
 30. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
-<!-- TODO: Should be cloudshell -->
 
-30. From WSL, request a rolling update for the content-api application using this kubectl command:
+31. From Azure Cloud Shell, request a rolling update for the content-api application using this kubectl command:
 
     ```bash
     kubectl set image deployment/api api=[LOGINSERVER]/content-api:[LATEST TAG]
     ```
 
-31. While this updates run, return the Kubernetes management dashboard in the browser.
+32. While this updates run, return the Kubernetes management dashboard in the browser.
 
-32. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
+33. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-33. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+34. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
