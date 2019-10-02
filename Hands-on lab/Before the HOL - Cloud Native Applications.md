@@ -34,9 +34,9 @@ The names of manufacturers, products, or URLs are provided for informational pur
     - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
     - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
     - [Task 7: Setup Azure DevOps project](#task-7-setup-azure-devops-project)
-    - [Task 9: Connect securely to the build agent](#task-9-connect-securely-to-the-build-agent)
-    - [Task 10: Complete the build agent setup](#task-10-complete-the-build-agent-setup)
-    - [Task 11: Clone Repositories to the Build Agent](#task-11-clone-repositories-to-the-build-agent)
+    - [Task 8: Connect securely to the build agent](#task-8-connect-securely-to-the-build-agent)
+    - [Task 9: Complete the build agent setup](#task-9-complete-the-build-agent-setup)
+    - [Task 10: Clone Repositories to the Build Agent](#task-10-clone-repositories-to-the-build-agent)
 
 <!-- /TOC -->
 
@@ -478,7 +478,7 @@ git commit -m "Initial Commit"
     repository and push the code to Azure DevOps. When prompted for a password,
     paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-### Task 9: Connect securely to the build agent
+### Task 8: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent
 VM.
@@ -530,7 +530,7 @@ VM.
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
-### Task 10: Complete the build agent setup
+### Task 9: Complete the build agent setup
 
 In this task, you will update the packages and install Docker engine.
 
@@ -558,8 +558,8 @@ In this task, you will update the packages and install Docker engine.
 
    ```bash
    sudo apt-get install curl python-software-properties
-   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-   sudo apt-get update && sudo apt install docker-ce nodejs mongodb-clients
+   curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+   sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 
 6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
@@ -591,7 +591,13 @@ In this task, you will update the packages and install Docker engine.
    npm -version
    ```
 
-10. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
+10. Install the Angular CLI
+    
+    ```bash
+    sudo npm install -g @angular/cli
+    ```
+
+11. Add your user to the Docker group so that you do not have to elevate privileges with sudo for every command. You can ignore any errors you see in the output.
 
     ```bash
     sudo usermod -aG docker $USER
@@ -599,15 +605,15 @@ In this task, you will update the packages and install Docker engine.
 
     ![In this screenshot of a Command Prompt window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
-11. In order for the user permission changes to take effect, exit the SSH
+12. In order for the user permission changes to take effect, exit the SSH
     session by typing 'exit', then press \<Enter\>. Reconnect to the build agent
     VM using SSH as you did in the previous task.
 
-12. Run the Docker version command again, and note the output now shows the server version as well.
+13. Run the Docker version command again, and note the output now shows the server version as well.
 
     ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window, in addition to server version information.](media/b4-image30.png)
 
-13. Run a few Docker commands:
+14. Run a few Docker commands:
 
     - One to see if there are any containers presently running.
 
@@ -621,11 +627,11 @@ In this task, you will update the packages and install Docker engine.
       docker container ls -a
       ```
 
-14. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
+15. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
 
     ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
-### Task 11: Clone Repositories to the Build Agent
+### Task 10: Clone Repositories to the Build Agent
 
 In this task you will clone your repositories from Azure DevOps so you can work
 with them on the build agent.

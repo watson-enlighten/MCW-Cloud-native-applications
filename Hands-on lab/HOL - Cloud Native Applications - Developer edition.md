@@ -266,8 +266,8 @@ The purpose of this task is to make sure you can run the application successfull
     ```bash
     cd ../content-web
     npm install
-    bower install
-    nodejs ./server.js &
+    ng build
+    nodejs ./app.js &
     ```
 
     ![In this screenshot, after navigating to the web application directory, nodejs ./server.js & has been typed and run at the command prompt, which runs the application as a background process as well.](media/image48.png)
@@ -382,8 +382,6 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
      - Indicates the command to start the node application when the container is run.
 
-<!-- TODO: Update dockerfile to build the new angular app -->
-
 > **Note**: Type the following into the editor, as you may have errors with copying and pasting:
 
 ```Dockerfile
@@ -408,7 +406,7 @@ COPY --from=build /usr/src/app .
 CMD [ "npm", "start" ]
 ```
 
-4. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
+1. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
 
    ```bash
    <Esc>
@@ -416,7 +414,7 @@ CMD [ "npm", "start" ]
    <Enter>
    ```
 
-5. List the contents of the folder again to verify that the new Dockerfile has been created.
+2. List the contents of the folder again to verify that the new Dockerfile has been created.
 
    ```bash
    ll
@@ -491,7 +489,8 @@ In this task, you will create Docker images for the application --- one for the 
    cat Dockerfile
    ```
 
-   Notice that the content-web Dockerfile build stage includes additional tools to install bower packages in addition to the npm packages.
+   Notice that the content-web Dockerfile build stage includes additional tools 
+   to a front end Angular application in addition to installing npm packages.
 
 7. Type the following command to create a Docker image for the web application.
 
