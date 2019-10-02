@@ -1103,11 +1103,16 @@ In this task, you will gather the information you need about your Azure Kubernet
    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
    ```
 
-<!-- TODO: this does work but we need to update language and screenshot for cloudshell, a new browser tab will open automatically with dashboard.  Test this please. -->
+5. Create an SSH tunnel linking a local port (8001) on your cloud shell host to 
+   port 443 on the management node of the cluster. Cloud shell will then use the
+   web preview feature to give you remote access to the Kubernetes dashboard. 
+   Execute the command below replacing the values as follows:
 
-8. Create an SSH tunnel linking a local port (8001) on your machine to port 80 on the management node of the cluster. Execute the command below replacing the values as follows:
-
-   > **Note**: After you run this command, it may work at first and later lose its connection, so you may have to run this again to reestablish the connection. If the Kubernetes dashboard becomes unresponsive in the browser this is an indication to return here and check your tunnel or rerun the command.
+   > **Note**: After you run this command, it may work at first and later lose 
+   its connection, so you may have to run this again to reestablish the 
+   connection. If the Kubernetes dashboard becomes unresponsive in the browser 
+   this is an indication to return here and check your tunnel or rerun the 
+   command.
 
    ```bash
    az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
@@ -1117,7 +1122,7 @@ In this task, you will gather the information you need about your Azure Kubernet
 
    ![In this screenshot of the WSL console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001](media/image76.png)
 
-9. If the tunnel is successful, you will see the Kubernetes management dashboard.
+6. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, kubernetes has a green check mark next to it. Below that, default-token-s6kmc is listed under Secrets.](media/image77.png)
 
@@ -1247,18 +1252,17 @@ In this task, deploy the web service using `kubectl`.
 
 1. Open a **new** Azure Cloud Shell console.
 
-<!-- TODO: This can be cloud editor -->
-
-2. Create a text file called web.deployment.yml using Vim and press the "i" key to go into edit mode.
+2. Create a text file called web.deployment.yml using the Azure Cloud Shell 
+   Editor.
 
    ```bash
-   vi web.deployment.yml
-   <i>
+   code web.deployment.yml
    ```
 
 3. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters. If the code does not paste correctly, you can issue a ":set paste" command before pasting.
+   > **Note**: Be sure to copy and paste only the contents of the code block 
+   carefully to avoid introducing any special characters. 
 
    ```yaml
    apiVersion: extensions/v1beta1
@@ -1317,25 +1321,28 @@ In this task, deploy the web service using `kubectl`.
            terminationGracePeriodSeconds: 30
    ```
 
-4. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
+4. Update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-5. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+5. Click the **...** button and select **Save**.
+    <!-- TODO Blur the content to make this image more reusable -->
+   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-   ```text
-   <Esc>
-   :wq
-   <Enter>
-   ```
+6. Click the **...** button again and select **Close Editor**.
+    <!-- TODO Blur the content to make this image more reusable -->
 
-6. Create a text file called web.service.yml using Vim, and press the "i" key to go into edit mode.
+   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
+
+7. Create a text file called web.service.yml using the Azure Cloud Shell 
+   Editor.
 
    ```bash
-   vi web.service.yml
+   code web.service.yml
    ```
 
-7. Copy and paste the following text into the editor:
+8. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters.
+   > **Note**: Be sure to copy and paste only the contents of the code block 
+   carefully to avoid introducing any special characters.
 
    ```yaml
    apiVersion: v1
@@ -1356,9 +1363,11 @@ In this task, deploy the web service using `kubectl`.
      type: LoadBalancer
    ```
 
-8. Press the Escape key and type ":wq"; then press the Enter key to save and close the file.
+9. Save changes and close the editor.
 
-9. Type the following command to deploy the application described by the YAML files. You will receive a message indicating the items kubectl has created a web deployment and a web service.
+10. Type the following command to deploy the application described by the YAML 
+    files. You will receive a message indicating the items kubectl has created a 
+    web deployment and a web service.
 
    ```bash
    kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
@@ -1368,11 +1377,11 @@ In this task, deploy the web service using `kubectl`.
 
    ![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
-10. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
+11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
-11. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
+12. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
@@ -1393,17 +1402,18 @@ In this task, deploy the web service using a helm chart.
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
 5.  Open a **new** Azure Cloud Shell console.
-    <!-- TODO: should be cloud editor -->
-6.  Create a text file called rbac-config.yaml using Vim and press the "i" key to go into edit mode.
 
-    ```bash
-    vi rbac-config.yaml
-    <i>
-    ```
+6. Create a text file called rbac-config.yaml using the Azure Cloud Shell 
+   Editor.
+
+   ```bash
+   code rbac-config.yaml
+   ```
 
 7.  Copy and paste the following text into the editor:
 
-    > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters. If the code does not paste correctly, you can issue a ":set paste" command before pasting.
+    > **Note**: Be sure to copy and paste only the contents of the code block 
+    carefully to avoid introducing any special characters. 
 
     ```yaml
     apiVersion: v1
@@ -1426,15 +1436,10 @@ In this task, deploy the web service using a helm chart.
         namespace: kube-system
     ```
 
-8.  Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+9. Save changes and close the editor.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
-
-9.  Type the following command to create the service account needed by Tiller (the Helm server part).
+9. Type the following command to create the service account needed by Tiller 
+    (the Helm server part).
 
     ```bash
     kubectl create -f rbac-config.yaml
@@ -1605,17 +1610,17 @@ In this task, deploy the web service using a helm chart.
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
 
-<!-- TODO: Should be cloudshell / cloud editor -->
-
-1. In your Azure Cloud Shell window create a text file called init.job.yml using Vim, and press the "i" key to go into edit mode.
+1. Create a text file called init.job.yml using the Azure Cloud Shell 
+   Editor.
 
    ```bash
-   vi init.job.yml
+   code init.job.yml
    ```
 
 2. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters.
+   > **Note**: Be sure to copy and paste only the contents of the code block 
+   carefully to avoid introducing any special characters.
 
    ```yaml
    apiVersion: batch/v1
@@ -1640,7 +1645,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 3. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-4. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+9. Save changes and close the editor.
 
 5. Type the following command to deploy the job described by the YAML. You will receive a message indicating the kubectl has created an init "job.batch".
 
