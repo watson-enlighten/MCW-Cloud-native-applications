@@ -1389,19 +1389,19 @@ In this task, deploy the web service using `kubectl`.
 
 In this task, deploy the web service using a helm chart.
 
-1.  From the Kubernetes dashboard, under "Workloads", select "Deployments".
+1. From the Kubernetes dashboard, under "Workloads", select "Deployments".
 
-2.  Click the triple vertical dots on the right of the "web" deployment and then select "Delete". When prompted, click "Delete" again.
+2. Click the triple vertical dots on the right of the "web" deployment and then select "Delete". When prompted, click "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
-3.  From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
+3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
 
-4.  Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
+4. Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
-5.  Open a **new** Azure Cloud Shell console.
+5. Open a **new** Azure Cloud Shell console.
 
 6. Create a text file called rbac-config.yaml using the Azure Cloud Shell 
    Editor.
@@ -1450,25 +1450,33 @@ In this task, deploy the web service using a helm chart.
     ```bash
     helm init --service-account tiller
     ```
+    
+11. Update your starter files by pulling the latest changes from Azure Devops
+    
+    ```bash
+    cd ~/MCW-Containers-and-DevOps/Hands-on lab/lab-files/developer/content-web
+    git pull
+    ```
 
-11. We will use the `helm create` command to scaffold out a chart implementation that we can build on. Use the following commands to create a new chart named `web` in a new directory:
+12. We will use the `helm create` command to scaffold out a chart implementation 
+    that we can build on. Use the following commands to create a new chart named 
+    `web` in a new directory:
 
     ```bash
-    cd FabMedical/content-web
     mkdir charts
     cd charts
     helm create web
     ```
 
-12. We now need to update the generated scaffold to match our requirements. We will first update the file named `values.yaml`.
+13. We now need to update the generated scaffold to match our requirements. We 
+    will first update the file named `values.yaml`.
 
     ```bash
     cd web
-    vi values.yaml
-    <i>
+    code values.yaml
     ```
 
-13. Search for the `image` definition and update the values so that they match the following:
+14. Search for the `image` definition and update the values so that they match the following:
 
     ```yaml
     image:
@@ -1477,14 +1485,14 @@ In this task, deploy the web service using a helm chart.
       pullPolicy: Always
     ```
 
-14. Search for `nameOverride` and `fullnameOverride` entries and update the values so that they match the following:
+15. Search for `nameOverride` and `fullnameOverride` entries and update the values so that they match the following:
 
     ```yaml
     nameOverride: "web"
     fullnameOverride: "web"
     ```
 
-15. Search for the `service` definition and update the values so that they match the following:
+16. Search for the `service` definition and update the values so that they match the following:
 
     ```yaml
     service:
@@ -1492,7 +1500,7 @@ In this task, deploy the web service using a helm chart.
       port: 80
     ```
 
-16. Search for the `resources` definition and update the values so that they match the following:
+17. Search for the `resources` definition and update the values so that they match the following:
 
     ```yaml
     resources:
@@ -1508,23 +1516,16 @@ In this task, deploy the web service using a helm chart.
         memory: 128Mi
     ```
 
-17. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+18. Save changes and close the editor.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
-
-18. We will now update the file named `deployment.yaml`.
+19. We will now update the file named `deployment.yaml`.
 
     ```bash
     cd templates
-    vi deployment.yaml
-    <i>
+    code deployment.yaml
     ```
 
-19. Search for the `containers` definition and update the values so that they match the following:
+20. Search for the `containers` definition and update the values so that they match the following:
 
     ```yaml
     containers:
@@ -1544,22 +1545,15 @@ In this task, deploy the web service using a helm chart.
             port: 3000
     ```
 
-20. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+21. Save changes and close the editor.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
-
-21. We will now update the file named `service.yaml`.
+22. We will now update the file named `service.yaml`.
 
     ```bash
-    vi service.yaml
-    <i>
+    code service.yaml
     ```
 
-22. Search for the `ports` definition and update the values so that they match the following:
+23. Search for the `ports` definition and update the values so that they match the following:
 
     ```yaml
     ports:
@@ -1569,15 +1563,9 @@ In this task, deploy the web service using a helm chart.
         name: http
     ```
 
-23. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+24. Save changes and close the editor.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
-
-24. The chart is now setup to run our web container. Type the following command to deploy the application described by the YAML files. You will receive a message indicating that helm has created a web deployment and a web service.
+25. The chart is now setup to run our web container. Type the following command to deploy the application described by the YAML files. You will receive a message indicating that helm has created a web deployment and a web service.
 
         ```bash
         cd ../..
@@ -1588,15 +1576,15 @@ In this task, deploy the web service using a helm chart.
 
         ![In this screenshot of the WSL console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
-25. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
+26. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
-26. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
+27. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
-27. We will now persist the changes into the repository. Execute the following commands:
+28. We will now persist the changes into the repository. Execute the following commands:
 
     ```bash
     cd ..
@@ -1683,56 +1671,70 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will update the build pipeline and configure a deployment stage so that when new images are pushed to the ACR, they get deployed to the AKS cluster.
+In this task, you will use Azure DevOps to automate the process for deploying 
+the web image to the AKS cluster. You will update the DevOps Pipeline and 
+configure a deployment stage so that when new images are pushed to the ACR, the
+pipeline deploys the image to the AKS cluster.
 
 <!-- TODO: update to reflect adding the deployment stage using YAML -->
 
-1. We will use Azure DevOps to automate the process for deploying the web image to the AKS cluster. Login to your Azure DevOps account, access the project you created earlier, then select "Pipelines", and then select "Builds".
+1. Login to your Azure DevOps account, access the `fabmedical` project you 
+   created earlier, then select "Pipelines".
 
-2. From the builds list, select the `content-web-Container-CI` build and then click `Edit.`
+2. From the pipelines list, select the `content-web` pipeline and click `Edit.`
 
-   ![A screenshot with the `content-web-Container-CI` build selected and the `Edit` button highlighted.](media/Ex2-Task7.2.png)
+   ![A screenshot with the `content-web` pipeline selected and the `Edit` button highlighted.](media/hol-2019-10-02_10-06-57.png)
 
-3. In the `Agent job 1` row, click `+`.
+3. You will add a second job to the `Build and Push` stage, below the existing 
+   `Docker` job.  Paste the following into the pipeline editor:
 
-   ![A screenshot that shows how to add a task to a build pipeline.](media/Ex2-Task7.3.png)
+    > **Note**: Be careful to check your indenting when pasting.  The `job` node
+    should be indented with 2 spaces, and line up with the `job` node for the 
+    `Docker` job.
+   
+   ```yaml
+   - job: Helm
+    displayName: Build and Push Helm Chart
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - checkout: self
+        fetchDepth: 1
+        
+      - task: HelmInstaller@1
+        inputs:
+          helmVersionToInstall: 'latest'
+        displayName: 'Helm Install'
 
-4. Search for "Helm", select "Helm tool installer" and then click "Add".
+      - task: HelmDeploy@0
+        inputs:
+          connectionType: 'None'
+          command: 'package'
+          chartPath: 'charts/web'
+          chartVersion: '$(Build.BuildNumber)'
+        displayName: 'Helm Package'
+          
+      - task: AzureCLI@1
+        inputs:
+          azureSubscription: 'azurecloud'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            set -euo pipefail
 
-   ![A screenhost that shows adding the "Helm tool installer" task.](media/Ex2-Task7.4.png)
+            az acr helm push \
+              --name $(containerRegistryName) \
+              $(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).tgz
 
-5. Still using the same search, select "Package and deploy Helm charts" and then click "Add".
+          failOnStandardError: true
+        displayName: 'Helm Push'
+   ```
 
-   ![A screenhost that shows adding the "Package and deploy Helm charts" task.](media/Ex2-Task7.5.png)
+   ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
 
-6. Search for "Publish Artifacts", select "Publish Build Artifacts" and then click "Add".
+4. Click "Save" and commit the changes directly to the master branch.  A new 
+   build will start automatically.
 
-   ![A screenhost that shows adding the "Publish Build Artifacts" task.](media/Ex2-Task7.6.png)
-
-7. Select "helm ls":
-
-   - **Azure subscription**: Choose "azurecloud-sol".
-
-   - **Resource group**: Choose your resource group by name.
-
-   - **Kubernetes cluster**: Choose your AKS instance by name.
-
-   - **Command**: Select "package".
-
-   - **Chart Path**: Select "charts/web".
-
-   ![A screenshot of the dialog where you can describe the helm package.](media/Ex2-Task7.7.png)
-
-8. Select "Publish Artifact: drop":
-
-   - **Path to publish**: Ensure that the value matches "\$(Build.ArtifactStagingDirectory)".
-
-   - **Artifact name**: Update the value to "chart".
-
-   ![A screenshot of the dialog where you can describe the publish artifact.](media/Ex2-Task7.8.png)
-
-9. Select "Save & queue"; then select "Save & queue" two more times to kick off the build.
-
+<!-- WIP -->
 10. Now create your first release. Select "Pipelines, then select "Releases", and then select "New pipeline".
 
     ![A screenshot of Azure DevOps release definitions.](media/Ex2-Task7.10.png)

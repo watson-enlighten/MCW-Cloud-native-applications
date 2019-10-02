@@ -366,7 +366,7 @@ single node.js site into a website with a content API that serves up the speaker
 11. Enter the required information using the service principal information you
     created earlier.
 
-    - **Connection name**: azurecloud-sol
+    - **Connection name**: azurecloud
     - **Environment**: AzureCloud
     - **Subscription ID**: `id` from `az account show` output
     - **Subscription Name**: `name` from `az account show` output
