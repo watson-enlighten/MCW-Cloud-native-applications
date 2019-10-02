@@ -1103,16 +1103,16 @@ In this task, you will gather the information you need about your Azure Kubernet
    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
    ```
 
-5. Create an SSH tunnel linking a local port (8001) on your cloud shell host to 
+5. Create an SSH tunnel linking a local port (8001) on your cloud shell host to
    port 443 on the management node of the cluster. Cloud shell will then use the
-   web preview feature to give you remote access to the Kubernetes dashboard. 
+   web preview feature to give you remote access to the Kubernetes dashboard.
    Execute the command below replacing the values as follows:
 
-   > **Note**: After you run this command, it may work at first and later lose 
-   its connection, so you may have to run this again to reestablish the 
-   connection. If the Kubernetes dashboard becomes unresponsive in the browser 
-   this is an indication to return here and check your tunnel or rerun the 
-   command.
+   > **Note**: After you run this command, it may work at first and later lose
+   > its connection, so you may have to run this again to reestablish the
+   > connection. If the Kubernetes dashboard becomes unresponsive in the browser
+   > this is an indication to return here and check your tunnel or rerun the
+   > command.
 
    ```bash
    az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
@@ -1252,7 +1252,7 @@ In this task, deploy the web service using `kubectl`.
 
 1. Open a **new** Azure Cloud Shell console.
 
-2. Create a text file called web.deployment.yml using the Azure Cloud Shell 
+2. Create a text file called web.deployment.yml using the Azure Cloud Shell
    Editor.
 
    ```bash
@@ -1261,8 +1261,8 @@ In this task, deploy the web service using `kubectl`.
 
 3. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block 
-   carefully to avoid introducing any special characters. 
+   > **Note**: Be sure to copy and paste only the contents of the code block
+   > carefully to avoid introducing any special characters.
 
    ```yaml
    apiVersion: extensions/v1beta1
@@ -1324,15 +1324,18 @@ In this task, deploy the web service using `kubectl`.
 4. Update the [LOGINSERVER] entry to match the name of your ACR login server.
 
 5. Click the **...** button and select **Save**.
+
     <!-- TODO Blur the content to make this image more reusable -->
+
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
 6. Click the **...** button again and select **Close Editor**.
+
     <!-- TODO Blur the content to make this image more reusable -->
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
-7. Create a text file called web.service.yml using the Azure Cloud Shell 
+7. Create a text file called web.service.yml using the Azure Cloud Shell
    Editor.
 
    ```bash
@@ -1341,8 +1344,8 @@ In this task, deploy the web service using `kubectl`.
 
 8. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block 
-   carefully to avoid introducing any special characters.
+   > **Note**: Be sure to copy and paste only the contents of the code block
+   > carefully to avoid introducing any special characters.
 
    ```yaml
    apiVersion: v1
@@ -1365,17 +1368,17 @@ In this task, deploy the web service using `kubectl`.
 
 9. Save changes and close the editor.
 
-10. Type the following command to deploy the application described by the YAML 
-    files. You will receive a message indicating the items kubectl has created a 
+10. Type the following command to deploy the application described by the YAML
+    files. You will receive a message indicating the items kubectl has created a
     web deployment and a web service.
 
-   ```bash
-   kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
-   ```
+```bash
+kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
+```
 
    <!-- TODO: Should be cloudshell -->
 
-   ![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
+![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
 11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
@@ -1389,31 +1392,31 @@ In this task, deploy the web service using `kubectl`.
 
 In this task, deploy the web service using a helm chart.
 
-1. From the Kubernetes dashboard, under "Workloads", select "Deployments".
+1.  From the Kubernetes dashboard, under "Workloads", select "Deployments".
 
-2. Click the triple vertical dots on the right of the "web" deployment and then select "Delete". When prompted, click "Delete" again.
+2.  Click the triple vertical dots on the right of the "web" deployment and then select "Delete". When prompted, click "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
-3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
+3.  From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
 
-4. Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
+4.  Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
-5. Open a **new** Azure Cloud Shell console.
+5.  Open a **new** Azure Cloud Shell console.
 
-6. Create a text file called rbac-config.yaml using the Azure Cloud Shell 
-   Editor.
+6.  Create a text file called rbac-config.yaml using the Azure Cloud Shell
+    Editor.
 
-   ```bash
-   code rbac-config.yaml
-   ```
+    ```bash
+    code rbac-config.yaml
+    ```
 
 7.  Copy and paste the following text into the editor:
 
-    > **Note**: Be sure to copy and paste only the contents of the code block 
-    carefully to avoid introducing any special characters. 
+    > **Note**: Be sure to copy and paste only the contents of the code block
+    > carefully to avoid introducing any special characters.
 
     ```yaml
     apiVersion: v1
@@ -1436,9 +1439,9 @@ In this task, deploy the web service using a helm chart.
         namespace: kube-system
     ```
 
-9. Save changes and close the editor.
+8.  Save changes and close the editor.
 
-9. Type the following command to create the service account needed by Tiller 
+9.  Type the following command to create the service account needed by Tiller
     (the Helm server part).
 
     ```bash
@@ -1450,16 +1453,16 @@ In this task, deploy the web service using a helm chart.
     ```bash
     helm init --service-account tiller
     ```
-    
+
 11. Update your starter files by pulling the latest changes from Azure Devops
-    
+
     ```bash
     cd ~/MCW-Containers-and-DevOps/Hands-on lab/lab-files/developer/content-web
     git pull
     ```
 
-12. We will use the `helm create` command to scaffold out a chart implementation 
-    that we can build on. Use the following commands to create a new chart named 
+12. We will use the `helm create` command to scaffold out a chart implementation
+    that we can build on. Use the following commands to create a new chart named
     `web` in a new directory:
 
     ```bash
@@ -1468,7 +1471,7 @@ In this task, deploy the web service using a helm chart.
     helm create web
     ```
 
-13. We now need to update the generated scaffold to match our requirements. We 
+13. We now need to update the generated scaffold to match our requirements. We
     will first update the file named `values.yaml`.
 
     ```bash
@@ -1598,7 +1601,7 @@ In this task, deploy the web service using a helm chart.
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
 
-1. Create a text file called init.job.yml using the Azure Cloud Shell 
+1. Create a text file called init.job.yml using the Azure Cloud Shell
    Editor.
 
    ```bash
@@ -1607,8 +1610,8 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 2. Copy and paste the following text into the editor:
 
-   > **Note**: Be sure to copy and paste only the contents of the code block 
-   carefully to avoid introducing any special characters.
+   > **Note**: Be sure to copy and paste only the contents of the code block
+   > carefully to avoid introducing any special characters.
 
    ```yaml
    apiVersion: batch/v1
@@ -1633,7 +1636,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 3. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-9. Save changes and close the editor.
+4. Save changes and close the editor.
 
 5. Type the following command to deploy the job described by the YAML. You will receive a message indicating the kubectl has created an init "job.batch".
 
@@ -1671,27 +1674,27 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will use Azure DevOps to automate the process for deploying 
-the web image to the AKS cluster. You will update the DevOps Pipeline and 
+In this task, you will use Azure DevOps to automate the process for deploying
+the web image to the AKS cluster. You will update the DevOps Pipeline and
 configure a deployment stage so that when new images are pushed to the ACR, the
 pipeline deploys the image to the AKS cluster.
 
 <!-- TODO: update to reflect adding the deployment stage using YAML -->
 
-1. Login to your Azure DevOps account, access the `fabmedical` project you 
+1. Login to your Azure DevOps account, access the `fabmedical` project you
    created earlier, then select "Pipelines".
 
 2. From the pipelines list, select the `content-web` pipeline and click `Edit.`
 
    ![A screenshot with the `content-web` pipeline selected and the `Edit` button highlighted.](media/hol-2019-10-02_10-06-57.png)
 
-3. You will add a second job to the `Build and Push` stage, below the existing 
-   `Docker` job.  Paste the following into the pipeline editor:
+3. You will add a second job to the `Build and Push` stage, below the existing
+   `Docker` job. Paste the following into the pipeline editor:
 
-    > **Note**: Be careful to check your indenting when pasting.  The `job` node
-    should be indented with 2 spaces, and line up with the `job` node for the 
-    `Docker` job.
-   
+   > **Note**: Be careful to check your indenting when pasting. The `job` node
+   > should be indented with 2 spaces, and line up with the `job` node for the
+   > `Docker` job.
+
    ```yaml
    - job: Helm
     displayName: Build and Push Helm Chart
@@ -1700,7 +1703,7 @@ pipeline deploys the image to the AKS cluster.
     steps:
       - checkout: self
         fetchDepth: 1
-        
+
       - task: HelmInstaller@1
         inputs:
           helmVersionToInstall: 'latest'
@@ -1713,7 +1716,7 @@ pipeline deploys the image to the AKS cluster.
           chartPath: 'charts/web'
           chartVersion: '$(Build.BuildNumber)'
         displayName: 'Helm Package'
-          
+
       - task: AzureCLI@1
         inputs:
           azureSubscription: 'azurecloud'
@@ -1731,79 +1734,85 @@ pipeline deploys the image to the AKS cluster.
 
    ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
 
-4. Click "Save" and commit the changes directly to the master branch.  A new 
-   build will start automatically.
+4. Click "Save" and commit the changes directly to the master branch. A new
+   build will start automatically. The two jobs are independent and will run in
+   parallel if there are enough available build agents.
 
-<!-- WIP -->
-10. Now create your first release. Select "Pipelines, then select "Releases", and then select "New pipeline".
+   ![A screenshot that shows the jobs, Helm is complete, Docker is still running](media/hol-2019-10-02_10-57-42.png)
 
-    ![A screenshot of Azure DevOps release definitions.](media/Ex2-Task7.10.png)
+5. Now return to the pipeline editor to create a deployment stage. Paste the
+   following into the pipeline editor:
 
-11. Search for "Helm" templates and choose "Deploy an application to a Kubernetes cluster by using its Helm chart." then select "Apply".
+   > **Note**: Be careful to check your indenting when pasting. The `stage` node
+   > should be indented with 0 spaces, and line up with the `stage` node for the
+   > `Build` stage.
 
-    ![A screenshot of template selection showing Deploy an application to a Kubernetes cluster by using its Helm chart selected.](media/Ex2-Task7.11.png)
+   ```yaml
+   - stage:
+     displayName: AKS Deployment
+     jobs:
+       - deployment: DeployAKS
+         displayName: "Deployment to AKS"
+         pool:
+           vmImage: $(vmImageName)
+         environment: "aks"
+         strategy:
+           runOnce:
+             deploy:
+               steps:
+                 - checkout: none
 
-12. Change the release name to "content-web-AKS-CD".
+                 - task: HelmInstaller@1
+                   inputs:
+                     helmVersionToInstall: "latest"
+                   displayName: "Helm Install"
 
-    ![A screenshot of the dialog where you can enter the name for the release.](media/Ex2-Task7.12.png)
+                 - task: HelmDeploy@0
+                   inputs:
+                     connectionType: "Azure Resource Manager"
+                     azureSubscription: "azurecloud"
+                     azureResourceGroup: "fabmedical-[SUFFIX]"
+                     kubernetesCluster: "fabmedical-[SUFFIX]"
+                     command: "init"
+                     arguments: "--service-account tiller"
+                   displayName: "Helm init"
 
-13. Select "+ Add an artifact".
+                 - task: AzureCLI@1
+                   inputs:
+                     azureSubscription: "azurecloud"
+                     scriptLocation: "inlineScript"
+                     inlineScript: |
+                       set -euo pipefail
 
-    ![A screenshot of the release artifacts.](media/Ex2-Task7.13.png)
+                       az acr helm repo add --name $(containerRegistryName)
 
-14. Setup the artifact:
+                     failOnStandardError: true
+                   displayName: "Helm repo update"
 
-    - **Project**: fabmedical
+                 - task: HelmDeploy@0
+                   inputs:
+                     connectionType: "Azure Resource Manager"
+                     azureSubscription: "azurecloud"
+                     azureResourceGroup: "fabmedical-[SUFFIX]"
+                     kubernetesCluster: "fabmedical-[SUFFIX]"
+                     command: "upgrade"
+                     chartType: "Name"
+                     chartName: "$(containerRegistryName)/web"
+                     releaseName: "web"
+                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/contentweb"
+                     recreate: true
+                     force: true
+                   displayName: "Helm Upgrade"
+   ```
 
-    - **Source (build pipeline)**: content-web-Container-CI
+   ![A screenshot that shows the new stage, with a line to highlight proper indenting.](media/hol-2019-10-02_11-19-51.png)
 
-    - **Default version**: select "Latest"
+6. Click "Save" and commit the changes directly to the master branch. A new
+   build will start automatically. The two jobs are independent and will run in
+   parallel if there are enough available build agents. However, the deployment
+   depends on the jobs and will wait for them to complete before starting.
 
-    ![A screenshot of the add an artifact dialog.](media/Ex2-Task7.14.png)
-
-15. Select the "Continuous deployment trigger".
-
-    ![A screenshot of the continuous deployment trigger.](media/Ex2-Task7.15.png)
-
-16. Enable the continuous deployment.
-
-    ![A screenshot of the continuous deployment being enabled.](media/Ex2-Task7.16.png)
-
-17. In "Stage 1", click "1 job, 3 tasks".
-
-    ![A screenshot of the Stage 1 current status.](media/Ex2-Task7.17.png)
-
-18. Setup the stage:
-
-    - **Azure subscription**: Choose "azurecloud-sol".
-
-    - **Resource group**: Choose your resource group by name.
-
-    - **Kubernetes cluster**: Choose your AKS instance by name.
-
-    ![A screenshot of ](media/Ex2-Task7.18.png)
-
-19. Select "helm init":
-
-    - **Command**: select "init"
-
-    - **Arguments**: Update the value to "--service-account tiller"
-
-    ![A screenshot of ](media/Ex2-Task7.19.png)
-
-20. Select "helm upgrade":
-
-    - **Command**: select "upgrade"
-    - **Chart Type**: select "File Path"
-    - **Chart Path**: select the location of the chart artifact
-    - **Release Name**: web
-    - **Set values**: image.tag=\$(Build.BuildId)
-
-    ![A screenshot of ](media/Ex2-Task7.20.png)
-
-21. Select "Save" and then "OK".
-
-22. Select "+ Release", then "+ Create a release" and then "Create" to kick off the release.
+   ![A screenshot that shows the stages, expanded to also sho the jobs.  Docker is running, Helm is queued, AKS Deployment is not started.](media/hol-2019-10-02_11-27-34.png)
 
 ### Task 8: Review Azure Monitor for Containers
 
