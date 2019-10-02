@@ -382,29 +382,29 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
      - Indicates the command to start the node application when the container is run.
 
-> **Note**: Type the following into the editor, as you may have errors with copying and pasting:
+    > **Note**: Type the following into the editor, as you may have errors with copying and pasting:
 
-```Dockerfile
-FROM node:alpine AS base
-RUN apk -U add curl
-WORKDIR /usr/src/app
-EXPOSE 3001
+    ```Dockerfile
+    FROM node:alpine AS base
+    RUN apk -U add curl
+    WORKDIR /usr/src/app
+    EXPOSE 3001
 
-FROM node:argon AS build
-WORKDIR /usr/src/app
+    FROM node:argon AS build
+    WORKDIR /usr/src/app
 
-# Install app dependencies
-COPY package.json /usr/src/app/
-RUN npm install
+    # Install app dependencies
+    COPY package.json /usr/src/app/
+    RUN npm install
 
-# Bundle app source
-COPY . /usr/src/app
+    # Bundle app source
+    COPY . /usr/src/app
 
-FROM base AS final
-WORKDIR /usr/src/app
-COPY --from=build /usr/src/app .
-CMD [ "npm", "start" ]
-```
+    FROM base AS final
+    WORKDIR /usr/src/app
+    COPY --from=build /usr/src/app .
+    CMD [ "npm", "start" ]
+    ```
 
 1. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
 
@@ -434,9 +434,9 @@ CMD [ "npm", "start" ]
 
 In this task, you will create Docker images for the application --- one for the API application and another for the web application. Each image will be created via Docker commands that rely on a Dockerfile.
 
-<!-- TODO: replace reference to WSL -->
-
-1. From WSL, type the following command to view any Docker images on the VM. The list will only contain the mongodb image downloaded earlier.
+1. From cloud shell connected to the build agent VM, type the following command 
+   to view any Docker images on the VM. The list will only contain the mongodb 
+   image downloaded earlier.
 
    ```bash
    docker images
@@ -595,33 +595,32 @@ The web application container will be calling endpoints exposed by the API appli
 
 ### Task 6: Setup environment variables
 
-In this task, you will configure the "web" container to communicate with the API container using an environment variable, similar to the way the mongodb connection string is provided to the api. You will modify the web application to read the URL from the environment variable, rebuild the Docker image, and then run the container again to test connectivity.
+In this task, you will configure the "web" container to communicate with the API 
+container using an environment variable, similar to the way the mongodb 
+connection string is provided to the api. 
 
-<!-- TODO: Replace with cloudshell reference -->
-
-1.  From WSL, stop and remove the web container using the following commands.
+1. From cloud shell connected to the build agent VM, stop and remove the web 
+   container using the following commands.
 
     ```bash
     docker stop web
     docker rm web
     ```
 
-2.  Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
+2. Validate that the web container is no longer running or present by using the 
+   -a flag as shown in this command. You will see that the "web" container is no 
+   longer listed.
 
     ```bash
     docker container ls -a
     ```
 
-3.  Navigate to the `content-web/data-access` directory. From there, open the index.js file for editing using Vim, and press the "i" key to go into edit mode.
-
+3. Review the `app.js` file.
+   
     ```bash
-    cd data-access
-    vi index.js
-    <i>
+    cat app.js
     ```
-
-    <!-- TODO: Update if needed for the new app -->
-
+<!-- TODO WIP -->
 4.  Locate the following TODO item and modify the code to comment the first line and uncomment the second. The result is that the contentApiUrl variable will be set to an environment variable.
 
     ```javascript
