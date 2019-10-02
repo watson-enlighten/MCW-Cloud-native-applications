@@ -1,7 +1,7 @@
 ![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-Containers and DevOps
+Cloud Native Applications
 </div>
 
 <div class="MCWHeader2">
@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-April 2019
+October 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -31,7 +31,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Whiteboard design session flow](#whiteboard-design-session-flow)
   - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
   - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
-- [Containers and DevOps whiteboard design session student guide](#containers-and-devops-whiteboard-design-session-student-guide)
+- [Cloud Native Applications whiteboard design session student guide](#cloud-native-applications-whiteboard-design-session-student-guide)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
     - [Customer situation](#customer-situation)
@@ -42,7 +42,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Step 3: Present the solution](#step-3-present-the-solution)
   - [Wrap-up](#wrap-up)
   - [Additional references](#additional-references)
-- [Containers and DevOps whiteboard design session trainer guide](#containers-and-devops-whiteboard-design-session-trainer-guide)
+- [Cloud Native Applications whiteboard design session trainer guide](#cloud-native-applications-whiteboard-design-session-trainer-guide)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
   - [Step 3: Present the solution](#step-3-present-the-solution-1)
@@ -166,7 +166,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 **Wait for responses**. If you ask a question such as, "What's your experience with (fill in the blank)?" then wait. Do not be afraid of a little silence. If you leap into the silence, your participants will feel you are not serious about involving them and will become passive. Give participants a chance to think, and if no one answers, patiently ask again. You will usually get a response.
 
-#  Containers and DevOps whiteboard design session student guide
+#  Cloud Native Applications whiteboard design session student guide
 
 ## Abstract and learning objectives
 
@@ -260,7 +260,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Make it easy to deploy and manage infrastructure. 
 
-    - Provide tooling to help them with monitoring and managing container health.
+    - Provide tooling to help them with monitoring and managing container health and security.
 
     - Make it easier to manage the variable scale requirements of the different tenants, so that they no longer have to allocate tenants to a specific load balanced set of machines.
 
@@ -280,13 +280,15 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     -   Health monitoring and alerts, visualizing status.
 
+    -   Container image scanning.
+
 7.  Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
   
 ### Customer objections
 
-1.  There are many ways to deploy Docker containers on Azure, how do those options compare and what are motivations for each? 
+1.  There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each? 
 
-2.  Is there a PaaS option in Azure that also provides the full container orchestration platform options, that would be easy to migrate to but also handle our scale and management requirements? 
+2.  Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements? 
 
 ### Infographic for common scenarios
 
@@ -350,7 +352,7 @@ Directions: With all participants at your table, respond to the following questi
 
     -   Run containers using the Kubernetes dashboard.
 
-2.  What options does the customer have for a Docker image registry, and what would you recommend?
+2.  What options does the customer have for a Docker image registry and container scanning, and what would you recommend?
 
 3.  How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
 
@@ -422,8 +424,11 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | AKS Cluster Autoscaler |https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler|
 | Upgrading an AKS cluster | https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster |
 | Azure Pipelines                       | <https://docs.microsoft.com/en-us/azure/devops/pipelines/>     |
+| Container Security | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/>
+| Image Quarantine | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>
+| Container Monitoring Solution | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>
 
-# Containers and DevOps whiteboard design session trainer guide
+# Cloud Native Applications whiteboard design session trainer guide
 
 ## Step 1: Review the customer case study
 
@@ -505,29 +510,31 @@ Each tenant will have the following containers:
 
 1. List the potential platform choices for deploying containers to Azure.
 
-**Azure App Service for Containers**
+**Azure Web App for Containers**
 
-Azure App Service specifically targets container deployments, which makes it easy to deploy container instances to a fully managed App Service Plan. This option is ideal for solutions with a limited number of containers that do not require an orchestration platform.
+Azure Web App for Containers specifically targets container deployments, which makes it easy to run containers in a fully managed App Service Plan. This option is ideal for solutions that do not require the features offered by an orchestration platform such as Kubernetes.
 
 **Azure Container Instances**
 
-Azure Container Instances represent containers as a first-class resource in the Azure environment. They provide a serverless approach to container deployment without management tooling at this time. 
+Azure Container Instances provide a serverless approach to running containers on demand and at scale enabling additional compute power and elasticity for select workloads - with the security of hypervisor isolation. 
 
-**Windows Server Containers on Windows Server 2016**
+**Windows Server Containers on Windows Server**
 
-Windows Server Containers allow Windows applications to be containerized. This environment has support for the Docker platform including Docker Community Edition (Docker CE) for scheduling and orchestration. You are responsible for setting up any Docker CE clustering and related configurations, and there are no built-in management tools at this time to help you with visibility into the deployment, health monitoring, and related tasks.
+Windows Server Containers allow Windows applications to be containerized. Windows Server 2016 or later versions support the installation of Docker Engine to run containers. For orchestration features you can also set up a cluster with an orchestration platform such as Docker Engine (Community or Enterprise), Kubernetes or other platforms - if you want to take responsibility for managing the clustering and related configurations.
 
 **Azure Kubernetes Service (AKS)**
 
-Azure Kubernetes Service (AKS) is a managed container platform solution based on Kubernetes. The goal of AKS is to remove the management overhead of container orchestration clusters, allowing teams to focus on the application and core DevOps workflows relevant to the solution.
+Azure Kubernetes Service (AKS) is the easiest way to manage a Kubernetes cluster on Azure - providing you with a managed control plane and configurable cluster with automatic updates and easy scaling capabilities.  AKS removes the management overhead of container orchestration cluster, allowing teams to focus on the application and core DevOps workflows relevant to the solution.
 
 2. Which would you recommend and why?
 
 Azure Kubernetes Service (AKS) is the recommended platform for the following reasons:
 
--   Adopting AKS is desired because it is a managed platform (PaaS) and will reduce the overhead of managing containers.
+-   It has the necessary orchestration features without the management overhead of the control plane. 
 
 -   Ability to monitor and manage applications using a Management UI. This will also make it easier to view the overall state of all tenant applications in a single pane, and drill down into the health of an individual tenant easily.
+
+- Integration with Container Monitoring Solution in Azure for additional visibility into containers running in the AKS cluster from the Azure Portal, without connecting to the Kubernetes control plane.
 
 -   Full set of integrated features, working out of the box including load balancing, service discovery, self-healing capabilities, scheduling, orchestration, task monitoring, and more.
 
@@ -563,13 +570,15 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
 
     - POST a service definition file (JSON) to the REST API using kubectl from the command line. This process can also be automated as part of a CD process using Azure DevOps release pipelines.
 
+    - Create Azure DevOps CICD build and release pipelines to automate building images and deploying them to run in the cluster.
+
 2. What options does the customer have for a Docker image registry, and what would you recommend?
 
    The image registry is core to the CICD workflow and must be a production worthy implementation as it is the source of container images, versioning, deployment, upgrade, and rollback strategies. Registry images can also be used for cross-environment promotion (between development, test, staging, and production for example).
 
     The following are a few natural options for image registries that could support Azure container deployments:
 
-    - Azure Container Registry is a natural fit with Azure deployments, and it integrates well with deployment options previously mentioned for Docker containers in Azure. This includes an integrated experience in the Azure portal to view the repositories, images, tags, and the contents of manifests associated with an image.
+    - Azure Container Registry is a natural fit with Azure deployments, and it integrates well with deployment options previously mentioned for Docker containers in Azure. This includes an integrated experience in the Azure portal to view the repositories, images, tags, and the contents of manifests associated with an image. In addition, Azure Container Registry has new security features including image quarantine (currently in preview). 
 
     - For development, you can also consider a public Docker Hub account. As all images in the public Docker Hub repository are public; however, this is not typically viable for corporate assets.
 
@@ -577,7 +586,7 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
 
     - You can deploy and manage your own Docker Registry in Azure VMs---which would have to be clustered for high availability and this is not trivial to set up. This is not a recommended option when a hosted repository can fit solution requirements.
 
-   Deploying and configuring a Docker Registry, clustered or not, is a complex and time-consuming task. We recommend the use of Azure Container Registry where possible for Azure solutions.
+   Deploying and configuring a Docker Registry, clustered or not, is a complex and time-consuming task. We recommend the use of Azure Container Registry where possible for Azure solutions. 
 
 3. How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
 
