@@ -287,7 +287,9 @@ In this section, you will configure and execute an ARM template that will create
 FabMedical has provided starter files for you. They have taken a copy of one of their websites, for their customer Contoso Neuro, and refactored it from a
 single node.js site into a website with a content API that serves up the speakers and sessions. This is a starting point to validate the containerization of their websites. They have asked you to use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
-1. Navigate to FabMedical source code folder and list the contents.
+1. Open a **new** Azure Cloud Shell console.
+   
+2. Navigate to FabMedical source code folder and list the contents.
 
    ```bash
    cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/
@@ -303,7 +305,7 @@ single node.js site into a website with a content API that serves up the speaker
    >
    > This will take you to the version of the starter files that will be used by that edition of the lab.
 
-2. You'll see the listing includes three folders, one for the web site, another 
+3. You'll see the listing includes three folders, one for the web site, another 
    for the content API and one to initialize API data:
 
    ```bash
@@ -312,21 +314,21 @@ single node.js site into a website with a content API that serves up the speaker
    content-web/
    ```
 
-3. Set your username and email which are used for git commits.
+4. Set your username and email which are used for git commits.
 
    ```bash
    git config --global user.email "you@example.com"
    git config --global user.name "Your Name"
    ```
 
-4. Configure git CLI to cache your credentials, so that you don't have to keep 
+5. Configure git CLI to cache your credentials, so that you don't have to keep 
    re-typing them.
 
    ```bash
    git config --global credential.helper cache
    ```
 
-5. Open a new browser tab to visit [Azure DevOps][devops] and log into your 
+6. Open a new browser tab to visit [Azure DevOps][devops] and log into your 
    account.
 
    If this is your first time logging into this account you will be taken through a first-run experience:
@@ -335,7 +337,7 @@ single node.js site into a website with a content API that serves up the speaker
    - Select "Create new account".
    - Enter a fabmedical-SUFFIX for your account name and select Continue.
 
-6. Create Azure DevOps Project.
+7. Create Azure DevOps Project.
 
    - Enter fabmedical as the project name.
    - Ensure the project is Private.
@@ -345,21 +347,21 @@ single node.js site into a website with a content API that serves up the speaker
 
     ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
 
-7. Enable multi-stage pipelines.
+8. Enable multi-stage pipelines.
 
    - Click your user icon in the top right corner
    - Then click the three dots to access the "Preview Features" menu item
    - Toggle multi-stage pipelines to "On"
 
-8. Next add an Azure Service Connection to your Azure DevOps account. Click the 
+9.  Next add an Azure Service Connection to your Azure DevOps account. Click the 
    Project settings gear icon to access your settings. Then select Service Connections.
 
-9.  Choose "+ New service connection". Then pick "Azure Resource Manager" from 
+11. Choose "+ New service connection". Then pick "Azure Resource Manager" from 
     the menu.
 
     ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
 
-10. Select the link indicated in the screenshot below to access the advanced settings.
+12. Select the link indicated in the screenshot below to access the advanced settings.
 
    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
