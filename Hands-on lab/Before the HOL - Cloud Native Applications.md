@@ -225,6 +225,8 @@ In this section, you will configure and execute an ARM template that will create
    code azuredeploy.parameters.json
    ```
 
+    ![This screen shot shows the online editor for azure could shell](media/b4-image581.png)
+
 3. Update the values for the various keys so that they match your environment:
 
    - **Suffix**: Enter a shortened version of your SUFFIX with max of 3 chars.
@@ -287,7 +289,8 @@ In this section, you will configure and execute an ARM template that will create
 FabMedical has provided starter files for you. They have taken a copy of one of their websites, for their customer Contoso Neuro, and refactored it from a
 single node.js site into a website with a content API that serves up the speakers and sessions. This is a starting point to validate the containerization of their websites. They have asked you to use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
-1. Navigate to FabMedical source code folder and list the contents.
+1. Open a **new** Azure Cloud Shell console.
+2. Navigate to FabMedical source code folder and list the contents.
 
    ```bash
    cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/
@@ -303,7 +306,7 @@ single node.js site into a website with a content API that serves up the speaker
    >
    > This will take you to the version of the starter files that will be used by that edition of the lab.
 
-2. You'll see the listing includes three folders, one for the web site, another 
+3. You'll see the listing includes three folders, one for the web site, another 
    for the content API and one to initialize API data:
 
    ```bash
@@ -312,21 +315,21 @@ single node.js site into a website with a content API that serves up the speaker
    content-web/
    ```
 
-3. Set your username and email which are used for git commits.
+4. Set your username and email which are used for git commits.
 
    ```bash
    git config --global user.email "you@example.com"
    git config --global user.name "Your Name"
    ```
 
-4. Configure git CLI to cache your credentials, so that you don't have to keep 
+5. Configure git CLI to cache your credentials, so that you don't have to keep 
    re-typing them.
 
    ```bash
    git config --global credential.helper cache
    ```
 
-5. Open a new browser tab to visit [Azure DevOps][devops] and log into your 
+6. Open a new browser tab to visit [Azure DevOps][devops] and log into your 
    account.
 
    If this is your first time logging into this account you will be taken through a first-run experience:
@@ -335,7 +338,7 @@ single node.js site into a website with a content API that serves up the speaker
    - Select "Create new account".
    - Enter a fabmedical-SUFFIX for your account name and select Continue.
 
-6. Create Azure DevOps Project.
+7. Create Azure DevOps Project.
 
    - Enter fabmedical as the project name.
    - Ensure the project is Private.
@@ -345,25 +348,25 @@ single node.js site into a website with a content API that serves up the speaker
 
     ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
 
-7. Enable multi-stage pipelines.
+8. Enable multi-stage pipelines.
 
    - Click your user icon in the top right corner
    - Then click the three dots to access the "Preview Features" menu item
    - Toggle multi-stage pipelines to "On"
 
-8. Next add an Azure Service Connection to your Azure DevOps account. Click the 
+9. Next add an Azure Service Connection to your Azure DevOps account. Click the 
    Project settings gear icon to access your settings. Then select Service Connections.
 
-9.  Choose "+ New service connection". Then pick "Azure Resource Manager" from 
+10. Choose "+ New service connection". Then pick "Azure Resource Manager" from 
     the menu.
 
     ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
 
-10. Select the link indicated in the screenshot below to access the advanced settings.
+11. Select the link indicated in the screenshot below to access the advanced settings.
 
    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
-11. Enter the required information using the service principal information you
+12. Enter the required information using the service principal information you
     created earlier.
 
     - **Connection name**: azurecloud
@@ -376,21 +379,21 @@ single node.js site into a website with a content API that serves up the speaker
 
     ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
-12. Select "Verify connection" then select "OK".
+13. Select "Verify connection" then select "OK".
 
     > **Note**: If the connection does not verify, then recheck and reenter the 
     required data.
 
-13. Next add another Azure Service Connection to your Azure DevOps account. 
+14. Next add another Azure Service Connection to your Azure DevOps account. 
     Click the Project settings gear icon to access your settings. Then select 
     Service Connections.
 
-14. Choose "+ New service connection". Then pick "Docker Registry" from
+15. Choose "+ New service connection". Then pick "Docker Registry" from
    the menu.
 
     ![A screenshot of the Add Docker Registry Service Connection dialog.](media/hol-2019-10-01_20-30-17.png)
 
-15. Enter the required information using the service principal information you
+16. Enter the required information using the service principal information you
     created earlier.
 
     - **Environment**: Azure Container Registry
@@ -403,9 +406,9 @@ single node.js site into a website with a content API that serves up the speaker
 
     ![A screenshot of the Add Docker Registry Service Connection dialog with the values entered as described above.](media/hol-2019-10-01_20-33-05.png)
 
-16. Select "OK".
+17. Select "OK".
 
-17. Next, click "Repos" then use the repository dropdown to create a new 
+18. Next, click "Repos" then use the repository dropdown to create a new 
     repository by selecting "+ New repository".
 
     ![Repository dropdown](media/b4-image53.png)
@@ -416,9 +419,9 @@ single node.js site into a website with a content API that serves up the speaker
 
     ![Generate Git Credentials](media/b4-image50.png)
 
-18. Copy the Personal Access Token and save it for later steps
+19. Copy the Personal Access Token and save it for later steps
 
-19. Copy the commands to add your Azure DevOps repository as a new remote for
+20. Copy the commands to add your Azure DevOps repository as a new remote for
    push. Copy the commands for "**HTTPS**" similar to this example:
 
      ```bash
@@ -428,7 +431,7 @@ single node.js site into a website with a content API that serves up the speaker
 
      > Save these commands you will paste them into your cloud shell window soon.
 
-16. Using your cloud shell window, initialize a new git repository.
+21. Using your cloud shell window, initialize a new git repository.
 
      ```bash
      cd content-web
@@ -437,15 +440,15 @@ single node.js site into a website with a content API that serves up the speaker
      git commit -m "Initial Commit"
      ```
 
-17. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+22. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-18. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
+23. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
 
      > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-19. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
+24. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-20. Using your cloud shell window, initialize a new git repository in the content-api directory.
+25. Using your cloud shell window, initialize a new git repository in the content-api directory.
 
      ```bash
      cd ../content-api
@@ -454,16 +457,16 @@ single node.js site into a website with a content API that serves up the speaker
      git commit -m "Initial Commit"
      ```
 
-21. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-22. Use the repository drop down to create a third repository called
+27. Use the repository drop down to create a third repository called
     `content-init`.
 
      > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-23. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
+28. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-24. Using your cloud shell window, initialize a new git repository in the content-init directory.
+29. Using your cloud shell window, initialize a new git repository in the content-init directory.
 
      ```bash
      cd ../content-init
@@ -472,7 +475,7 @@ single node.js site into a website with a content API that serves up the speaker
      git commit -m "Initial Commit"
      ```
 
-25. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
