@@ -280,7 +280,7 @@ In this section, you will configure and execute an ARM template that will create
    az group deployment create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
    ```
 
-   This command will take up to 30 minutes to deploy all lab resources. You can continue to the next task to setup Azure DevOps while the deployment runs.
+   This command will take up to 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup Azure DevOps while the deployment runs.
 
 ### Task 7: Setup Azure DevOps project
 
