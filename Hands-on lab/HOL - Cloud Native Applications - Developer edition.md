@@ -237,44 +237,73 @@ The purpose of this task is to make sure you can run the application successfull
 
     ![In this screenshot, made a curl request to view speakers.](media/image47_1.png)
 
-13. Navigate to the web application directory, run npm install and bower install, and then run the application as a background process as well. Ignore any warnings you see in the output; this will not affect running the application.
+13. Navigate to the web application directory, run npm install and ng build.
 
     ```bash
     cd ../content-web
     npm install
     ng build
-    nodejs ./app.js &
     ```
 
     ![In this screenshot, after navigating to the web application directory, nodejs ./server.js & has been typed and run at the command prompt, which runs the application as a background process as well.](media/image48.png)
 
-14. Press ENTER again to get a command prompt for the next step.
+14. From Azure cloud shell, run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment
 
-15. Test the web application using curl. You will see HTML output returned without errors.
+    ```bash
+    az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT SUFFIX] --query publicIps -o tsv
+    ```
+
+    Example:
+
+    ```bash
+    az vm show -d -g fabmedical-sol -n fabmedical-SOL --query publicIps -o tsv
+    ```
+
+15. From the cloud shell in the build machine edit the app.js file using vim.
+
+    ```bash
+    vim app.js
+    ```
+
+    Then press ***i*** to get into the edit mode, after that replace localhost with the build machine IP address
+
+    ![show the app.js file in vim in the build machine to update the API url.](media/image27.png)
+
+    Then write ***:wq*** to save you chnages and close the file.
+
+18. Now run the content-web application in the background.
+
+    ```bash
+    node ./app.js &
+    ```
+
+    Press ENTER again to get a command prompt for the next step.
+
+19. Test the web application using curl. You will see HTML output returned without errors.
 
     ```bash
     curl http://localhost:3000
     ```
 
-16. Leave the application running for the next task.
+20. Leave the application running for the next task.
 
-17. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
+21. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
 
 ### Task 2: Browsing to the web application
 
 In this task, you will browse to the web application for testing.
 
-1. From the Azure portal select the resource group you created named fabmedical-SUFFIX.
+From the Azure portal select the resource group you created named fabmedical-SUFFIX.
 
-2. Select the build agent VM named fabmedical-SUFFIX from your list of available resources.
+1. Select the build agent VM named fabmedical-SUFFIX from your list of available resources.
 
-   ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
+    ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
 
-3. From the Virtual Machine blade overview, find the IP address of the VM.
+2. From the Virtual Machine blade overview, find the IP address of the VM.
 
-   ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
-
-4. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
+    ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
+    
+3. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
 
    ```text
    http://[BUILDAGENTIP]:3000
@@ -282,9 +311,9 @@ In this task, you will browse to the web application for testing.
    EXAMPLE: http://13.68.113.176:3000
    ```
 
-5. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
+4. Select the Speakers and Sessions links in the header. You will see the pages display the HTML version of the JSON content you curled previously.
 
-6. Once you have verified the application is accessible through a browser, go to your cloud shell window and stop the running node processes.
+5. Once you have verified the application is accessible through a browser, go to your cloud shell window and stop the running node processes.
 
    ```bash
    killall nodejs
