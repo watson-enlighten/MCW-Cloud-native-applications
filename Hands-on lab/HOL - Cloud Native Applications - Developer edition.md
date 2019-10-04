@@ -163,8 +163,6 @@ The purpose of this task is to make sure you can run the application successfull
    docker logs mongo
    ```
 
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
-
    ![In this screenshot of the WSL window, docker container list has been typed and run at the command prompt, and the “api” container is in the list. Below this the log output is shown.](media/Ex1-Task1.4.png)
 
 5. Connect to the mongo instance using the mongo shell and test some basic commands:
@@ -177,8 +175,6 @@ The purpose of this task is to make sure you can run the application successfull
    show dbs
    quit()
    ```
-
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows the output from connecting to mongo.](media/Ex1-Task1.5.png)
 
@@ -194,8 +190,6 @@ The purpose of this task is to make sure you can run the application successfull
    ```bash
    nodejs server.js
    ```
-
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows output from running the database initialization.](media/Ex1-Task1.7.png)
 
@@ -215,8 +209,6 @@ The purpose of this task is to make sure you can run the application successfull
    ```
 
    This should produce output similar to the following:
-
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
 
    ![This screenshot of the WSL window shows the data output.](media/Ex1-Task1.8.png)
 
@@ -242,6 +234,8 @@ The purpose of this task is to make sure you can run the application successfull
     ```bash
     curl http://localhost:3001/speakers
     ```
+
+    ![In this screenshot, made a curl request to view speakers.](media/image47_1.png)
 
 13. Navigate to the web application directory, run npm install and bower install, and then run the application as a background process as well. Ignore any warnings you see in the output; this will not affect running the application.
 
