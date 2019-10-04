@@ -334,8 +334,6 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    ll
    ```
 
-   <!-- TODO: Replace with cloudshell screenshot -->
-
    ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
 
 1. Create a new file named "Dockerfile" and note the casing in the name. Use the
@@ -345,8 +343,6 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    ```bash
    vi Dockerfile
    ```
-
-<!-- TODO: Replace with cloudshell screenshot -->
 
 ![This is a screenshot of a new file named Dockerfile in the WSL window.](media/image56.png)
 
@@ -424,8 +420,6 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    ll
    ```
 
-<!-- TODO: Replace with cloudshell screenshot -->
-
 ![In this screenshot of the WSL window, ll has been typed and run at the command prompt. The Dockerfile file is highlighted at the top of list.](media/image58.png)
 
 6. Verify the file contents to ensure it was saved as expected. Type the following command to see the output of the Dockerfile in the command window.
@@ -465,8 +459,6 @@ In this task, you will create Docker images for the application --- one for the 
    ```
 
    Notice the untagged image. This is the build stage which contains all the intermediate files not needed in your final image.
-
-   <!-- TODO: replace with cloudshell screenshot -->
 
    ![The node image (node) and your container image (content-api) are visible in this screenshot of the WSL window.](media/image59.png)
 
@@ -563,8 +555,6 @@ The web application container will be calling endpoints exposed by the API appli
    docker container ls
    docker logs api
    ```
-
-   <!-- TODO: Replace with cloudshell screenshot -->
 
    ![In this screenshot of the WSL window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 548d25a1449f, content-api, "npm start", 8 seconds ago, Up 6 seconds, 0.0.0.0:3001->3001/tcp, and api.](media/image61.png)
 

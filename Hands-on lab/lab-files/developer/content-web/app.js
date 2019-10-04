@@ -5,13 +5,71 @@ const path = require('path');
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'dist/content-web')));
-app.get('/config/content', function (req, res) {
-    const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001/";
-    res.send({ "contentUrl": contentApiUrl });
+const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001/";
+
+
+function getSessions(cb) {
+  request(contentApiUrl + '/sessions', function (err, response, body) {
+    if (err) {
+      return cb(err);
+    }
+    const data = JSON.parse(body); // Note: ASSUME: valid JSON
+    cb(null, data);
+  });
+}
+
+function getSpeakers(cb) {
+  request(contentApiUrl + '/speakers', function (err, response, body) {
+    if (err) {
+      return cb(err);
+    }
+    const data = JSON.parse(body); // Note: ASSUME: valid JSON
+    cb(null, data);
+  });
+}
+
+function stats(cb) {
+  request(contentApiUrl + '/stats', function (err, response, body) {
+    if (err) {
+      return cb(err);
+    }
+    const data = JSON.parse(body);
+    cb(null, data);
+  });
+}
+
+app.get('/speakers', function (req, res) {
+  getSpeakers(function (err, result) {
+    if (!err) {
+      res.send(result);
+    } else {
+      res.send(err);
+    }
+  });
+});
+app.get('/sessions', function (req, res) {
+  getSessions(function (err, result) {
+    if (!err) {
+      res.send(result);
+    } else {
+      res.send(err);
+    }
+  });
+});
+app.get('/stats', function (req, res) {
+  stats(function (err, result) {
+    if (!err) {
+      res.send(result);
+    } else {
+      res.send(err);
+    }
+  });
 });
 
+
+
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/content-web/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/content-web/index.html'));
 });
 const port = process.env.PORT || '3000';
 app.set('port', port);

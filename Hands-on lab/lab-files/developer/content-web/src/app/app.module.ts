@@ -13,7 +13,7 @@ import { AppService } from './app.service';
 
 export function initApp(appService: AppService) {
   return () => {
-    appService.getSettings();
+    //appService.getSettings();
   };
 }
 @NgModule({

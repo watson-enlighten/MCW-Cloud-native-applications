@@ -10,7 +10,6 @@ export class SessionsService {
 
   constructor(private http: HttpClient, private appService: AppService) { }
   public getSessions() {
-    console.log('Content URL: ', this.appService.ContentUrl);
-    return this.http.get(this.appService.ContentUrl + 'sessions');
+    return this.http.get('/sessions');
   }
 }

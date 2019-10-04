@@ -10,9 +10,9 @@ export class AppService {
   constructor(private http: HttpClient) {
   }
 
-  public getSettings() {
-    this.http.get('/config/content').subscribe((res: Settings) => {
-      return this.ContentUrl = res.contentUrl;
-    });
-  }
+  // public getSettings() {
+  //   this.http.get('/config/content').subscribe((res: Settings) => {
+  //     return this.ContentUrl = res.contentUrl;
+  //   });
+  // }
 }
