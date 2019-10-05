@@ -813,8 +813,6 @@ for several containers and run them together.
     docker-compose -f docker-compose.yml -p fabmedical down
     ```
 
-    <!-- TODO replace with cloudshell screenshot -->
-
     ![This screenshot of the WSL window shows the running containers stopping.](media/Ex1-Task6.21.png)
 
 8. Now run `up` again with both files to update the mongodb configuration, and run the initialization script.
@@ -865,8 +863,6 @@ In this task, you will push images to your ACR account, version images with tagg
     docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
     ```
 
-    <!-- TODO: replace with cloudshell screenshot -->
-
     ![In this screenshot of the WSL window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
 
     **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
@@ -892,8 +888,6 @@ In this task, you will push images to your ACR account, version images with tagg
     docker push [LOGINSERVER]/content-web
     docker push [LOGINSERVER]/content-api
     ```
-
-    <!-- TODO replace with cloudshell screenshot -->
 
     ![In this screenshot of the WSL window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/fabmedical/content-web.](media/image67.png)
 
@@ -960,7 +954,7 @@ image and pushes it to your ACR instance automatically.
 
    variables:
      dockerRegistryServiceConnection: "Fabmedical ACR"
-     imageRepository: "contentweb"
+     imageRepository: "content-web"
      containerRegistry: "$(containerRegistryName).azurecr.io"
      containerRegistryName: "fabmedical[SHORT_SUFFIX]"
      dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"

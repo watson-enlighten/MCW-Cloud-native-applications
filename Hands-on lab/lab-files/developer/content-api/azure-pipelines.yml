@@ -8,7 +8,7 @@ resources:
 
 variables:
   dockerRegistryServiceConnection: 'Fabmedical ACR'
-  imageRepository: 'contentapi'
+  imageRepository: 'content-api'
   containerRegistry: '$(containerRegistryName).azurecr.io'
   containerRegistryName: 'fabmedicaljrc'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
