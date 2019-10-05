@@ -4,9 +4,10 @@
     <!-- Off Canvas Menu -->
     <aside class="right-off-canvas-menu">
       <ul class="off-canvas-list">
-        <li class=""><a href="speakers.html">Speakers</a></li>
-        <li class=""><a href="sessions.html">Sessions</a></li>
-      </ul>
+        <li class=""><a [routerLink]="['/speakers']" routerLinkActive="router-link-active">Speakers</a></li>
+        <li class=""><a [routerLink]="['/sessions']" routerLinkActive="router-link-active">Sessions</a></li>
+        <li class=""><a [routerLink]="['/stats']" routerLinkActive="router-link-active">Stats</a></li>
+  </ul>
     </aside>
     <div class="contain-to-grid sticky show-for-small-up fixed">
       <nav id="top-bar" data-topbar class="top-bar" role="navigation" data-options="sticky_on: small-up">
@@ -24,6 +25,7 @@
           <ul id="desktop-nav" class="right buttons show-for-large-up">
             <li class=""><a [routerLink]="['/speakers']" routerLinkActive="router-link-active">Speakers</a></li>
             <li class=""><a [routerLink]="['/sessions']" routerLinkActive="router-link-active">Sessions</a></li>
+            <li class=""><a [routerLink]="['/stats']" routerLinkActive="router-link-active">Stats</a></li>
           </ul>
         </section>
       </nav>

@@ -1540,8 +1540,6 @@ In this task, deploy the web service using a helm chart.
     helm install --name web ./web
     ```
 
-    <!-- TODO: Should be cloudshell -->
-
     ![In this screenshot of the WSL console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
 26. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
@@ -1748,7 +1746,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
                      chartType: "Name"
                      chartName: "$(containerRegistryName)/web"
                      releaseName: "web"
-                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/contentweb"
+                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/content-web"
                      recreate: true
                      force: true
                    displayName: "Helm Upgrade"
@@ -1840,7 +1838,7 @@ In this task, you will increase the number of instances for the API deployment i
 
 7. Navigate to the web application from the browser again. The application should still work without errors as you navigate to Speakers and Sessions pages
 
-   - Navigate to the /stats.html page. You'll see information about the environment including:
+   - Navigate to the /stats page. You'll see information about the environment including:
 
      - **webTaskId:** The task identifier for the web service instance.
 
@@ -2059,7 +2057,7 @@ In this task, you will modify the CPU requirements for the web service so that i
 
    ![Four web pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image143.png)
 
-7. Return to the browser tab with the web application loaded. Refresh the stats page at /stats.html to watch the display update to reflect the different api pods by observing the host name refresh.
+7. Return to the browser tab with the web application loaded. Refresh the stats page at /stats to watch the display update to reflect the different api pods by observing the host name refresh.
 
 ### Task 4: Perform a rolling update
 
@@ -2120,7 +2118,7 @@ In this task, you will edit the web application source code to add Application I
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-11. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+11. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
