@@ -1182,10 +1182,10 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     kubectl get -o=yaml --export=true deployment api > api.deployment.yml
     ```
 
-15. Edit the downloaded file:
+15. Edit the downloaded file using cloud shell code editor:
 
     ```bash
-    vi api.deployment.yml
+    code api.deployment.yml
     ```
 
     - Add the following environment configuration to the container spec, below the "image" property:
@@ -1201,6 +1201,10 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     ```
 
     ![A screenshot of the Kubernetes management dashboard showing part of the deployment file.](media/Ex2-Task1.17.png)
+
+16. Save you changes and close the editor 
+
+    ![A screenshot of the code editor save and close actions.](media/Ex2-Task1.17.1.png)
 
 16. Update the api deployment by using `kubectl` to apply the new configuration.
 
@@ -1339,8 +1343,6 @@ In this task, deploy the web service using `kubectl`.
    ```bash
    kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
    ```
-
-   <!-- TODO: Should be cloudshell -->
 
    ![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
