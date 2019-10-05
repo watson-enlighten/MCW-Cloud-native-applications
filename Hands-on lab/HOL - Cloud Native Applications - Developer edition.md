@@ -982,6 +982,7 @@ image and pushes it to your ACR instance automatically.
                  containerRegistry: $(dockerRegistryServiceConnection)
                  tags: |
                    $(tag)
+                   latest
    ```
 
 3. Save the pipeline YAML, then commit and push it to the Azure DevOps
@@ -1040,6 +1041,8 @@ In this exercise, you will connect to the Azure Kubernetes Service cluster you c
 
 In this task, you will gather the information you need about your Azure Kubernetes Service cluster to connect to the cluster and execute commands to connect to the Kubernetes management dashboard from cloud shell.
 
+   > **Note**: The following tasks should be executed in cloud shell and not the build machine, so disconnect from build machine if still connected
+
 1. Verify that you are connected to the correct subscription with the following command to show your default subscription:
 
    ```bash
@@ -1064,8 +1067,6 @@ In this task, you will gather the information you need about your Azure Kubernet
    ```bash
    kubectl get nodes
    ```
-
-   <!-- TODO: Should be cloudshell -->
 
    ![In this screenshot of the WSL console, kubectl get nodes has been typed and run at the command prompt, which produces a list of nodes.](media/image75.png)
 
