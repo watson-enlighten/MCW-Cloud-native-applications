@@ -10,6 +10,6 @@ export class StatsService {
 
   constructor(private http: HttpClient, private appService: AppService) { }
   public getStats() {
-    return this.http.get('/stats');
+    return this.http.get('/api/stats');
   }
 }

@@ -10,6 +10,6 @@ export class SpeakerService {
 
   constructor(private http: HttpClient, private appService: AppService) { }
   public getSpeakers() {
-    return this.http.get('/speakers');
+    return this.http.get('/api/speakers');
   }
 }

@@ -39,7 +39,7 @@ function stats(cb) {
   });
 }
 
-app.get('/speakers', function (req, res) {
+app.get('/api/speakers', function (req, res) {
   getSpeakers(function (err, result) {
     if (!err) {
       res.send(result);
@@ -48,7 +48,7 @@ app.get('/speakers', function (req, res) {
     }
   });
 });
-app.get('/sessions', function (req, res) {
+app.get('/api/sessions', function (req, res) {
   getSessions(function (err, result) {
     if (!err) {
       res.send(result);
@@ -57,7 +57,7 @@ app.get('/sessions', function (req, res) {
     }
   });
 });
-app.get('/stats', function (req, res) {
+app.get('/api/stats', function (req, res) {
   stats(function (err, result) {
     if (!err) {
       res.send(result);
