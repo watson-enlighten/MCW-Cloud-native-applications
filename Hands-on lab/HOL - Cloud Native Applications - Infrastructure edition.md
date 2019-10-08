@@ -1899,154 +1899,62 @@ In this task, you will modify the CPU requirements for the web service so that i
 
 In this task, you will edit the web application source code to add Application Insights and update the Docker image used by the deployment. Then you will perform a rolling update to demonstrate how to deploy a code change.
 
-1. First create an Application Insights key for content-web using the Azure Portal.
+1. Execute this command in Azure Cloud Shell to retrieve the instrumentation key for the `content-web` Application Insights resoruce:
 
-2. Select "+ Create a Resource" and search for "Application Insights" and select "Application Insights".
+   ```bash
+   az resource show -g fabmedical-[SUFFIX] -n content-web --resource-type "Microsoft.Insights/components" --query properties.InstrumentationKey -o tsv
+   ```
 
-    ![A screenshot of the Azure Portal showing a listing of Application Insights resources from search results.](media/Ex4-Task4.2.png)
+   Copy this value you will use it later.
 
-3. Configure the resource as follows, then select "Create":
+2. Update your starter files by pulling the latest changes from Azure Devops
 
-    - **Name**: content-web
+   ```bash
+   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/content-web
+   git pull
+   ```
 
-    - **Application Type**: Node.js Application
+3. Install support for Application Insights.
 
-    - **Subscription**: Use the same subscription you have been using throughout the lab.
+   ```bash
+   npm install applicationinsights --save
+   ```
 
-    - **Resource Group**: Use the existing resource group fabmedical-SUFFIX.
+4. Open the app.js file:
 
-    - **Location**: Use the same location you have been using throughout the lab.
+   ```bash
+   code app.js
+   ```
 
-    ![A screenshot of the Azure Portal showing the new Application Insights blade.](media/Ex4-Task4.3.png)
+5. Add the following lines immediately after `express` is instantiated:
 
-4. While the Application Insights resource for content-web deploys, create a second Application Insights resource for content-api.  Configure the resource as follows, then select "Create":
+   ```javascript
+   const appInsights = require("applicationinsights");
+   appInsights.setup("[YOUR APPINSIGHTS KEY]");
+   appInsights.start();
+   ```
 
-   - **Name**: content-api
+   ![A screenshot of the code editor showing updates in context of the app.js file](media/hol-2019-10-02_12-33-29.png)
 
-   - **Application Type**: Node.js Application
+6. Save changes and close the editor.
 
-   - **Subscription**: Use the same subscription you have been using throughout the lab.
+7. Push these changes to your repository so that Azure DevOps CI will build and deploy a new image.
 
-   - **Resource Group**: Use the existing resource group fabmedical-SUFFIX.
+   ```bash
+   git add .
+   git commit -m "Added Application Insights"
+   git push
+   ```
 
-   - **Location**: Use the same location you have been using throughout the lab.
+8. Visit your Azure DevOps pipeline for the `content-web` application and see the new image being deployed into your Kubernetes cluster.
 
-5. When both resources have deployed, locate them in your resource group.
+9. While this updates run, return the Kubernetes management dashboard in the browser.
 
-    ![A screenshot of the Azure Portal showing the new Application Insights resources in the resource group.](media/Ex4-Task4.5.png)
-
-6. Select the content-web resource to view the details.  Make a note of the Instrumentation Key; you will need it when configuring the content-web application.
-
-    ![A screenshot of the Azure Portal showing the Instrumentation Key for an Application Insights resource.](media/Ex4-Task4.6.png)
-
-7. Return to your resource group and view the details of the content-api Application Insights resource.  Make a note of its unique Instrumentation Key as well.
-
-8. Connect to your build agent VM using ssh as you did in Task 7: Connect securely to the build agent before the hands-on lab.
-
-9. From the command line, navigate to the content-web directory.
-
-10. Update your config files to include the Application Insights Key.
-
-    ```bash
-    vi config/env/production.js
-    <i>
-    ```
-
-11. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
-
-    ```javascript
-    appInsightKey: '[YOUR APPINSIGHTS KEY]'
-    ```
-
-    ![A screenshot of the VIM editor showing the modified lines.](media/Ex4-Task4.16.png)
-
-12. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-13. Now update the development config:
-
-    ```bash
-    vi config/env/development.js
-    <i>
-    ```
-
-14. Search for the following line in the `module.exports` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key from the Azure portal.
-
-    ```javascript
-    appInsightKey: '[YOUR APPINSIGHTS KEY]'
-    ```
-
-15. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-16. Push these changes to your repository so that Azure DevOps CI will build a new image while you work on updating the content-api application.
-
-    ```bash
-    git add .
-    git commit -m "Added Application Insights"
-    git push
-    ```
-
-17. Now update the content-api application.
-
-    ```bash
-    cd ../content-api
-    ```
-
-18. Update your config files to include the Application Insights Key.
-
-    ```bash
-    vi config/config.js
-    <i>
-    ```
-
-19. Search for the following line in the `exports.appSettings` object, and then update [YOUR APPINSIGHTS KEY] with the Your Application Insights Key for **content-api** from the Azure portal.
-
-    ```javascript
-    appInsightKey: '[YOUR APPINSIGHTS KEY]'
-    ```
-
-    ![A screenshot of the VIM editor showing updating the Application Insights key.](media/Ex4-Task4.28.png)
-
-20. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
-
-21. Push these changes to your repository so that Azure DevOps CI will build a new image.
-
-    ```bash
-    git add .
-    git commit -m "Added Application Insights"
-    git push
-    ```
-
-22. Visit your ACR to see the new images and make a note of the tags assigned by Azure DevOps.
-
-     - Make a note of the latest tag for content-web.
-
-        ![A screenshot of the Azure Container Registry listing showing the tagged versions of the content-web image.](media/Ex4-Task4.31a.png)
-
-     - And the latest tag for content-api.
-
-        ![A screenshot of the Azure Container Registry listing showing the tagged versions of the content-api image.](media/Ex4-Task4.31b.png)
-
-23. Now that you have finished updating the source code, you can exit the build agent.
-
-    ```bash
-    exit
-    ```
-
-24. Visit your Azure DevOps Release pipeline for the content-web application and see the new image being deployed into your Kubernetes cluster.
-
-25. From WSL, request a rolling update for the content-api application using this kubectl command:
-
-    ```bash
-    kubectl set image deployment/api api=[LOGINSERVER]/content-api:[LATEST TAG]
-    ```
-
-26. While this updates run, return the Kubernetes management dashboard in the browser.
-
-27. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
+10. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-28. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+11. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
