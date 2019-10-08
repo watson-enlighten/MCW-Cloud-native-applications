@@ -802,7 +802,7 @@ image and pushes it to your ACR instance automatically.
 
    variables:
      dockerRegistryServiceConnection: "Fabmedical ACR"
-     imageRepository: "contentweb"
+     imageRepository: "content-web"
      containerRegistry: "$(containerRegistryName).azurecr.io"
      containerRegistryName: "fabmedical[SHORT_SUFFIX]"
      dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
@@ -830,6 +830,7 @@ image and pushes it to your ACR instance automatically.
                  containerRegistry: $(dockerRegistryServiceConnection)
                  tags: |
                    $(tag)
+                   latest
    ```
 
 3. Save the pipeline YAML, then commit and push it to the Azure DevOps
@@ -1032,7 +1033,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 15. Edit the downloaded file:
 
     ```bash
-    vi api.deployment.yml
+    code api.deployment.yml
     ```
 
        - Add the following environment configuration to the container spec, below the "image" property:
@@ -1323,8 +1324,7 @@ In this task, deploy the web service using a helm chart.
 
     ```bash
     cd templates
-    vi deployment.yaml
-    <i>
+    code deployment.yaml
     ```
 
 19. Search for the `containers` definition and update the values so that they match the following:
@@ -1352,8 +1352,7 @@ In this task, deploy the web service using a helm chart.
 21. We will now update the file named `service.yaml`.
 
     ```bash
-    vi service.yaml
-    <i>
+    code service.yaml
     ```
 
 22. Search for the `ports` definition and update the values so that they match the following:
@@ -1434,7 +1433,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 3. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-4. Press the Escape key and type ":wq". Then press the Enter key to save and close the file.
+4. Save changes and close the editor..
 
 5. Type the following command to deploy the job described by the YAML. You will receive a message indicating the kubectl has created an init "job.batch".
 
@@ -1583,7 +1582,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
                      chartType: "Name"
                      chartName: "$(containerRegistryName)/web"
                      releaseName: "web"
-                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/contentweb"
+                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/content-web"
                      recreate: true
                      force: true
                    displayName: "Helm Upgrade"
@@ -1675,7 +1674,7 @@ In this task, you will increase the number of instances for the API deployment i
 
 7. Navigate to the web application from the browser again. The application should still work without errors as you navigate to Speakers and Sessions pages
 
-    - Navigate to the /stats.html page. You'll see information about the environment including:
+    - Navigate to the /stats page. You'll see information about the environment including:
 
         - **webTaskId:** The task identifier for the web service instance.
 
@@ -1772,7 +1771,7 @@ In this task, you will try to increase the number of instances for the API servi
 
 In this task, you will restart containers and validate that the restart does not impact the running service.
 
-1. From the navigation menu on the left, select Services view under Discovery and Load Balancing. From the Services list, select the external endpoint hyperlink for the web service, and visit the stats page by adding /stats.html to the URL. Keep this open and handy to be refreshed as you complete the steps that follow.
+1. From the navigation menu on the left, select Services view under Discovery and Load Balancing. From the Services list, select the external endpoint hyperlink for the web service, and visit the stats page by adding /stats to the URL. Keep this open and handy to be refreshed as you complete the steps that follow.
 
     ![In the Services box, a red arrow points at the hyperlinked external endpoint for the web service. ](media/image112.png)
 
@@ -1812,7 +1811,7 @@ In this task, you will restart containers and validate that the restart does not
 
     ![In the Scale a Deployment dialog box, 1 is entered in the Desired number of pods box.](media/image130.png)
 
-12. Return to the web site's stats.html page in the browser and refresh while this is scaling down. You'll notice that only one API host name shows up, even though you may still see several running pods in the API replica set view. Even though several pods are running, Kubernetes will no longer send traffic to the pods it has selected to scale down. In a few moments, only one pod will show in the API replica set view.
+12. Return to the web site's stats page in the browser and refresh while this is scaling down. You'll notice that only one API host name shows up, even though you may still see several running pods in the API replica set view. Even though several pods are running, Kubernetes will no longer send traffic to the pods it has selected to scale down. In a few moments, only one pod will show in the API replica set view.
 
     ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right are the Details and Pods boxes. Only one API host name, which has a green check mark and is listed as running, appears in the Pods box.](media/image131.png)
 
@@ -1850,7 +1849,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
     ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right, four pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image138.png)
 
-6. Return to the browser and refresh the stats.html page. You should see all 4 pods serve responses as you refresh.
+6. Return to the browser and refresh the stats page. You should see all 4 pods serve responses as you refresh.
 
 ### Task 2: Update an external service to support dynamic discovery with a load balancer
 
@@ -1894,7 +1893,7 @@ In this task, you will modify the CPU requirements for the web service so that i
 
     ![Four web pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image143.png)
 
-7. Return to the browser tab with the web application loaded. Refresh the stats page at /stats.html to watch the display update to reflect the different api pods by observing the host name refresh.
+7. Return to the browser tab with the web application loaded. Refresh the stats page at /stats to watch the display update to reflect the different api pods by observing the host name refresh.
 
 ### Task 4: Perform a rolling update
 
@@ -2047,7 +2046,7 @@ In this task, you will edit the web application source code to add Application I
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-28. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats.html. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+28. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
