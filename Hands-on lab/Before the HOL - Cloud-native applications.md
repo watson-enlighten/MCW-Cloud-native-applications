@@ -1,7 +1,7 @@
 !["Microsoft Cloud Workshops"][logo]
 
 <div class="MCWHeader1">
-Cloud Native Applications
+Cloud-native applications
 </div>
 
 <div class="MCWHeader2">
@@ -24,7 +24,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud Native Applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
+- [Cloud-native applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
     - [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell)
@@ -40,7 +40,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- /TOC -->
 
-# Cloud Native Applications before the hands-on lab setup guide
+# Cloud-native applications before the hands-on lab setup guide
 
 ## Requirements
 
