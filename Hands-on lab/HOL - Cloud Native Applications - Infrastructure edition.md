@@ -26,40 +26,40 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud Native Applications - Infrastructure edition hands-on lab](#Cloud-Native-Applications---Infrastructure-edition-hands-on-lab)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
-    - [Task 1: Test the application](#Task-1-Test-the-application)
-    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
-    - [Task 3: Create Docker images](#Task-3-Create-Docker-images)
-    - [Task 4: Run a containerized application](#Task-4-Run-a-containerized-application)
-    - [Task 5: Setup environment variables](#Task-5-Setup-environment-variables)
-    - [Task 6: Run several containers with Docker compose](#Task-6-Run-several-containers-with-Docker-compose)
-    - [Task 6: Push images to Azure Container Registry](#Task-6-Push-images-to-Azure-Container-Registry)
-    - [Task 9: Setup CI Pipeline to Push Images](#Task-9-Setup-CI-Pipeline-to-Push-Images)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
-    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
-    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
-  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
-  - [Exercise 4: Setup load balancing and service discovery](#Exercise-4-Setup-load-balancing-and-service-discovery)
-    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
-  - [After the hands-on lab](#After-the-hands-on-lab)
+- [Cloud Native Applications - Infrastructure edition hands-on lab](#cloud-native-applications---infrastructure-edition-hands-on-lab)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
+    - [Task 1: Test the application](#task-1-test-the-application)
+    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
+    - [Task 3: Create Docker images](#task-3-create-docker-images)
+    - [Task 4: Run a containerized application](#task-4-run-a-containerized-application)
+    - [Task 5: Setup environment variables](#task-5-setup-environment-variables)
+    - [Task 6: Run several containers with Docker compose](#task-6-run-several-containers-with-docker-compose)
+    - [Task 6: Push images to Azure Container Registry](#task-6-push-images-to-azure-container-registry)
+    - [Task 9: Setup CI Pipeline to Push Images](#task-9-setup-ci-pipeline-to-push-images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
+    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
+    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
+  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
+  - [Exercise 4: Setup load balancing and service discovery](#exercise-4-setup-load-balancing-and-service-discovery)
+    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
+  - [After the hands-on lab](#after-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -162,9 +162,7 @@ The purpose of this task is to make sure you can run the application successfull
     docker logs mongo
     ```
 
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
-
-    ![In this screenshot of the WSL window, docker container list has been typed and run at the command prompt, and the “api” container is in the list. Below this the log output is shown.](media/Ex1-Task1.4.png)
+    ![In this screenshot of the console window, docker container list has been typed and run at the command prompt, and the “api” container is in the list. Below this the log output is shown.](media/Ex1-Task1.4.png)
 
 5. Connect to the mongo instance using the mongo shell and test some basic commands:
 
@@ -177,9 +175,7 @@ The purpose of this task is to make sure you can run the application successfull
     quit()
     ```
 
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
-
-    ![This screenshot of the WSL window shows the output from connecting to mongo.](media/Ex1-Task1.5.png)
+    ![This screenshot of the console window shows the output from connecting to mongo.](media/Ex1-Task1.5.png)
 
 6. To initialize the local database with test content, first navigate to the content-init directory and run npm install.
 
@@ -194,9 +190,7 @@ The purpose of this task is to make sure you can run the application successfull
     nodejs server.js
     ```
 
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
-
-    ![This screenshot of the WSL window shows output from running the database initialization.](media/Ex1-Task1.7.png)
+    ![This screenshot of the console window shows output from running the database initialization.](media/Ex1-Task1.7.png)
 
 8. Confirm that the database now contains test data.
 
@@ -215,9 +209,7 @@ The purpose of this task is to make sure you can run the application successfull
 
     This should produce output similar to the following:
 
-   <!-- TODO: replace screenshots with cloudshell screenshots -->
-
-    ![This screenshot of the WSL window shows the data output.](media/Ex1-Task1.8.png)
+    ![This screenshot of the console window shows the data output.](media/Ex1-Task1.8.png)
 
 9. Now navigate to the content-api directory and run npm install.
 
@@ -327,9 +319,7 @@ In this task, you will create Docker images for the application --- one for the 
 
     Notice the untagged image.  This is the build stage which contains all the intermediate files not needed in your final image.
 
-    <!-- TODO: replace with cloudshell screenshot -->
-
-    ![The node image (node) and your container image (content-api) are visible in this screenshot of the WSL window.](media/image59.png)
+    ![The node image (node) and your container image (content-api) are visible in this screenshot of the console window.](media/image59.png)
 
 4. Navigate to the content-web folder again and list the files. Note that this folder has a Dockerfile.
 
@@ -358,7 +348,7 @@ In this task, you will create Docker images for the application --- one for the 
     docker images
     ```
 
-    ![Three images are now visible in this screenshot of the WSL window: content-web, content-api, and node.](media/image60.png)
+    ![Three images are now visible in this screenshot of the console window: content-web, content-api, and node.](media/image60.png)
 
 ### Task 4: Run a containerized application
 
@@ -413,9 +403,7 @@ The web application container will be calling endpoints exposed by the API appli
     docker logs api
     ```
 
-    <!-- TODO: Replace with cloudshell screenshot -->
-
-    ![In this screenshot of the WSL window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 548d25a1449f, content-api, "npm start", 8 seconds ago, Up 6 seconds, 0.0.0.0:3001-\>3001/tcp, and api.](media/image61.png)
+    ![In this screenshot of the console window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 548d25a1449f, content-api, "npm start", 8 seconds ago, Up 6 seconds, 0.0.0.0:3001-\>3001/tcp, and api.](media/image61.png)
 
 5. Test the API by curling the URL. You will see JSON output as you did when testing previously.
 
@@ -435,9 +423,7 @@ The web application container will be calling endpoints exposed by the API appli
     docker container ls
     ```
 
-    <!-- TODO: Replace with cloudshell screenshot -->
-
-    ![In this screenshot of the WSL window, docker container ls has again been typed and run at the command prompt. 0.0.0.0:32768->3000/tcp is highlighted under Ports, and a red arrow is pointing at it.](media/image62.png)
+    ![In this screenshot of the console window, docker container ls has again been typed and run at the command prompt. 0.0.0.0:32768->3000/tcp is highlighted under Ports, and a red arrow is pointing at it.](media/image62.png)
 
 8. Test the web application by fetching the URL with curl. For the port, use the dynamically assigned port, which you can find in the output from the previous command. You will see HTML output, as you did when testing previously.
 
@@ -599,9 +585,7 @@ for several containers and run them together.
     docker-compose -f docker-compose.yml -p fabmedical up -d
     ```
 
-    <!-- TODO: replace with cloudshell screenshot -->
-
-    ![This screenshot of the WSL window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
+    ![This screenshot of the console window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
 
 4. Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
 
@@ -655,9 +639,7 @@ for several containers and run them together.
     docker-compose -f docker-compose.yml -p fabmedical down
     ```
 
-    <!-- TODO replace with cloudshell screenshot -->
-
-    ![This screenshot of the WSL window shows the running containers stopping.](media/Ex1-Task6.21.png)
+    ![This screenshot of the console window shows the running containers stopping.](media/Ex1-Task6.21.png)
 
 8. Now run `up` again with both files to update the mongodb configuration, and run the initialization script.
 
@@ -671,9 +653,7 @@ for several containers and run them together.
     ls ./data/
     ```
 
-    <!-- TODO replace with cloudshell screenshot -->
-
-    ![This screenshot of the WSL window shows the output of the data folder.](media/Ex1-Task6.23.png)
+    ![This screenshot of the console window shows the output of the data folder.](media/hol-2019-10-12_09-42-16.png)
 
 10. Check the results in the browser. The speaker and session data are now available.
 
@@ -707,9 +687,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
     ```
 
-    <!-- TODO: replace with cloudshell screenshot -->
-
-    ![In this screenshot of the WSL window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
+    ![In this screenshot of the console window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
 
     **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
 
@@ -735,9 +713,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker push [LOGINSERVER]/content-api
     ```
 
-    <!-- TODO: replace with cloudshell screenshot -->
-
-    ![In this screenshot of the WSL window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push \[LOGINSERVER\]/fabmedical/content-web.](media/image67.png)
+    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push \[LOGINSERVER\]/fabmedical/content-web.](media/image67.png)
 
 8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two; one for each image.
 
@@ -755,9 +731,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker images
     ```
 
-    <!-- TODO replace with cloudshell screenshot -->
-
-    ![In this screenshot of the WSL window is an example of tags being added and displayed.](media/image70.png)
+    ![In this screenshot of the console window is an example of tags being added and displayed.](media/image70.png)
 
 11. Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
@@ -914,9 +888,7 @@ In this task, you will gather the information you need about your Azure Kubernet
     kubectl get nodes
     ```
 
-   <!-- TODO: Should be cloudshell -->
-
-    ![In this screenshot of the WSL console, kubectl get nodes has been typed and run at the command prompt, which produces a list of nodes.](media/image75.png)
+    ![In this screenshot of the console, kubectl get nodes has been typed and run at the command prompt, which produces a list of nodes.](media/image75.png)
 
 4. Since the AKS cluster uses RBAC, a ClusterRoleBinding must be created before you can correctly access the dashboard. To create the required binding, execute the command bellow:
 
@@ -932,9 +904,7 @@ In this task, you will gather the information you need about your Azure Kubernet
     az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
     ```
 
-   <!-- TODO: Should be cloudshell -->
-
-    ![In this screenshot of the WSL console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel \... Starting to server on 127.0.0.1:8001](media/image76.png)
+    ![In this screenshot of the console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel \... Starting to server on 127.0.0.1:8001](media/image76.png)
 
 6. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
@@ -1138,13 +1108,9 @@ In this task, deploy the web service using `kubectl`.
 
 5. Click the **...** button and select **Save**.
 
-    <!-- TODO Blur the content to make this image more reusable -->
-
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
 6. Click the **...** button again and select **Close Editor**.
-
-    <!-- TODO Blur the content to make this image more reusable -->
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
@@ -1184,21 +1150,19 @@ In this task, deploy the web service using `kubectl`.
     files. You will receive a message indicating the items kubectl has created a
     web deployment and a web service.
 
-   ```bash
-   kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
-   ```
+    ```bash
+    kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
+    ```
 
-   <!-- TODO: Should be cloudshell -->
-
-   ![In this screenshot of the WSL console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
+    ![In this screenshot of the console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
 11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
-   ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
+    ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
 12. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
 
-   ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
+    ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
 ### Task 4: Deploy a service using a Helm chart
 
@@ -1374,9 +1338,7 @@ In this task, deploy the web service using a helm chart.
     helm install --name web ./web
     ```
 
-    <!-- TODO: Should be cloudshell -->
-
-    ![In this screenshot of the WSL console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
+    ![In this screenshot of the console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
 25. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
