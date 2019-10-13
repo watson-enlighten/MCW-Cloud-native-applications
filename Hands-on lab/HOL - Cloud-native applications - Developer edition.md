@@ -115,6 +115,8 @@ Each tenant will have the following containers:
      - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator)
        built-in role for the Azure AD tenant you will use.
 
+      > **Note** You may have to ask an admin with these rights to login to the portal and execute certain lab setup steps ahead of time if you do not have the rights.
+
    - You must have enough cores available in your subscription to create the
      build agent and Azure Kubernetes Service cluster in Before the Hands-on
      Lab. You'll need eight cores if following the exact instructions in the
