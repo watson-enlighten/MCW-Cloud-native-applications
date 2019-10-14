@@ -52,6 +52,13 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
      - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
+       - Check for the Application Administrator Role:
+          - Login to the Azure Portal
+          - Select Azure Active Directory
+          - Select Users
+          - Search for your user name and select
+          - Select Directory role on your user profile page
+          - You should see the list of currently assigned roles and "Application Administrator" should be in the list.
 
      > **Note** You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
 
