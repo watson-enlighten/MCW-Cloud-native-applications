@@ -1,5 +1,5 @@
 ﻿# HTML Files for Workshop
-[WDS student guide - Cloud-native applications.html](https://cloudworkshop.blob.core.windows.net/containers-devops/Whiteboard design session/WDS student guide - Cloud-native applications.html)
+[WDS student guide - Cloud-native applications.html](https://cloudworkshop.blob.core.windows.net/containers-devops/Whiteboard%20design%20session/WDS%20student%20guide%20-%20Containers%20and%20DevOps.html)
 
 [WDS trainer guide - Cloud-native applications.html](https://cloudworkshop.blob.core.windows.net/containers-devops/Whiteboard%20design%20session/WDS%20trainer%20guide%20-%20Containers%20and%20DevOps.html)
 
