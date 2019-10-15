@@ -277,11 +277,11 @@ In this section, you will configure and execute an ARM template that will create
    | southeastasia      | Southeast Asia      |
    | eastasia           | East Asia           |
 
-4. Click the **...** button and select **Save**.
+4. Select the **...** button and select **Save**.
 
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-5. Click the **...** button again and select **Close Editor**.
+5. Select the **...** button again and select **Close Editor**.
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
@@ -351,19 +351,19 @@ single node.js site into a website with a content API that serves up the speaker
 
    - Enter fabmedical as the project name.
    - Ensure the project is Private.
-   - Click the Advanced dropdown.
+   - Choose the Advanced dropdown.
    - Ensure the Version control is set to Git.
-   - Click the "Create Project" button.
+   - Select the "Create Project" button.
 
    ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
 
-8. Enable multi-stage pipelines.
+8. Enable multi-stage pipelines:
 
-   - Click your user icon in the top right corner
-   - Then click the three dots to access the "Preview Features" menu item
-   - Toggle multi-stage pipelines to "On"
+   - Select your user icon in the top right corner.
+   - Then choose the three dots to access the "Preview Features" menu item.
+   - Toggle multi-stage pipelines to "On".
 
-9. Next add an Azure Service Connection to your Azure DevOps account. Click the
+9. Next add an Azure Service Connection to your Azure DevOps account. Select the
    Project settings gear icon to access your settings. Then select Service Connections.
 
 10. Choose "+ New service connection". Then pick "Azure Resource Manager" from
@@ -390,14 +390,13 @@ single node.js site into a website with a content API that serves up the speaker
 
 13. Select "Verify connection" then select "OK".
 
-    > **Note**: If the connection does not verify, then recheck and reenter the
-    > required data.
+    > **Note**: If the connection does not verify, then recheck and reenter the required data.
 
-13. Next add another Azure Service Connection to your Azure DevOps account.
-    Click the Project settings gear icon to access your settings. Then select
+14. Next add another Azure Service Connection to your Azure DevOps account.
+    Select the Project settings gear icon to access your settings. Then choose
     Service Connections.
 
-14. Choose "+ New service connection". Then pick "Docker Registry" from
+15. Choose "+ New service connection". Then pick "Docker Registry" from
     the menu.
 
     ![A screenshot of the Add Docker Registry Service Connection dialog.](media/hol-2019-10-01_20-30-17.png)
@@ -417,14 +416,14 @@ single node.js site into a website with a content API that serves up the speaker
 
 17. Select "OK".
 
-17. Next, click "Repos" then use the repository dropdown to create a new
+18. Next, choose "Repos" then use the repository dropdown to create a new
     repository by selecting "+ New repository".
 
     ![Repository dropdown](media/b4-image53.png)
 
     - Enter "content-web" as the repository name.
 
-    - Once the project is created click "Generate Git credentials".
+    - Once the project is created select "Generate Git credentials".
 
     ![Generate Git Credentials](media/b4-image50.png)
 
@@ -659,7 +658,7 @@ with them on the build agent.
    git config --global credential.helper cache
    ```
 
-3. Visit the `content-web` repository in Azure DevOps and click "Clone" in the
+3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
    right corner.
 
    ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
