@@ -4,7 +4,7 @@ Fabrikam Medical Conferences provides conference web site services, tailored to 
 
 The goal of this workshop is to help them build a proof of concept (POC) that will migrate their code to a more manageable process that involves containerization of tenant code, a better DevOps workflow, and a simple lift-and-shift story for their database backend.
 
-April 2019
+October 2019
 
 ## Target Audience
 
@@ -15,7 +15,7 @@ April 2019
 
 ### Workshop
 
-In this workshop, you will build a proof of concept (POC) that will transform an existing PaaS application to a container-based application. This POC will deliver a multi-tenant web app hosting solution leveraging Azure Kubernetes Service (AKS), Docker containers on Linux nodes, and a migration from MongoDB to CosmosDB.
+In this workshop, you will build a proof of concept (POC) that will transform an existing on-premises application to a container-based application. This POC will deliver a multi-tenant web app hosting solution leveraging Azure Kubernetes Service (AKS), Docker containers on Linux nodes, and a migration from MongoDB to CosmosDB.
 
 At the end of this workshop, you will be better able to improve the reliability of and increase the release cadence of your container-based applications through time-tested DevOps practices.
 
