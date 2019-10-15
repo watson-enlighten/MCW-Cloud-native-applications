@@ -5,7 +5,7 @@ Cloud-native applications - Infrastructure edition
 </div>
 
 <div class="MCWHeader2">
-Hands-on lab
+Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud-native applications - Infrastructure edition hands-on lab](#cloud-native-applications---infrastructure-edition-hands-on-lab)
+- [Cloud-native applications - Infrastructure edition hands-on lab step-by-step](#cloud-native-applications---infrastructure-edition-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
   - [Solution architecture](#solution-architecture)
@@ -38,8 +38,8 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 4: Run a containerized application](#task-4-run-a-containerized-application)
     - [Task 5: Setup environment variables](#task-5-setup-environment-variables)
     - [Task 6: Run several containers with Docker compose](#task-6-run-several-containers-with-docker-compose)
-    - [Task 6: Push images to Azure Container Registry](#task-6-push-images-to-azure-container-registry)
-    - [Task 9: Setup CI Pipeline to Push Images](#task-9-setup-ci-pipeline-to-push-images)
+    - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)
+    - [Task 8: Setup CI Pipeline to Push Images](#task-8-setup-ci-pipeline-to-push-images)
   - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
     - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
     - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
@@ -63,7 +63,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- /TOC -->
 
-# Cloud-native applications - Infrastructure edition hands-on lab
+# Cloud-native applications - Infrastructure edition hands-on lab step-by-step
 
 ## Abstract and learning objectives
 
@@ -107,7 +107,7 @@ Each tenant will have the following containers:
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab ensure your account has the following roles:
+   - To complete this lab, ensure your account has the following roles:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner)
        built-in role for the subscription you will use.
@@ -668,7 +668,7 @@ for several containers and run them together.
 
     ![A screenshot of the sessions page.](media/Ex1-Task6.24.png)
 
-### Task 6: Push images to Azure Container Registry
+### Task 7: Push images to Azure Container Registry
 
 To run containers in a remote environment, you will typically push images to a Docker registry, where you can store and distribute images. Each service will have a repository that can be pushed to and pulled from with Docker commands. Azure Container Registry (ACR) is a managed private Docker registry service based on Docker Registry v2.
 
@@ -753,7 +753,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker pull [LOGINSERVER]/content-web:v1
     ```
 
-### Task 9: Setup CI Pipeline to Push Images
+### Task 8: Setup CI Pipeline to Push Images
 
 In this task you will use YAML to define a pipeline that builds your Docker
 image and pushes it to your ACR instance automatically.
@@ -826,12 +826,12 @@ image and pushes it to your ACR instance automatically.
    ```
 
 4. Now login to Azure DevOps to create your first build. Navigate to the
-   `content-web` repository and choose 'Set up Build'
+   `content-web` repository and choose 'Set up Build'.
 
    ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button](media/hol-2019-10-01_19-50-16.png)
 
 5. Azure DevOps will automatically detect the pipeline YAML you added. You can
-   make additional edits here if needed. Click `Run` when you are ready to
+   make additional edits here if needed. Select `Run` when you are ready to
    execute the pipeline.
 
    ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button](media/hol-2019-10-02_07-33-16.png)
@@ -846,13 +846,13 @@ image and pushes it to your ACR instance automatically.
    ![A screenshot of Azure DevOps Pipeline with a completed job.](media/hol-2019-10-02_08-28-49.png)
 
    > **Note**: The build may fail due to an authorization error related to the
-   > Docker Registry Service connection, if this is the case then click
+   > Docker Registry Service connection, if this is the case, select
    > "Authorize Resources" and run the build again.
    > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
 
 8. Next, create the `content-api` build. Select the `content-api` repository.
-   This repository already includes `azure-pipelines.yaml`. Click 'Set up
-   Build', then click `Run` to start the pipeline.
+   This repository already includes `azure-pipelines.yaml`. Choose 'Set up
+   Build', then select `Run` to start the pipeline.
 
 9. While the `content-api` build runs, setup one last build for `content-init`
    by following the same steps as the previous `content-api` build.
@@ -959,7 +959,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![This screenshot of the Kubernetes management dashboard shows logs output for the api container.](media/Ex2-Task1.6.png)
 
-7. Open the Azure portal in your browser and navigate to your resource group and find your Cosmos DB resource. Click on the Cosmos DB resource to view details.
+7. Open the Azure portal in your browser and navigate to your resource group and find your Cosmos DB resource. Select the Cosmos DB resource to view details.
 
     ![A screenshot of the Azure Portal showing the Cosmos DB among existing resources.](media/Ex2-Task1.9.png)
 
@@ -981,7 +981,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     echo -n "<connection string value>" | base64 -w 0
     ```
 
-11. Return to the Kubernetes UI in your browser and click "+ Create".  Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and click "Upload".
+11. Return to the Kubernetes UI in your browser and choose "+ Create".  Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and select "Upload".
 
     ```yaml
     apiVersion: v1
@@ -995,11 +995,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing the YAML file for creating a deployment.](media/Ex2-Task1.13.png)
 
-12. Scroll down in the Kubernetes dashboard until you can see "Secrets" in the left-hand menu.  Click it.
+12. Scroll down in the Kubernetes dashboard until you can see "Secrets" in the left-hand menu.  Select it.
 
     ![A screenshot of the Kubernetes management dashboard showing secrets.](media/Ex2-Task1.14.png)
 
-13. View the details for the "mongodb" secret.  Click the eyeball icon to show the secret.
+13. View the details for the "mongodb" secret.  Select the eyeball icon to show the secret.
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
 
@@ -1115,11 +1115,11 @@ In this task, deploy the web service using `kubectl`.
 
 4. Update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-5. Click the **...** button and select **Save**.
+5. Select the **...** button and choose **Save**.
 
    ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
 
-6. Click the **...** button again and select **Close Editor**.
+6. Select the **...** button again and choose **Close Editor**.
 
    ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
 
@@ -1179,13 +1179,13 @@ In this task, deploy the web service using a helm chart.
 
 1. From the Kubernetes dashboard, under "Workloads", select "Deployments".
 
-2. Click the triple vertical dots on the right of the "web" deployment and then select "Delete". When prompted, click "Delete" again.
+2. Select the triple vertical dots on the right of the "web" deployment and then choose "Delete". When prompted, select "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
 3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
 
-4. Click the triple vertical dots on the right of the "web" service and then select "Delete". When prompted, click "Delete" again.
+4. Select the triple vertical dots on the right of the "web" service and then choose "Delete". When prompted, select "Delete" again.
 
     ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
@@ -1404,7 +1404,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 3. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
 
-4. Save changes and close the editor..
+4. Save changes and close the editor.
 
 5. Type the following command to deploy the job described by the YAML. You will receive a message indicating the kubectl has created an init "job.batch".
 
@@ -1446,7 +1446,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
 1. Login to your Azure DevOps account, access the `fabmedical` project you created earlier, then select "Pipelines".
 
-2. From the pipelines list, select the `content-web` pipeline and click `Edit.`
+2. From the pipelines list, select the `content-web` pipeline and select `Edit.`
 
    ![A screenshot with the `content-web` pipeline selected and the `Edit` button highlighted.](media/hol-2019-10-02_10-06-57.png)
 
@@ -1493,7 +1493,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
 
-4. Click "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
+4. Choose "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
 
    ![A screenshot that shows the jobs, Helm is complete, Docker is still running](media/hol-2019-10-02_10-57-42.png)
 
@@ -1561,7 +1561,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the new stage, with a line to highlight proper indenting.](media/hol-2019-10-02_11-19-51.png)
 
-6. Click "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
+6. Choose "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
 
    ![A screenshot that shows the stages, expanded to also sho the jobs.  Docker is running, Helm is queued, AKS Deployment is not started.](media/hol-2019-10-02_11-27-34.png)
 
@@ -1581,7 +1581,7 @@ In this task, you will access and review the various logs and dashboards made av
 
     ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
 
-4. To review the Containers dashboards and see more detailed information about each container click on containers tab.
+4. To review the Containers dashboards and see more detailed information about each container select the containers tab.
 
     ![In this screenshot, the various containers information is shown.](media/monitor_1.png)
 
@@ -1870,7 +1870,7 @@ In this task, you will modify the CPU requirements for the web service so that i
 
 In this task, you will edit the web application source code to add Application Insights and update the Docker image used by the deployment. Then you will perform a rolling update to demonstrate how to deploy a code change.
 
-1. Execute this command in Azure Cloud Shell to retrieve the instrumentation key for the `content-web` Application Insights resoruce:
+1. Execute this command in Azure Cloud Shell to retrieve the instrumentation key for the `content-web` Application Insights resource:
 
    ```bash
    az resource show -g fabmedical-[SUFFIX] -n content-web --resource-type "Microsoft.Insights/components" --query properties.InstrumentationKey -o tsv
@@ -1878,7 +1878,7 @@ In this task, you will edit the web application source code to add Application I
 
    Copy this value you will use it later.
 
-2. Update your starter files by pulling the latest changes from Azure Devops
+2. Update your starter files by pulling the latest changes from Azure DevOps
 
    ```bash
    cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/content-web
@@ -2060,7 +2060,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     code certificate.yml
     ```
 
-    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
+    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name:
 
     ```yaml
     apiVersion: certmanager.k8s.io/v1alpha1
