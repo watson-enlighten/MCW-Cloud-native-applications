@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Cloud-native applications
@@ -544,9 +544,9 @@ Azure Kubernetes Service (AKS) is the recommended platform for the following rea
 
   Generally, if the customer has experience with one of the supported orchestrators, you can apply that experience in Azure Kubernetes Service (AKS). There is a great deal of momentum in the community behind Kubernetes, and with Microsoft providing a fully managed solution based on this platform, it is the natural choice.
 
-2.  Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
+3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
-- The Azure Kubernetes Service (AKS) environment is deployed using a few simple Azure CLI commands.
+ - The Azure Kubernetes Service (AKS) environment is deployed using a few simple Azure CLI commands.
 
 _Containers, discovery and load-balancing_
 
@@ -622,9 +622,9 @@ _Automating DevOps workflows_
 
 ## Checklist of preferred objection handling
 
-1.  There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each?
+1. There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each?
 
-The best of all worlds is to go with a managed orchestration platform like AKS -- native to Azure. It reduces the cost and management overhead of the cluster, while still providing a solution that supports growth, scale, and native management tooling.
+   The best of all worlds is to go with a managed orchestration platform like AKS -- native to Azure. It reduces the cost and management overhead of the cluster, while still providing a solution that supports growth, scale, and native management tooling.
 
     With Kubernetes you will have additional features at your fingertips beyond the pure Docker approach including:
 
@@ -636,7 +636,7 @@ The best of all worlds is to go with a managed orchestration platform like AKS -
 
 2.  Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements?
 
-    The easiest way to move to containers on Azure is to deploy containers to the Linux variant of App Service. However this option does not provide a full-featured container orchestration platform with highly customizable load balancing, dynamic service discovery, and a holistic approach to container monitoring.
+    The easiest way to move to containers on Azure is to deploy containers to the Linux variant of App Service. However, this option does not provide a full-featured container orchestration platform with highly customizable load balancing, dynamic service discovery, and a holistic approach to container monitoring.
 
     Azure Container Instances also provide a simple way to manage individual containers without management tooling.
 
@@ -644,6 +644,6 @@ The best of all worlds is to go with a managed orchestration platform like AKS -
 
 ## Customer quote (to be read back to the attendees at the end)
 
-_"With Azure Kubernetes Service (AKS) we feel confident we can make the move to a container-based platform with the right DevOps support in place to be successful with a small team."_
+"With Azure Kubernetes Service (AKS) we feel confident we can make the move to a container-based platform with the right DevOps support in place to be successful with a small team."
 
 - Arthur Block, VP of Engineering at Fabrikam Medical Conferences
