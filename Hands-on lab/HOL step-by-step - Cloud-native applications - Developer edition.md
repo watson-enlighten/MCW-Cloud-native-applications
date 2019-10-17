@@ -1432,7 +1432,7 @@ In this task, deploy the web service using a helm chart.
 11. Update your starter files by pulling the latest changes from Azure DevOps
 
     ```bash
-    cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/content-web
+    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
     git pull
     ```
 
@@ -2084,7 +2084,7 @@ In this task, you will edit the web application source code to add Application I
 2. Update your starter files by pulling the latest changes from Azure DevOps.
 
    ```bash
-   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/content-web
+   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
    git pull
    ```
 

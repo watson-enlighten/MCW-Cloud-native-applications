@@ -119,7 +119,7 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
 1. Type the following command and press `<ENTER>`:
 
    ```bash
-   git clone https://github.com/microsoft/MCW-Containers-and-DevOps.git
+   git clone https://github.com/microsoft/MCW-Cloud-native-applications.git
    ```
 
 2. The lab files will download.
@@ -130,7 +130,7 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
    less complex if we remove it. Run this command:
 
    ```bash
-   rm -rf MCW-Containers-and-DevOps/.git
+   rm -rf MCW-Cloud-native-applications/.git
    ```
 
 ### Task 3: Resource Group
@@ -225,7 +225,7 @@ In this section, you will configure and execute an ARM template that will create
    > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
-   cd MCW-Containers-and-DevOps/Hands-on\ lab/arm/
+   cd MCW-Cloud-native-applications/Hands-on\ lab/arm/
    ```
 
 2. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
@@ -302,14 +302,14 @@ single node.js site into a website with a content API that serves up the speaker
 2. Navigate to FabMedical source code folder and list the contents.
 
    ```bash
-   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/
+   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/
    ll
    ```
 
    > **Important note**: If you will be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
    >
    > ```bash
-   > cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/infrastructure/
+   > cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/infrastructure/
    > ll
    > ```
    >
@@ -567,7 +567,7 @@ In this task, you will update the packages and install Docker engine.
    sudo apt-get install curl python-software-properties
 
    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-   
+
    sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 

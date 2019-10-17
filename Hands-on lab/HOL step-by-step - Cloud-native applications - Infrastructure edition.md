@@ -1260,7 +1260,7 @@ In this task, deploy the web service using a helm chart.
 11. We will use the chart scaffold implementation that we have available in the source code. Use the following commands to access the chart folder:
 
     ```bash
-    cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/infrastructure/content-web/charts
+    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/infrastructure/content-web/charts
     ```
 
 12. We now need to update the generated scaffold to match our requirements. We will first update the file named `values.yaml`.
@@ -1900,7 +1900,7 @@ In this task, you will edit the web application source code to add Application I
 2. Update your starter files by pulling the latest changes from Azure DevOps
 
    ```bash
-   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/content-web
+   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
    git pull
    ```
 
