@@ -651,12 +651,24 @@ with them on the build agent.
    git config --global user.name "Your Name"
    ```
 
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
+
 2. Configure git CLI to cache your credentials, so that you don't have to keep
    re-typing them.
 
    ```bash
    git config --global credential.helper cache
    ```
+
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
 
 3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
    right corner.
@@ -671,6 +683,12 @@ with them on the build agent.
    git clone <REPOSITORY_URL>
    ```
 
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
+    
 6. When prompted for password use your PAT token from previous steps.
 
 7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository url.
