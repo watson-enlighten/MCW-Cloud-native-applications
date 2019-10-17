@@ -343,6 +343,7 @@ From the Azure portal select the resource group you created named fabmedical-SUF
 
    ```bash
    killall nodejs
+   killall node
    ```
 
 ### Task 3: Create a Dockerfile

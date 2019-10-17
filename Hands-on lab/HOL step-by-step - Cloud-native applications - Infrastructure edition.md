@@ -312,6 +312,7 @@ In this task, you will browse to the web application for testing.
 
     ```bash
     killall nodejs
+    killall node
     ```
 
 ### Task 3: Create Docker images
