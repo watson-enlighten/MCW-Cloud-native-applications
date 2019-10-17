@@ -194,6 +194,12 @@ The purpose of this task is to make sure you can run the application successfull
    npm install
    ```
 
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
+
 7. Initialize the database.
 
    ```bash
@@ -227,6 +233,11 @@ The purpose of this task is to make sure you can run the application successfull
     cd ../content-api
     npm install
     ```
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+   
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
 
 10. Start the API as a background process.
 
@@ -255,6 +266,12 @@ The purpose of this task is to make sure you can run the application successfull
     ```
 
     ![In this screenshot, after navigating to the web application directory, nodejs ./server.js & has been typed and run at the command prompt, which runs the application as a background process as well.](media/image48.png)
+
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+   
+    ```bash
+    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+    ```
 
 14. From Azure cloud shell, run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment
 
