@@ -644,7 +644,6 @@ In this task, you will configure the "web" container to communicate with the API
 5. Open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
 
     ```bash
-    cd ..
     vi Dockerfile
     <i>
     ```
