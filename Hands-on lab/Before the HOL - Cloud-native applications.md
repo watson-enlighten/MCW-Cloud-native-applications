@@ -561,11 +561,13 @@ In this task, you will update the packages and install Docker engine.
    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    ```
 
-5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following in a commands, each on their own line. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get install curl python-software-properties
+
    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+   
    sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 
@@ -688,7 +690,7 @@ with them on the build agent.
     ```bash
     sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
     ```
-    
+
 6. When prompted for password use your PAT token from previous steps.
 
 7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository url.
