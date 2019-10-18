@@ -1158,14 +1158,18 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
    > **Note**: Username and password redacted for brevity.
 
    ```text
-   mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol2.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
+   mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
    ```
 
 10. You will setup a Kubernetes secret to store the connection string, and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
 
+    > **Note**: Double quote marks surrounding the connection string are required to successfully produce the required output.
+
     ```bash
-    echo -n "<connection string value>" | base64 -w 0
+    echo -n "<connection string value>" | base64 -w 0 - | echo $(</dev/stdin)
     ```
+
+    ![A screenshot of the Azure cloud shell window showing the command to create the base64 encoded secret.  The output to copy is highlighted.](media/hol-2019-10-18_07-12-13.png)
 
 11. Return to the Kubernetes UI in your browser and select "+ Create". Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and choose "Upload".
 
