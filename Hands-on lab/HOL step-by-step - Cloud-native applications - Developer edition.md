@@ -112,17 +112,10 @@ Each tenant will have the following containers:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner)
        built-in role for the subscription you will use.
-     - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator)
-       built-in role for the Azure AD tenant you will use.
-        - Check for the Application Administrator Role:
-          - Login to the Azure Portal
-          - Select Azure Active Directory
-          - Select Users
-          - Search for your user name and select
-          - Select Directory role on your user profile page
-          - You should see the list of currently assigned roles and "Application Administrator" should be in the list.
+       
+     - Is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
 
-      > **Note** You may have to ask an admin with these rights to login to the portal and execute certain lab setup steps ahead of time if you do not have the rights.
+     > **Note** If you do not meet these requirements you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
 
    - You must have enough cores available in your subscription to create the
      build agent and Azure Kubernetes Service cluster in Before the Hands-on
