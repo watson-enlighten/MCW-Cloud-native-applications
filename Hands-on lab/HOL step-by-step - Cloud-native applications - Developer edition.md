@@ -112,7 +112,7 @@ Each tenant will have the following containers:
 
      - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner)
        built-in role for the subscription you will use.
-       
+
      - Is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
 
      > **Note** If you do not meet these requirements you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
@@ -187,11 +187,11 @@ The purpose of this task is to make sure you can run the application successfull
    npm install
    ```
 
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
 
-    ```bash
-    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-    ```
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
 
 7. Initialize the database.
 
@@ -222,15 +222,16 @@ The purpose of this task is to make sure you can run the application successfull
 
 9. Now navigate to the content-api directory and run npm install.
 
-    ```bash
-    cd ../content-api
-    npm install
-    ```
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
-   
-    ```bash
-    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-    ```
+   ```bash
+   cd ../content-api
+   npm install
+   ```
+
+   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
 
 10. Start the API as a background process.
 
@@ -260,8 +261,8 @@ The purpose of this task is to make sure you can run the application successfull
 
     ![In this screenshot, after navigating to the web application directory, nodejs ./server.js & has been typed and run at the command prompt, which runs the application as a background process as well.](media/image48.png)
 
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
-   
+> **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try `npm install` again:
+
     ```bash
     sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
     ```
@@ -284,13 +285,13 @@ The purpose of this task is to make sure you can run the application successfull
     vim app.js
     ```
 
-    Then press ***i*** to get into the edit mode, after that replace localhost with the build machine IP address
+    Then press **_i_** to get into the edit mode, after that replace localhost with the build machine IP address
 
     ![show the app.js file in vim in the build machine to update the API url.](media/image27.png)
 
-    Then write ***:wq*** to save you changes and close the file.
+    Then write **_:wq_** to save you changes and close the file.
 
-18. Now run the content-web application in the background.
+16. Now run the content-web application in the background.
 
     ```bash
     node ./app.js &
@@ -298,15 +299,15 @@ The purpose of this task is to make sure you can run the application successfull
 
     Press ENTER again to get a command prompt for the next step.
 
-19. Test the web application using curl. You will see HTML output returned without errors.
+17. Test the web application using curl. You will see HTML output returned without errors.
 
     ```bash
     curl http://localhost:3000
     ```
 
-20. Leave the application running for the next task.
+18. Leave the application running for the next task.
 
-21. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
+19. If you received a JSON response to the /speakers content request and an HTML response from the web application, your environment is working as expected.
 
 ### Task 2: Browsing to the web application
 
@@ -316,12 +317,12 @@ From the Azure portal select the resource group you created named fabmedical-SUF
 
 1. Select the build agent VM named fabmedical-SUFFIX from your list of available resources.
 
-    ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
+   ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
 
 2. From the Virtual Machine blade overview, find the IP address of the VM.
 
-    ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
-    
+   ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
+
 3. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
 
    ```text
@@ -356,7 +357,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
    ![In this screenshot of the console window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
 
-1. Create a new file named "Dockerfile" and note the casing in the name. Use the
+2. Create a new file named "Dockerfile" and note the casing in the name. Use the
    following Vim command to create a new file. The cloud shell window should
    look as shown in the following screenshot.
 
@@ -364,13 +365,13 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    vi Dockerfile
    ```
 
-    ![This is a screenshot of a new file named Dockerfile in the console window.](media/image56.png)
+   ![This is a screenshot of a new file named Dockerfile in the console window.](media/image56.png)
 
-1. Select "i" on your keyboard. You'll see the bottom of the window showing INSERT mode.
+3. Select "i" on your keyboard. You'll see the bottom of the window showing INSERT mode.
 
    ![-- INSERT -- appears at the bottom of the Dockerfile window.](media/image57.png)
 
-2. Type the following into the file. These statements produce a Dockerfile that describes the following:
+4. Type the following into the file. These statements produce a Dockerfile that describes the following:
 
    - The base stage includes environment setup which we expect to change very rarely, if at all.
 
@@ -426,7 +427,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    CMD [ "npm", "start" ]
    ```
 
-3. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
+5. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
 
    ```bash
    <Esc>
@@ -434,15 +435,15 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    <Enter>
    ```
 
-4. List the contents of the folder again to verify that the new Dockerfile has been created.
+6. List the contents of the folder again to verify that the new Dockerfile has been created.
 
-    ```bash
-    ll
-    ```
+   ```bash
+   ll
+   ```
 
-    ![In this screenshot of the console window, ll has been typed and run at the command prompt. The Dockerfile file is highlighted at the top of list.](media/image58.png)
+   ![In this screenshot of the console window, ll has been typed and run at the command prompt. The Dockerfile file is highlighted at the top of list.](media/image58.png)
 
-6. Verify the file contents to ensure it was saved as expected. Type the following command to see the output of the Dockerfile in the command window.
+7. Verify the file contents to ensure it was saved as expected. Type the following command to see the output of the Dockerfile in the command window.
 
    ```bash
    cat Dockerfile
@@ -608,68 +609,68 @@ In this task, you will configure the "web" container to communicate with the API
 
 1. From cloud shell connected to the build agent VM, stop and remove the web container using the following commands.
 
-    ```bash
-    docker stop web
-    docker rm web
-    ```
+   ```bash
+   docker stop web
+   docker rm web
+   ```
 
 2. Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
 
-    ```bash
-    docker container ls -a
-    ```
+   ```bash
+   docker container ls -a
+   ```
 
 3. Review the `app.js` file.
 
-    ```bash
-    cat app.js
-    ```
+   ```bash
+   cat app.js
+   ```
 
 4. Observe that the `/config/content` endpoint allows the contentApiUrl variable to be set with an environment variable.
 
-    ```javascript
-    app.get("/config/content", function(req, res) {
-      const contentApiUrl =
-        process.env.CONTENT_API_URL || "http://localhost:3001/";
-      res.send({ contentUrl: contentApiUrl });
-    });
-    ```
+   ```javascript
+   app.get("/config/content", function(req, res) {
+     const contentApiUrl =
+       process.env.CONTENT_API_URL || "http://localhost:3001/";
+     res.send({ contentUrl: contentApiUrl });
+   });
+   ```
 
 5. Open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
 
-    ```bash
-    vi Dockerfile
-    <i>
-    ```
+   ```bash
+   vi Dockerfile
+   <i>
+   ```
 
 6. Locate the EXPOSE line shown below, and add a line above it that sets the default value for the environment variable as shown in the screenshot.
 
-    ```Dockerfile
-    ENV CONTENT_API_URL http://localhost:3001
-    ```
+   ```Dockerfile
+   ENV CONTENT_API_URL http://localhost:3001
+   ```
 
-    ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
+   ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
 
 7. Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
+   ```text
+   <Esc>
+   :wq
+   <Enter>
+   ```
 
 8. Rebuild the web application Docker image using the same command as you did previously.
 
-    ```bash
-    docker build -t content-web .
-    ```
+   ```bash
+   docker build -t content-web .
+   ```
 
 9. Create and start the image passing the correct URI to the API container as an environment variable. This variable will address the API application using its container name over the Docker network you created. After running the container, check to see the container is running and note the dynamic port assignment for the next step.
 
-    ```bash
-    docker run --name web --net fabmedical -P -d -e CONTENT_API_URL=http://api:3001 content-web
-    docker container ls
-    ```
+   ```bash
+   docker run --name web --net fabmedical -P -d -e CONTENT_API_URL=http://api:3001 content-web
+   docker container ls
+   ```
 
 10. Curl the speakers path again, using the port assigned to the web container. Again, you will see HTML returned, but because curl does not process javascript, you cannot determine if the web application is communicating with the api application. You must verify this connection in a browser.
 
@@ -715,132 +716,132 @@ for several containers and run them together.
 
 1. First, cleanup the existing containers.
 
-    ```bash
-    docker stop web && docker rm web
-    docker stop api && docker rm api
-    docker stop mongo && docker rm mongo
-    ```
+   ```bash
+   docker stop web && docker rm web
+   docker stop api && docker rm api
+   docker stop mongo && docker rm mongo
+   ```
 
 2. Navigate to your home directory (where you checked out the content repositories) and create a docker compose file.
 
-    ```bash
-    cd ~
-    vi docker-compose.yml
-    <i>
-    ```
+   ```bash
+   cd ~
+   vi docker-compose.yml
+   <i>
+   ```
 
-    Type the following as the contents of `docker-compose.yml`:
+   Type the following as the contents of `docker-compose.yml`:
 
-    ```yaml
-    version: '3.4'
+   ```yaml
+   version: "3.4"
 
-    services:
-      mongo:
-        image: mongo
-        restart: always
+   services:
+     mongo:
+       image: mongo
+       restart: always
 
-      api:
-        build: ./content-api
-        image: content-api
-        depends_on:
-          - mongo
-        environment:
-          MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
+     api:
+       build: ./content-api
+       image: content-api
+       depends_on:
+         - mongo
+       environment:
+         MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
 
-      web:
-        build: ./content-web
-        image: content-web
-        depends_on:
-          - api
-        environment:
-          CONTENT_API_URL: http://api:3001
-        ports:
-          - "3000:3000"
-    ```
+     web:
+       build: ./content-web
+       image: content-web
+       depends_on:
+         - api
+       environment:
+         CONTENT_API_URL: http://api:3001
+       ports:
+         - "3000:3000"
+   ```
 
-    Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+   Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
 
-    ```text
-    <Esc>
-    :wq
-    <Enter>
-    ```
+   ```text
+   <Esc>
+   :wq
+   <Enter>
+   ```
 
 3. Start the applications with the `up` command.
 
-    ```bash
-    docker-compose -f docker-compose.yml -p fabmedical up -d
-    ```
+   ```bash
+   docker-compose -f docker-compose.yml -p fabmedical up -d
+   ```
 
-    ![This screenshot of the console window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
+   ![This screenshot of the console window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
 
 4. Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
 
-    ![Browser view of the web site.](media/Ex1-Task6.18.png)
+   ![Browser view of the web site.](media/Ex1-Task6.18.png)
 
 5. We stopped and removed our previous mongodb container; all the data contained in it has been removed. Docker compose has created a new, empty mongodb instance that must be reinitialized. If we care to persist our data between container instances, the docker has several mechanisms to do so. First we will update our compose file to persist mongodb data to a directory on the build agent.
 
-    ```bash
-    mkdir data
-    vi docker-compose.yml
-    ```
+   ```bash
+   mkdir data
+   vi docker-compose.yml
+   ```
 
-    Update the mongo service to mount the local data directory onto to the `/data/db` volume in the docker container.
+   Update the mongo service to mount the local data directory onto to the `/data/db` volume in the docker container.
 
-    ```yaml
-    mongo:
-      image: mongo
-      restart: always
-      volumes:
-        - ./data:/data/db
-    ```
+   ```yaml
+   mongo:
+     image: mongo
+     restart: always
+     volumes:
+       - ./data:/data/db
+   ```
 
-    The result should look similar to the following screenshot:
+   The result should look similar to the following screenshot:
 
-    ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
+   ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
 
 6. Next we will add a second file to our composition so that we can initialize the mongodb data when needed.
 
-    ```bash
-    vi docker-compose.init.yml
-    ```
+   ```bash
+   vi docker-compose.init.yml
+   ```
 
-    Add the following as the content:
+   Add the following as the content:
 
-    ```yaml
-    version: '3.4'
+   ```yaml
+   version: "3.4"
 
-    services:
-      init:
-        build: ./content-init
-        image: content-init
-        depends_on:
-          - mongo
-        environment:
-          MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
-    ```
+   services:
+     init:
+       build: ./content-init
+       image: content-init
+       depends_on:
+         - mongo
+       environment:
+         MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
+   ```
 
 7. To reconfigure the mongodb volume, we need to bring down the mongodb service first.
 
-    ```bash
-    docker-compose -f docker-compose.yml -p fabmedical down
-    ```
+   ```bash
+   docker-compose -f docker-compose.yml -p fabmedical down
+   ```
 
-    ![This screenshot of the console window shows the running containers stopping.](media/Ex1-Task6.21.png)
+   ![This screenshot of the console window shows the running containers stopping.](media/Ex1-Task6.21.png)
 
 8. Now run `up` again with both files to update the mongodb configuration, and run the initialization script.
 
-    ```bash
-    docker-compose -f docker-compose.yml -f docker-compose.init.yml -p fabmedical up -d
-    ```
+   ```bash
+   docker-compose -f docker-compose.yml -f docker-compose.init.yml -p fabmedical up -d
+   ```
 
 9. Check the data folder to see that mongodb is now writing data files to the host.
 
-    ```bash
-    ls ./data/
-    ```
+   ```bash
+   ls ./data/
+   ```
 
-    ![This screenshot of the console window shows the output of the data folder.](media/hol-2019-10-12_09-42-16.png)
+   ![This screenshot of the console window shows the output of the data folder.](media/hol-2019-10-12_09-42-16.png)
 
 10. Check the results in the browser. The speaker and session data are now available.
 
@@ -856,59 +857,59 @@ In this task, you will push images to your ACR account, version images with tagg
 
 2. Select Access keys under Settings on the left-hand menu.
 
-    ![In this screenshot of the left-hand menu, Access keys is highlighted below Settings.](media/image64.png)
+   ![In this screenshot of the left-hand menu, Access keys is highlighted below Settings.](media/image64.png)
 
 3. The Access keys blade displays the Login server, username, and password that will be required for the next step. Keep this handy as you perform actions on the build VM.
 
-    > **Note**: If the username and password do not appear, select Enable on the Admin user option.
+   > **Note**: If the username and password do not appear, select Enable on the Admin user option.
 
 4. From the cloud shell session connected to your build VM, login to your ACR account by typing the following command. Follow the instructions to complete the login.
 
-    ```bash
-    docker login [LOGINSERVER] -u [USERNAME] -p [PASSWORD]
-    ```
+   ```bash
+   docker login [LOGINSERVER] -u [USERNAME] -p [PASSWORD]
+   ```
 
-    For example:
+   For example:
 
-    ```bash
-    docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
-    ```
+   ```bash
+   docker login fabmedicalsoll.azurecr.io -u fabmedicalsoll -p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga
+   ```
 
-    ![In this screenshot of the console window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
+   ![In this screenshot of the console window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
 
-    **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
+   **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
 
 5. Run the following commands to properly tag your images to match your ACR account name.
 
-    ```bash
-    docker tag content-web [LOGINSERVER]/content-web
-    docker tag content-api [LOGINSERVER]/content-api
-    ```
+   ```bash
+   docker tag content-web [LOGINSERVER]/content-web
+   docker tag content-api [LOGINSERVER]/content-api
+   ```
 
 6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
 
-    ```bash
-    docker images
-    ```
+   ```bash
+   docker images
+   ```
 
-    ![This is a screenshot of a docker images list example.](media/image66.png)
+   ![This is a screenshot of a docker images list example.](media/image66.png)
 
 7. Push the images to your ACR account with the following command:
 
-    ```bash
-    docker push [LOGINSERVER]/content-web
-    docker push [LOGINSERVER]/content-api
-    ```
+   ```bash
+   docker push [LOGINSERVER]/content-web
+   docker push [LOGINSERVER]/content-api
+   ```
 
-    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/fabmedical/content-web.](media/image67.png)
+   ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/fabmedical/content-web.](media/image67.png)
 
 8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two; one for each image.
 
-    ![In this screenshot, fabmedical/content-api and fabmedical/content-web each appear on their own lines below Repositories.](media/image68.png)
+   ![In this screenshot, fabmedical/content-api and fabmedical/content-web each appear on their own lines below Repositories.](media/image68.png)
 
 9. Select content-api. You'll see the latest tag is assigned.
 
-    ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
+   ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
 10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
@@ -1030,12 +1031,17 @@ image and pushes it to your ACR instance automatically.
 
 8. Next, create the `content-api` build. Select the `content-api` repository.
    This repository already includes `azure-pipelines.yaml`. Choose 'Set up
-   Build', then select `Run` to start the pipeline.
+   Build'.
 
-9. While the `content-api` build runs, setup one last build for `content-init`
-   by following the same steps as the previous `content-api` build.
+9. In the "Review your pipeline YAML" step, edit the `containerRegistryName` value to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name.
 
-10. Visit your ACR instance in the Azure portal, you should see new containers
+   ![A screenshot of the "Review your pipeline YAML" step, with the containerRegistryName property highlighted.](media/hol-2019-10-18_06-32-34.png)
+
+10. When you are finished editing, select `Run` to execute the pipeline.
+
+11. While the `content-api` build runs, setup one last build for `content-init` by following the same steps as the previous `content-api` build, remembering to update the `[SHORT_SUFFIX]` value on the "Review your pipeline YAML" step.
+
+12. Visit your ACR instance in the Azure portal, you should see new containers
     tagged with the Azure DevOps build number.
 
     ![A screenshot of the container images in ACR.](media/Ex1-Task7.28.png)
@@ -1050,7 +1056,7 @@ In this exercise, you will connect to the Azure Kubernetes Service cluster you c
 
 In this task, you will gather the information you need about your Azure Kubernetes Service cluster to connect to the cluster and execute commands to connect to the Kubernetes management dashboard from cloud shell.
 
-   > **Note**: The following tasks should be executed in cloud shell and not the build machine, so disconnect from build machine if still connected
+> **Note**: The following tasks should be executed in cloud shell and not the build machine, so disconnect from build machine if still connected
 
 1. Verify that you are connected to the correct subscription with the following command to show your default subscription:
 
@@ -1209,17 +1215,17 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing part of the deployment file.](media/Ex2-Task1.17.png)
 
-16. Save you changes and close the editor. 
+16. Save you changes and close the editor.
 
     ![A screenshot of the code editor save and close actions.](media/Ex2-Task1.17.1.png)
 
-16. Update the api deployment by using `kubectl` to apply the new configuration.
+17. Update the api deployment by using `kubectl` to apply the new configuration.
 
     ```bash
     kubectl apply -f api.deployment.yml
     ```
 
-17. Select "Deployments" then "api" to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
+18. Select "Deployments" then "api" to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
 
     ![A screenshot of the Kubernetes management dashboard showing logs output.](media/Ex2-Task1.19.png)
 
@@ -1365,56 +1371,56 @@ In this task, deploy the web service using a helm chart.
 
 2. Select the triple vertical dots on the right of the "web" deployment and then choose "Delete". When prompted, select "Delete" again.
 
-    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
+   ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
 3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
 
 4. Select the triple vertical dots on the right of the "web" service and then choose "Delete". When prompted, select "Delete" again.
 
-    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
+   ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
 5. Open a **new** Azure Cloud Shell console.
 
 6. Create a text file called rbac-config.yaml using the Azure Cloud Shell
-    Editor.
+   Editor.
 
-    ```bash
-    code rbac-config.yaml
-    ```
+   ```bash
+   code rbac-config.yaml
+   ```
 
 7. Copy and paste the following text into the editor:
 
-    > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters.
+   > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters.
 
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: tiller
-      namespace: kube-system
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRoleBinding
-    metadata:
-      name: tiller
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: cluster-admin
-    subjects:
-      - kind: ServiceAccount
-        name: tiller
-        namespace: kube-system
-    ```
+   ```yaml
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+     name: tiller
+     namespace: kube-system
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: ClusterRoleBinding
+   metadata:
+     name: tiller
+   roleRef:
+     apiGroup: rbac.authorization.k8s.io
+     kind: ClusterRole
+     name: cluster-admin
+   subjects:
+     - kind: ServiceAccount
+       name: tiller
+       namespace: kube-system
+   ```
 
 8. Save changes and close the editor.
 
 9. Type the following command to create the service account needed by Tiller
-    (the Helm server part).
+   (the Helm server part).
 
-    ```bash
-    kubectl create -f rbac-config.yaml
-    ```
+   ```bash
+   kubectl create -f rbac-config.yaml
+   ```
 
 10. Type the following command to initialize Helm using the previously service account setup.
 
@@ -1877,7 +1883,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the Edit a Deployment contents pasted into Notepad text editor.](media/image83.png)
 
-5. Scroll down about half way to find the node "$.spec.template.spec.containers[0]", as shown in the screenshot below.
+5. Scroll down about half way to find the node "\$.spec.template.spec.containers[0]", as shown in the screenshot below.
 
    ![Screenshot of the deployment JSON code, with the $.spec.template.spec.containers[0] section highlighted.](media/image84.png)
 
@@ -2143,9 +2149,9 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
 
-    ```text
-    service?namespace=kube-system
-    ```
+   ```text
+   service?namespace=kube-system
+   ```
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
