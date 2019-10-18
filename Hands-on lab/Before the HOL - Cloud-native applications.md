@@ -58,7 +58,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template). You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
-2. An Azure DevOps account
+2. An account in Azure DevOps.
 
 3. Local machine or a virtual machine configured with:
 
@@ -228,7 +228,7 @@ In this section, you will configure and execute an ARM template that will create
    code azuredeploy.parameters.json
    ```
 
-    ![This screen shot shows the online editor for azure could shell](media/b4-image581.png)
+   ![This screen shot shows the online editor for azure could shell](media/b4-image581.png)
 
 3. Update the values for the various keys so that they match your environment:
 
@@ -335,7 +335,7 @@ single node.js site into a website with a content API that serves up the speaker
 6. Open a new browser tab to visit [Azure DevOps][devops] and log into your
    account.
 
-   If this is your first time logging into this account you will be taken through a first-run experience:
+   If you have never logged into this account, you will be taken through a first-run experience:
 
    - Confirm your contact information and select next.
    - Select "Create new account".
@@ -423,7 +423,7 @@ single node.js site into a website with a content API that serves up the speaker
 
 19. Copy the Personal Access Token and save it for later steps
 
-19. Using your cloud shell window, initialize a new git repository for `content-web`.
+20. Using your cloud shell window, initialize a new git repository for `content-web`.
 
     ```bash
     cd content-web
@@ -432,7 +432,7 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-20. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for
+21. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for
     push. Copy the commands for "**HTTPS**" similar to this example:
 
     ```bash
@@ -440,13 +440,13 @@ single node.js site into a website with a content API that serves up the speaker
     git push -u origin --all
     ```
 
-21. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+22. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-22. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
+23. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
 
     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-23. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
+24. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
 
     ```bash
     cd ../content-api
@@ -455,16 +455,16 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-24. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
+25. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-25. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-26. Use the repository drop down to create a third repository called
+27. Use the repository drop down to create a third repository called
     `content-init`.
 
     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-27. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
+28. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
 
     ```bash
     cd ../content-init
@@ -473,9 +473,9 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-28. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
+29. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-29. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
@@ -555,7 +555,7 @@ In this task, you will update the packages and install Docker engine.
    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    ```
 
-5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following in a commands, each on their own line. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following commands, each on their own line. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get install curl python-software-properties
@@ -647,11 +647,11 @@ with them on the build agent.
    git config --global user.name "Your Name"
    ```
 
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
 
-    ```bash
-    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-    ```
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
 
 2. Configure git CLI to cache your credentials, so that you don't have to keep
    re-typing them.
@@ -660,43 +660,43 @@ with them on the build agent.
    git config --global credential.helper cache
    ```
 
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
 
-    ```bash
-    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-    ```
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
 
 3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
    right corner.
 
    ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
 
-4. Copy the repository url.
+4. Copy the repository URL.
 
-5. Use the repository url to clone the content-web code to your build agent machine.
+5. Use the repository URL to clone the content-web code to your build agent machine.
 
    ```bash
    git clone <REPOSITORY_URL>
    ```
 
-   > **Note**: In some cases the `root` user will be assigned ownership of your user's `.config` folder.  If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
 
-    ```bash
-    sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-    ```
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
 
 6. When prompted for password use your PAT token from previous steps.
 
-7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository url.
+7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository URL.
 
-8. Use the repository url and `git clone` to copy the content-api code to your build agent.
+8. Use the repository URL and `git clone` to copy the content-api code to your build agent.
 
-9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository url.
+9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository URL.
 
-10. Use the repository url and `git clone` to copy the content-init code to your build agent.
+10. Use the repository URL and `git clone` to copy the content-init code to your build agent.
 
 > **Note**: Keep this cloud shell window open as your build agent SSH
-> connection. The lab will instruct you to open additional cloudshell sessions
+> connection. The lab will instruct you to open additional cloud shell sessions
 > as and when needed.
 
 You should follow all steps provided _before_ performing the Hands-on lab.
