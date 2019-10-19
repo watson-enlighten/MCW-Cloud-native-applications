@@ -589,7 +589,7 @@ The web application container will be calling endpoints exposed by the API appli
    docker run --name web --net fabmedical -P -d content-web
    ```
 
-7. Enter the command to show running containers again and you'll observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
+7. Enter the command to show running containers again and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
 
    ```bash
    docker container ls
@@ -1170,7 +1170,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     > **Note**: Double quote marks surrounding the connection string are required to successfully produce the required output.
 
     ```bash
-    echo -n "<connection string value>" | base64 -w 0 - | echo $(</dev/stdin)
+    echo -n "[CONNECTION STRING VALUE]" | base64 -w 0 - | echo $(</dev/stdin)
     ```
 
     ![A screenshot of the Azure cloud shell window showing the command to create the base64 encoded secret.  The output to copy is highlighted.](media/hol-2019-10-18_07-12-13.png)
@@ -1209,10 +1209,9 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     code api.deployment.yml
     ```
 
-    - Add the following environment configuration to the container spec, below the "image" property:
+    Add the following environment configuration to the container spec, below the "image" property:
 
     ```yaml
-    - image: [LOGINSERVER].azurecr.io/fabmedical/content-api
       env:
         - name: MONGODB_CONNECTION
           valueFrom:

@@ -994,12 +994,16 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
    mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
    ```
 
-10. You will setup a Kubernetes secret to store the connection string and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
+10. To avoid disconnecting from the Kubernetes dashboard, open a **new** Azure Cloud Shell console.
+
+    ![A screenshot of the cloud shell window with a red arrow pointing at the "Open new session" button on the toolbar](media/hol-2019-10-19_06-13-34.png)
+
+11. You will setup a Kubernetes secret to store the connection string and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
 
     > **Note**: Double quote marks surrounding the connection string are required to successfully produce the required output.
 
     ```bash
-    echo -n "<connection string value>" | base64 -w 0 - | echo $(</dev/stdin)
+    echo -n "[CONNECTION STRING VALUE]" | base64 -w 0 - | echo $(</dev/stdin)
     ```
 
     ![A screenshot of the Azure cloud shell window showing the command to create the base64 encoded secret.  The output to copy is highlighted.](media/hol-2019-10-18_07-12-13.png)
@@ -1041,7 +1045,6 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     - Add the following environment configuration to the container spec, below the "image" property:
 
     ```yaml
-    - image: [LOGINSERVER].azurecr.io/fabmedical/content-api
       env:
         - name: MONGODB_CONNECTION
           valueFrom:
