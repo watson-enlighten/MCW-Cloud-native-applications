@@ -1703,7 +1703,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the jobs, Helm is complete, Docker is still running](media/hol-2019-10-02_10-57-42.png)
 
-5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor:
+5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the SUFFIX values:
 
    > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces and line up with the `stage` node for the `Build` stage.
 
@@ -1833,7 +1833,7 @@ In this task, you will increase the number of instances for the API deployment i
 
    > **Note: If the deployment completes quickly, you may not see the deployment Waiting states in the dashboard as described in the following steps**.
 
-4. From the Replica Set view for the API, you'll see it is now deploying and that there is one healthy instance and one pending instance.
+4. From the Replica Set view for the API, you will see it is now deploying and that there is one healthy instance and one pending instance.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left, and at right, Pods status: 1 pending, 1 running is highlighted. Below that, a red arrow points at the API deployment in the Pods box.](media/image117.png)
 
@@ -1928,7 +1928,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![In the Scale a Deployment dialog box, 4 is entered in the Desired number of pods box.](media/image119.png)
 
-10. From the navigation menu, select Services view under Discovery and Load Balancing. Select the api service from the Services list. From the api service view, you'll see it has two healthy instances and two unhealthy (or possibly pending depending on timing) instances.
+10. From the navigation menu, select Services view under Discovery and Load Balancing. Select the api service from the Services list. From the api service view, you will see it has two healthy instances and two unhealthy (or possibly pending depending on timing) instances.
 
     ![In the api service view, various information is displayed in the Details box and in the Pods box.](media/image120.png)
 
