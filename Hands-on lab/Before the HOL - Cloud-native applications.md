@@ -293,6 +293,7 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
 single node.js site into a website with a content API that serves up the speakers and sessions. This is a starting point to validate the containerization of their websites. They have asked you to use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
 1. Open a **new** Azure Cloud Shell console.
+
 2. Navigate to FabMedical source code folder and list the contents.
 
    ```bash
