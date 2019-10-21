@@ -800,7 +800,7 @@ for several containers and run them together.
 
    ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
 
-6. Next we will add a second file to our composition so that we can initialize the mongodb data when needed.
+6. Next, we will add a second file to our composition so that we can initialize the mongodb data when needed.
 
    ```bash
    vi docker-compose.init.yml
@@ -911,7 +911,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
-10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image; showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
+10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
     docker tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
