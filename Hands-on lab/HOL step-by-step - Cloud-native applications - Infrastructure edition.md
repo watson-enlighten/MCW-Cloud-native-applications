@@ -2130,8 +2130,8 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     > Normal  OrderComplete  2s    cert-manager  Order "tls-secret-1375302092" completed successfully
     > Normal  CertIssued     2s    cert-manager  Certificate issued successfully
     > ```
-    >
-    > .
+
+    > It can take between 5 and 30 minutes before the tls-secret becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
 15. Now you can create an ingress resource for the content applications.
 
@@ -2185,7 +2185,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 20. Test TLS termination by visiting both services again using `https`.
 
-    > It can take a few minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
+    > It can take between 5 and 30 minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
 ## After the hands-on lab
 
