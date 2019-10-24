@@ -1840,7 +1840,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
    - Scroll to the first spec node that describes replicas as shown in the screenshot. Set the value for replicas to 4.
 
-   - Within the replicas spec, beneath the template node, find the "api" containers spec as shown in the screenshot. Remove the hostPort entry for the API container's port mapping.
+   - Within the replicas spec, beneath the template node, find the "api" containers spec. Remove the hostPort entry for the API container's port mapping.  The screenshot below shows the desired configuration after editing.
 
      ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about spec, selector, and template. Under the spec node, replicas: 4 is highlighted. Further down, ports are highlighted.](media/image137.png)
 
