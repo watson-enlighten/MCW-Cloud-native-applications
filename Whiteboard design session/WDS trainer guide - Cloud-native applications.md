@@ -508,45 +508,45 @@ Each tenant will have the following containers:
 
 _Choosing a container platform on Azure_
 
-1. List the potential platform choices for deploying containers to Azure.
+1.  List the potential platform choices for deploying containers to Azure.
 
-**Azure Web App for Containers**
+    **Azure Web App for Containers**
 
-Azure Web App for Containers specifically targets container deployments, which makes it easy to run containers in a fully managed App Service Plan. This option is ideal for solutions that do not require the features offered by an orchestration platform such as Kubernetes.
+    Azure Web App for Containers specifically targets container deployments, which makes it easy to run containers in a fully managed App Service Plan. This option is ideal for solutions that do not require the features offered by an orchestration platform such as Kubernetes.
 
-**Azure Container Instances**
+    **Azure Container Instances**
 
-Azure Container Instances provide a serverless approach to running containers on demand and at scale enabling additional compute power and elasticity for select workloads - with the security of hypervisor isolation.
+    Azure Container Instances provide a serverless approach to running containers on demand and at scale enabling additional compute power and elasticity for select workloads - with the security of hypervisor isolation.
 
-**Windows Server Containers on Windows Server**
+    **Windows Server Containers on Windows Server**
 
-Windows Server Containers allow Windows applications to be containerized. Windows Server 2016 or later versions support the installation of Docker Engine to run containers. For orchestration features you can also set up a cluster with an orchestration platform such as Docker Engine (Community or Enterprise), Kubernetes or other platforms - if you want to take responsibility for managing the clustering and related configurations.
+    Windows Server Containers allow Windows applications to be containerized. Windows Server 2016 or later versions support the installation of Docker Engine to run containers. For orchestration features you can also set up a cluster with an orchestration platform such as Docker Engine (Community or Enterprise), Kubernetes or other platforms - if you want to take responsibility for managing the clustering and related configurations.
 
-**Azure Kubernetes Service (AKS)**
+    **Azure Kubernetes Service (AKS)**
 
-Azure Kubernetes Service (AKS) is the easiest way to manage a Kubernetes cluster on Azure - providing you with a managed control plane and configurable cluster with automatic updates and easy scaling capabilities. AKS removes the management overhead of container orchestration cluster, allowing teams to focus on the application and core DevOps workflows relevant to the solution.
+    Azure Kubernetes Service (AKS) is the easiest way to manage a Kubernetes cluster on Azure - providing you with a managed control plane and configurable cluster with automatic updates and easy scaling capabilities. AKS removes the management overhead of container orchestration cluster, allowing teams to focus on the application and core DevOps workflows relevant to the solution.
 
-2. Which would you recommend and why?
+2.  Which would you recommend and why?
 
-Azure Kubernetes Service (AKS) is the recommended platform for the following reasons:
+    Azure Kubernetes Service (AKS) is the recommended platform for the following reasons:
 
-- It has the necessary orchestration features without the management overhead of the control plane.
+    - It has the necessary orchestration features without the management overhead of the control plane.
 
-- Ability to monitor and manage applications using a Management UI. This will also make it easier to view the overall state of all tenant applications in a single pane, and drill down into the health of an individual tenant easily.
+    - Ability to monitor and manage applications using a Management UI. This will also make it easier to view the overall state of all tenant applications in a single pane, and drill down into the health of an individual tenant easily.
 
-- Integration with Container Monitoring Solution in Azure for additional visibility into containers running in the AKS cluster from the Azure Portal, without connecting to the Kubernetes control plane.
+    - Integration with Container Monitoring Solution in Azure for additional visibility into containers running in the AKS cluster from the Azure Portal, without connecting to the Kubernetes control plane.
 
-- Full set of integrated features, working out of the box including load balancing, service discovery, self-healing capabilities, scheduling, orchestration, task monitoring, and more.
+    - Full set of integrated features, working out of the box including load balancing, service discovery, self-healing capabilities, scheduling, orchestration, task monitoring, and more.
 
-- Simple REST API supporting automation with DevOps workflows.
+    - Simple REST API supporting automation with DevOps workflows.
 
-- Open source, mature, and production tested platform.
+    - Open source, mature, and production tested platform.
 
-  Generally, if the customer has experience with one of the supported orchestrators, you can apply that experience in Azure Kubernetes Service (AKS). There is a great deal of momentum in the community behind Kubernetes, and with Microsoft providing a fully managed solution based on this platform, it is the natural choice.
+    Generally, if the customer has experience with one of the supported orchestrators, you can apply that experience in Azure Kubernetes Service (AKS). There is a great deal of momentum in the community behind Kubernetes, and with Microsoft providing a fully managed solution based on this platform, it is the natural choice.
 
-3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
+3.  Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
- - The Azure Kubernetes Service (AKS) environment is deployed using a few simple Azure CLI commands.
+    - The Azure Kubernetes Service (AKS) environment is deployed using a few simple Azure CLI commands.
 
 _Containers, discovery and load-balancing_
 
