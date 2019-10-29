@@ -48,23 +48,17 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab setup (including [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)) ensure your account has the following roles:
+   - To complete this lab setup (including [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)) ensure your account the following requirements:
 
-     - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
-     - The [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you will use.
-       - Check for the Application Administrator Role:
-          - Login to the Azure Portal
-          - Select Azure Active Directory
-          - Select Users
-          - Search for your user name and select
-          - Select Directory role on your user profile page
-          - You should see the list of currently assigned roles and "Application Administrator" should be in the list.
+     - Has the [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
 
-     > **Note** You may have to ask another subscription owner to login to the portal and execute that step ahead of time if you do not have the rights.
+     - Is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
+
+     > **Note** If you do not meet these requirements you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
 
    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template). You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
-2. An Azure DevOps account
+2. An account in Azure DevOps.
 
 3. Local machine or a virtual machine configured with:
 
@@ -119,7 +113,7 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
 1. Type the following command and press `<ENTER>`:
 
    ```bash
-   git clone https://github.com/microsoft/MCW-Containers-and-DevOps.git
+   git clone https://github.com/microsoft/MCW-Cloud-native-applications.git
    ```
 
 2. The lab files will download.
@@ -130,7 +124,7 @@ In this task you will use `git` to copy the lab content to your cloud shell so t
    less complex if we remove it. Run this command:
 
    ```bash
-   rm -rf MCW-Containers-and-DevOps/.git
+   rm -rf MCW-Cloud-native-applications/.git
    ```
 
 ### Task 3: Resource Group
@@ -192,7 +186,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
 Azure Kubernetes Service requires an Azure Active Directory service principal to interact with Azure APIs. The service principal is needed to dynamically manage resources such as user-defined routes and the Layer 4 Azure Load Balancer. The easiest way to set up the service principal is using the Azure cloud shell.
 
-> **Note**: To complete this task ensure your account has the following roles: [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use and [Application Administrator](https://docs.microsoft.com/en-us/azure/active-directory/users-groups-roles/directory-assign-admin-roles#application-administrator) built-in role for the Azure AD tenant you are using. You may have trouble creating a service principal if you do not have these role assignments.
+> **Note**: To complete this task ensure your account is an [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use and is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. You may have trouble creating a service principal if you do not meet these requirements.
 
 1. To create a service principal, type the following command in the cloud shell command line, replacing {id} with your subscription identifier, and replacing suffix with your chosen suffix to make the name unique:
 
@@ -225,7 +219,7 @@ In this section, you will configure and execute an ARM template that will create
    > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
 
    ```bash
-   cd MCW-Containers-and-DevOps/Hands-on\ lab/arm/
+   cd MCW-Cloud-native-applications/Hands-on\ lab/arm/
    ```
 
 2. Open the azuredeploy.parameters.json file for editing using Azure Cloud Shell editor.
@@ -234,13 +228,13 @@ In this section, you will configure and execute an ARM template that will create
    code azuredeploy.parameters.json
    ```
 
-    ![This screen shot shows the online editor for azure could shell](media/b4-image581.png)
+   ![This screen shot shows the online editor for azure could shell](media/b4-image581.png)
 
 3. Update the values for the various keys so that they match your environment:
 
    - **Suffix**: Enter a shortened version of your SUFFIX with max of 3 chars.
    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
-   - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. Use the information from a previous step (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
+   - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. You will find this value in the `.ssh/fabmedical.pub` file created previously (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
    - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
    - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
    - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
@@ -299,17 +293,18 @@ FabMedical has provided starter files for you. They have taken a copy of one of 
 single node.js site into a website with a content API that serves up the speakers and sessions. This is a starting point to validate the containerization of their websites. They have asked you to use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
 1. Open a **new** Azure Cloud Shell console.
+
 2. Navigate to FabMedical source code folder and list the contents.
 
    ```bash
-   cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/developer/
+   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/
    ll
    ```
 
    > **Important note**: If you will be taking the Infrastructure edition of the lab, instead of using the above instructions, type the following ones:
    >
    > ```bash
-   > cd ~/MCW-Containers-and-DevOps/Hands-on\ lab/lab-files/infrastructure/
+   > cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/infrastructure/
    > ll
    > ```
    >
@@ -341,7 +336,7 @@ single node.js site into a website with a content API that serves up the speaker
 6. Open a new browser tab to visit [Azure DevOps][devops] and log into your
    account.
 
-   If this is your first time logging into this account you will be taken through a first-run experience:
+   If you have never logged into this account, you will be taken through a first-run experience:
 
    - Confirm your contact information and select next.
    - Select "Create new account".
@@ -429,7 +424,7 @@ single node.js site into a website with a content API that serves up the speaker
 
 19. Copy the Personal Access Token and save it for later steps
 
-19. Using your cloud shell window, initialize a new git repository for `content-web`.
+20. Using your cloud shell window, initialize a new git repository for `content-web`.
 
     ```bash
     cd content-web
@@ -438,7 +433,7 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-20. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for
+21. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for
     push. Copy the commands for "**HTTPS**" similar to this example:
 
     ```bash
@@ -446,13 +441,13 @@ single node.js site into a website with a content API that serves up the speaker
     git push -u origin --all
     ```
 
-21. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+22. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-22. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
+23. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
 
     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-23. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
+24. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
 
     ```bash
     cd ../content-api
@@ -461,16 +456,16 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-24. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
+25. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-25. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-26. Use the repository drop down to create a third repository called
+27. Use the repository drop down to create a third repository called
     `content-init`.
 
     > Note: You do not need to generate git credentials again. The same PAT will work for both repositories.
 
-27. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
+28. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
 
     ```bash
     cd ../content-init
@@ -479,9 +474,9 @@ single node.js site into a website with a content API that serves up the speaker
     git commit -m "Initial Commit"
     ```
 
-28. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
+29. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-29. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
@@ -561,11 +556,13 @@ In this task, you will update the packages and install Docker engine.
    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    ```
 
-5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following commands, each on their own line. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get install curl python-software-properties
+
    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+
    sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 
@@ -651,6 +648,12 @@ with them on the build agent.
    git config --global user.name "Your Name"
    ```
 
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
+
 2. Configure git CLI to cache your credentials, so that you don't have to keep
    re-typing them.
 
@@ -658,31 +661,43 @@ with them on the build agent.
    git config --global credential.helper cache
    ```
 
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
+
 3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
    right corner.
 
    ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
 
-4. Copy the repository url.
+4. Copy the repository URL.
 
-5. Use the repository url to clone the content-web code to your build agent machine.
+5. Use the repository URL to clone the content-web code to your build agent machine.
 
    ```bash
    git clone <REPOSITORY_URL>
    ```
 
+   > **Note**: In some cases, the `root` user will be assigned ownership of your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+
+   ```bash
+   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   ```
+
 6. When prompted for password use your PAT token from previous steps.
 
-7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository url.
+7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository URL.
 
-8. Use the repository url and `git clone` to copy the content-api code to your build agent.
+8. Use the repository URL and `git clone` to copy the content-api code to your build agent.
 
-9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository url.
+9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository URL.
 
-10. Use the repository url and `git clone` to copy the content-init code to your build agent.
+10. Use the repository URL and `git clone` to copy the content-init code to your build agent.
 
 > **Note**: Keep this cloud shell window open as your build agent SSH
-> connection. The lab will instruct you to open additional cloudshell sessions
+> connection. The lab will instruct you to open additional cloud shell sessions
 > as and when needed.
 
 You should follow all steps provided _before_ performing the Hands-on lab.

@@ -10,7 +10,7 @@ variables:
   dockerRegistryServiceConnection: 'Fabmedical ACR'
   imageRepository: 'content-api'
   containerRegistry: '$(containerRegistryName).azurecr.io'
-  containerRegistryName: 'fabmedicaljrc'
+  containerRegistryName: 'fabmedical[SHORT_SUFFIX]'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildNumber)'
   vmImageName: 'ubuntu-latest'
