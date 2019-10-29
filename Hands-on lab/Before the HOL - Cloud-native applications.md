@@ -48,7 +48,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - Trial subscriptions will _not_ work.
 
-   - To complete this lab setup (including [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)) ensure your account the following requirements:
+   - To complete this lab setup (including [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)) ensure your account includes the following:
 
      - Has the [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner) built-in role for the subscription you will use.
 
