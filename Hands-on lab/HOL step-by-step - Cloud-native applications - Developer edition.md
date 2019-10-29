@@ -1834,7 +1834,7 @@ In this task, you will increase the number of instances for the API deployment i
 
    ![In the Scale a Deployment dialog box, 2 is entered in the Desired number of pods box.](media/image116.png)
 
-   > **Note: If the deployment completes quickly, you may not see the deployment Waiting states in the dashboard as described in the following steps**.
+   > **Note**: If the deployment completes quickly, you may not see the deployment Waiting states in the dashboard as described in the following steps.
 
 4. From the Replica Set view for the API, you will see it is now deploying and that there is one healthy instance and one pending instance.
 
