@@ -24,19 +24,19 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 <!-- TOC -->
 
-- [Cloud-native applications before the hands-on lab setup guide](#cloud-native-applications-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#requirements)
-  - [Before the hands-on lab](#before-the-hands-on-lab)
-    - [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell)
-    - [Task 2: Download Starter Files](#task-2-download-starter-files)
-    - [Task 3: Resource Group](#task-3-resource-group)
-    - [Task 4: Create an SSH key](#task-4-create-an-ssh-key)
-    - [Task 5: Create a Service Principal](#task-5-create-a-service-principal)
-    - [Task 6: Deploy ARM Template](#task-6-deploy-arm-template)
-    - [Task 7: Setup Azure DevOps project](#task-7-setup-azure-devops-project)
-    - [Task 8: Connect securely to the build agent](#task-8-connect-securely-to-the-build-agent)
-    - [Task 9: Complete the build agent setup](#task-9-complete-the-build-agent-setup)
-    - [Task 10: Clone Repositories to the Build Agent](#task-10-clone-repositories-to-the-build-agent)
+- [Cloud-native applications before the hands-on lab setup guide](#Cloud-native-applications-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#Requirements)
+  - [Before the hands-on lab](#Before-the-hands-on-lab)
+    - [Task 1: Setup Azure Cloud Shell](#Task-1-Setup-Azure-Cloud-Shell)
+    - [Task 2: Download Starter Files](#Task-2-Download-Starter-Files)
+    - [Task 3: Resource Group](#Task-3-Resource-Group)
+    - [Task 4: Create an SSH key](#Task-4-Create-an-SSH-key)
+    - [Task 5: Create a Service Principal](#Task-5-Create-a-Service-Principal)
+    - [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template)
+    - [Task 7: Setup Azure DevOps project](#Task-7-Setup-Azure-DevOps-project)
+    - [Task 8: Connect securely to the build agent](#Task-8-Connect-securely-to-the-build-agent)
+    - [Task 9: Complete the build agent setup](#Task-9-Complete-the-build-agent-setup)
+    - [Task 10: Clone Repositories to the Build Agent](#Task-10-Clone-Repositories-to-the-Build-Agent)
 
 <!-- /TOC -->
 
@@ -108,7 +108,7 @@ You should follow all of the steps provided in this section _before_ taking part
 
 In this task you will use `git` to copy the lab content to your cloud shell so that the lab starter files will be available.
 
-> **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+> **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
 1. Type the following command and press `<ENTER>`:
 
@@ -134,7 +134,7 @@ You will create an Azure Resource Group to hold most of the resources that you c
 1. In your cloud shell window, you will type a command
    similar to the following command:
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
    ```bash
    az group create -l [LOCATION] -n fabmedical-[SUFFIX]
@@ -160,7 +160,7 @@ In this section, you will create an SSH key to securely access the VMs you creat
 
 1. From the cloud shell command line, enter the following command to ensure that a directory for the SSH keys is created. You can ignore any errors you see in the output.
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
    ```bash
    mkdir .ssh
@@ -190,7 +190,7 @@ Azure Kubernetes Service requires an Azure Active Directory service principal to
 
 1. To create a service principal, type the following command in the cloud shell command line, replacing {id} with your subscription identifier, and replacing suffix with your chosen suffix to make the name unique:
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
    ```bash
    az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/{id}" --name="http://Fabmedical-sp-{SUFFIX}"
@@ -216,7 +216,7 @@ In this section, you will configure and execute an ARM template that will create
 
 1. In Azure cloud shell, switch to the ARM template directory:
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
    ```bash
    cd MCW-Cloud-native-applications/Hands-on\ lab/arm/
@@ -287,6 +287,8 @@ In this section, you will configure and execute an ARM template that will create
 
    This command will take up to 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup Azure DevOps while the deployment runs.
 
+<!-- TODO:v should we had some steps to help discover the state of the deployment in case something happens with the cloud shell window? -->
+
 ### Task 7: Setup Azure DevOps project
 
 FabMedical has provided starter files for you. They have taken a copy of one of their websites, for their customer Contoso Neuro, and refactored it from a
@@ -348,9 +350,9 @@ single node.js site into a website with a content API that serves up the speaker
    - Ensure the project is Private.
    - Choose the Advanced dropdown.
    - Ensure the Version control is set to Git.
-   - Select the "Create Project" button.
+   - Select the "Create" button.
 
-   ![Create Project Dialog with an arrow pointing at the Create Project button](media/b4-image51.png)
+   ![Create Project Dialog with an arrow pointing at the Create button](media/b4-image51.png)
 
 8. Enable multi-stage pipelines:
 
@@ -368,17 +370,18 @@ single node.js site into a website with a content API that serves up the speaker
 
 11. Select the link indicated in the screenshot below to access the advanced settings.
 
-![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
+    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
 12. Enter the required information using the service principal information you
     created earlier.
 
     - **Connection name**: azurecloud
     - **Environment**: AzureCloud
+    - **Scope Level**: Subscription
     - **Subscription ID**: `id` from `az account show` output
-    - **Subscription Name**: `name` from `az account show` output
-    - **Service Principal Client ID**: `appId` from service principal output.
-    - **Service Principal Key**: `password` from service principal output.
+    - **Subscription name**: `name` from `az account show` output
+    - **Service principal client ID**: `appId` from service principal output.
+    - **Service principal key**: `password` from service principal output.
     - **Tenant ID**: `tenant` from service principal output.
 
     ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
@@ -458,7 +461,7 @@ single node.js site into a website with a content API that serves up the speaker
 
 25. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 27. Use the repository drop down to create a third repository called
     `content-init`.
@@ -476,20 +479,20 @@ single node.js site into a website with a content API that serves up the speaker
 
 29. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
 In this section, you will validate that you can connect to the new build agent
 VM.
 
-1. From Azure cloud shell, run the following command to find the IP address for
+1. Open a **new** Azure Cloud Shell console and run the following command to find the IP address for
    the build agent VM provisioned when you ran the ARM deployment:
 
-   > **Note**: If you don't have cloud shell available, refer back to Task 1: Setup Azure Cloud Shell.
+   > **Note**: If you don't have cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
    ```bash
-   az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT SUFFIX] --query publicIps -o tsv
+   az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORTssh  SUFFIX] --query publicIps -o tsv
    ```
 
    Example:
@@ -524,11 +527,11 @@ VM.
 
 5. When asked for the passphrase for the private key you created previously, enter this value.
 
-6. You will connect to the VM with a command prompt such as the following. Keep this command prompt open for the next step:
+6. You will connect to the VM with a command prompt such as the following. Keep this cloud shell window open for the next step:
 
    `adminfabmedical@fabmedical-SUFFIX:~$`
 
-   ![In this screenshot of a Command Prompt window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
+   ![In this screenshot of a Cloud Shell window, ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11 has been typed and run at the command prompt. The information detailed above appears in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/b4-image27.png)
 
 > **Note**: If you have issues connecting, you may have pasted the SSH public key incorrectly in the ARM template. Unfortunately, if this is the case, you will have to recreate the VM and try again.
 
@@ -538,7 +541,7 @@ In this task, you will update the packages and install Docker engine.
 
 1. Go to the cloud shell window that has the SSH connection open to the build agent VM.
 
-2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. If you are asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -556,7 +559,7 @@ In this task, you will update the packages and install Docker engine.
    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    ```
 
-5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following commands, each on their own line. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js and the node package manager by typing the following commands, each on their own line. If you are asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get install curl python-software-properties
@@ -566,7 +569,7 @@ In this task, you will update the packages and install Docker engine.
    sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 
-6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. When asked if you would like to proceed, respond by typing "Y" and pressing enter.
+6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. If you are asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
    sudo apt-get upgrade
@@ -585,7 +588,7 @@ In this task, you will update the packages and install Docker engine.
    docker version
    ```
 
-   ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window.](media/b4-image28.png)
+   ![In this screenshot of a Cloud Shell window, docker version has been typed and run at the command prompt. Docker version information appears in the window.](media/b4-image28.png)
 
 9. You may check the versions of node.js and npm as well, just for information purposes, using these commands:
 
@@ -607,7 +610,7 @@ In this task, you will update the packages and install Docker engine.
     sudo usermod -aG docker $USER
     ```
 
-    ![In this screenshot of a Command Prompt window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
+    ![In this screenshot of a Cloud Shell window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
 12. In order for the user permission changes to take effect, exit the SSH
     session by typing 'exit', then press \<Enter\>. Reconnect to the build agent
@@ -615,7 +618,7 @@ In this task, you will update the packages and install Docker engine.
 
 13. Run the Docker version command again, and note the output now shows the server version as well.
 
-    ![In this screenshot of a Command Prompt window, docker version has been typed and run at the command prompt. Docker version information appears in the window, in addition to server version information.](media/b4-image30.png)
+    ![In this screenshot of a Cloud Shell window, docker version has been typed and run at the command prompt. Docker version information appears in the window, in addition to server version information.](media/b4-image30.png)
 
 14. Run a few Docker commands:
 
@@ -633,7 +636,7 @@ In this task, you will update the packages and install Docker engine.
 
 15. In both cases, you will have an empty list but no errors running the command. Your build agent is ready with Docker engine running properly.
 
-    ![In this screenshot of a Command Prompt window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
+    ![In this screenshot of a Cloud Shell window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
 ### Task 10: Clone Repositories to the Build Agent
 
