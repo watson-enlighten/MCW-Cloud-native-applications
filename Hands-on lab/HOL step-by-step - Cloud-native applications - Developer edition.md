@@ -26,41 +26,41 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud-native applications - Developer edition hands-on lab step-by-step](#cloud-native-applications---developer-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
-    - [Task 1: Test the application](#task-1-test-the-application)
-    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
-    - [Task 4: Create Docker images](#task-4-create-docker-images)
-    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
-    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
-    - [Task 7: Run several containers with Docker compose](#task-7-run-several-containers-with-docker-compose)
-    - [Task 8: Push images to Azure Container Registry](#task-8-push-images-to-azure-container-registry)
-    - [Task 9: Setup CI Pipeline to Push Images](#task-9-setup-ci-pipeline-to-push-images)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
-    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
-    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
-  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
-  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
-  - [After the hands-on lab](#after-the-hands-on-lab)
+- [Cloud-native applications - Developer edition hands-on lab step-by-step](#Cloud-native-applications---Developer-edition-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
+  - [Overview](#Overview)
+  - [Solution architecture](#Solution-architecture)
+  - [Requirements](#Requirements)
+  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
+    - [Task 1: Test the application](#Task-1-Test-the-application)
+    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
+    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
+    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
+    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
+    - [Task 7: Run several containers with Docker compose](#Task-7-Run-several-containers-with-Docker-compose)
+    - [Task 8: Push images to Azure Container Registry](#Task-8-Push-images-to-Azure-Container-Registry)
+    - [Task 9: Setup CI Pipeline to Push Images](#Task-9-Setup-CI-Pipeline-to-Push-Images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
+    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
+    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
+  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
+  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
+    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
+  - [After the hands-on lab](#After-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -155,14 +155,14 @@ The purpose of this task is to make sure you can run the application successfull
 3. Run an instance of mongodb to use for local testing.
 
    ```bash
-   docker run --name mongo --net fabmedical -p 27017:27017 -d mongo
+   docker container run --name mongo --net fabmedical -p 27017:27017 -d mongo
    ```
 
 4. Confirm that the mongo container is running and ready.
 
    ```bash
    docker container list
-   docker logs mongo
+   docker container logs mongo
    ```
 
    ![In this screenshot of the console window, docker container list has been typed and run at the command prompt, and the “api” container is in the list. Below this the log output is shown.](media/Ex1-Task1.4.png)
@@ -270,7 +270,7 @@ The purpose of this task is to make sure you can run the application successfull
 14. From Azure cloud shell, run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment
 
     ```bash
-    az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT SUFFIX] --query publicIps -o tsv
+    az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT_SUFFIX] --query publicIps -o tsv
     ```
 
     Example:
@@ -285,11 +285,11 @@ The purpose of this task is to make sure you can run the application successfull
     vim app.js
     ```
 
-    Then press **_i_** to get into the edit mode, after that replace localhost with the build machine IP address
+    Then press **_i_** to get into the edit mode, after that replace localhost with the build machine IP address.
 
     ![show the app.js file in vim in the build machine to update the API URL.](media/image27.png)
 
-    Then write **_:wq_** to save you changes and close the file.
+    Then press **_ESC_**, write **_:wq_** to save you changes and close the file.
 
 16. Now run the content-web application in the background.
 
@@ -458,7 +458,7 @@ In this task, you will create Docker images for the application --- one for the 
    image downloaded earlier.
 
    ```bash
-   docker images
+   docker image ls
    ```
 
 2. From the content-api folder containing the API application files and the new Dockerfile you created, type the following command to create a Docker image for the API application. This command does the following:
@@ -470,13 +470,13 @@ In this task, you will create Docker images for the application --- one for the 
    - The final dot (".") indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name "Dockerfile" (case sensitive).
 
    ```bash
-   docker build -t content-api .
+   docker image build -t content-api .
    ```
 
-3. Once the image is successfully built, run the Docker images command again. You will see several new images: the node images and your container image.
+3. Once the image is successfully built, run the Docker images listing command again. You will see several new images: the node images and your container image.
 
    ```bash
-   docker images
+   docker image ls
    ```
 
    Notice the untagged image. This is the build stage which contains all the intermediate files not needed in your final image.
@@ -511,20 +511,20 @@ In this task, you will create Docker images for the application --- one for the 
 7. Type the following command to create a Docker image for the web application.
 
    ```bash
-   docker build -t content-web .
+   docker image build -t content-web .
    ```
 
 8. When complete, you will see seven images now exist when you run the Docker images command.
 
    ```bash
-   docker images
+   docker image ls
    ```
 
    ![Three images are now visible in this screenshot of the console window: content-web, content-api, and node.](media/image60.png)
 
 ### Task 5: Run a containerized application
 
-The web application container will be calling endpoints exposed by the API application container and the API application container will be communicating with mongodb. In this exercise, you will launch the images you created as containers on same bridge network you created when starting mongodb.
+The web application container will be calling endpoints exposed by the API application container and the API application container will be communicating with mongodb. In this exercise, you will launch the images you created as containers on the same bridge network you created when starting mongodb.
 
 1. Create and start the API application container with the following command. The command does the following:
 
@@ -537,10 +537,10 @@ The web application container will be calling endpoints exposed by the API appli
    - Creates a container from the specified image, by its tag, such as content-api.
 
    ```bash
-   docker run --name api --net fabmedical -p 3001:3001 content-api
+   docker container run --name api --net fabmedical -p 3001:3001 content-api
    ```
 
-2. The docker run command has failed because it is configured to connect to mongodb using a localhost URL. However, now that content-api is isolated in a separate container, it cannot access mongodb via localhost even when running on the same docker host. Instead, the API must use the bridge network to connect to mongodb.
+2. The `docker container run` command has failed because it is configured to connect to mongodb using a localhost URL. However, now that content-api is isolated in a separate container, it cannot access mongodb via localhost even when running on the same docker host. Instead, the API must use the bridge network to connect to mongodb.
 
    ```text
    > content-api@0.0.0 start /usr/src/app
@@ -548,7 +548,7 @@ The web application container will be calling endpoints exposed by the API appli
 
    Listening on port 3001
    Could not connect to MongoDB!
-   MongoNetworkError: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+   MongoTimeoutError: Server selection timed out after 30000 ms
    npm ERR! code ELIFECYCLE
    npm ERR! errno 255
    npm ERR! content-api@0.0.0 start: `node ./server.js`
@@ -558,24 +558,24 @@ The web application container will be calling endpoints exposed by the API appli
    npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 
    npm ERR! A complete log of this run can be found in:
-   npm ERR!     /root/.npm/_logs/2018-06-08T13_36_52_985Z-debug.log
+   npm ERR!     /root/.npm/_logs/2019-12-04T22_39_38_815Z-debug.log
    ```
 
-3. The content-api application allows an environment variable to configure the mongodb connection string. Remove the existing container, and then instruct the docker engine to set the environment variable by adding the `-e` switch to the docker run command. Also, use the `-d` switch to run the api as a daemon.
+3. The content-api application allows an environment variable to configure the mongodb connection string. Remove the existing container, and then instruct the docker engine to set the environment variable by adding the `-e` switch to the `docker container run` command. Also, use the `-d` switch to run the api as a daemon.
 
    ```bash
-   docker rm api
-   docker run --name api --net fabmedical -p 3001:3001 -e MONGODB_CONNECTION=mongodb://mongo:27017/contentdb -d content-api
+   docker container rm api
+   docker container run --name api --net fabmedical -p 3001:3001 -e MONGODB_CONNECTION=mongodb://mongo:27017/contentdb -d content-api
    ```
 
 4. Enter the command to show running containers. You will observe that the "api" container is in the list. Use the docker logs command to see that the API application has connected to mongodb.
 
    ```bash
    docker container ls
-   docker logs api
+   docker container logs api
    ```
 
-   ![In this screenshot of the console window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 548d25a1449f, content-api, "npm start", 8 seconds ago, Up 6 seconds, 0.0.0.0:3001->3001/tcp, and api.](media/image61.png)
+   ![In this screenshot of the console window, docker container ls has been typed and run at the command prompt, and the "api" container is in the list with the following values for Container ID, Image, Command, Created, Status, Ports, and Names: 458d47f2aaf1, content-api, "docker-entrypoint.s...", 37 seconds ago, Up 36 seconds, 0.0.0.0:3001->3001/tcp, and api.](media/image61.png)
 
 5. Test the API by curling the URL. You will see JSON output as you did when testing previously.
 
@@ -583,10 +583,10 @@ The web application container will be calling endpoints exposed by the API appli
    curl http://localhost:3001/speakers
    ```
 
-6. Create and start the web application container with a similar Docker run command -- instruct the docker engine to use any port with the `-P` command.
+6. Create and start the web application container with a similar `docker container run` command -- instruct the docker engine to use any port with the `-P` command.
 
    ```bash
-   docker run --name web --net fabmedical -P -d content-web
+   docker container run --name web --net fabmedical -P -d content-web
    ```
 
 7. Enter the command to show running containers again and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
@@ -610,8 +610,8 @@ In this task, you will configure the "web" container to communicate with the API
 1. From cloud shell connected to the build agent VM, stop and remove the web container using the following commands.
 
    ```bash
-   docker stop web
-   docker rm web
+   docker container stop web
+   docker container rm web
    ```
 
 2. Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
@@ -626,14 +626,10 @@ In this task, you will configure the "web" container to communicate with the API
    cat app.js
    ```
 
-4. Observe that the `/config/content` endpoint allows the contentApiUrl variable to be set with an environment variable.
+4. Observe that the contentApiUrl variable can be set with an environment variable.
 
    ```javascript
-   app.get("/config/content", function(req, res) {
-     const contentApiUrl =
-       process.env.CONTENT_API_URL || "http://localhost:3001/";
-     res.send({ contentUrl: contentApiUrl });
-   });
+   const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001";
    ```
 
 5. Open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
@@ -662,13 +658,13 @@ In this task, you will configure the "web" container to communicate with the API
 8. Rebuild the web application Docker image using the same command as you did previously.
 
    ```bash
-   docker build -t content-web .
+   docker image build -t content-web .
    ```
 
 9. Create and start the image passing the correct URI to the API container as an environment variable. This variable will address the API application using its container name over the Docker network you created. After running the container, check to see the container is running and note the dynamic port assignment for the next step.
 
    ```bash
-   docker run --name web --net fabmedical -P -d -e CONTENT_API_URL=http://api:3001 content-web
+   docker container run --name web --net fabmedical -P -d -e CONTENT_API_URL=http://api:3001 content-web
    docker container ls
    ```
 
@@ -681,9 +677,9 @@ In this task, you will configure the "web" container to communicate with the API
 11. You will not be able to browse to the web application on the ephemeral port because the VM only exposes a limited port range. Now you will stop the web container and restart it using port 3000 to test in the browser. Type the following commands to stop the container, remove it, and run it again using explicit settings for the port.
 
     ```bash
-    docker stop web
-    docker rm web
-    docker run --name web --net fabmedical -p 3000:3000 -d -e CONTENT_API_URL=http://api:3001 content-web
+    docker container stop web
+    docker container rm web
+    docker container run --name web --net fabmedical -p 3000:3000 -d -e CONTENT_API_URL=http://api:3001 content-web
     ```
 
 12. Curl the speaker path again, using port 3000. You will see the same HTML returned.
@@ -708,6 +704,8 @@ In this task, you will configure the "web" container to communicate with the API
     git push
     ```
 
+    Enter credentials if prompted.
+
 ### Task 7: Run several containers with Docker compose
 
 Managing several containers with all their command line options can become
@@ -717,9 +715,9 @@ for several containers and run them together.
 1. First, cleanup the existing containers.
 
    ```bash
-   docker stop web && docker rm web
-   docker stop api && docker rm api
-   docker stop mongo && docker rm mongo
+   docker container stop web && docker container rm web
+   docker container stop api && docker container rm api
+   docker container stop mongo && docker container rm mongo
    ```
 
 2. Navigate to your home directory (where you checked out the content repositories) and create a docker compose file.
@@ -775,11 +773,13 @@ for several containers and run them together.
 
    ![This screenshot of the console window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
 
+<!-- TODO:v why are we defining the compose file to use, since it's the default one? -->
+
 4. Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
 
    ![Browser view of the web site.](media/Ex1-Task6.18.png)
 
-5. We stopped and removed our previous mongodb container; all the data contained in it has been removed. Docker compose has created a new, empty mongodb instance that must be reinitialized. If we care to persist our data between container instances, the docker has several mechanisms to do so. First, we will update our compose file to persist mongodb data to a directory on the build agent.
+5. We stopped and removed our previous mongodb container; all the data contained in it has been removed. Docker compose has created a new, empty mongodb instance that must be reinitialized. If we care to persist our data between container instances, docker has several mechanisms to do so. First, we will update our compose file to persist mongodb data to a directory on the build agent.
 
    ```bash
    mkdir data
@@ -828,6 +828,8 @@ for several containers and run them together.
    ```
 
    ![This screenshot of the console window shows the running containers stopping.](media/Ex1-Task6.21.png)
+
+<!-- TODO:v why are we defining the compose file to use, since it's the default one? -->
 
 8. Now run `up` again with both files to update the mongodb configuration and run the initialization script.
 
@@ -882,14 +884,14 @@ In this task, you will push images to your ACR account, version images with tagg
 5. Run the following commands to properly tag your images to match your ACR account name.
 
    ```bash
-   docker tag content-web [LOGINSERVER]/content-web
-   docker tag content-api [LOGINSERVER]/content-api
+   docker image tag content-web [LOGINSERVER]/content-web
+   docker image tag content-api [LOGINSERVER]/content-api
    ```
 
 6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
 
    ```bash
-   docker images
+   docker image ls
    ```
 
    ![This is a screenshot of a docker images list example.](media/image66.png)
@@ -897,39 +899,39 @@ In this task, you will push images to your ACR account, version images with tagg
 7. Push the images to your ACR account with the following command:
 
    ```bash
-   docker push [LOGINSERVER]/content-web
-   docker push [LOGINSERVER]/content-api
+   docker image push [LOGINSERVER]/content-web
+   docker image push [LOGINSERVER]/content-api
    ```
 
-   ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/fabmedical/content-web.](media/image67.png)
+   ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/content-web.](media/image67.png)
 
 8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two; one for each image.
 
-   ![In this screenshot, fabmedical/content-api and fabmedical/content-web each appear on their own lines below Repositories.](media/image68.png)
+   ![In this screenshot, content-api and content-web each appear on their own lines below Repositories.](media/image68.png)
 
 9. Select content-api. You will see the latest tag is assigned.
 
-   ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
+   ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
 10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
-    docker tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
-    docker tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
-    docker images
+    docker image tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
+    docker image tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
+    docker image ls
     ```
 
     ![In this screenshot of the console window is an example of tags being added and displayed.](media/image70.png)
 
 11. Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
-    ![In this screenshot, fabmedical/content-api is selected under Repositories, and the Tags blade appears on the right. In the Tags blade, latest and v1 appear under Tags.](media/image71.png)
+    ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right. In the Tags blade, latest and v1 appear under Tags.](media/image71.png)
 
 12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
 
     ```bash
-    docker pull [LOGINSERVER]/content-web
-    docker pull [LOGINSERVER]/content-web:v1
+    docker image pull [LOGINSERVER]/content-web
+    docker image pull [LOGINSERVER]/content-web:v1
     ```
 
 ### Task 9: Setup CI Pipeline to Push Images
@@ -1000,7 +1002,7 @@ image and pushes it to your ACR instance automatically.
 
    ```bash
    git add azure-pipelines.yml
-   git commit -m 'Added pipeline YAML'
+   git commit -m "Added pipeline YAML"
    git push
    ```
 
@@ -1125,7 +1127,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    - Use 3001 for Port and 3001 for Target port.
 
-3. Select SHOW ADVANCED OPTIONS-----
+3. Select **SHOW ADVANCED OPTIONS**
 
    - Enter 0.125 for the CPU requirement.
 
@@ -1137,9 +1139,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, a red arrow points to the api deployment.](media/image80.png)
 
-5. Kubernetes indicates a problem with the api Replica Set. Select the log icon to investigate.
+5. Kubernetes indicates a problem with the api Replica Set after some seconds. Select the log icon to investigate.
 
    ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
+
+<!-- TODO:v it takes about 30s for it to show up -->
 
 6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with. You will resolve this issue by migrating your data workload to Cosmos DB.
 
@@ -1158,7 +1162,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
    > **Note**: Username and password redacted for brevity.
 
    ```text
-   mongodb://<USERNAME>:<PASSWORD>@fabmedical-sol.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
+   mongodb://<USERNAME>:<PASSWORD>@fabmedical-<SUFFIX>.documents.azure.com:10255/contentdb?ssl=true&replicaSet=globaldb
    ```
 
 10. To avoid disconnecting from the Kubernetes dashboard, open a **new** Azure Cloud Shell console.
@@ -1388,63 +1392,14 @@ In this task, deploy the web service using a helm chart.
 
 5. Open a **new** Azure Cloud Shell console.
 
-6. Create a text file called rbac-config.yaml using the Azure Cloud Shell
-   Editor.
-
-   ```bash
-   code rbac-config.yaml
-   ```
-
-7. Copy and paste the following text into the editor:
-
-   > **Note**: Be sure to copy and paste only the contents of the code block carefully to avoid introducing any special characters.
-
-   ```yaml
-   apiVersion: v1
-   kind: ServiceAccount
-   metadata:
-     name: tiller
-     namespace: kube-system
-   ---
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: ClusterRoleBinding
-   metadata:
-     name: tiller
-   roleRef:
-     apiGroup: rbac.authorization.k8s.io
-     kind: ClusterRole
-     name: cluster-admin
-   subjects:
-     - kind: ServiceAccount
-       name: tiller
-       namespace: kube-system
-   ```
-
-8. Save changes and close the editor.
-
-9. Type the following command to create the service account needed by Tiller
-   (the Helm server part).
-
-   ```bash
-   kubectl create -f rbac-config.yaml
-   ```
-
-10. Type the following command to initialize Helm using the previously service account setup.
-
-    ```bash
-    helm init --service-account tiller
-    ```
-
-11. Update your starter files by pulling the latest changes from Azure DevOps
+6. Update your starter files by pulling the latest changes from Azure DevOps
 
     ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
     git pull
     ```
 
-12. We will use the `helm create` command to scaffold out a chart implementation
-    that we can build on. Use the following commands to create a new chart named
-    `web` in a new directory:
+7. We will use the `helm create` command to scaffold out a chart implementation that we can build on. Use the following commands to create a new chart named `web` in a new directory:
 
     ```bash
     mkdir charts
@@ -1452,31 +1407,29 @@ In this task, deploy the web service using a helm chart.
     helm create web
     ```
 
-13. We now need to update the generated scaffold to match our requirements. We
-    will first update the file named `values.yaml`.
+8. We now need to update the generated scaffold to match our requirements. We will first update the file named `values.yaml`.
 
     ```bash
     cd web
     code values.yaml
     ```
 
-14. Search for the `image` definition and update the values so that they match the following:
+9. Search for the `image` definition and update the values so that they match the following:
 
     ```yaml
     image:
       repository: [LOGINSERVER].azurecr.io/content-web
-      tag: latest
       pullPolicy: Always
     ```
 
-15. Search for `nameOverride` and `fullnameOverride` entries and update the values so that they match the following:
+10. Search for `nameOverride` and `fullnameOverride` entries and update the values so that they match the following:
 
     ```yaml
     nameOverride: "web"
     fullnameOverride: "web"
     ```
 
-16. Search for the `service` definition and update the values so that they match the following:
+11. Search for the `service` definition and update the values so that they match the following:
 
     ```yaml
     service:
@@ -1484,7 +1437,7 @@ In this task, deploy the web service using a helm chart.
       port: 80
     ```
 
-17. Search for the `resources` definition and update the values so that they match the following:
+12. Search for the `resources` definition and update the values so that they match the following:
 
     ```yaml
     resources:
@@ -1500,21 +1453,51 @@ In this task, deploy the web service using a helm chart.
         memory: 128Mi
     ```
 
-18. Save changes and close the editor.
+13. Save changes and close the editor.
 
-19. We will now update the file named `deployment.yaml`.
+14. We will now update the file named `Chart.yaml`.
+
+    ```bash
+    code Chart.yaml
+    ```
+
+15. Search for the `appVersion` entry and update the value so that it matches the following:
+
+    ```yaml
+    appVersion: latest
+    ```
+
+16. We will now update the file named `deployment.yaml`.
 
     ```bash
     cd templates
     code deployment.yaml
     ```
 
-20. Search for the `containers` definition and update the values so that they match the following:
+17. Search for the `metadata` definition and update the values so that they match the following:
+
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      (...)
+    spec:
+      (...)
+      template:
+        metadata:
+          (...)
+          annotations:
+            rollme: {{ randAlphaNum 5 | quote }}
+    ```
+
+18. Search for the `containers` definition and update the values so that they match the following:
 
     ```yaml
     containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 12 }}
+        image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
           - name: http
@@ -1529,15 +1512,15 @@ In this task, deploy the web service using a helm chart.
             port: 3000
     ```
 
-21. Save changes and close the editor.
+19. Save changes and close the editor.
 
-22. We will now update the file named `service.yaml`.
+20. We will now update the file named `service.yaml`.
 
     ```bash
     code service.yaml
     ```
 
-23. Search for the `ports` definition and update the values so that they match the following:
+21. Search for the `ports` definition and update the values so that they match the following:
 
     ```yaml
     ports:
@@ -1547,26 +1530,26 @@ In this task, deploy the web service using a helm chart.
         name: http
     ```
 
-24. Save changes and close the editor.
+22. Save changes and close the editor.
 
-25. The chart is now setup to run our web container. Type the following command to deploy the application described by the YAML files. You will receive a message indicating that helm has created a web deployment and a web service.
+23. The chart is now setup to run our web container. Type the following command to deploy the application described by the YAML files. You will receive a message indicating that helm has created a web deployment and a web service.
 
     ```bash
     cd ../..
-    helm install --name web ./web
+    helm install web ./web
     ```
 
-    ![In this screenshot of the console, helm install --name web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
+    ![In this screenshot of the console, helm install web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
-26. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
+24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
-27. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
+25. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job.
 
     ![A screenshot of the web site showing no data displayed.](media/Ex2-Task3.11.png)
 
-28. We will now persist the changes into the repository. Execute the following commands:
+26. We will now persist the changes into the repository. Execute the following commands:
 
     ```bash
     cd ..
@@ -1683,6 +1666,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
           command: 'package'
           chartPath: 'charts/web'
           chartVersion: '$(Build.BuildNumber)'
+          save: false
         displayName: 'Helm Package'
 
       - task: AzureCLI@1
@@ -1730,16 +1714,6 @@ In this task, you will use Azure DevOps to automate the process for deploying th
                      helmVersionToInstall: "latest"
                    displayName: "Helm Install"
 
-                 - task: HelmDeploy@0
-                   inputs:
-                     connectionType: "Azure Resource Manager"
-                     azureSubscription: "azurecloud"
-                     azureResourceGroup: "fabmedical-[SUFFIX]"
-                     kubernetesCluster: "fabmedical-[SUFFIX]"
-                     command: "init"
-                     arguments: "--service-account tiller"
-                   displayName: "Helm init"
-
                  - task: AzureCLI@1
                    inputs:
                      azureSubscription: "azurecloud"
@@ -1763,8 +1737,6 @@ In this task, you will use Azure DevOps to automate the process for deploying th
                      chartName: "$(containerRegistryName)/web"
                      releaseName: "web"
                      overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/content-web"
-                     recreate: true
-                     force: true
                    displayName: "Helm Upgrade"
    ```
 
@@ -1790,11 +1762,13 @@ In this task, you will access and review the various logs and dashboards made av
 
    ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
 
+<!-- TODO:v review if we want to talk about, and enable, Live view -->
+
 4. To review the Containers dashboards and see more detailed information about each container select the containers tab.
 
    ![In this screenshot, the various containers information is shown.](media/monitor_1.png)
 
-5. Now filter by container name and search for the web containers, you will see all the containers created in the Kubernetes cluster with the pod names, you can compare the names with those in the kubernetes dashboard.
+5. Now filter by container name and search for the web containers, you will see all the containers created in the Kubernetes cluster with the pod names. You can compare the names with those in the kubernetes dashboard.
 
    ![In this screenshot, the containers are filtered by container named web.](media/monitor_3.png)
 
@@ -1806,13 +1780,15 @@ In this task, you will access and review the various logs and dashboards made av
 
    ![In this screenshot, the pod cpu usage details are shown.](media/monitor_4.png)
 
-8. To display the logs for any container simply select it and view the right panel and you will find "View Container Log" link which will list all logs for this specific container.
+8. To display the logs for any container simply select it and view the right panel and you will find "View container logs" option which will list all logs for this specific container.
 
-   ![Container Log view](media/monitor_5.png)
+   ![Access View container logs link](media/monitor_5.png)
+
+   ![Container Log view](media/monitor_6.png)
 
 9. For each log entry you can display more information by expanding the log entry to view the below details.
 
-   ![Log entry details](media/monitor_6.png)
+   ![Log entry details](media/monitor_7.png)
 
 ## Exercise 3: Scale the application and test HA
 
@@ -1951,7 +1927,7 @@ In this task, you will try to increase the number of instances for the API servi
 
 In this task, you will restart containers and validate that the restart does not impact the running service.
 
-1. From the navigation menu on the left, select Services view under Discovery and Load Balancing. From the Services list, select the external endpoint hyperlink for the web service, and visit the stats page by adding /stats.html to the URL. Keep this open and handy to be refreshed as you complete the steps that follow.
+1. From the navigation menu on the left, select Services view under Discovery and Load Balancing. From the Services list, select the external endpoint hyperlink for the web service, and visit the stats page by adding /stats to the URL. Keep this open and handy to be refreshed as you complete the steps that follow.
 
    ![In the Services box, a red arrow points at the hyperlinked external endpoint for the web service. ](media/image112.png)
 
@@ -1991,7 +1967,7 @@ In this task, you will restart containers and validate that the restart does not
 
     ![In the Scale a Deployment dialog box, 1 is entered in the Desired number of pods box.](media/image130.png)
 
-12. Return to the web site's stats.html page in the browser and refresh while this is scaling down. You will notice that only one API host name shows up, even though you may still see several running pods in the API replica set view. Even though several pods are running, Kubernetes will no longer send traffic to the pods it has selected to scale down. In a few moments, only one pod will show in the API replica set view.
+12. Return to the web site's stats page in the browser and refresh while this is scaling down. You will notice that only one API host name shows up, even though you may still see several running pods in the API replica set view. Even though several pods are running, Kubernetes will no longer send traffic to the pods it has selected to scale down. In a few moments, only one pod will show in the API replica set view.
 
     ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right are the Details and Pods boxes. Only one API host name, which has a green check mark and is listed as running, appears in the Pods box.](media/image131.png)
 
@@ -2029,7 +2005,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right, four pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image138.png)
 
-6. Return to the browser and refresh the stats.html page. You should see all 4 pods serve responses as you refresh.
+6. Return to the browser and refresh the stats page. You should see all 4 pods serve responses as you refresh.
 
 ### Task 2: Update an external service to support dynamic discovery with a load balancer
 
@@ -2042,6 +2018,8 @@ In this task, you will update the web service so that it supports dynamic discov
 3. From the Edit a Deployment dialog, scroll to the web containers spec as shown in the screenshot. Remove the hostPort entry for the web container's port mapping.
 
    ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about spec, containers, ports, and env. The ports node, containerPort: 3001 and protocol: TCP are highlighted.](media/image140.png)
+
+<!-- TODO:v there is no longer a hostPort constraint at this point, since the build pipeline has already run from a previous step -->
 
 4. Select **Update**.
 
@@ -2138,23 +2116,31 @@ In this task, you will edit the web application source code to add Application I
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
+<!-- webTaskId shows the web process pid, not the web process hostname -->
+
 ### Task 5: Configure Kubernetes Ingress
 
 In this task you will setup a Kubernetes Ingress to take advantage of path-based routing and TLS termination.
 
-1. Update your helm package list.
+1. Add the `nginx` repo.
+
+   ```bash
+   helm repo add nginx https://helm.nginx.com/stable
+   ```
+
+2. Update your helm package list.
 
    ```bash
    helm repo update
    ```
 
-2. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
+3. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
 
    ```bash
-   helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
+   helm install ingress-controller nginx/nginx-ingress --namespace kube-system --set controller.replicaCount=2
    ```
 
-3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
+4. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
 
    ```text
    service?namespace=kube-system
@@ -2162,7 +2148,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
-4. Create a script to update the public DNS name for the IP.
+5. Create a script to update the public DNS name for the IP.
 
    ```bash
    code update-ip.sh
@@ -2188,15 +2174,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of VIM editor showing the updated file.](media/Ex4-Task5.6.png)
 
-5. Save changes and close the editor.
+6. Save changes and close the editor.
 
-6. Run the update script.
+7. Run the update script.
 
    ```bash
    bash ./update-ip.sh
    ```
 
-7. Verify the IP update by visiting the URL in your browser.
+8. Verify the IP update by visiting the URL in your browser.
 
    > **Note**: It is normal to receive a 404 message at this time.
 
@@ -2206,13 +2192,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the browser URL.](media/Ex4-Task5.9.png)
 
-8. Use helm to install `cert-manager`; a tool that can provision SSL certificates automatically from letsencrypt.org.
+9. Use helm to install `cert-manager`; a tool that can provision SSL certificates automatically from letsencrypt.org.
+
+<!-- TODO:v issues with getting certmanager to work with Helm3 -->
 
    ```bash
    kubectl label namespace kube-system certmanager.k8s.io/disable-validation=true
 
    kubectl apply \
-       -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
+      -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
 
    helm install stable/cert-manager \
        --namespace kube-system \
@@ -2221,41 +2209,41 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
        --version v0.6.6
    ```
 
-9. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
+10. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
 
-   ```bash
-   code clusterissuer.yml
-   ```
+    ```bash
+    code clusterissuer.yml
+    ```
 
-   The following resource configuration should work as is:
+    The following resource configuration should work as is:
 
-   ```yaml
-   apiVersion: certmanager.k8s.io/v1alpha1
-   kind: ClusterIssuer
-   metadata:
-     name: letsencrypt-prod
-   spec:
-     acme:
-       # The ACME server URL
-       server: https://acme-v02.api.letsencrypt.org/directory
-       # Email address used for ACME registration
-       email: user@fabmedical.com
-       # Name of a secret used to store the ACME account private key
-       privateKeySecretRef:
-         name: letsencrypt-prod
-       # Enable HTTP01 validations
-       http01: {}
-   ```
+    ```yaml
+    apiVersion: certmanager.k8s.io/v1alpha1
+    kind: ClusterIssuer
+    metadata:
+      name: letsencrypt-prod
+    spec:
+      acme:
+        # The ACME server URL
+        server: https://acme-v02.api.letsencrypt.org/directory
+        # Email address used for ACME registration
+        email: user@fabmedical.com
+        # Name of a secret used to store the ACME account private key
+        privateKeySecretRef:
+          name: letsencrypt-prod
+        # Enable HTTP01 validations
+        http01: {}
+    ```
 
-10. Save changes and close the editor.
+11. Save changes and close the editor.
 
-11. Create the issuer using kubectl.
+12. Create the issuer using kubectl.
 
     ```bash
     kubectl create --save-config=true -f clusterissuer.yml
     ```
 
-12. Now you can create a certificate object.
+13. Now you can create a certificate object.
 
     > **Note**:
     >
@@ -2291,9 +2279,9 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         kind: ClusterIssuer
     ```
 
-13. Save changes and close the editor.
+14. Save changes and close the editor.
 
-14. Create the certificate using kubectl.
+15. Create the certificate using kubectl.
 
     ```bash
     kubectl create --save-config=true -f certificate.yml
@@ -2312,7 +2300,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
     > It can take between 5 and 30 minutes before the tls-secret becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
-15. Now you can create an ingress resource for the content applications.
+16. Now you can create an ingress resource for the content applications.
 
     ```bash
     code content.ingress.yml
@@ -2348,21 +2336,21 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
                   servicePort: 3001
     ```
 
-16. Save changes and close the editor.
+17. Save changes and close the editor.
 
-17. Create the ingress using kubectl.
+18. Create the ingress using kubectl.
 
     ```bash
     kubectl create --save-config=true -f content.ingress.yml
     ```
 
-18. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
+19. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
 
-19. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
+20. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
 
     ![A screenshot showing the output of the sessions content in the browser.](media/Ex4-Task5.19.png)
 
-20. Test TLS termination by visiting both services again using `https`.
+21. Test TLS termination by visiting both services again using `https`.
 
     > It can take between 5 and 30 minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
