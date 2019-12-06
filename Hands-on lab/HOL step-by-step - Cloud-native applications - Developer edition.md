@@ -26,41 +26,41 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud-native applications - Developer edition hands-on lab step-by-step](#Cloud-native-applications---Developer-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
-    - [Task 1: Test the application](#Task-1-Test-the-application)
-    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
-    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
-    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
-    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
-    - [Task 7: Run several containers with Docker compose](#Task-7-Run-several-containers-with-Docker-compose)
-    - [Task 8: Push images to Azure Container Registry](#Task-8-Push-images-to-Azure-Container-Registry)
-    - [Task 9: Setup CI Pipeline to Push Images](#Task-9-Setup-CI-Pipeline-to-Push-Images)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
-    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
-    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
-  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
-  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
-  - [After the hands-on lab](#After-the-hands-on-lab)
+- [Cloud-native applications - Developer edition hands-on lab step-by-step](#cloud-native-applications---developer-edition-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
+    - [Task 1: Test the application](#task-1-test-the-application)
+    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
+    - [Task 4: Create Docker images](#task-4-create-docker-images)
+    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
+    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
+    - [Task 7: Run several containers with Docker compose](#task-7-run-several-containers-with-docker-compose)
+    - [Task 8: Push images to Azure Container Registry](#task-8-push-images-to-azure-container-registry)
+    - [Task 9: Setup CI Pipeline to Push Images](#task-9-setup-ci-pipeline-to-push-images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
+    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
+    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
+  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
+  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
+    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
+  - [After the hands-on lab](#after-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -773,8 +773,6 @@ for several containers and run them together.
 
    ![This screenshot of the console window shows the creation of the network and three containers: mongo, api and web.](media/Ex1-Task6.17.png)
 
-<!-- TODO:v why are we defining the compose file to use, since it's the default one? -->
-
 4. Visit the website in the browser; notice that we no longer have any data on the speakers or sessions pages.
 
    ![Browser view of the web site.](media/Ex1-Task6.18.png)
@@ -828,8 +826,6 @@ for several containers and run them together.
    ```
 
    ![This screenshot of the console window shows the running containers stopping.](media/Ex1-Task6.21.png)
-
-<!-- TODO:v why are we defining the compose file to use, since it's the default one? -->
 
 8. Now run `up` again with both files to update the mongodb configuration and run the initialization script.
 
@@ -1142,8 +1138,6 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 5. Kubernetes indicates a problem with the api Replica Set after some seconds. Select the log icon to investigate.
 
    ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
-
-<!-- TODO:v it takes about 30s for it to show up -->
 
 6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with. You will resolve this issue by migrating your data workload to Cosmos DB.
 
@@ -1762,8 +1756,6 @@ In this task, you will access and review the various logs and dashboards made av
 
    ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
 
-<!-- TODO:v review if we want to talk about, and enable, Live view -->
-
 4. To review the Containers dashboards and see more detailed information about each container select the containers tab.
 
    ![In this screenshot, the various containers information is shown.](media/monitor_1.png)
@@ -2018,8 +2010,6 @@ In this task, you will update the web service so that it supports dynamic discov
 3. From the Edit a Deployment dialog, scroll to the web containers spec as shown in the screenshot. Remove the hostPort entry for the web container's port mapping.
 
    ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about spec, containers, ports, and env. The ports node, containerPort: 3001 and protocol: TCP are highlighted.](media/image140.png)
-
-<!-- TODO:v there is no longer a hostPort constraint at this point, since the build pipeline has already run from a previous step -->
 
 4. Select **Update**.
 
