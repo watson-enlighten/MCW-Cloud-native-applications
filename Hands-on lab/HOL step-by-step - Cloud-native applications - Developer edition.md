@@ -2106,8 +2106,6 @@ In this task, you will edit the web application source code to add Application I
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
-<!-- webTaskId shows the web process pid, not the web process hostname -->
-
 ### Task 5: Configure Kubernetes Ingress
 
 In this task you will setup a Kubernetes Ingress to take advantage of path-based routing and TLS termination.
