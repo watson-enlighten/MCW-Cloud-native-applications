@@ -2172,7 +2172,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
    ```
 
-   ![A screenshot of VIM editor showing the updated file.](media/Ex4-Task5.6.png)
+   ![A screenshot of cloud shell editor showing the updated file.](media/Ex4-Task5.6.png)
 
 6. Save changes and close the editor.
 
@@ -2194,19 +2194,12 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 9. Use helm to install `cert-manager`; a tool that can provision SSL certificates automatically from letsencrypt.org.
 
-<!-- TODO:v issues with getting certmanager to work with Helm3 -->
-
    ```bash
-   kubectl label namespace kube-system certmanager.k8s.io/disable-validation=true
+   kubectl create namespace cert-manager
 
-   kubectl apply \
-      -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.6/deploy/manifests/00-crds.yaml
+   kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
 
-   helm install stable/cert-manager \
-       --namespace kube-system \
-       --set ingressShim.defaultIssuerName=letsencrypt-prod \
-       --set ingressShim.defaultIssuerKind=ClusterIssuer \
-       --version v0.6.6
+   kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.8.1/cert-manager.yaml
    ```
 
 10. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
@@ -2251,7 +2244,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     >
     > To verify that the certificate was created successfully, use the `kubectl describe certificate tls-secret` command.
     >
-    > If a certificate is already available, skip to step 15.
+    > If a certificate is already available, skip to step 16.
 
     ```bash
     code certificate.yml
