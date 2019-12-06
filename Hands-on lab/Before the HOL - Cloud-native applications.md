@@ -149,7 +149,7 @@ Create an Azure Resource Group to hold most of the resources that you create in 
    ```
 
 2. When this completes, the Azure Portal shows your Resource Group.
-   
+
    ![In this screenshot of the Azure Portal, the fabmedical-sol Resource group is listed.](media/b4-image8.png)
 
 ### Task 4: Create an SSH key
@@ -175,7 +175,7 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
 4. Enter a passphrase when prompted, and **don't forget it**!
 
 5. Because you entered ".ssh/fabmedical", ssh-keygen generates the file in the ".ssh" folder in your user folder, where the cloud shell opens by default.
-   
+
 6. Keep this cloud shell open and remain in the default directory. You use this shell in later tasks.
 
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
@@ -536,7 +536,7 @@ In this task, you update the packages and install the Docker engine.
 
 1. Go to the cloud shell window that has the SSH connection open to the build agent VM.
 
-2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command.  Respond by typing "Y" and pressing enter, if asked if you would like to proceed.
+2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. Respond by typing "Y" and pressing enter, if asked if you would like to proceed.
 
    ```bash
    sudo apt-get update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
