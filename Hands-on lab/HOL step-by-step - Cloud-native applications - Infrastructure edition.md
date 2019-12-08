@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-October 2019
+December 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,40 +26,29 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud-native applications - Infrastructure edition hands-on lab step-by-step](#Cloud-native-applications---Infrastructure-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
-    - [Task 1: Test the application](#Task-1-Test-the-application)
-    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
-    - [Task 3: Create Docker images](#Task-3-Create-Docker-images)
-    - [Task 4: Run a containerized application](#Task-4-Run-a-containerized-application)
-    - [Task 5: Setup environment variables](#Task-5-Setup-environment-variables)
-    - [Task 6: Run several containers with Docker compose](#Task-6-Run-several-containers-with-Docker-compose)
-    - [Task 7: Push images to Azure Container Registry](#Task-7-Push-images-to-Azure-Container-Registry)
-    - [Task 8: Setup CI Pipeline to Push Images](#Task-8-Setup-CI-Pipeline-to-Push-Images)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
-    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
-    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
-  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
-  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
-  - [After the hands-on lab](#After-the-hands-on-lab)
+- [Cloud-native applications - Infrastructure edition hands-on lab step-by-step](#cloud-native-applications---infrastructure-edition-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
+    - [Task 1: Test the application](#task-1-test-the-application)
+    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
+    - [Task 3: Create Docker images](#task-3-create-docker-images)
+    - [Task 4: Run a containerized application](#task-4-run-a-containerized-application)
+    - [Task 5: Setup environment variables](#task-5-setup-environment-variables)
+    - [Task 6: Run several containers with Docker compose](#task-6-run-several-containers-with-docker-compose)
+    - [Task 7: Push images to Azure Container Registry](#task-7-push-images-to-azure-container-registry)
+    - [Task 8: Setup CI Pipeline to Push Images](#task-8-setup-ci-pipeline-to-push-images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
+- [Public IP address](#public-ip-address)
+- [Name to associate with public IP address](#name-to-associate-with-public-ip-address)
+- [Get the resource-id of the public ip](#get-the-resource-id-of-the-public-ip)
+- [Update public ip address with dns name](#update-public-ip-address-with-dns-name)
 
 <!-- /TOC -->
 
