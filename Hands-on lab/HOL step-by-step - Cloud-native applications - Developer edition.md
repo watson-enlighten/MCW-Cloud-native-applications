@@ -76,9 +76,9 @@ At the end of this lab you will be better able to build and deploy containerized
 
 Fabrikam Medical Conferences (FabMedical) provides conference website services tailored to the medical community. They are refactoring their application code, based on node.js, so that it can run as a Docker application, and want to implement a POC that will help them get familiar with the development process, lifecycle of deployment, and critical aspects of the hosting environment. They will be deploying their applications to Azure Kubernetes Service and want to learn how to deploy containers in a dynamically load-balanced manner, discover containers, and scale them on demand.
 
-In this hands-on lab, you will assist with completing this POC with a subset of the application code base. You will create a build agent based on Linux, and an Azure Kubernetes Service cluster for running deployed applications. You will be helping them to complete the Docker setup for their application, test locally, push to an image repository, deploy to the cluster, and test load-balancing and scale.
+In this hands-on lab, you will assist with completing this POC with a subset of the application codebase. You will create a build agent based on Linux, and an Azure Kubernetes Service cluster for running deployed applications. You will be helping them to complete the Docker setup for their application, test locally, push to an image repository, deploy to the cluster, and test load-balancing and scale.
 
-> **IMPORTANT**: Most Azure resources require unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with a unique handle (like your Microsoft Account email prefix) to ensure unique names for resources.
+> **IMPORTANT**: Most Azure resources require unique names. Throughout these steps, you will see the word "SUFFIX" as part of resource names. You should replace this with a unique handle (like your Microsoft Account email prefix) to ensure unique names for resources.
 
 ## Solution architecture
 
@@ -92,13 +92,13 @@ Each tenant will have the following containers:
 
 - **Conference Web site**: The SPA application that will use configuration settings to handle custom styles for the tenant.
 
-- **Admin Web site**: The SPA application that conference owners use to manage conference configuration details, manage attendee registrations, manage campaigns and communicate with attendees.
+- **Admin Web site**: The SPA application that conference owners use to manage conference configuration details, manage attendee registrations, manage campaigns, and communicate with attendees.
 
 - **Registration service**: The API that handles all registration activities creating new conference registrations with the appropriate package selections and associated cost.
 
 - **Email service**: The API that handles email notifications to conference attendees during registration, or when the conference owners choose to engage the attendees through their admin site.
 
-- **Config service**: The API that handles conference configuration settings such as dates, locations, pricing tables, early bird specials, countdowns, and related.
+- **Config service**: The API that handles conference configuration settings such as dates, locations, pricing tables, early-bird specials, countdowns, and related.
 
 - **Content service**: The API that handles content for the conference such as speakers, sessions, workshops, and sponsors.
 
@@ -115,7 +115,7 @@ Each tenant will have the following containers:
 
      - Is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
 
-     > **Note** If you do not meet these requirements you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
+     > **Note** If you do not meet these requirements, you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
 
    - You must have enough cores available in your subscription to create the
      build agent and Azure Kubernetes Service cluster in Before the Hands-on
@@ -130,7 +130,7 @@ Each tenant will have the following containers:
 
 3. You will install other tools throughout the exercises.
 
-> **VERY IMPORTANT**: You should be typing all the commands as they appear in the guide. Do not try to copy and paste to your command windows or other documents when instructed to enter information shown in this document, except where explicitly stated in this document. There can be issues with Copy and Paste that result in errors, execution of instructions, or creation of file content.
+> **VERY IMPORTANT**: You should be typing all the commands as they appear in the guide. Do not try to copy and paste to your command windows or other documents when instructed to enter the information shown in this document, except where explicitly stated in this document. There can be issues with Copy and Paste that result in errors, execution of instructions, or creation of file content.
 
 ## Exercise 1: Create and run a Docker application
 
@@ -506,7 +506,7 @@ In this task, you will create Docker images for the application --- one for the 
    cat Dockerfile
    ```
 
-   Notice that the content-web Dockerfile build stage includes additional tools to a front-end Angular application in addition to installing npm packages.
+   Notice that the content-web Dockerfile build stage includes additional tools for a front-end Angular application in addition to installing npm packages.
 
 7. Type the following command to create a Docker image for the web application.
 
@@ -589,7 +589,7 @@ The web application container will be calling endpoints exposed by the API appli
    docker container run --name web --net fabmedical -P -d content-web
    ```
 
-7. Enter the command to show running containers again and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
+7. Enter the command to show running containers again, and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
 
    ```bash
    docker container ls
@@ -901,7 +901,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/content-web.](media/image67.png)
 
-8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two; one for each image.
+8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two, one for each image.
 
    ![In this screenshot, content-api and content-web each appear on their own lines below Repositories.](media/image68.png)
 
@@ -932,7 +932,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 ### Task 9: Setup CI Pipeline to Push Images
 
-In this task you will use YAML to define a pipeline that builds your Docker
+In this task, you will use YAML to define a pipeline that builds your Docker
 image and pushes it to your ACR instance automatically.
 
 1. In your cloud shell session connected to the build agent VM, navigate to the
@@ -1023,7 +1023,7 @@ image and pushes it to your ACR instance automatically.
    ![A screenshot of Azure DevOps Pipeline with a completed job.](media/hol-2019-10-02_08-28-49.png)
 
    > **Note**: The build may fail due to an authorization error related to the
-   > Docker Registry Service connection, if this is the case then select
+   > Docker Registry Service connection. If this is the case, then select
    > "Authorize Resources" and run the build again.
    > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
 
@@ -1173,7 +1173,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Azure cloud shell window showing the command to create the base64 encoded secret.  The output to copy is highlighted.](media/hol-2019-10-18_07-12-13.png)
 
-12. Return to the Kubernetes UI in your browser and select "+ Create". Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog and choose "Upload".
+12. Return to the Kubernetes UI in your browser and select "+ Create". Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog, and choose "Upload".
 
     ```yaml
     apiVersion: v1
@@ -1220,7 +1220,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing part of the deployment file.](media/Ex2-Task1.17.png)
 
-17. Save you changes and close the editor.
+17. Save your changes and close the editor.
 
     ![A screenshot of the code editor save and close actions.](media/Ex2-Task1.17.1.png)
 
@@ -1360,7 +1360,7 @@ In this task, deploy the web service using `kubectl`.
 
     ![In this screenshot of the console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
-11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
+11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
@@ -1535,7 +1535,7 @@ In this task, deploy the web service using a helm chart.
 
     ![In this screenshot of the console, helm install web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
-24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes you should be able to access the website via an external endpoint.
+24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
@@ -1752,11 +1752,11 @@ In this task, you will access and review the various logs and dashboards made av
 
    ![In the Monitoring blade, Insights is highlighted.](media/Ex2-Task8.2.png)
 
-3. Review the various available dashboards and a deeper look at the various metrics and logs available on the Cluster, Cluster Nodes, Cluster Controllers and deployed Containers.
+3. Review the various available dashboards and a deeper look at the various metrics and logs available on the Cluster, Cluster Nodes, Cluster Controllers, and deployed Containers.
 
    ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
 
-4. To review the Containers dashboards and see more detailed information about each container select the containers tab.
+4. To review the Containers dashboards and see more detailed information about each container, select the containers tab.
 
    ![In this screenshot, the various containers information is shown.](media/monitor_1.png)
 
@@ -1786,7 +1786,7 @@ In this task, you will access and review the various logs and dashboards made av
 
 **Duration**: 20 minutes
 
-At this point you have deployed a single instance of the web and API service containers. In this exercise, you will increase the number of container instances for the web service and scale the front-end on the existing cluster.
+At this point, you have deployed a single instance of the web and API service containers. In this exercise, you will increase the number of container instances for the web service and scale the front-end on the existing cluster.
 
 ### Task 1: Increase service instances from the Kubernetes dashboard
 
@@ -1802,13 +1802,13 @@ In this task, you will increase the number of instances for the API deployment i
 
    ![In the Scale a Deployment dialog box, 2 is entered in the Desired number of pods box.](media/image116.png)
 
-   > **Note**: If the deployment completes quickly, you may not see the deployment Waiting states in the dashboard as described in the following steps.
+   > **Note**: If the deployment completes quickly, you may not see the deployment Waiting states in the dashboard, as described in the following steps.
 
 4. From the Replica Set view for the API, you will see it is now deploying and that there is one healthy instance and one pending instance.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left, and at right, Pods status: 1 pending, 1 running is highlighted. Below that, a red arrow points at the API deployment in the Pods box.](media/image117.png)
 
-5. From the navigation menu, select Deployments from the list. Note that the api service has a pending status indicated by the grey timer icon and it shows a pod count 1 of 2 instances (shown as "1/2").
+5. From the navigation menu, select Deployments from the list. Note that the api service has a pending status indicated by the grey timer icon, and it shows a pod count 1 of 2 instances (shown as "1/2").
 
    ![In the Deployments box, the api service is highlighted with a grey timer icon at left and a pod count of 1/2 listed at right.](media/image118.png)
 
@@ -1931,7 +1931,7 @@ In this task, you will restart containers and validate that the restart does not
 
 3. From the API deployment view, select **Scale** and from the dialog presented, and enter 4 for the desired number of pods. Select **OK**.
 
-4. From the navigation menu, select Workloads>Replica Sets. Select the api replica set and, from the Replica Set view, you will see that two pods cannot deploy.
+4. From the navigation menu, select Workloads>Replica Sets. Select the api replica set, and from the Replica Set view, you will see that two pods cannot deploy.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right are the Details and Pods boxes. In the Pods box, two pods have exclamation point (!) alerts and messages indicating that they cannot deploy.](media/image125.png)
 
@@ -1953,7 +1953,7 @@ In this task, you will restart containers and validate that the restart does not
 
    ![The first row of the Pods box is highlighted, and the pod has a green check mark and is running.](media/image129.png)
 
-10. From the navigation menu, select Deployments under Workloads. From the view's Deployments list select the API deployment.
+10. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the API deployment.
 
 11. From the API Deployment view, select Scale and enter 1 as the desired number of pods. Select OK.
 
@@ -1971,7 +1971,7 @@ In this task, you will restart containers and validate that the restart does not
 
 **Duration**: 45 minutes
 
-In the previous exercise we introduced a restriction to the scale properties of the service. In this exercise, you will configure the api deployments to create pods that use dynamic port mappings to eliminate the port resource constraint during scale activities.
+In the previous exercise, we introduced a restriction to the scale properties of the service. In this exercise, you will configure the api deployments to create pods that use dynamic port mappings to eliminate the port resource constraint during scale activities.
 
 Kubernetes services can discover the ports assigned to each pod, allowing you to run multiple instances of the pod on the same agent node --- something that is not possible when you configure a specific static port (such as 3001 for the API service).
 
@@ -1979,7 +1979,7 @@ Kubernetes services can discover the ports assigned to each pod, allowing you to
 
 In this task, we will reconfigure the API deployment so that it will produce pods that choose a dynamic hostPort for improved scalability.
 
-1. From the navigation menu select Deployments under Workloads. From the view's Deployments list select the API deployment.
+1. From the navigation menu select Deployments under Workloads. From the view's Deployments list, select the API deployment.
 
 2. Select Edit.
 
@@ -2003,7 +2003,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
 In this task, you will update the web service so that it supports dynamic discovery through the Azure load balancer.
 
-1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list select the web deployment.
+1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the web deployment.
 
 2. Select **Edit**.
 
@@ -2025,7 +2025,7 @@ Like the API deployment, the web deployment used a fixed _hostPort_, and your ab
 
 In this task, you will modify the CPU requirements for the web service so that it can scale out to more instances.
 
-1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list select the web deployment.
+1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the web deployment.
 
 2. Select **Edit**.
 
@@ -2053,7 +2053,7 @@ In this task, you will edit the web application source code to add Application I
    az resource show -g fabmedical-[SUFFIX] -n content-web --resource-type "Microsoft.Insights/components" --query properties.InstrumentationKey -o tsv
    ```
 
-   Copy this value you will use it later.
+   Copy this value. You will use it later.
 
 2. Update your starter files by pulling the latest changes from Azure DevOps.
 
@@ -2098,7 +2098,7 @@ In this task, you will edit the web application source code to add Application I
 
 9. While this update runs, return the Kubernetes management dashboard in the browser.
 
-10. From the navigation menu, select Replica Sets under Workloads. From this view you will see a new replica set for web which may still be in the process of deploying (as shown below) or already fully deployed.
+10. From the navigation menu, select Replica Sets under Workloads. From this view, you will see a new replica set for the web, which may still be in the process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
@@ -2180,7 +2180,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the browser URL.](media/Ex4-Task5.9.png)
 
-9. Use helm to install `cert-manager`; a tool that can provision SSL certificates automatically from letsencrypt.org.
+9. Use helm to install `cert-manager`, a tool that can provision SSL certificates automatically from letsencrypt.org.
 
    ```bash
    kubectl create namespace cert-manager

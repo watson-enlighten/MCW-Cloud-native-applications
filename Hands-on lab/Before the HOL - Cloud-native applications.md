@@ -629,7 +629,7 @@ In this task, you update the packages and install the Docker engine.
       docker container ls -a
       ```
 
-15.In both cases, you have an empty list but no errors while running the command. Your build agent is ready with the Docker engine running correctly.
+15. In both cases, you have an empty list but no errors while running the command. Your build agent is ready with the Docker engine running correctly.
 
     ![In this screenshot of a Cloud Shell window, docker container ls has been typed and run at the command prompt, as has the docker container ls -a command.](media/b4-image31.png)
 
