@@ -271,11 +271,11 @@ In this section, you configure and execute an ARM template that creates all the 
 
 4. Select the **...** button and select **Save**.
 
-   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked, and the Save option is highlighted.](media/b4-image62.png)
+   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been selected, and the Save option is highlighted.](media/b4-image62.png)
 
 5. Select the **...** button again and select **Close Editor**.
 
-   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked, and the Close Editor option is highlighted.](media/b4-image63.png)
+   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been selected, and the Close Editor option is highlighted.](media/b4-image63.png)
 
 6. Create the needed resources by typing the following instruction (case sensitive), replacing {resourceGroup} with the name of the previously created resource group:
 

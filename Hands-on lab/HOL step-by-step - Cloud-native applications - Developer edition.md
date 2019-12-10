@@ -1312,11 +1312,11 @@ In this task, deploy the web service using `kubectl`.
 
 5. Select the **...** button and choose **Save**.
 
-   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been clicked and the Save option is highlighted.](media/b4-image62.png)
+   ![In this screenshot of an Azure Cloud Shell editor window, the ... button has been selected and the Save option is highlighted.](media/b4-image62.png)
 
 6. Select the **...** button again and choose **Close Editor**.
 
-   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been clicked and the Close Editor option is highlighted.](media/b4-image63.png)
+   ![In this screenshot of the Azure Cloud Shell editor window, the ... button has been selected and the Close Editor option is highlighted.](media/b4-image63.png)
 
 7. Create a text file called web.service.yml using the Azure Cloud Shell
    Editor.
