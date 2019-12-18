@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-October 2019
+December 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -90,13 +90,13 @@ Each whiteboard design session uses the following flow:
 
 **Outcome**
 
-Analyze your customer's needs.
+Analyze your customer's needs:, including:
 
-- Customer's background, situation, needs and technical requirements
+- Customer's background, situation, needs and technical requirements.
 
-- Current customer infrastructure and architecture
+- Current customer infrastructure and architecture.
 
-- Potential issues, objectives and blockers
+- Potential issues, objectives and blockers.
 
 **Step 2: Design a proof of concept solution (60 minutes)**
 
@@ -162,7 +162,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 **Ask questions** and get them to share to fully involve your group in the learning process.
 
-**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience, and leaves them more open to what you are presenting.
+**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience and leaves them more open to what you are presenting.
 
 **Wait for responses**. If you ask a question such as, "What's your experience with (fill in the blank)?" then wait. Do not be afraid of a little silence. If you leap into the silence, your participants will feel you are not serious about involving them and will become passive. Give participants a chance to think, and if no one answers, patiently ask again. You will usually get a response.
 
@@ -194,9 +194,9 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 Fabrikam Medical Conferences provides conference web site services tailored to the medical community. They started out 10 years ago building a few conference sites for a small conference organizer. Since then, word of mouth has spread, and Fabrikam Medical Conferences is now a well-known industry brand. They now handle over 100 conferences per year and growing.
 
-Medical conferences are typically low budget web sites as the conferences are usually between 100 to only 1500 attendees at the high end. At the same time, the conference owners have significant customization and change demands that require turnaround on a dime to the live sites. These changes can impact various aspects of the system from UI through to back end, including conference registration and payment terms.
+Medical conferences are typically low budget web sites as the conferences are usually between 100 to only 1500 attendees at the high end. At the same time, the conference owners have significant customization and change demands that require turnaround on a dime to the live sites. These changes can impact various aspects of the system from UI through to the back end, including conference registration and payment terms.
 
-The VP of Engineering at Fabrikam, Arthur Block, has a team of 12 developers who handle all aspects of development, testing, deployment and operational management of their customer sites. Due to customer demands, they have issues with the efficiency and reliability of their development and DevOps workflows.
+The VP of Engineering at Fabrikam, Arthur Block, has a team of 12 developers who handle all aspects of development, testing, deployment, and operational management of their customer sites. Due to customer demands, they have issues with the efficiency and reliability of their development and DevOps workflows.
 
 The conference sites are currently hosted on-premises with the following topology and platform implementation:
 
@@ -220,13 +220,13 @@ Customers are considered "tenants", and each tenant is treated as a unique deplo
 
   - They will continue to use this admin site each conference, every year.
 
-  - They have the ability to add new events and isolate speakers, sessions, workshops and other details.
+  - They have the ability to add new events and isolate speakers, sessions, workshops, and other details.
 
 - The tenant's code (conference and admin web site) is deployed to a specific group of load balanced Windows Server machines dedicated to one or more tenant. Each group of machines hosts a specific set of tenants, and this is distributed according to scale requirements of the tenant.
 
 - Once the conference site is live, the inevitable requests for changes to the web site pages, styles, registration requirements, and any number of custom requests begin.
 
-Arthur is painfully aware that this small business, which evolved into something bigger, has organically grown into what should be a fully multi-tenanted application suite for conferences. However, the team is having difficulty approaching this goal. They are constantly updating the code base for each tenant and doing their best to merge improvements into a core code base they can use to spin up new conferences. The pace of change is fast, the budget is tight, and they simply do not have time to stop and restructure the core code base to support all the flexibilities customers require.
+Arthur is painfully aware that this small business, which evolved into something bigger, has organically grown into what should be a fully multi-tenanted application suite for conferences. However, the team is having difficulty approaching this goal. They are constantly updating the code base for each tenant and doing their best to merge improvements into a core code base they can use to spin up new conferences. The pace of change is fast, the budget is tight, and they simply do not have time to stop and restructure the core code base to support all the flexibility customers require.
 
 Arthur is looking to take a step in this direction with the following goals in mind:
 
@@ -474,7 +474,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 Arthur Block, VP Engineering at Fabrikam Medical Conferences
 
-The primary audience is the technical strategic decision-maker with influential solution architects, or lead technical personnel in development or operations. For this example, this could include the VP Engineering and his core team. Usually we talk to the key architects, developers, and infrastructure managers who report to the CIO or equivalent, or to key solution sponsors or those that represent the business unit IT or developers that report to those sponsors.
+The primary audience is the technical strategic decision-maker with influential solution architects or lead technical personnel in development or operations. For this example, this could include the VP Engineering and his core team. Usually we talk to the key architects, developers, and infrastructure managers who report to the CIO or equivalent, or to key solution sponsors or those that represent the business unit IT or developers that report to those sponsors.
 
 ## Preferred solution
 

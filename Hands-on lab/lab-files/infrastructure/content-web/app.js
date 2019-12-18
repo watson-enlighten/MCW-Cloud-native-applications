@@ -60,6 +60,7 @@ app.get('/api/sessions', function (req, res) {
 app.get('/api/stats', function (req, res) {
   stats(function (err, result) {
     if (!err) {
+      result.webTaskId = process.pid;
       res.send(result);
     } else {
       res.send(err);

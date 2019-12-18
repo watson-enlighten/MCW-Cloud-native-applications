@@ -287,3 +287,5 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 *.orig
+
+.DS_Store

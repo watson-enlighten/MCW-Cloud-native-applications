@@ -15,7 +15,6 @@ export class StatsComponent implements OnInit {
   ngOnInit() {
     this.statsService.getStats().subscribe((res: Stat) => {
       this.stats = res;
-      this.stats.hostName = this.window.location.hostname;
     });
   }
 }
