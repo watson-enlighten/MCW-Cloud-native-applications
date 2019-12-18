@@ -90,13 +90,13 @@ Each whiteboard design session uses the following flow:
 
 **Outcome**
 
-Analyze your customer's needs.
+Analyze your customer's needs:, including:
 
-- Customer's background, situation, needs and technical requirements
+- Customer's background, situation, needs and technical requirements.
 
-- Current customer infrastructure and architecture
+- Current customer infrastructure and architecture.
 
-- Potential issues, objectives and blockers
+- Potential issues, objectives and blockers.
 
 **Step 2: Design a proof of concept solution (60 minutes)**
 
@@ -162,7 +162,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 **Ask questions** and get them to share to fully involve your group in the learning process.
 
-**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience, and leaves them more open to what you are presenting.
+**Ask first**, whenever possible. Before launching into a topic, learn your audience's opinions about it and experiences with it. Asking first enables you to assess their level of knowledge and experience and leaves them more open to what you are presenting.
 
 **Wait for responses**. If you ask a question such as, "What's your experience with (fill in the blank)?" then wait. Do not be afraid of a little silence. If you leap into the silence, your participants will feel you are not serious about involving them and will become passive. Give participants a chance to think, and if no one answers, patiently ask again. You will usually get a response.
 
@@ -474,7 +474,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 Arthur Block, VP Engineering at Fabrikam Medical Conferences
 
-The primary audience is the technical strategic decision-maker with influential solution architects, or lead technical personnel in development or operations. For this example, this could include the VP Engineering and his core team. Usually we talk to the key architects, developers, and infrastructure managers who report to the CIO or equivalent, or to key solution sponsors or those that represent the business unit IT or developers that report to those sponsors.
+The primary audience is the technical strategic decision-maker with influential solution architects or lead technical personnel in development or operations. For this example, this could include the VP Engineering and his core team. Usually we talk to the key architects, developers, and infrastructure managers who report to the CIO or equivalent, or to key solution sponsors or those that represent the business unit IT or developers that report to those sponsors.
 
 ## Preferred solution
 
