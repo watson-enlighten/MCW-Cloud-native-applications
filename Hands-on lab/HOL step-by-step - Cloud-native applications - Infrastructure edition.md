@@ -467,13 +467,13 @@ In this task, you will configure the "web" container to communicate with the API
    <i>
    ```
 
-4. Locate the EXPOSE line shown below and add a line above it that sets the default value for the environment variable as shown in the screenshot.
+4. Locate the EXPOSE line shown below and add a line above it that sets the default value for the environment variable, as shown in the screenshot.
 
    ```Dockerfile
    ENV CONTENT_API_URL http://localhost:3001
    ```
 
-   ![In this screenshot of Dockerfile, ENV CONTENT_API_URL http://localhost:3001 appears above EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
+   ![In this screenshot of Dockerfile, the CONTENT_API_URL code appears above the next Dockerfile line, which reads EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
 
 5. Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
 
