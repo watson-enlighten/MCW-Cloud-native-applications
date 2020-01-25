@@ -26,41 +26,41 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
 
 <!-- TOC -->
 
-- [Cloud-native applications - Developer edition hands-on lab step-by-step](#cloud-native-applications---developer-edition-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#abstract-and-learning-objectives)
-  - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
-  - [Requirements](#requirements)
-  - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
-    - [Task 1: Test the application](#task-1-test-the-application)
-    - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
-    - [Task 4: Create Docker images](#task-4-create-docker-images)
-    - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
-    - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
-    - [Task 7: Run several containers with Docker compose](#task-7-run-several-containers-with-docker-compose)
-    - [Task 8: Push images to Azure Container Registry](#task-8-push-images-to-azure-container-registry)
-    - [Task 9: Setup CI Pipeline to Push Images](#task-9-setup-ci-pipeline-to-push-images)
-  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#exercise-2-deploy-the-solution-to-azure-kubernetes-service)
-    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#task-1-tunnel-into-the-azure-kubernetes-service-cluster)
-    - [Task 2: Deploy a service using the Kubernetes management dashboard](#task-2-deploy-a-service-using-the-kubernetes-management-dashboard)
-    - [Task 3: Deploy a service using kubectl](#task-3-deploy-a-service-using-kubectl)
-    - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
-    - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
-    - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
-    - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
-  - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
-    - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
-    - [Task 2: Increase service instances beyond available resources](#task-2-increase-service-instances-beyond-available-resources)
-    - [Task 3: Restart containers and test HA](#task-3-restart-containers-and-test-ha)
-  - [Exercise 4: Working with services and routing application traffic](#exercise-4-working-with-services-and-routing-application-traffic)
-    - [Task 1: Scale a service without port constraints](#task-1-scale-a-service-without-port-constraints)
-    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
-    - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
-    - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
-  - [After the hands-on lab](#after-the-hands-on-lab)
+- [Cloud-native applications - Developer edition hands-on lab step-by-step](#Cloud-native-applications---Developer-edition-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
+  - [Overview](#Overview)
+  - [Solution architecture](#Solution-architecture)
+  - [Requirements](#Requirements)
+  - [Exercise 1: Create and run a Docker application](#Exercise-1-Create-and-run-a-Docker-application)
+    - [Task 1: Test the application](#Task-1-Test-the-application)
+    - [Task 2: Browsing to the web application](#Task-2-Browsing-to-the-web-application)
+    - [Task 3: Create a Dockerfile](#Task-3-Create-a-Dockerfile)
+    - [Task 4: Create Docker images](#Task-4-Create-Docker-images)
+    - [Task 5: Run a containerized application](#Task-5-Run-a-containerized-application)
+    - [Task 6: Setup environment variables](#Task-6-Setup-environment-variables)
+    - [Task 7: Run several containers with Docker compose](#Task-7-Run-several-containers-with-Docker-compose)
+    - [Task 8: Push images to Azure Container Registry](#Task-8-Push-images-to-Azure-Container-Registry)
+    - [Task 9: Setup CI Pipeline to Push Images](#Task-9-Setup-CI-Pipeline-to-Push-Images)
+  - [Exercise 2: Deploy the solution to Azure Kubernetes Service](#Exercise-2-Deploy-the-solution-to-Azure-Kubernetes-Service)
+    - [Task 1: Tunnel into the Azure Kubernetes Service cluster](#Task-1-Tunnel-into-the-Azure-Kubernetes-Service-cluster)
+    - [Task 2: Deploy a service using the Kubernetes management dashboard](#Task-2-Deploy-a-service-using-the-Kubernetes-management-dashboard)
+    - [Task 3: Deploy a service using kubectl](#Task-3-Deploy-a-service-using-kubectl)
+    - [Task 4: Deploy a service using a Helm chart](#Task-4-Deploy-a-service-using-a-Helm-chart)
+    - [Task 5: Initialize database with a Kubernetes Job](#Task-5-Initialize-database-with-a-Kubernetes-Job)
+    - [Task 6: Test the application in a browser](#Task-6-Test-the-application-in-a-browser)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#Task-7-Configure-Continuous-Delivery-to-the-Kubernetes-Cluster)
+    - [Task 8: Review Azure Monitor for Containers](#Task-8-Review-Azure-Monitor-for-Containers)
+  - [Exercise 3: Scale the application and test HA](#Exercise-3-Scale-the-application-and-test-HA)
+    - [Task 1: Increase service instances from the Kubernetes dashboard](#Task-1-Increase-service-instances-from-the-Kubernetes-dashboard)
+    - [Task 2: Increase service instances beyond available resources](#Task-2-Increase-service-instances-beyond-available-resources)
+    - [Task 3: Restart containers and test HA](#Task-3-Restart-containers-and-test-HA)
+  - [Exercise 4: Working with services and routing application traffic](#Exercise-4-Working-with-services-and-routing-application-traffic)
+    - [Task 1: Scale a service without port constraints](#Task-1-Scale-a-service-without-port-constraints)
+    - [Task 2: Update an external service to support dynamic discovery with a load balancer](#Task-2-Update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
+    - [Task 3: Adjust CPU constraints to improve scale](#Task-3-Adjust-CPU-constraints-to-improve-scale)
+    - [Task 4: Perform a rolling update](#Task-4-Perform-a-rolling-update)
+    - [Task 5: Configure Kubernetes Ingress](#Task-5-Configure-Kubernetes-Ingress)
+  - [After the hands-on lab](#After-the-hands-on-lab)
 
 <!-- /TOC -->
 
@@ -2110,25 +2110,19 @@ In this task, you will edit the web application source code to add Application I
 
 In this task you will setup a Kubernetes Ingress to take advantage of path-based routing and TLS termination.
 
-1. Add the `nginx` repo.
-
-   ```bash
-   helm repo add nginx https://helm.nginx.com/stable
-   ```
-
-2. Update your helm package list.
+1. Update your helm package list.
 
    ```bash
    helm repo update
    ```
 
-3. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
+2. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
 
    ```bash
-   helm install ingress-controller nginx/nginx-ingress --namespace kube-system --set controller.replicaCount=2
+   helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
    ```
 
-4. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
+3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
 
    ```text
    service?namespace=kube-system
@@ -2136,7 +2130,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
-5. Create a script to update the public DNS name for the IP.
+    > **Note**: Alternately, you can find the IP using the following command in Azure Cloud Shell.
+    >
+    > ```bash
+    > kubectl get svc --namespace kube-system
+    > ```
+    >
+    > ![A screenshot of Azure Cloud Shell showing the command output.](media/Ex4-Task5.5a.png)
+
+4. Create a script to update the public DNS name for the IP.
 
    ```bash
    code update-ip.sh
@@ -2162,15 +2164,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of cloud shell editor showing the updated file.](media/Ex4-Task5.6.png)
 
-6. Save changes and close the editor.
+5. Save changes and close the editor.
 
-7. Run the update script.
+6. Run the update script.
 
    ```bash
    bash ./update-ip.sh
    ```
 
-8. Verify the IP update by visiting the URL in your browser.
+7. Verify the IP update by visiting the URL in your browser.
 
    > **Note**: It is normal to receive a 404 message at this time.
 
@@ -2180,7 +2182,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
    ![A screenshot of the browser URL.](media/Ex4-Task5.9.png)
 
-9. Use helm to install `cert-manager`, a tool that can provision SSL certificates automatically from letsencrypt.org.
+8. Use helm to install `cert-manager`, a tool that can provision SSL certificates automatically from letsencrypt.org.
 
    ```bash
    kubectl create namespace cert-manager
@@ -2190,7 +2192,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.8.1/cert-manager.yaml
    ```
 
-10. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
+9. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
 
     ```bash
     code clusterissuer.yml
@@ -2216,15 +2218,15 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         http01: {}
     ```
 
-11. Save changes and close the editor.
+10. Save changes and close the editor.
 
-12. Create the issuer using kubectl.
+11. Create the issuer using kubectl.
 
     ```bash
     kubectl create --save-config=true -f clusterissuer.yml
     ```
 
-13. Now you can create a certificate object.
+12. Now you can create a certificate object.
 
     > **Note**:
     >
@@ -2260,9 +2262,9 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         kind: ClusterIssuer
     ```
 
-14. Save changes and close the editor.
+13. Save changes and close the editor.
 
-15. Create the certificate using kubectl.
+14. Create the certificate using kubectl.
 
     ```bash
     kubectl create --save-config=true -f certificate.yml
@@ -2273,15 +2275,16 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     > ```text
     > Type    Reason         Age   From          Message
     > ----    ------         ----  ----          -------
-    > Normal  Generated      27s   cert-manager  Generated new private key
-    > Normal  OrderCreated   27s   cert-manager  Created Order resource "tls-secret-1375302092"
-    > Normal  OrderComplete  2s    cert-manager  Order "tls-secret-1375302092" completed successfully
-    > Normal  CertIssued     2s    cert-manager  Certificate issued successfully
+    > Normal  Generated           38s   cert-manager  Generated new private key
+    > Normal  GenerateSelfSigned  38s   cert-manager  Generated temporary self signed certificate
+    > Normal  OrderCreated        38s   cert-manager  Created Order resource "tls-secret-3254248695"
+    > Normal  OrderComplete       12s   cert-manager  Order "tls-secret-3254248695" completed successfully
+    > Normal  CertIssued          12s   cert-manager  Certificate issued successfully
     > ```
 
     > It can take between 5 and 30 minutes before the tls-secret becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
-16. Now you can create an ingress resource for the content applications.
+15. Now you can create an ingress resource for the content applications.
 
     ```bash
     code content.ingress.yml
@@ -2317,21 +2320,21 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
                   servicePort: 3001
     ```
 
-17. Save changes and close the editor.
+16. Save changes and close the editor.
 
-18. Create the ingress using kubectl.
+17. Create the ingress using kubectl.
 
     ```bash
     kubectl create --save-config=true -f content.ingress.yml
     ```
 
-19. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
+18. Refresh the ingress endpoint in your browser. You should be able to visit the speakers and sessions pages and see all the content.
 
-20. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
+19. Visit the api directly, by navigating to `/content-api/sessions` at the ingress endpoint.
 
     ![A screenshot showing the output of the sessions content in the browser.](media/Ex4-Task5.19.png)
 
-21. Test TLS termination by visiting both services again using `https`.
+20. Test TLS termination by visiting both services again using `https`.
 
     > It can take between 5 and 30 minutes before the SSL site becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
