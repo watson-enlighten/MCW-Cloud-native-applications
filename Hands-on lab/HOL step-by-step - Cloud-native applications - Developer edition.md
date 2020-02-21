@@ -34,7 +34,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Exercise 1: Create and run a Docker application](#exercise-1-create-and-run-a-docker-application)
     - [Task 1: Test the application](#task-1-test-the-application)
     - [Task 2: Browsing to the web application](#task-2-browsing-to-the-web-application)
-    - [Task 3: Create a Dockerfile](#task-3-create-a-Dockerfile)
+    - [Task 3: Create a Dockerfile](#task-3-create-a-dockerfile)
     - [Task 4: Create Docker images](#task-4-create-docker-images)
     - [Task 5: Run a containerized application](#task-5-run-a-containerized-application)
     - [Task 6: Setup environment variables](#task-6-setup-environment-variables)
@@ -59,7 +59,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 2: Update an external service to support dynamic discovery with a load balancer](#task-2-update-an-external-service-to-support-dynamic-discovery-with-a-load-balancer)
     - [Task 3: Adjust CPU constraints to improve scale](#task-3-adjust-cpu-constraints-to-improve-scale)
     - [Task 4: Perform a rolling update](#task-4-perform-a-rolling-update)
-    - [Task 5: Configure Kubernetes Ingress](#Task-5-configure-kubernetes-ingress)
+    - [Task 5: Configure Kubernetes Ingress](#task-5-configure-kubernetes-ingress)
   - [After the hands-on lab](#after-the-hands-on-lab)
 
 <!-- /TOC -->
@@ -1102,6 +1102,12 @@ In this task, you will gather the information you need about your Azure Kubernet
 6. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, kubernetes has a green check mark next to it. Below that, default-token-s6kmc is listed under Secrets.](media/image77.png)
+
+   > **Note**: If the tunnel is not successful (if a JSON output is displayed), execute the command below and then return to task 5 above:
+   >
+   > ```bash
+   > az extension add --name aks-preview
+   > ```
 
 ### Task 2: Deploy a service using the Kubernetes management dashboard
 

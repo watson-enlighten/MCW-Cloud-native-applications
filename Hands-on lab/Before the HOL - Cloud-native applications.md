@@ -176,9 +176,17 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
 
 5. Because you entered ".ssh/fabmedical", ssh-keygen generates the file in the ".ssh" folder in your user folder, where the cloud shell opens by default.
 
-6. Keep this cloud shell open and remain in the default directory. You use this shell in later tasks.
-
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
+
+6. From the cloud shell command line, enter the following command to output the public key content. Copy this information to use later.
+
+    ```bash
+    cat .ssh/fabmedical.pub
+    ```
+
+7. Keep this cloud shell open and remain in the default directory. You will use this shell in later tasks.
+
+    ![In this screenshot of the cloud shell window, cat .ssh/fabmedical has been typed and run at the command prompt. Information about the public key content appears in the window.](media/b4-image571.png)
 
 ### Task 5: Create a Service Principal
 

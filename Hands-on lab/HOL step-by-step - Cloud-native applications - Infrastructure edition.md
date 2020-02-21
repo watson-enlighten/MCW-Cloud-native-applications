@@ -942,6 +942,12 @@ In this task, you will gather the information you need about your Azure Kubernet
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, kubernetes has a green check mark next to it. Below that, default-token-s6kmc is listed under Secrets.](media/image77.png)
 
+   > **Note**: If the tunnel is not successful (if a JSON output is displayed), execute the command below and then return to task 5 above:
+   >
+   > ```bash
+   > az extension add --name aks-preview
+   > ```
+
 ### Task 2: Deploy a service using the Kubernetes management dashboard
 
 In this task, you will deploy the API application to the Azure Kubernetes Service cluster using the Kubernetes dashboard.
