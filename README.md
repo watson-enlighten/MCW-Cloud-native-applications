@@ -4,7 +4,7 @@ Fabrikam Medical Conferences provides conference web site services, tailored to 
 
 The goal of this workshop is to help them build a proof of concept (POC) that will migrate their code to a more manageable process that involves containerization of tenant code, a better DevOps workflow, and a simple lift-and-shift story for their database backend.
 
-December 2019
+February 2020
 
 ## Target Audience
 
@@ -40,6 +40,7 @@ At the end of this lab, you will be better able to build and deploy containerize
 - Cosmos DB (including MongoDB API)
 
 ## Azure solutions
+
 App Modernization
 
 ## Related references
@@ -51,9 +52,10 @@ App Modernization
 We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
 
 ***Having trouble?***
+
 - First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
 - Next, submit an issue with a detailed description of the problem.
-- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.   
+- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.
 
 If you are planning to present a workshop, *review and test the materials early*! We recommend at least two weeks prior.
 

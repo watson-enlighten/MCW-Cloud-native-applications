@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-December 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,11 +18,11 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-**Contents**
+### Contents
 
 <!-- TOC -->
 
@@ -267,7 +267,7 @@ The purpose of this task is to make sure you can run the application successfull
     sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
     ```
 
-14. From Azure cloud shell, run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment
+14. From Azure cloud shell, run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment.
 
     ```bash
     az vm show -d -g fabmedical-[SUFFIX] -n fabmedical-[SHORT_SUFFIX] --query publicIps -o tsv
@@ -1005,13 +1005,13 @@ image and pushes it to your ACR instance automatically.
 4. Now login to Azure DevOps to create your first build. Navigate to the
    `content-web` repository and choose 'Set up Build'.
 
-   ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button](media/hol-2019-10-01_19-50-16.png)
+   ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
 
 5. Azure DevOps will automatically detect the pipeline YAML you added. You can
    make additional edits here if needed. Select `Run` when you are ready to
    execute the pipeline.
 
-   ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button](media/hol-2019-10-02_07-33-16.png)
+   ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button.](media/hol-2019-10-02_07-33-16.png)
 
 6. Azure DevOps will queue your first build and execute the pipeline when an
    agent becomes available.
@@ -1097,7 +1097,7 @@ In this task, you will gather the information you need about your Azure Kubernet
    az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
    ```
 
-   ![In this screenshot of the console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001](media/image76.png)
+   ![In this screenshot of the console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001.](media/image76.png)
 
 6. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
@@ -1392,7 +1392,7 @@ In this task, deploy the web service using a helm chart.
 
 5. Open a **new** Azure Cloud Shell console.
 
-6. Update your starter files by pulling the latest changes from Azure DevOps
+6. Update your starter files by pulling the latest changes from Azure DevOps.
 
     ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
@@ -1688,7 +1688,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
 4. Choose "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
 
-   ![A screenshot that shows the jobs, Helm is complete, Docker is still running](media/hol-2019-10-02_10-57-42.png)
+   ![A screenshot that shows the jobs, Helm is complete, Docker is still running.](media/hol-2019-10-02_10-57-42.png)
 
 5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the SUFFIX values:
 
@@ -1760,7 +1760,7 @@ In this task, you will access and review the various logs and dashboards made av
 
 3. Review the various available dashboards and a deeper look at the various metrics and logs available on the Cluster, Cluster Nodes, Cluster Controllers, and deployed Containers.
 
-   ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
+   ![In this screenshot, the dashboards and blades are shown.](media/Ex2-Task8.3.png)
 
 4. To review the Containers dashboards and see more detailed information about each container, select the containers tab.
 
@@ -1780,13 +1780,13 @@ In this task, you will access and review the various logs and dashboards made av
 
 8. To display the logs for any container simply select it and view the right panel and you will find "View container logs" option which will list all logs for this specific container.
 
-   ![Access View container logs link](media/monitor_5.png)
+   ![In the View in Analytics dropdown, the View container logs item is selected.](media/monitor_5.png)
 
-   ![Container Log view](media/monitor_6.png)
+   ![The container logs are displayed based on a query entered in the query window.](media/monitor_6.png)
 
 9. For each log entry you can display more information by expanding the log entry to view the below details.
 
-   ![Log entry details](media/monitor_7.png)
+   ![The container log query results are displayed, one log entry is expanded in the results view with its details shown.](media/monitor_7.png)
 
 ## Exercise 3: Scale the application and test HA
 
@@ -1826,7 +1826,7 @@ In this task, you will increase the number of instances for the API deployment i
 
    - Three pods are healthy.
 
-7. Navigate to the web application from the browser again. The application should still work without errors as you navigate to Speakers and Sessions pages
+7. Navigate to the web application from the browser again. The application should still work without errors as you navigate to Speakers and Sessions pages.
 
    - Navigate to the /stats page. You will see information about the environment including:
 
@@ -1858,7 +1858,7 @@ In this task, you will try to increase the number of instances for the API servi
 
 3. In the Edit a Deployment dialog, you will see a list of settings shown in JSON format. Use the copy button to copy the text to your clipboard.
 
-   ![Screenshot of the Edit a Deployment dialog box.](media/image82.png)
+   ![Screenshot of the Edit a Deployment dialog box that displays JSON data.](media/image82.png)
 
 4. Paste the contents into the text editor of your choice (notepad is shown here, MacOS users can use TextEdit).
 
@@ -1927,13 +1927,13 @@ In this task, you will restart containers and validate that the restart does not
 
 1. From the navigation menu on the left, select Services view under Discovery and Load Balancing. From the Services list, select the external endpoint hyperlink for the web service, and visit the stats page by adding /stats to the URL. Keep this open and handy to be refreshed as you complete the steps that follow.
 
-   ![In the Services box, a red arrow points at the hyperlinked external endpoint for the web service. ](media/image112.png)
+   ![In the Services box, the hyperlinked external endpoint for the web service is highlighted. ](media/image112.png)
 
    ![The Stats page is visible in this screenshot of the Contoso Neuro 2017 web application.](media/image123.png)
 
 2. From the navigation menu, select Workloads>Deployments. From Deployments list, select the API deployment.
 
-   ![A red arrows points at Deployments, which is selected below Workloads in the navigation menu. At right, the API deployment is highlighted in the Deployments box.](media/image124.png)
+   ![In the left menu the Deployments item is selected. The API deployment is highlighted in the Deployments list box.](media/image124.png)
 
 3. From the API deployment view, select **Scale** and from the dialog presented, and enter 4 for the desired number of pods. Select **OK**.
 
@@ -1953,7 +1953,7 @@ In this task, you will restart containers and validate that the restart does not
 
 8. Note the remaining pods are still pending, since there are not enough port resources available to launch another instance. Make some room by deleting a running instance. Select the context menu and choose Delete for one of the healthy pods.
 
-   ![A red arrow points at the context menu for the previous pod names that were highlighted in the Pod box. Delete is selected and highlighted in the submenu.](media/image128.png)
+   ![The context menu for a pod in the pod list is expanded with the Delete item selected.](media/image128.png)
 
 9. Once the running instance is gone, Kubernetes will be able to launch one of the pending instances. However, because you set the desired size of the deploy to 4, Kubernetes will add a new pending instance. Removing a running instance allowed a pending instance to start, but in the end, the number of pending and running instances is unchanged.
 
@@ -2350,7 +2350,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 In this exercise, you will de-provision any Azure resources created in support of this lab.
 
-1. Delete the Resource Groups in which you placed all your Azure resources
+1. Delete the Resource Groups in which you placed all your Azure resources.
 
    - From the Portal, navigate to the blade of your Resource Group and then select Delete in the command bar at the top.
 
