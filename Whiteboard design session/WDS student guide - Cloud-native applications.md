@@ -166,8 +166,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ### Infographic for common scenarios
 
-<!-- omit in toc -->
-#### Kubernetes Architecture
+_Kubernetes Architecture_
 
 >**NOTE**: This diagram is an illustration of the Kubernetes topology, illustrating the master nodes managed by Azure, and the agent nodes where Customers can integrate and deploy applications.
 
@@ -175,8 +174,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
-<!-- omit in toc -->
-#### CICD to Azure Kubernetes Service with Azure DevOps
+_CICD to Azure Kubernetes Service with Azure DevOps_
 
 ![A diagram showing the Azure DevOps workflow to build Docker images from source code, push images to Azure Container Registry, and deploy to Azure Kubernetes Service.](media/azure-devops-aks.png)
 
@@ -202,15 +200,13 @@ Directions: With all participants at your table, answer the following questions 
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
-<!-- omit in toc -->
-### High-level architecture
+_High-level architecture_
 
 1. Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
 
 2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-<!-- omit in toc -->
-### Choosing a container platform on Azure
+_Choosing a container platform on Azure_
 
 1. List the potential platform choices for deploying containers to Azure.
 
@@ -218,8 +214,7 @@ Directions: With all participants at your table, respond to the following questi
 
 3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
-<!-- omit in toc -->
-### Containers, discovery, and load balancing
+_Containers, discovery, and load balancing_
 
 1. Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
@@ -237,13 +232,11 @@ Directions: With all participants at your table, respond to the following questi
 
 4. Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
 
-<!-- omit in toc -->
-### Scalability considerations
+_Scalability considerations_
 
 1. Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
 
-<!-- omit in toc -->
-### Automating DevOps workflows
+_Automating DevOps workflows_
 
 1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
