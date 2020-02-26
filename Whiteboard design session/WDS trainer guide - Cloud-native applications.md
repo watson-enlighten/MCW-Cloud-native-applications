@@ -22,45 +22,24 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-### Contents
+**Contents**
 
 <!-- TOC -->
 
 - [Trainer information](#trainer-information)
   - [Role of the trainer](#role-of-the-trainer)
   - [Whiteboard design session flow](#whiteboard-design-session-flow)
-    - [Step 1: Review the customer case study (15 minutes)](#step-1-review-the-customer-case-study-15-minutes)
-      - [Case study outcome](#case-study-outcome)
-    - [Step 2: Design a proof of concept solution (60 minutes)](#step-2-design-a-proof-of-concept-solution-60-minutes)
-      - [Proof of concept outcome](#proof-of-concept-outcome)
-    - [Step 3: Present the solution (30 minutes)](#step-3-present-the-solution-30-minutes)
-      - [Solution outcome](#solution-outcome)
-    - [Wrap-up (15 minutes)](#wrap-up-15-minutes)
   - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
   - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
 - [Cloud-native applications whiteboard design session student guide](#cloud-native-applications-whiteboard-design-session-student-guide)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-    - [Outcome](#outcome)
     - [Customer situation](#customer-situation)
     - [Customer needs](#customer-needs)
     - [Customer objections](#customer-objections)
     - [Infographic for common scenarios](#infographic-for-common-scenarios)
-      - [Kubernetes Architecture](#kubernetes-architecture)
-      - [CICD to Azure Kubernetes Service with Azure DevOps](#cicd-to-azure-kubernetes-service-with-azure-devops)
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-    - [Proof of concept outcome](#proof-of-concept-outcome-1)
-    - [Business needs](#business-needs)
-    - [Design](#design)
-      - [High-level architecture](#high-level-architecture)
-      - [Choosing a container platform on Azure](#choosing-a-container-platform-on-azure)
-      - [Containers, discovery, and load balancing](#containers-discovery-and-load-balancing)
-      - [Scalability considerations](#scalability-considerations)
-      - [Automating DevOps workflows](#automating-devops-workflows)
-        - [Prepare](#prepare)
   - [Step 3: Present the solution](#step-3-present-the-solution)
-    - [Solution outcome](#solution-outcome-1)
-      - [Presentation](#presentation)
   - [Wrap-up](#wrap-up)
   - [Additional references](#additional-references)
 - [Cloud-native applications whiteboard design session trainer guide](#cloud-native-applications-whiteboard-design-session-trainer-guide)
@@ -70,12 +49,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Wrap-up](#wrap-up-1)
   - [Preferred target audience](#preferred-target-audience)
   - [Preferred solution](#preferred-solution)
-    - [Design](#design-1)
-      - [High-level architecture](#high-level-architecture-1)
-      - [Choosing a container platform on Azure](#choosing-a-container-platform-on-azure-1)
-      - [Containers, discovery and load-balancing](#containers-discovery-and-load-balancing-1)
-      - [Scalability considerations](#scalability-considerations-1)
-      - [Automating DevOps workflows](#automating-devops-workflows-1)
   - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
   - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
 
@@ -113,9 +86,9 @@ An amazing trainer:
 
 Each whiteboard design session uses the following flow:
 
-### Step 1: Review the customer case study (15 minutes)
+**Step 1: Review the customer case study (15 minutes)**
 
-#### Case study outcome
+**Outcome**
 
 Analyze your customer's needs:, including:
 
@@ -125,9 +98,9 @@ Analyze your customer's needs:, including:
 
 - Potential issues, objectives and blockers.
 
-### Step 2: Design a proof of concept solution (60 minutes)
+**Step 2: Design a proof of concept solution (60 minutes)**
 
-#### Proof of concept outcome
+**Outcome**
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
@@ -139,9 +112,9 @@ Design a solution and prepare to present the solution to the target customer aud
 
 - Prepare to present your solution.
 
-### Step 3: Present the solution (30 minutes)
+**Step 3: Present the solution (30 minutes)**
 
-#### Solution outcome
+**Outcome**
 
 Present solution to your customer:
 
@@ -151,7 +124,7 @@ Present solution to your customer:
 
 - Receive feedback.
 
-### Wrap-up (15 minutes)
+**Wrap-up (15 minutes)**
 
 - Review preferred solution.
 
@@ -203,7 +176,7 @@ By the end of this design session you will be better able to design solutions th
 
 ## Step 1: Review the customer case study
 
-### Outcome
+**Outcome**
 
 Analyze your customer's needs.
 
@@ -319,6 +292,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ### Infographic for common scenarios
 
+<!-- omit in toc -->
 #### Kubernetes Architecture
 
 >**NOTE**: This diagram is an illustration of the Kubernetes topology, illustrating the master nodes managed by Azure, and the agent nodes where Customers can integrate and deploy applications.
@@ -327,6 +301,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
+<!-- omit in toc -->
 #### CICD to Azure Kubernetes Service with Azure DevOps
 
 ![A diagram showing the Azure DevOps workflow to build Docker images from source code, push images to Azure Container Registry, and deploy to Azure Kubernetes Service.](media/azure-devops-aks.png)
@@ -335,13 +310,13 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ## Step 2: Design a proof of concept solution
 
-### Proof of concept outcome
+**Outcome**
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 60 minutes
 
-### Business needs
+**Business needs**
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
@@ -349,17 +324,19 @@ Directions: With all participants at your table, answer the following questions 
 
 2. What customer business needs do you need to address with your solution?
 
-### Design
+**Design**
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
-#### High-level architecture
+<!-- omit in toc -->
+### High-level architecture
 
 1. Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
 
 2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-#### Choosing a container platform on Azure
+<!-- omit in toc -->
+### Choosing a container platform on Azure
 
 1. List the potential platform choices for deploying containers to Azure.
 
@@ -367,7 +344,8 @@ Directions: With all participants at your table, respond to the following questi
 
 3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
-#### Containers, discovery, and load balancing
+<!-- omit in toc -->
+### Containers, discovery, and load balancing
 
 1. Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
@@ -385,17 +363,19 @@ Directions: With all participants at your table, respond to the following questi
 
 4. Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
 
-#### Scalability considerations
+<!-- omit in toc -->
+### Scalability considerations
 
 1. Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
 
-#### Automating DevOps workflows
+<!-- omit in toc -->
+### Automating DevOps workflows
 
 1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
 2. Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
 
-##### Prepare
+**Prepare**
 
 Directions: With all participants at your table:
 
@@ -409,13 +389,13 @@ Prepare a 15-minute chalk-talk style presentation to the customer.
 
 ## Step 3: Present the solution
 
-### Solution outcome
+**Outcome**
 
 Present a solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 30 minutes
 
-#### Presentation
+**Presentation**
 
 Directions:
 
@@ -454,7 +434,6 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Container Security              | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/> |
 | Image Quarantine                | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>                              |
 | Container Monitoring Solution   | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>                       |
-                   |
 
 # Cloud-native applications whiteboard design session trainer guide
 
@@ -510,9 +489,9 @@ After evaluating the options for container platforms on Azure and discussing Azu
 
 They also decided to move forward with Azure DevOps for container DevOps workflows.
 
-### Design
+**Design**
 
-#### High-level architecture
+*High-level architecture*
 
 1. Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
   Each tenant will have the following containers:
@@ -535,7 +514,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
 ![A diagram showing the solution, using Azure Kubernetes Service with a CosmosDB back end.](media/solution-topology.png)
 
-#### Choosing a container platform on Azure
+*Choosing a container platform on Azure*
 
 1. List the potential platform choices for deploying containers to Azure.
 
@@ -577,7 +556,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
     - The Azure Kubernetes Service (AKS) environment is deployed using a few simple Azure CLI commands.
 
-#### Containers, discovery and load-balancing
+*Containers, discovery and load-balancing*
 
 1. Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
@@ -629,13 +608,13 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
    Web application and api service containers bind to random ports on their host node allowing multiple instances per node. Kubernetes supports dynamic service port discovery and will choose between all instances across nodes to route requests.
 
-#### Scalability considerations
+*Scalability considerations*
 
 1. Explain to the customer how Azure Kubernetes Service (AKS) supports cluster auto-scaling.
 
    You can scale the agent nodes in the cluster with the Kubernetes Autoscaler as of Kubernetes 1.10.
 
-#### Automating DevOps workflows
+*Automating DevOps workflows*
 
 1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 

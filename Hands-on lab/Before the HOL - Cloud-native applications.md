@@ -378,14 +378,14 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 12. Enter the required information using the service principal information you
     created earlier.
 
-    - **Connection name**: azurecloud.
-    - **Environment**: AzureCloud.
-    - **Scope Level**: Subscription.
-    - **Subscription ID**: `id` from `az account show` output.
-    - **Subscription name**: `name` from `az account show` output.
-    - **Service principal client ID**: `appId` from service principal output.
-    - **Service principal key**: `password` from service principal output.
-    - **Tenant ID**: `tenant` from service principal output.
+    - **Connection name**: azurecloud
+    - **Environment**: AzureCloud
+    - **Scope Level**: Subscription
+    - **Subscription ID**: Enter `id` from `az account show` output.
+    - **Subscription name**: Enter `name` from `az account show` output.
+    - **Service principal client ID**: Enter `appId` from service principal output.
+    - **Service principal key**: Enter `password` from service principal output.
+    - **Tenant ID**: Enter `tenant` from service principal output.
 
     ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
@@ -405,9 +405,9 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 16. Enter the required information using the service principal information you
     created earlier.
 
-    - **Environment**: Azure Container Registry.
+    - **Environment**: Azure Container Registry
 
-    - **Connection name**: Fabmedical ACR.
+    - **Connection name**: Fabmedical ACR
 
     - **Azure Subscription**: Choose the subscription you are using for the lab.
 

@@ -22,33 +22,19 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-### Contents
+**Contents**
 
 <!-- TOC -->
 
 - [Cloud-native applications whiteboard design session student guide](#cloud-native-applications-whiteboard-design-session-student-guide)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-    - [Outcome](#outcome)
     - [Customer situation](#customer-situation)
     - [Customer needs](#customer-needs)
     - [Customer objections](#customer-objections)
     - [Infographic for common scenarios](#infographic-for-common-scenarios)
-      - [Kubernetes Architecture](#kubernetes-architecture)
-      - [CICD to Azure Kubernetes Service with Azure DevOps](#cicd-to-azure-kubernetes-service-with-azure-devops)
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-    - [Proof of concept outcome](#proof-of-concept-outcome)
-    - [Business needs](#business-needs)
-    - [Design](#design)
-      - [High-level architecture](#high-level-architecture)
-      - [Choosing a container platform on Azure](#choosing-a-container-platform-on-azure)
-      - [Containers, discovery, and load balancing](#containers-discovery-and-load-balancing)
-      - [Scalability considerations](#scalability-considerations)
-      - [Automating DevOps workflows](#automating-devops-workflows)
-        - [Prepare](#prepare)
   - [Step 3: Present the solution](#step-3-present-the-solution)
-    - [Solution outcome](#solution-outcome)
-      - [Presentation](#presentation)
   - [Wrap-up](#wrap-up)
   - [Additional references](#additional-references)
 
@@ -64,7 +50,7 @@ By the end of this design session you will be better able to design solutions th
 
 ## Step 1: Review the customer case study
 
-### Outcome
+**Outcome**
 
 Analyze your customer's needs.
 
@@ -180,6 +166,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ### Infographic for common scenarios
 
+<!-- omit in toc -->
 #### Kubernetes Architecture
 
 >**NOTE**: This diagram is an illustration of the Kubernetes topology, illustrating the master nodes managed by Azure, and the agent nodes where Customers can integrate and deploy applications.
@@ -188,6 +175,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
+<!-- omit in toc -->
 #### CICD to Azure Kubernetes Service with Azure DevOps
 
 ![A diagram showing the Azure DevOps workflow to build Docker images from source code, push images to Azure Container Registry, and deploy to Azure Kubernetes Service.](media/azure-devops-aks.png)
@@ -196,13 +184,13 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ## Step 2: Design a proof of concept solution
 
-### Proof of concept outcome
+**Outcome**
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 60 minutes
 
-### Business needs
+**Business needs**
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
@@ -210,17 +198,19 @@ Directions: With all participants at your table, answer the following questions 
 
 2. What customer business needs do you need to address with your solution?
 
-### Design
+**Design**
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
-#### High-level architecture
+<!-- omit in toc -->
+### High-level architecture
 
 1. Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
 
 2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-#### Choosing a container platform on Azure
+<!-- omit in toc -->
+### Choosing a container platform on Azure
 
 1. List the potential platform choices for deploying containers to Azure.
 
@@ -228,7 +218,8 @@ Directions: With all participants at your table, respond to the following questi
 
 3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
-#### Containers, discovery, and load balancing
+<!-- omit in toc -->
+### Containers, discovery, and load balancing
 
 1. Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
@@ -246,17 +237,19 @@ Directions: With all participants at your table, respond to the following questi
 
 4. Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
 
-#### Scalability considerations
+<!-- omit in toc -->
+### Scalability considerations
 
 1. Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
 
-#### Automating DevOps workflows
+<!-- omit in toc -->
+### Automating DevOps workflows
 
 1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
 2. Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
 
-##### Prepare
+**Prepare**
 
 Directions: With all participants at your table:
 
@@ -270,13 +263,13 @@ Prepare a 15-minute chalk-talk style presentation to the customer.
 
 ## Step 3: Present the solution
 
-### Solution outcome
+**Outcome**
 
 Present a solution to the target customer audience in a 15-minute chalk-talk format.
 
 Timeframe: 30 minutes
 
-#### Presentation
+**Presentation**
 
 Directions:
 
