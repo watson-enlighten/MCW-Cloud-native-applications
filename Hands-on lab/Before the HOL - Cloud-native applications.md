@@ -248,6 +248,7 @@ In this section, you configure and execute an ARM template that creates all the 
    - **CosmosLocationName**: The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
+   
 
    | Location           | Location Name       |
    | ------------------ | ------------------- |
@@ -315,8 +316,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
    >
    > This will take you to the version of the starter files that will be used by that edition of the lab.
 
-3. You'll see the listing includes three folders, one for the web site, another
-   for the content API and one to initialize API data:
+3. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
 
    ```bash
    content-api/
