@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Cloud-native applications
@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-December 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -58,11 +58,11 @@ Timeframe: 15 minutes
 
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
-1.  Meet your table participants and trainer.
+1. Meet your table participants and trainer.
 
-2.  Read all of the directions for steps 1-3 in the student guide.
+2. Read all of the directions for steps 1-3 in the student guide.
 
-3.  As a table team, review the following customer case study.
+3. As a table team, review the following customer case study.
 
 ### Customer situation
 
@@ -126,11 +126,11 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 ### Customer needs
 
-1.  Reduce the overhead in time, complexity, and cost for deploying new conference tenants.
+1. Reduce the overhead in time, complexity, and cost for deploying new conference tenants.
 
-2.  Improve the reliability of conference tenant updates.
+2. Improve the reliability of conference tenant updates.
 
-3.  Choose a suitable platform for their Docker container strategy on Azure. The platform choice should:
+3. Choose a suitable platform for their Docker container strategy on Azure. The platform choice should:
 
     - Make it easy to deploy and manage infrastructure.
 
@@ -140,11 +140,11 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Provide a vendor neutral solution so that a specific on-premises or cloud environment does not become a new dependency.
 
-4.  Migrate data from MongoDB on-premises to CosmosDB with the least change possible to the application code.
+4. Migrate data from MongoDB on-premises to CosmosDB with the least change possible to the application code.
 
-5.  Continue to use Git repositories for source control and integrate into a CICD workflow.
+5. Continue to use Git repositories for source control and integrate into a CICD workflow.
 
-6.  Prefer a complete suite of operational management tools with:
+6. Prefer a complete suite of operational management tools with:
 
     - UI for manual deployment and management during development and initial POC work.
 
@@ -156,25 +156,25 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Container image scanning.
 
-7.  Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
+7. Complete an implementation of the proposed solution for a single tenant to train the team and perfect the process.
 
 ### Customer objections
 
-1.  There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each?
+1. There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each?
 
-2.  Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements?
+2. Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements?
 
 ### Infographic for common scenarios
 
-**Kubernetes Architecture**
+_Kubernetes Architecture_
 
-_NOTE: This diagram is an illustration of the Kubernetes topology, illustrating the master nodes managed by Azure, and the agent nodes where Customers can integrate and deploy applications._
+>**Note**: This diagram is an illustration of the Kubernetes topology, illustrating the master nodes managed by Azure, and the agent nodes where Customers can integrate and deploy applications.
 
 ![A diagram of Azure Kubernetes Service managed components with master and agent nodes.](media/azure-kubernetes-components.png)
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
-**CICD to Azure Kubernetes Service with Azure DevOps**
+_CICD to Azure Kubernetes Service with Azure DevOps_
 
 ![A diagram showing the Azure DevOps workflow to build Docker images from source code, push images to Azure Container Registry, and deploy to Azure Kubernetes Service.](media/azure-devops-aks.png)
 
@@ -192,9 +192,9 @@ Timeframe: 60 minutes
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
-1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
-2.  What customer business needs do you need to address with your solution?
+2. What customer business needs do you need to address with your solution?
 
 **Design**
 
@@ -202,21 +202,21 @@ Directions: With all participants at your table, respond to the following questi
 
 _High-level architecture_
 
-1.  Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
+1. Based on the customer situation, what containers would you propose as part of the new microservices architecture for a single conference tenant?
 
-2.  Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
+2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
 _Choosing a container platform on Azure_
 
-1.  List the potential platform choices for deploying containers to Azure.
+1. List the potential platform choices for deploying containers to Azure.
 
-2.  Which would you recommend and why?
+2. Which would you recommend and why?
 
-3.  Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
+3. Describe how the customer can provision their Azure Kubernetes Service (AKS) environment to get their POC started.
 
 _Containers, discovery, and load balancing_
 
-1.  Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
+1. Describe the high-level manual steps developers will follow for building images and running containers on Azure Kubernetes Service (AKS) as they build their POC. Include the following components in the summary:
 
     - The Git repository containing their source.
 
@@ -226,31 +226,31 @@ _Containers, discovery, and load balancing_
 
     - Run containers using the Kubernetes dashboard.
 
-2.  What options does the customer have for a Docker image registry and container scanning, and what would you recommend?
+2. What options does the customer have for a Docker image registry and container scanning, and what would you recommend?
 
-3.  How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
+3. How will the customer configure web site containers so that they are reachable publicly at port 80/443 from Azure Kubernetes Service (AKS)?
 
-4.  Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
+4. Explain how Azure Kubernetes Service (AKS) can route requests to multiple web site containers hosted on the same node at port 80/443
 
 _Scalability considerations_
 
-1.  Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
+1. Explain to the customer how Azure Kubernetes Service (AKS) and their preconfigured Scale Sets support cluster auto-scaling.
 
 _Automating DevOps workflows_
 
-1.  Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
+1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
-2.  Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
+2. Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
 
 **Prepare**
 
 Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution.
+1. Identify any customer needs that are not addressed with the proposed solution.
 
-2.  Identify the benefits of your solution.
+2. Identify the benefits of your solution.
 
-3.  Determine how you will respond to the customer's objections.
+3. Determine how you will respond to the customer's objections.
 
 Prepare a 15-minute chalk-talk style presentation to the customer.
 
@@ -266,19 +266,19 @@ Timeframe: 30 minutes
 
 Directions:
 
-1.  Pair with another table.
+1. Pair with another table.
 
-2.  One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team and the other table is the customer.
 
-3.  The Microsoft team presents their proposed solution to the customer.
+3. The Microsoft team presents their proposed solution to the customer.
 
-4.  The customer makes one of the objections from the list of objections.
+4. The customer makes one of the objections from the list of objections.
 
-5.  The Microsoft team responds to the objection.
+5. The Microsoft team responds to the objection.
 
-6.  The customer team gives feedback to the Microsoft team.
+6. The customer team gives feedback to the Microsoft team.
 
-7.  Tables switch roles and repeat Steps 2-6.
+7. Tables switch roles and repeat Steps 2-6.
 
 ## Wrap-up
 
@@ -293,10 +293,10 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | **Description**                 | **Links**                                                                                        |
 | Azure Kubernetes Services (AKS) | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/>                                   |
 | Kubernetes                      | <https://kubernetes.io/docs/home/>                                                               |
-| AKS FAQ                         | https://docs.microsoft.com/en-us/azure/aks/faq                                                   |
-| Autoscaling AKS                 | https://github.com/kubernetes/autoscaler                                                         |
-| AKS Cluster Autoscaler          | https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler                                    |
-| Upgrading an AKS cluster        | https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster                                       |
+| AKS FAQ                         | <https://docs.microsoft.com/en-us/azure/aks/faq>                                                   |
+| Autoscaling AKS                 | <https://github.com/kubernetes/autoscaler>                                                         |
+| AKS Cluster Autoscaler          | <https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler>                                    |
+| Upgrading an AKS cluster        | <https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster>                                       |
 | Azure Pipelines                 | <https://docs.microsoft.com/en-us/azure/devops/pipelines/>                                       |
 | Container Security              | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/> |
 | Image Quarantine                | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>                              |

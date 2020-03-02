@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-December 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 **Contents**
 
@@ -176,9 +176,17 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
 
 5. Because you entered ".ssh/fabmedical", ssh-keygen generates the file in the ".ssh" folder in your user folder, where the cloud shell opens by default.
 
-6. Keep this cloud shell open and remain in the default directory. You use this shell in later tasks.
-
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
+
+6. From the cloud shell command line, enter the following command to output the public key content. Copy this information to use later.
+
+    ```bash
+    cat .ssh/fabmedical.pub
+    ```
+
+7. Keep this cloud shell open and remain in the default directory. You will use this shell in later tasks.
+
+    ![In this screenshot of the cloud shell window, cat .ssh/fabmedical has been typed and run at the command prompt. Information about the public key content appears in the window.](media/b4-image571.png)
 
 ### Task 5: Create a Service Principal
 
@@ -226,7 +234,7 @@ In this section, you configure and execute an ARM template that creates all the 
    code azuredeploy.parameters.json
    ```
 
-   ![This screenshot shows the online editor for azure could shell](media/b4-image581.png)
+   ![This screenshot shows the online editor for azure could shell.](media/b4-image581.png)
 
 3. Update the values for the various keys so that they match your environment:
 
@@ -240,6 +248,7 @@ In this section, you configure and execute an ARM template that creates all the 
    - **CosmosLocationName**: The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
+   
 
    | Location           | Location Name       |
    | ------------------ | ------------------- |
@@ -307,8 +316,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
    >
    > This will take you to the version of the starter files that will be used by that edition of the lab.
 
-3. You'll see the listing includes three folders, one for the web site, another
-   for the content API and one to initialize API data:
+3. You'll see the listing includes three folders, one for the web site, another for the content API and one to initialize API data:
 
    ```bash
    content-api/
@@ -373,11 +381,11 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     - **Connection name**: azurecloud
     - **Environment**: AzureCloud
     - **Scope Level**: Subscription
-    - **Subscription ID**: `id` from `az account show` output
-    - **Subscription name**: `name` from `az account show` output
-    - **Service principal client ID**: `appId` from service principal output.
-    - **Service principal key**: `password` from service principal output.
-    - **Tenant ID**: `tenant` from service principal output.
+    - **Subscription ID**: Enter `id` from `az account show` output.
+    - **Subscription name**: Enter `name` from `az account show` output.
+    - **Service principal client ID**: Enter `appId` from service principal output.
+    - **Service principal key**: Enter `password` from service principal output.
+    - **Tenant ID**: Enter `tenant` from service principal output.
 
     ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
@@ -401,9 +409,9 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     - **Connection name**: Fabmedical ACR
 
-    - **Azure Subscription**: Choose the subscription you are using for the lab
+    - **Azure Subscription**: Choose the subscription you are using for the lab.
 
-    - **Azure Container Registry**: Choose the registry created for you by the ARM deployment
+    - **Azure Container Registry**: Choose the registry created for you by the ARM deployment.
 
     ![A screenshot of the Add Docker Registry Service Connection dialog with the values entered as described above.](media/hol-2019-10-01_20-33-05.png)
 
@@ -412,15 +420,15 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 18. Next, choose "Repos" then use the repository dropdown to create a new
     repository by selecting "+ New repository".
 
-    ![Repository dropdown](media/b4-image53.png)
+    ![The repository dropdown is displayed with the + New repository item selected.](media/b4-image53.png)
 
     - Enter "content-web" as the repository name.
 
     - Once Azure DevOps creates the repository, select "Generate Git credentials".
 
-    ![Generate Git Credentials](media/b4-image50.png)
+    ![The Clone to your computer section is displayed with the Generate Git Credentials button selected.](media/b4-image50.png)
 
-19. Copy the Personal Access Token and save it for later steps
+19. Copy the Personal Access Token and save it for later steps.
 
 20. Using your cloud shell window, initialize a new git repository for `content-web`.
 
@@ -431,8 +439,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git commit -m "Initial Commit"
     ```
 
-21. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for
-    push. Copy the commands for "**HTTPS**" similar to this example:
+21. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for push. Copy the commands for "**HTTPS**" similar to this example:
 
     ```bash
     git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
@@ -498,7 +505,7 @@ VM.
 
 2. In the cloud shell output, take note of the public IP address for the VM.
 
-   ![In this screenshot of the clouds shell output the Public IP address is shown.](media/b4-2019-10-01_11-58-05.png)
+   ![The cloud shell window is displayed with the Public IP address shown.](media/b4-2019-10-01_11-58-05.png)
 
 3. Connect to the new VM you created by typing the following command:
 
@@ -512,7 +519,7 @@ VM.
 
    - [BUILDAGENTUSERNAME]: Use the username for the VM, such as adminfabmedical.
 
-   - [BUILDAGENTIP]: The IP address for the build agent VM, retrieved in the previous step
+   - [BUILDAGENTIP]: The IP address for the build agent VM, retrieved in the previous step.
 
    ```bash
    ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
@@ -593,7 +600,7 @@ In this task, you update the packages and install the Docker engine.
    npm -version
    ```
 
-10. Install the Angular CLI
+10. Install the Angular CLI.
 
     ```bash
     sudo npm install -g @angular/cli
@@ -668,7 +675,7 @@ with them on the build agent.
 3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
    right corner.
 
-   ![This is a screenshot of the content-web repository page with the Clone button indicated.](media/b4-image55.png)
+   ![The content-web repository page is displayed with the Clone button selected.](media/b4-image55.png)
 
 4. Copy the repository URL.
 

@@ -290,7 +290,8 @@
                         "osDiskSizeGB": "[variables('kubernetesAgentOsDiskSizeGB')]",
                         "osType": "[variables('kubernetesAgentOsType')]",
                         "vmSize": "[variables('kubernetesAgentVmSize')]",
-                        "storageProfile": "ManagedDisks"
+                        "storageProfile": "ManagedDisks",
+                        "type": "VirtualMachineScaleSets"
                     }
                 ],
                 "servicePrincipalProfile": {

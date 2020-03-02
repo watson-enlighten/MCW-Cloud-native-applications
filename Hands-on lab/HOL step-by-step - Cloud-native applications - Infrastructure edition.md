@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-December 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,14 +18,13 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
 **Contents**
 
 <!-- TOC -->
-
 - [Cloud-native applications - Infrastructure edition hands-on lab step-by-step](#cloud-native-applications---infrastructure-edition-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
@@ -47,7 +46,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 4: Deploy a service using a Helm chart](#task-4-deploy-a-service-using-a-helm-chart)
     - [Task 5: Initialize database with a Kubernetes Job](#task-5-initialize-database-with-a-kubernetes-job)
     - [Task 6: Test the application in a browser](#task-6-test-the-application-in-a-browser)
-    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-Cluster)
+    - [Task 7: Configure Continuous Delivery to the Kubernetes Cluster](#task-7-configure-continuous-delivery-to-the-kubernetes-cluster)
     - [Task 8: Review Azure Monitor for Containers](#task-8-review-azure-monitor-for-containers)
   - [Exercise 3: Scale the application and test HA](#exercise-3-scale-the-application-and-test-ha)
     - [Task 1: Increase service instances from the Kubernetes dashboard](#task-1-increase-service-instances-from-the-kubernetes-dashboard)
@@ -922,7 +921,7 @@ In this task, you will gather the information you need about your Azure Kubernet
 
    ![In this screenshot of the console, kubectl get nodes has been typed and run at the command prompt, which produces a list of nodes.](media/image75.png)
 
-4. Since the AKS cluster uses RBAC, a ClusterRoleBinding must be created before you can correctly access the dashboard. To create the required binding, execute the command bellow:
+4. Since the AKS cluster uses RBAC, a ClusterRoleBinding must be created before you can correctly access the dashboard. To create the required binding, execute the command below:
 
    ```bash
    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
@@ -936,11 +935,17 @@ In this task, you will gather the information you need about your Azure Kubernet
    az aks browse --name fabmedical-SUFFIX --resource-group fabmedical-SUFFIX
    ```
 
-   ![In this screenshot of the console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001](media/image76.png)
+   ![In this screenshot of the console, the output of the above command produces output similar to the following: Password for private key: Proxy running on 127.0.0.1:8001/ui Press CTRL+C to close the tunnel ... Starting to server on 127.0.0.1:8001.](media/image76.png)
 
 6. If the tunnel is successful, you will see the Kubernetes management dashboard.
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, kubernetes has a green check mark next to it. Below that, default-token-s6kmc is listed under Secrets.](media/image77.png)
+
+   > **Note**: If the tunnel is not successful (if a JSON output is displayed), execute the command below and then return to task 5 above:
+   >
+   > ```bash
+   > az extension add --name aks-preview
+   > ```
 
 ### Task 2: Deploy a service using the Kubernetes management dashboard
 
@@ -1000,7 +1005,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
 10. To avoid disconnecting from the Kubernetes dashboard, open a **new** Azure Cloud Shell console.
 
-    ![A screenshot of the cloud shell window with a red arrow pointing at the "Open new session" button on the toolbar](media/hol-2019-10-19_06-13-34.png)
+    ![A screenshot of the cloud shell window with a red arrow pointing at the "Open new session" button on the toolbar.](media/hol-2019-10-19_06-13-34.png)
 
 11. You will setup a Kubernetes secret to store the connection string and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
 
@@ -1230,7 +1235,7 @@ In this task, deploy the web service using a helm chart.
    ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
     git pull
-    ```
+   ```
 
 7. We will use the chart scaffold implementation that we have available in the source code. Use the following commands to access the chart folder:
 
@@ -1455,7 +1460,7 @@ In this task, you will verify that you can browse to the web service you have de
 
 2. In the list of services, locate the external endpoint for the web service and select this hyperlink to launch the application.
 
-   ![In the Services box, a red arrow points at the hyperlinked external endpoint for the web service.](media/image112.png)
+   ![In the Services box, the hyperlinked external endpoint for the web service is highlighted.](media/image112.png)
 
 3. You will see the web application in your browser and be able to select the Speakers and Sessions links to view those pages without errors. The lack of errors means that the web application is correctly calling the API service to show the details on each of those pages.
 
@@ -1591,11 +1596,11 @@ In this task, you will access and review the various logs and dashboards made av
 
 3. Review the various available dashboards and a deeper look at the various metrics and logs available on the Cluster, Cluster Nodes, Cluster Controllers, and deployed Containers.
 
-   ![In this screenshot, the dashboards and blades are shows.](media/Ex2-Task8.3.png)
+   ![In this screenshot, the dashboards and blades are shown.](media/Ex2-Task8.3.png)
 
 4. To review the Containers dashboards and see more detailed information about each container, select the containers tab.
 
-   ![In this screenshot, the various containers information is shown.](media/monitor_1.png)
+   ![In this screenshot, the various container information is shown.](media/monitor_1.png)
 
 5. Now filter by container name and search for the web containers, you will see all the containers created in the Kubernetes cluster with the pod names. You can compare the names with those in the kubernetes dashboard.
 
@@ -1611,13 +1616,13 @@ In this task, you will access and review the various logs and dashboards made av
 
 8. To display the logs for any container simply select it and view the right panel and you will find "View container logs" option which will list all logs for this specific container.
 
-   ![Access View container logs link](media/monitor_5.png)
+   ![In the View in Analytics dropdown, the View container logs item is selected.](media/monitor_5.png)
 
-   ![Container Log view](media/monitor_6.png)
+   ![The container logs are displayed based on a query entered in the query window.](media/monitor_6.png)
 
 9. For each log entry you can display more information by expanding the log entry to view the below details.
 
-   ![Log entry details](media/monitor_7.png)
+   ![The container log query results are displayed, one log entry is expanded in the results view with its details shown.](media/monitor_7.png)
 
 ## Exercise 3: Scale the application and test HA
 
@@ -1689,7 +1694,7 @@ In this task, you will try to increase the number of instances for the API servi
 
 3. In the Edit a Deployment dialog, you will see a list of settings shown in JSON format. Use the copy button to copy the text to your clipboard.
 
-   ![Screenshot of the Edit a Deployment dialog box.](media/image82.png)
+   ![Screenshot of the Edit a Deployment dialog box that displays JSON data.](media/image82.png)
 
 4. Paste the contents into the text editor of your choice (notepad is shown here, MacOS users can use TextEdit).
 
@@ -1764,7 +1769,7 @@ In this task, you will restart containers and validate that the restart does not
 
 2. From the navigation menu, select Workloads>Deployments. From Deployments list, select the API deployment.
 
-   ![A red arrows points at Deployments, which is selected below Workloads in the navigation menu. At right, the API deployment is highlighted in the Deployments box.](media/image124.png)
+   ![In the left menu the Deployments item is selected. The API deployment is highlighted in the Deployments list box.](media/image124.png)
 
 3. From the API deployment view, select **Scale** and from the dialog presented, and enter 4 for the desired number of pods. Select **OK**.
 
@@ -1784,7 +1789,7 @@ In this task, you will restart containers and validate that the restart does not
 
 8. Note the remaining pods are still pending, since there are not enough port resources available to launch another instance. Make some room by deleting a running instance. Select the context menu and choose Delete for one of the healthy pods.
 
-   ![A red arrow points at the context menu for the previous pod names that were highlighted in the Pod box. Delete is selected and highlighted in the submenu.](media/image128.png)
+   ![The context menu for a pod in the pod list is expanded with the Delete item selected.](media/image128.png)
 
 9. Once the running instance is gone, Kubernetes will be able to launch one of the pending instances. However, because you set the desired size of the deploy to 4, Kubernetes will add a new pending instance. Removing a running instance allowed a pending instance to start, but in the end, the number of pending and running instances is unchanged.
 
@@ -2077,7 +2082,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     code certificate.yml
     ```
 
-    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
+    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name:
 
     ```yaml
     apiVersion: certmanager.k8s.io/v1alpha1
@@ -2127,7 +2132,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     code content.ingress.yml
     ```
 
-    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
+    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name:
 
     ```yaml
     apiVersion: extensions/v1beta1
@@ -2181,7 +2186,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 In this exercise, you will de-provision any Azure resources created in support of this lab.
 
-1. Delete the Resource Groups in which you placed all your Azure resources
+1. Delete the Resource Groups in which you placed all your Azure resources.
 
    - From the Portal, navigate to the blade of your Resource Group and then select Delete in the command bar at the top.
 
