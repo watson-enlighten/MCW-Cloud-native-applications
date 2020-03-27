@@ -60,7 +60,7 @@
                 }
             }
         ],
-        "vnetId": "[resourceId(resourceGroup().name,'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
+        "vnetId": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
         "subnetName": "default",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', variables('subnetName'))]",
         "networkSecurityGroupNameLinux": "[concat('fabmedical-', parameters('Suffix'), '-nsg')]",
@@ -107,7 +107,7 @@
         "registrySku": "Standard",
         "registryAdminUserEnabled": true,
         "kubernetesClusterName": "[concat('fabmedical-', parameters('Suffix'))]",
-        "kubernetesVersion": "1.15.5",
+        "kubernetesVersion": "1.15.10",
         "kubernetesDnsPrefix": "[concat('fabmedical-', parameters('Suffix'), '-dns')]",
         "kubernetesAgentOsType": "Linux",
         "kubernetesAgentOsDiskSizeGB": 0,
@@ -273,7 +273,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters",
-            "apiVersion": "2019-04-01",
+            "apiVersion": "2019-08-01",
             "name": "[variables('kubernetesClusterName')]",
             "location": "[parameters('Location')]",
             "dependsOn": [
