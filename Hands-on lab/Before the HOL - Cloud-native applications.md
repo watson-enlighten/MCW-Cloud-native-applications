@@ -369,62 +369,55 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
    ![Service principal (manual) is selected](media/vso-service-connection-service-principal-manual.png "Service principal (manual) is selected")
 
-10. Select the link indicated in the screenshot below to access the advanced settings.
-
-    ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
-
 11. Enter the required information using the service principal information you
     created earlier.
 
-    - **Connection name**: azurecloud
-    - **Environment**: AzureCloud
+    - **Environment**: Azure Cloud
     - **Scope Level**: Subscription
     - **Subscription ID**: Enter `id` from `az account show` output.
     - **Subscription name**: Enter `name` from `az account show` output.
     - **Service principal client ID**: Enter `appId` from service principal output.
     - **Service principal key**: Enter `password` from service principal output.
     - **Tenant ID**: Enter `tenant` from service principal output.
+    - **Service connection name**: AzureCloud
 
-    ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
+    ![A screenshot of the New Azure servie connection dialog.](media/Ex1-Task7.16.png "New Azure servie connection")
 
-12. Select "Verify connection" then select "OK".
+12. Select **Verify and save**.
 
     > **Note**: If the connection does not verify, then recheck and reenter the required data.
 
-13. Next, add another Azure Service Connection to your Azure DevOps account.
-    Select the Project settings gear icon to access your settings. Then choose
-    Service Connections.
+13. Next, add another Azure Service Connection to your Azure DevOps Project, select the **New service connection** button.
 
-14. Choose "+ New service connection". Then pick "Docker Registry" from
-    the menu.
+14. Choose the **Docker Registry** connection type, then select **Next**.
 
-    ![A screenshot of the Add Docker Registry Service Connection dialog.](media/hol-2019-10-01_20-30-17.png)
+    ![Docker Registry is selected](media/2020-06-23-15-58-56.png "Docker Registry is selected")
 
 15. Enter the required information using the service principal information you
     created earlier.
 
-    - **Environment**: Azure Container Registry
-
-    - **Connection name**: Fabmedical ACR
+    - **Registry type**: Azure Container Registry
 
     - **Azure Subscription**: Choose the subscription you are using for the lab.
 
     - **Azure Container Registry**: Choose the registry created for you by the ARM deployment.
 
-    ![A screenshot of the Add Docker Registry Service Connection dialog with the values entered as described above.](media/hol-2019-10-01_20-33-05.png)
+    - **Service connection name**: Fabmedical ACR
 
-16. Select "OK".
+   ![A screenshot of the New Docker Registry Service Connection dialog with the values entered as described above.](media/2020-06-23-16-02-31.png "A screenshot of the New Docker Registry Service Connection dialog with the values entered as described above.")
 
-17. Next, choose "Repos" then use the repository dropdown to create a new
-    repository by selecting "+ New repository".
+16. Select **Save**.
+
+17. Next, choose **Repos** then use the repository dropdown to create a new
+    repository by selecting **+ New repository**.
 
     ![The repository dropdown is displayed with the + New repository item selected.](media/b4-image53.png)
 
-    - Enter "content-web" as the repository name.
+    - Enter `content-web` as the repository name, uncheck the "Add a README" option, then select **Create**.
 
-    - Once Azure DevOps creates the repository, select "Generate Git credentials".
+    ![Create a reposistory dialog](media/2020-06-23-16-14-13.png "Create a reposistory dialog")
 
-    ![The Clone to your computer section is displayed with the Generate Git Credentials button selected.](media/b4-image50.png)
+    - Once Azure DevOps creates the repository, select **Generate Git Credentials**.
 
 18. Copy the Personal Access Token and save it for later steps.
 
