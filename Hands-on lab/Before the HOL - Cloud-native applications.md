@@ -555,7 +555,7 @@ In this task, you update the packages and install the Docker engine.
 5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js, and the node package manager by typing the following commands, each on their own line. If asked if you would like to proceed, respond by typing "Y" and pressing enter.
 
    ```bash
-   sudo apt-get install curl python-software-properties
+   sudo apt-get install curl python-software-properties -y
 
    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
@@ -645,10 +645,10 @@ with them on the build agent.
    ```
 
    > **Note**: In some cases, the `root` user owns your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
-
-   ```bash
-   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-   ```
+   >
+   > ```bash
+   > sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   > ```
 
 2. Configure git CLI to cache your credentials, so that you don't have to keep
    re-typing them.
@@ -658,15 +658,15 @@ with them on the build agent.
    ```
 
    > **Note**: In some cases, the `root` user owns your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+   >
+   > ```bash
+   > sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   > ```
 
-   ```bash
-   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-   ```
-
-3. Visit the `content-web` repository in Azure DevOps and select "Clone" in the
+3. Visit the `content-web` repository in Azure DevOps and select **Clone** in the
    right corner.
 
-   ![The content-web repository page is displayed with the Clone button selected.](media/b4-image55.png)
+   ![The content-web repository page is displayed with the Clone button selected.](media/b4-image55.png "content-web repository")
 
 4. Copy the repository URL.
 
@@ -677,18 +677,18 @@ with them on the build agent.
    ```
 
    > **Note**: In some cases, the `root` user owns your user's `.config` folder. If this happens, run the following command to return ownership to `adminfabmedical` and then try the `git` command again:
+   >
+   > ```bash
+   > sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
+   > ```
 
-   ```bash
-   sudo chown -R $USER:$(id -gn $USER) /home/adminfabmedical/.config
-   ```
+6. When prompted for a password, use your Personal Access Token (PAT) from previous steps.
 
-6. When prompted for a password, use your PAT token from previous steps.
-
-7. In your browser, switch to the `content-api` repository and select "Clone" to see and copy the repository URL.
+7. In your browser, switch to the `content-api` repository and select **Clone** to see and copy the repository URL.
 
 8. Use the repository URL and `git clone` to copy the content-api code to your build agent.
 
-9. In your browser, switch to the `content-init` repository and select "Clone" to see and copy the repository URL.
+9. In your browser, switch to the `content-init` repository and select **Clone** to see and copy the repository URL.
 
 10. Use the repository URL and `git clone` to copy the content-init code to your build agent.
 
