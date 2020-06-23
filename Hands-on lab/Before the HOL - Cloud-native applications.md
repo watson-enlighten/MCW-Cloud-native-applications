@@ -357,25 +357,23 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
    ![Create Project Dialog with an arrow pointing at the Create button](media/b4-image51.png)
 
-8. Enable multi-stage pipelines:
+8. Next, add an Azure Service Connection to your Azure DevOps Project. Select the
+   Project settings gear icon in the bottom left to access your settings. Then select Service Connections.
 
-   - Select your user icon in the top right corner.
-   - Then choose the three dots to access the "Preview Features" menu item.
-   - Toggle multi-stage pipelines to "On".
-
-9. Next, add an Azure Service Connection to your Azure DevOps account. Select the
-   Project settings gear icon to access your settings. Then select Service Connections.
-
-10. Choose "+ New service connection". Then pick "Azure Resource Manager" from
-    the menu.
+9. Choose **Create service connection**, then pick **Azure Resource Manager** from
+    the menu, and select **Next**.
 
     ![A screenshot of the New service connection selection in Azure DevOps with Azure Resource Manager highlighted.](media/vso-service-connection-settings.png)
 
-11. Select the link indicated in the screenshot below to access the advanced settings.
+10. Select **Service principal (manual)**, then select **Next**.
+
+   ![Service principal (manual) is selected](media/vso-service-connection-service-principal-manual.png "Service principal (manual) is selected")
+
+10. Select the link indicated in the screenshot below to access the advanced settings.
 
     ![A screenshot of the Add Azure Resource Manager dialog where you can enter your subscription information.](media/vso-service-connection-settings2.png)
 
-12. Enter the required information using the service principal information you
+11. Enter the required information using the service principal information you
     created earlier.
 
     - **Connection name**: azurecloud
@@ -389,20 +387,20 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![A screenshot of the Add Resource Manager Add Service Endpoint dialog.](media/Ex1-Task7.16.png)
 
-13. Select "Verify connection" then select "OK".
+12. Select "Verify connection" then select "OK".
 
     > **Note**: If the connection does not verify, then recheck and reenter the required data.
 
-14. Next, add another Azure Service Connection to your Azure DevOps account.
+13. Next, add another Azure Service Connection to your Azure DevOps account.
     Select the Project settings gear icon to access your settings. Then choose
     Service Connections.
 
-15. Choose "+ New service connection". Then pick "Docker Registry" from
+14. Choose "+ New service connection". Then pick "Docker Registry" from
     the menu.
 
     ![A screenshot of the Add Docker Registry Service Connection dialog.](media/hol-2019-10-01_20-30-17.png)
 
-16. Enter the required information using the service principal information you
+15. Enter the required information using the service principal information you
     created earlier.
 
     - **Environment**: Azure Container Registry
@@ -415,9 +413,9 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![A screenshot of the Add Docker Registry Service Connection dialog with the values entered as described above.](media/hol-2019-10-01_20-33-05.png)
 
-17. Select "OK".
+16. Select "OK".
 
-18. Next, choose "Repos" then use the repository dropdown to create a new
+17. Next, choose "Repos" then use the repository dropdown to create a new
     repository by selecting "+ New repository".
 
     ![The repository dropdown is displayed with the + New repository item selected.](media/b4-image53.png)
@@ -428,9 +426,9 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![The Clone to your computer section is displayed with the Generate Git Credentials button selected.](media/b4-image50.png)
 
-19. Copy the Personal Access Token and save it for later steps.
+18. Copy the Personal Access Token and save it for later steps.
 
-20. Using your cloud shell window, initialize a new git repository for `content-web`.
+19. Using your cloud shell window, initialize a new git repository for `content-web`.
 
     ```bash
     cd content-web
@@ -439,20 +437,20 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git commit -m "Initial Commit"
     ```
 
-21. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for push. Copy the commands for "**HTTPS**" similar to this example:
+20. Return to your Azure DevOps tab and copy the commands to add your Azure DevOps repository as a new remote for push. Copy the commands for "**HTTPS**" similar to this example:
 
     ```bash
     git remote add origin https://fabmedical-sol@dev.azure.com/fabmedical-sol/fabmedical/_git/content-web
     git push -u origin --all
     ```
 
-22. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+21. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. When prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-23. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
+22. Return to Azure DevOps and use the repository dropdown to create a second repository called `content-api`.
 
     > Note: You do not need to generate git credentials again. The same PAT works for both repositories.
 
-24. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
+23. Using your cloud shell window, initialize a new git repository in the `content-api` directory.
 
     ```bash
     cd ../content-api
@@ -461,16 +459,16 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git commit -m "Initial Commit"
     ```
 
-25. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
+24. Copy the commands to add your `content-api` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-26. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+25. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
-27. Use the repository drop down to create a third repository called
+26. Use the repository drop down to create a third repository called
     `content-init`.
 
     > Note: You do not need to generate git credentials again. The same PAT works for both repositories.
 
-28. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
+27. Using your cloud shell window, initialize a new git repository in the `content-init` directory.
 
     ```bash
     cd ../content-init
@@ -479,9 +477,9 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git commit -m "Initial Commit"
     ```
 
-29. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
+28. Copy the commands to add your `content-init` repository as a new remote for push. Copy the commands for "**HTTPS**".
 
-30. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
+29. Now use the commands copied from Azure DevOps to configure the remote repository and push the code to Azure DevOps. If prompted for a password, paste your Azure DevOps Personal Access Token you copied earlier in this task.
 
 ### Task 8: Connect securely to the build agent
 
