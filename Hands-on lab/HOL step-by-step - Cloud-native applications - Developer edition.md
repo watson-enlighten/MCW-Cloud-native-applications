@@ -465,9 +465,9 @@ In this task, you will create Docker images for the application --- one for the 
 
    - Executes the Docker build command to produce the image
 
-   - Tags the resulting image with the name content-api (-t)
+   - Tags the resulting image with the name `content-api` (-t)
 
-   - The final dot (".") indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name "Dockerfile" (case sensitive).
+   - The final dot (`.`) indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name `Dockerfile` (case sensitive).
 
    ```bash
    docker image build -t content-api .
@@ -528,9 +528,9 @@ The web application container will be calling endpoints exposed by the API appli
 
 1. Create and start the API application container with the following command. The command does the following:
 
-   - Names the container "api" for later reference with Docker commands.
+   - Names the container `api` for later reference with Docker commands.
 
-   - Instructs the Docker engine to use the "fabmedical" network.
+   - Instructs the Docker engine to use the `fabmedical` network.
 
    - Instructs the Docker engine to use port 3001 and map that to the internal container port 3001.
 
