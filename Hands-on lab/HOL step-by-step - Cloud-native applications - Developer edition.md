@@ -532,7 +532,7 @@ The web application container will be calling endpoints exposed by the API appli
 
    - Instructs the Docker engine to use the `fabmedical` network.
 
-   - Instructs the Docker engine to use port 3001 and map that to the internal container port 3001.
+   - Instructs the Docker engine to use port `3001` and map that to the internal container port `3001`.
 
    - Creates a container from the specified image, by its tag, such as content-api.
 
@@ -632,7 +632,7 @@ In this task, you will configure the "web" container to communicate with the API
    const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001";
    ```
 
-5. Open the Dockerfile for editing using Vim and press the "i" key to go into edit mode.
+5. Open the Dockerfile for editing using Vim and press the `i` key to go into edit mode.
 
    ```bash
    vi Dockerfile
@@ -647,7 +647,7 @@ In this task, you will configure the "web" container to communicate with the API
 
    ![In this screenshot of Dockerfile, the CONTENT_API_URL code appears above the next Dockerfile line, which reads EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
 
-7. Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+7. Press the Escape key and type `:wq` and then press the Enter key to save and close the file.
 
    ```text
    <Esc>
@@ -875,7 +875,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot of the console window, the following has been typed and run at the command prompt: docker login fabmedicalsoll.azurecr.io --u fabmedicalsoll --p +W/j=l+Fcze=n07SchxvGSlvsLRh/7ga](media/image65.png)
 
-   **Tip: Make sure to specify the fully qualified registry login server (all lowercase).**
+   >**Tip**: Make sure to specify the fully qualified registry login server (all lowercase).
 
 5. Run the following commands to properly tag your images to match your ACR account name.
 
@@ -905,7 +905,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot, content-api and content-web each appear on their own lines below Repositories.](media/image68.png)
 
-9. Select content-api. You will see the latest tag is assigned.
+9. Select `content-api`. You will see the latest tag is assigned.
 
    ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
@@ -1008,7 +1008,7 @@ image and pushes it to your ACR instance automatically.
    ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
 
 5. Azure DevOps will automatically detect the pipeline YAML you added. You can
-   make additional edits here if needed. Select `Run` when you are ready to
+   make additional edits here if needed. Select **Run** when you are ready to
    execute the pipeline.
 
    ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button.](media/hol-2019-10-02_07-33-16.png)
@@ -1028,14 +1028,14 @@ image and pushes it to your ACR instance automatically.
    > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
 
 8. Next, create the `content-api` build. Select the `content-api` repository.
-   This repository already includes `azure-pipelines.yaml`. Choose 'Set up
-   Build'.
+   This repository already includes `azure-pipelines.yaml`. Choose **Set up
+   Build**.
 
-9. In the "Review your pipeline YAML" step, edit the `containerRegistryName` value to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name.
+9. In the **Review your pipeline YAML** step, edit the `containerRegistryName` value to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name.
 
    ![A screenshot of the "Review your pipeline YAML" step, with the containerRegistryName property highlighted.](media/hol-2019-10-18_06-32-34.png)
 
-10. When you are finished editing, select `Run` to execute the pipeline.
+10. When you are finished editing, select **Run** to execute the pipeline.
 
 11. While the `content-api` build runs, setup one last build for `content-init` by following the same steps as the previous `content-api` build, remembering to update the `[SHORT_SUFFIX]` value on the "Review your pipeline YAML" step.
 
@@ -1113,19 +1113,19 @@ In this task, you will gather the information you need about your Azure Kubernet
 
 In this task, you will deploy the API application to the Azure Kubernetes Service cluster using the Kubernetes dashboard.
 
-1. From the Kubernetes dashboard, select Create in the top right corner.
+1. From the Kubernetes dashboard, select **Create** in the top right corner.
 
-2. From the Resource creation view, select Create an App.
+2. From the Resource creation view, select **Create an App**.
 
    ![This is a screenshot of the Deploy a Containerized App dialog box. Specify app details below is selected, and the fields have been filled in with the information that follows. At the bottom of the dialog box is a SHOW ADVANCED OPTIONS link.](media/image78.png)
 
-   - Enter "api" for the App name.
+   - Enter `api` for the App name.
 
    - Enter [LOGINSERVER]/content-api for the Container Image, replacing [LOGINSERVER] with your ACR login server, such as fabmedicalsol.azurecr.io.
 
-   - Set Number of pods to 1.
+   - Set Number of pods to `1`.
 
-   - Set Service to "Internal".
+   - Set Service to `Internal`.
 
    - Use 3001 for Port and 3001 for Target port.
 
