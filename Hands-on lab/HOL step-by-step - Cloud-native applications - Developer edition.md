@@ -605,7 +605,7 @@ The web application container will be calling endpoints exposed by the API appli
 
 ### Task 6: Setup environment variables
 
-In this task, you will configure the "web" container to communicate with the API container using an environment variable, similar to the way the mongodb connection string is provided to the api.
+In this task, you will configure the **web** container to communicate with the API container using an environment variable, similar to the way the mongodb connection string is provided to the api.
 
 1. From cloud shell connected to the build agent VM, stop and remove the web container using the following commands.
 
@@ -639,7 +639,7 @@ In this task, you will configure the "web" container to communicate with the API
    <i>
    ```
 
-6. Locate the EXPOSE line shown below and add a line above it that sets the default value for the environment variable, as shown in the screenshot.
+6. Locate the `EXPOSE` line shown below and add a line above it that sets the default value for the environment variable, as shown in the screenshot.
 
    ```Dockerfile
    ENV CONTENT_API_URL http://localhost:3001
@@ -682,13 +682,13 @@ In this task, you will configure the "web" container to communicate with the API
     docker container run --name web --net fabmedical -p 3000:3000 -d -e CONTENT_API_URL=http://api:3001 content-web
     ```
 
-12. Curl the speaker path again, using port 3000. You will see the same HTML returned.
+12. Curl the speaker path again, using port `3000`. You will see the same HTML returned.
 
     ```bash
     curl http://localhost:3000/speakers.html
     ```
 
-13. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace [BUILDAGENTIP] with the IP address you used previously.
+13. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace `[BUILDAGENTIP]` with the **IP address** you used previously.
 
     ```bash
     http://[BUILDAGENTIP]:3000
@@ -883,6 +883,8 @@ In this task, you will push images to your ACR account, version images with tagg
    docker image tag content-web [LOGINSERVER]/content-web
    docker image tag content-api [LOGINSERVER]/content-api
    ```
+
+   > **Note**: Be sure to replace the `[LOGINSERVER]` of your ACR instance.
 
 6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
 
