@@ -1627,7 +1627,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
 
 In this task, you will verify that you can browse to the web service you have deployed and view the speaker and content information exposed by the API service.
 
-1. From the Kubernetes management dashboard, in the navigation menu, select the Services view under Discovery and Load Balancing.
+1. From the Kubernetes management dashboard, in the navigation menu, select the **Services** view under **Discovery and Load Balancing**.
 
 2. In the list of services, locate the external endpoint for the web service and select this hyperlink to launch the application.
 
@@ -1643,7 +1643,7 @@ In this task, you will verify that you can browse to the web service you have de
 
 In this task, you will use Azure DevOps to automate the process for deploying the web image to the AKS cluster. You will update the DevOps Pipeline and configure a deployment stage so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
 
-1. Login to your Azure DevOps account, access the `fabmedical` project you created earlier, then select "Pipelines".
+1. Login to your Azure DevOps account, access the `fabmedical` project you created earlier, then select **Pipelines**.
 
 2. From the pipelines list, select the `content-web` pipeline and select `Edit.`
 
@@ -1693,11 +1693,11 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
 
-4. Choose "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
+4. Choose **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
 
    ![A screenshot that shows the jobs, Helm is complete, Docker is still running.](media/hol-2019-10-02_10-57-42.png)
 
-5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the SUFFIX values:
+5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the `SUFFIX` values:
 
    > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces and line up with the `stage` node for the `Build` stage.
 
@@ -1749,7 +1749,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the new stage, with a line to highlight proper indenting.](media/hol-2019-10-02_11-19-51.png)
 
-6. Select "Save" and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
+6. Select **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
 
    ![A screenshot that shows the stages, expanded to also show the jobs.  Docker is running, Helm is queued, AKS Deployment is not started.](media/hol-2019-10-02_11-27-34.png)
 
