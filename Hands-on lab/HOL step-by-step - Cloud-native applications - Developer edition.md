@@ -1005,9 +1005,15 @@ image and pushes it to your ACR instance automatically.
    ```
 
 4. Now login to Azure DevOps to create your first build. Navigate to the
-   `content-web` repository and choose 'Set up Build'.
+   `content-web` repository and choose **Set up Build**.
 
    ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
+
+5. Choose **Existing Azure Pipelines YAML file**.
+
+6. On the **Select an existing YAML file** dialog, select the `azure-pipelines.yml` file that you added, then select **Continue**.
+
+   ![Select an existing YAML file](media/2020-06-26-13-14-42.png "Select an existing YAML file")
 
 5. Azure DevOps will automatically detect the pipeline YAML you added. You can
    make additional edits here if needed. Select **Run** when you are ready to
@@ -1015,8 +1021,7 @@ image and pushes it to your ACR instance automatically.
 
    ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button.](media/hol-2019-10-02_07-33-16.png)
 
-6. Azure DevOps will queue your first build and execute the pipeline when an
-   agent becomes available.
+6. The pipeline will now be queued to run within a minute or two.
 
    ![A screenshot of Azure DevOps Pipeline with a queued job.](media/hol-2019-10-02_07-39-24.png)
 
@@ -1037,7 +1042,7 @@ image and pushes it to your ACR instance automatically.
 
    ![A screenshot of the "Review your pipeline YAML" step, with the containerRegistryName property highlighted.](media/hol-2019-10-18_06-32-34.png)
 
-10. When you are finished editing, select **Run** to execute the pipeline.
+10. When you are finished editing, select **Save and run** to execute the pipeline.
 
 11. While the `content-api` build runs, setup one last build for `content-init` by following the same steps as the previous `content-api` build, remembering to update the `[SHORT_SUFFIX]` value on the "Review your pipeline YAML" step.
 
@@ -1123,23 +1128,23 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    - Enter `api` for the App name.
 
-   - Enter [LOGINSERVER]/content-api for the Container Image, replacing [LOGINSERVER] with your ACR login server, such as fabmedicalsol.azurecr.io.
+   - Enter `[LOGINSERVER]/content-api` for the Container Image, replacing `[LOGINSERVER]` with your ACR login server, such as fabmedicalsol.azurecr.io.
 
    - Set Number of pods to `1`.
 
    - Set Service to `Internal`.
 
-   - Use 3001 for Port and 3001 for Target port.
+   - Use `3001` for Port and `3001` for Target port.
 
 3. Select **SHOW ADVANCED OPTIONS**
 
-   - Enter 0.125 for the CPU requirement.
+   - Enter `0.125` for the CPU requirement.
 
-   - Enter 128 for the Memory requirement.
+   - Enter `128` for the Memory requirement.
 
    ![In the Advanced options dialog box, the above information has been entered. At the bottom of the dialog box is a Deploy button.](media/image79.png)
 
-4. Select Deploy to initiate the service deployment based on the image. This can take a few minutes. In the meantime, you will be redirected to the Overview dashboard. Select the API deployment from the Overview dashboard to see the deployment in progress.
+4. Select **Deploy** to initiate the service deployment based on the image. This can take a few minutes. In the meantime, you will be redirected to the Overview dashboard. Select the **API** deployment from the Overview dashboard to see the deployment in progress.
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, a red arrow points to the api deployment.](media/image80.png)
 
@@ -1147,7 +1152,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
 
-6. The log indicates that the content-api application is once again failing because it cannot find a mongodb instance to communicate with. You will resolve this issue by migrating your data workload to Cosmos DB.
+6. The log indicates that the content-api application is once again failing because it cannot find a mongodb api to communicate with. You will resolve this issue by connecting to Cosmos DB.
 
    ![This screenshot of the Kubernetes management dashboard shows logs output for the api container.](media/Ex2-Task1.6.png)
 
@@ -1155,11 +1160,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    ![A screenshot of the Azure Portal showing the Cosmos DB among existing resources.](media/Ex2-Task1.9.png)
 
-8. Under "Quick Start" select the "Node.js" tab and copy the Node 3.0 connection string.
+8. Under **Quick Start** select the **Node.js** tab and copy the **Node.js 3.0 connection string**.
 
    ![A screenshot of the Azure Portal showing the quick start for setting up Cosmos DB with MongoDB API.](media/Ex2-Task1.10.png)
 
-9. Update the provided connection string with a database "contentdb" and a replica set "globaldb".
+9. Update the provided connection string with a database `contentdb` and a replica set `globaldb`.
 
    > **Note**: Username and password redacted for brevity.
 
@@ -1171,7 +1176,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the cloud shell window with a red arrow pointing at the "Open new session" button on the toolbar](media/hol-2019-10-19_06-13-34.png)
 
-11. You will setup a Kubernetes secret to store the connection string and configure the content-api application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
+11. You will setup a Kubernetes secret to store the connection string and configure the "content-api" application to access the secret. First, you must base64 encode the secret value. Open your Azure Cloud Shell window and use the following command to encode the connection string and then, copy the output.
 
     > **Note**: Double quote marks surrounding the connection string are required to successfully produce the required output.
 
@@ -1181,13 +1186,13 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Azure cloud shell window showing the command to create the base64 encoded secret.  The output to copy is highlighted.](media/hol-2019-10-18_07-12-13.png)
 
-12. Return to the Kubernetes UI in your browser and select "+ Create". Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog, and choose "Upload".
+12. Return to the Kubernetes UI in your browser and select **+ Create**. Update the following YAML with the encoded connection string from your clipboard, paste the YAML data into the create dialog, and choose **Upload**.
 
     ```yaml
     apiVersion: v1
     kind: Secret
     metadata:
-      name: mongodb
+      name: cosmosdb
     type: Opaque
     data:
       db: <base64 encoded value>
@@ -1195,11 +1200,11 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing the YAML file for creating a deployment.](media/Ex2-Task1.13.png)
 
-13. Scroll down in the Kubernetes dashboard until you can see "Secrets" in the left-hand menu. Select it.
+13. Scroll down in the Kubernetes dashboard until you can see **Secrets** in the left-hand menu. Select it.
 
     ![A screenshot of the Kubernetes management dashboard showing secrets.](media/Ex2-Task1.14.png)
 
-14. View the details for the "mongodb" secret. Select the eyeball icon to show the secret.
+14. View the details for the **cosmosdb** secret. Select the eyeball icon to show the secret.
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
 
@@ -1215,14 +1220,14 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     code api.deployment.yml
     ```
 
-    Add the following environment configuration to the container spec, below the "image" property:
+    Add the following environment configuration to the container spec, below the `image` property:
 
     ```yaml
       env:
         - name: MONGODB_CONNECTION
           valueFrom:
             secretKeyRef:
-              name: mongodb
+              name: cosmosdb
               key: db
     ```
 
@@ -1238,7 +1243,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
     kubectl apply -f api.deployment.yml
     ```
 
-19. Select "Deployments" then "api" to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
+19. Select **Deployments** then **api** to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
 
     ![A screenshot of the Kubernetes management dashboard showing logs output.](media/Ex2-Task1.19.png)
 
@@ -1248,7 +1253,7 @@ In this task, deploy the web service using `kubectl`.
 
 1. Open a **new** Azure Cloud Shell console.
 
-2. Create a text file called web.deployment.yml using the Azure Cloud Shell
+2. Create a text file called `web.deployment.yml` using the Azure Cloud Shell
    Editor.
 
    ```bash
@@ -1316,7 +1321,7 @@ In this task, deploy the web service using `kubectl`.
            terminationGracePeriodSeconds: 30
    ```
 
-4. Update the [LOGINSERVER] entry to match the name of your ACR login server.
+4. Update the `[LOGINSERVER]` entry to match the name of your ACR Login Server.
 
 5. Select the **...** button and choose **Save**.
 
@@ -1368,7 +1373,7 @@ In this task, deploy the web service using `kubectl`.
 
     ![In this screenshot of the console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
-11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
+11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select **Services** view under **Discovery and Load Balancing**. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
 
