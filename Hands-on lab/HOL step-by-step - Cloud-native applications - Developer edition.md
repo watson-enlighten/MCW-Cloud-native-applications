@@ -1385,15 +1385,15 @@ In this task, deploy the web service using `kubectl`.
 
 In this task, deploy the web service using a helm chart.
 
-1. From the Kubernetes dashboard, under "Workloads", select "Deployments".
+1. From the Kubernetes dashboard, under **Workloads**, select **Deployments**.
 
-2. Select the triple vertical dots on the right of the "web" deployment and then choose "Delete". When prompted, select "Delete" again.
+2. Select the triple vertical dots on the right of the **web** deployment and then choose **Delete**. When prompted, select **Delete** again.
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
 3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
 
-4. Select the triple vertical dots on the right of the "web" service and then choose "Delete". When prompted, select "Delete" again.
+4. Select the triple vertical dots on the right of the **web** service and then choose **Delete**. When prompted, select **Delete** again.
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.4.png)
 
@@ -1548,7 +1548,7 @@ In this task, deploy the web service using a helm chart.
 
     ![In this screenshot of the console, helm install web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
-24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
+24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select **Services** view under **Discovery and Load Balancing**. From the Services view, select the **web** service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
@@ -1570,7 +1570,7 @@ In this task, deploy the web service using a helm chart.
 
 In this task, you will use a Kubernetes Job to run a container that is meant to execute a task and terminate, rather than run all the time.
 
-1. Create a text file called init.job.yml using the Azure Cloud Shell Editor.
+1. Create a text file called `init.job.yml` using the Azure Cloud Shell Editor.
 
    ```bash
    code init.job.yml
@@ -1595,13 +1595,13 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
              - name: MONGODB_CONNECTION
                valueFrom:
                  secretKeyRef:
-                   name: mongodb
+                   name: cosmosdb
                    key: db
          restartPolicy: Never
      backoffLimit: 4
    ```
 
-3. Edit this file and update the [LOGINSERVER] entry to match the name of your ACR login server.
+3. Edit this file and update the `[LOGINSERVER]` entry to match the name of your ACR Login Server.
 
 4. Save changes and close the editor.
 
@@ -1611,7 +1611,7 @@ In this task, you will use a Kubernetes Job to run a container that is meant to 
    kubectl create --save-config=true -f init.job.yml
    ```
 
-6. View the Job by selecting "Jobs" under "Workloads" in the Kubernetes UI.
+6. View the Job by selecting **Jobs** under **Workloads** in the Kubernetes UI.
 
    ![A screenshot of the Kubernetes management dashboard showing jobs.](media/Ex2-Task5.6.png)
 
