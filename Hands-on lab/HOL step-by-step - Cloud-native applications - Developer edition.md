@@ -1757,7 +1757,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
 In this task, you will access and review the various logs and dashboards made available by Azure Monitor for Containers.
 
-1. From the Azure Portal, select the resource group you created named fabmedical-SUFFIX, and then select your AKS cluster.
+1. From the Azure Portal, select the resource group you created named `fabmedical-SUFFIX`, and then select your AKS cluster.
 
    ![In this screenshot, the resource group was previously selected and the AKS cluster is selected.](media/Ex2-Task8.1.png)
 
