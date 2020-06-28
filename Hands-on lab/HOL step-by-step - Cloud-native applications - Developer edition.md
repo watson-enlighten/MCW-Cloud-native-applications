@@ -1875,9 +1875,9 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the deployment JSON code, with the $.spec.template.spec.containers[0] section highlighted.](media/image84.png)
 
-6. The containers spec has a single entry for the API container at the moment. You will see that the name of the container is "api" - this is how you know you are looking at the correct container spec.
+6. The containers spec has a single entry for the API container at the moment. You will see that the name of the container is `api` - this is how you know you are looking at the correct container spec.
 
-   - Add the following JSON snippet below the "name" property in the container spec:
+   - Add the following JSON snippet below the `name` property in the container spec:
 
    ```json
    "ports": [
@@ -1892,7 +1892,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the deployment JSON code, with the $.spec.template.spec.containers[0] section highlighted, showing the updated values for containerPort and hostPort, both set to port 3001.](media/image85.png)
 
-7. Copy the updated JSON document from notepad into the clipboard. Return to the Kubernetes dashboard, which should still be viewing the "api" deployment.
+7. Copy the updated JSON document from notepad into the clipboard. Return to the Kubernetes dashboard, which should still be viewing the **api** deployment.
 
    - Select Edit.
 
@@ -1922,7 +1922,7 @@ In this task, you will try to increase the number of instances for the API servi
 
     > **Note**: This message indicates that there were not enough available resources to match the requirements for a new pod instance. In this case, this is because the instance requires port 3001, and since there are only 2 nodes available in the cluster, only two api instances can be scheduled. The third and fourth pod instances will wait for a new node to be available that can run another instance using that port.
 
-12. Reduce the number of requested pods to 2 using the Scale button.
+12. Reduce the number of requested pods to `2` using the **Scale** button.
 
 13. Almost immediately, the warning message from the Workloads dashboard should disappear, and the API deployment will show 2/2 pods are running.
 
@@ -1992,15 +1992,15 @@ Kubernetes services can discover the ports assigned to each pod, allowing you to
 
 In this task, we will reconfigure the API deployment so that it will produce pods that choose a dynamic hostPort for improved scalability.
 
-1. From the navigation menu select Deployments under Workloads. From the view's Deployments list, select the API deployment.
+1. From the navigation menu select **Deployments** under **Workloads**. From the view's Deployments list, select the API deployment.
 
-2. Select Edit.
+2. Select **Edit**.
 
-3. From the Edit a Deployment dialog, do the following:
+3. From the **Edit a Deployment** dialog, do the following:
 
-   - Scroll to the first spec node that describes replicas as shown in the screenshot. Set the value for replicas to 4.
+   - Scroll to the first spec node that describes replicas as shown in the screenshot. Set the value for replicas to `4`.
 
-   - Within the replicas spec, beneath the template node, find the "api" containers spec. Remove the hostPort entry for the API container's port mapping.  The screenshot below shows the desired configuration after editing.
+   - Within the replicas spec, beneath the template node, find the **api** containers spec. Remove the hostPort entry for the API container's port mapping.  The screenshot below shows the desired configuration after editing.
 
      ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about spec, selector, and template. Under the spec node, replicas: 4 is highlighted. Further down, ports are highlighted.](media/image137.png)
 
@@ -2016,11 +2016,11 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
 In this task, you will update the web service so that it supports dynamic discovery through the Azure load balancer.
 
-1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the web deployment.
+1. From the navigation menu, select **Deployments** under **Workloads**. From the view's Deployments list, select the **web** deployment.
 
 2. Select **Edit**.
 
-3. From the Edit a Deployment dialog, scroll to the web containers spec as shown in the screenshot. Remove the hostPort entry for the web container's port mapping.
+3. From the **Edit a Deployment** dialog, scroll to the web containers spec as shown in the screenshot. Remove the hostPort entry for the web container's port mapping.
 
    ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about spec, containers, ports, and env. The ports node, containerPort: 3001 and protocol: TCP are highlighted.](media/image140.png)
 
@@ -2038,11 +2038,11 @@ Like the API deployment, the web deployment used a fixed _hostPort_, and your ab
 
 In this task, you will modify the CPU requirements for the web service so that it can scale out to more instances.
 
-1. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the web deployment.
+1. From the navigation menu, select **Deployments** under **Workloads**. From the view's Deployments list, select the **web** deployment.
 
 2. Select **Edit**.
 
-3. From the Edit a Deployment dialog, find the _cpu_ resource requirements for the web container. Change this value to "125m".
+3. From the Edit a Deployment dialog, find the **cpu** resource requirements for the web container. Change this value to `125m`.
 
    ![This is a screenshot of the Edit a Deployment dialog box with various displayed information about ports, env, and resources. The resources node, with cpu: 125m selected, is highlighted.](media/image142.png)
 
@@ -2111,11 +2111,11 @@ In this task, you will edit the web application source code to add Application I
 
 9. While this update runs, return the Kubernetes management dashboard in the browser.
 
-10. From the navigation menu, select Replica Sets under Workloads. From this view, you will see a new replica set for the web, which may still be in the process of deploying (as shown below) or already fully deployed.
+10. From the navigation menu, select **Replica Sets** under **Workloads**. From this view, you will see a new replica set for the web, which may still be in the process of deploying (as shown below) or already fully deployed.
 
     ![At the top of the list, a new web replica set is listed as a pending deployment in the Replica Set box.](media/image144.png)
 
-11. While the deployment is in progress, you can navigate to the web application and visit the stats page at /stats. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
+11. While the deployment is in progress, you can navigate to the web application and visit the stats page at `/stats`. Refresh the page as the rolling update executes. Observe that the service is running normally, and tasks continue to be load balanced.
 
     ![On the Stats page, the webTaskId is highlighted.](media/image145.png)
 
