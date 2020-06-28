@@ -1867,7 +1867,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the Edit a Deployment dialog box that displays JSON data.](media/image82.png)
 
-4. Paste the contents into the text editor of your choice (notepad is shown here, MacOS users can use TextEdit).
+4. Paste the contents into the text editor of your choice (notepad is shown here, macOS users can use TextEdit).
 
    ![Screenshot of the Edit a Deployment contents pasted into Notepad text editor.](media/image83.png)
 
@@ -2294,8 +2294,8 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     > Normal  OrderComplete       12s   cert-manager  Order "tls-secret-3254248695" completed successfully
     > Normal  CertIssued          12s   cert-manager  Certificate issued successfully
     > ```
-
-    > It can take between 5 and 30 minutes before the tls-secret becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
+    
+    It can take between 5 and 30 minutes before the tls-secret becomes available. This is due to the delay involved with provisioning a TLS cert from letsencrypt.
 
 15. Now you can create an ingress resource for the content applications.
 
@@ -2303,7 +2303,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     code content.ingress.yml
     ```
 
-    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
+    Use the following as the contents and update the `[SUFFIX]` and `[AZURE-REGION]` to match your ingress DNS name
 
     ```yaml
     apiVersion: extensions/v1beta1
