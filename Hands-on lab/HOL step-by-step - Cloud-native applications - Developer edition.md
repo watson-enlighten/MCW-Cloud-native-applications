@@ -1805,13 +1805,13 @@ At this point, you have deployed a single instance of the web and API service co
 
 In this task, you will increase the number of instances for the API deployment in the Kubernetes management dashboard. While it is deploying, you will observe the changing status.
 
-1. From the navigation menu, select Workloads\>Deployments, and then select the API deployment.
+1. From the navigation menu, select **Workloads** -\> **Deployments**, and then select the **API** deployment.
 
-2. Select SCALE.
+2. Select **SCALE**.
 
    ![In the Workloads > Deployments > api bar, the Scale icon is highlighted.](media/image89.png)
 
-3. Change the number of pods to 2, and then select **OK**.
+3. Change the number of pods to **2**, and then select **OK**.
 
    ![In the Scale a Deployment dialog box, 2 is entered in the Desired number of pods box.](media/image116.png)
 
@@ -1871,7 +1871,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the Edit a Deployment contents pasted into Notepad text editor.](media/image83.png)
 
-5. Scroll down about halfway to find the node "\$.spec.template.spec.containers[0]", as shown in the screenshot below.
+5. Scroll down about halfway to find the node `$.spec.template.spec.containers[0]`, as shown in the screenshot below.
 
    ![Screenshot of the deployment JSON code, with the $.spec.template.spec.containers[0] section highlighted.](media/image84.png)
 
