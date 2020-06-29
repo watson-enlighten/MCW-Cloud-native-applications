@@ -343,7 +343,7 @@ In this task, you will create Docker images for the application --- one for the 
 
    ![The node image (node) and your container image (content-api) are visible in this screenshot of the console window.](media/image59.png)
 
-4. Navigate to the content-web folder again and list the files. Note that this folder has a Dockerfile.
+4. Navigate to the `content-web` folder again and list the files. Note that this folder has a Dockerfile.
 
    ```bash
    cd ../content-web
@@ -464,7 +464,7 @@ In this task, you will configure the `web` container to communicate with the API
    docker container rm web
    ```
 
-2. Validate that the web container is no longer running or present by using the `-a` flag as shown in this command. You will see that the "web" container is no longer listed.
+2. Validate that the web container is no longer running or present by using the `-a` flag as shown in this command. You will see that the **web** container is no longer listed.
 
    ```bash
    docker container ls -a
@@ -485,7 +485,7 @@ In this task, you will configure the `web` container to communicate with the API
 
    ![In this screenshot of Dockerfile, the CONTENT_API_URL code appears above the next Dockerfile line, which reads EXPOSE 3000.](media/hol-2019-10-01_19-37-35.png)
 
-5. Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+5. Press the Escape key and type `:wq` and then press the Enter key to save and close the file.
 
    ```text
    <Esc>
@@ -595,7 +595,7 @@ for several containers and run them together.
          - "3000:3000"
    ```
 
-   Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+   Press the Escape key and type `:wq` and then press the Enter key to save and close the file.
 
    ```text
    <Esc>
@@ -691,7 +691,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 1. In the [Azure Portal](https://portal.azure.com/), navigate to the ACR you created in Before the hands-on lab.
 
-2. Select **Access keys** under Settings on the left-hand menu.
+2. Select **Access keys** under **Settings** on the left-hand menu.
 
    ![In this screenshot of the left-hand menu, Access keys is highlighted below Settings.](media/image64.png)
 
@@ -757,11 +757,11 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![In this screenshot of the console window is an example of tags being added and displayed.](media/image70.png)
 
-11. Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
+11. Repeat Step 7 to push the images to ACR again so that the newly tagged `v1` images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
     ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right. In the Tags blade, latest and v1 appear under Tags.](media/image71.png)
 
-12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
+12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with `latest`. You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
 
     ```bash
     docker image pull [LOGINSERVER]/content-web
@@ -979,7 +979,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, a red arrow points to the api deployment.](media/image80.png)
 
-5. Kubernetes indicates a problem with the api Replica Set after some seconds. Select the log icon to investigate.
+5. Kubernetes indicates a problem with the `api` **Replica Set** after some seconds. Select the log icon to investigate.
 
    ![This screenshot of the Kubernetes management dashboard shows an error with the replica set.](media/Ex2-Task1.5.png)
 
@@ -2188,7 +2188,7 @@ In this exercise, you will de-provision any Azure resources created in support o
 
 1. Delete the Resource Groups in which you placed all your Azure resources.
 
-   - From the Portal, navigate to the blade of your Resource Group and then select Delete in the command bar at the top.
+   - From the Portal, navigate to the blade of your **Resource Group** and then select **Delete** in the command bar at the top.
 
    - Confirm the deletion by re-typing the resource group name and selecting Delete.
 

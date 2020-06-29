@@ -146,7 +146,7 @@ The purpose of this task is to make sure you can run the application successfull
    connected. (If you need to reconnect, please review the instructions in the
    "Before the HOL" document.)
 
-2. Type the following command to create a Docker network named "fabmedical":
+2. Type the following command to create a Docker network named `fabmedical`:
 
    ```bash
    docker network create fabmedical
@@ -220,7 +220,7 @@ The purpose of this task is to make sure you can run the application successfull
 
    ![This screenshot of the console window shows the data output.](media/Ex1-Task1.8.png)
 
-9. Now navigate to the content-api directory and run npm install.
+9. Now navigate to the `content-api` directory and run npm install.
 
    ```bash
    cd ../content-api
@@ -279,7 +279,7 @@ The purpose of this task is to make sure you can run the application successfull
     az vm show -d -g fabmedical-sol -n fabmedical-SOL --query publicIps -o tsv
     ```
 
-15. From the cloud shell in the build machine edit the app.js file using vim.
+15. From the cloud shell in the build machine edit the `app.js` file using vim.
 
     ```bash
     vim app.js
@@ -297,7 +297,7 @@ The purpose of this task is to make sure you can run the application successfull
     node ./app.js &
     ```
 
-    Press ENTER again to get a command prompt for the next step.
+    Press `ENTER` again to get a command prompt for the next step.
 
 17. Test the web application using curl. You will see HTML output returned without errors.
 
@@ -313,9 +313,9 @@ The purpose of this task is to make sure you can run the application successfull
 
 In this task, you will browse to the web application for testing.
 
-1. From the Azure portal select the resource group you created named fabmedical-SUFFIX.
+1. From the Azure portal select the resource group you created named `fabmedical-SUFFIX`.
 
-2. Select the build agent VM named fabmedical-SUFFIX from your list of available resources.
+2. Select the build agent VM named `fabmedical-SUFFIX` from your list of available resources.
 
    ![In this screenshot of your list of available resources, the first item is selected, which has the following values for Name, Type, and Location: fabmedical-soll (a red arrows points to this name), Virtual machine, and East US 2.](media/image54.png)
 
@@ -323,7 +323,7 @@ In this task, you will browse to the web application for testing.
 
    ![In the Virtual Machine blade, Overview is selected on the left and Public IP address 52.174.141.11 is highlighted on the right.](media/image26.png)
 
-4. Test the web application from a browser. Navigate to the web application using your build agent IP address at port 3000.
+4. Test the web application from a browser. Navigate to the web application using your build agent IP address at port `3000`.
 
    ```text
    http://[BUILDAGENTIP]:3000
@@ -348,7 +348,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 > must follow the steps very carefully to work with Vim for a few editing
 > exercises if you are not already familiar with Vim.
 
-1. From cloud shell, navigate to the content-api folder. List the files in the folder with this command. The output should look like the screenshot below.
+1. From cloud shell, navigate to the `content-api` folder. List the files in the folder with this command. The output should look like the screenshot below.
 
    ```bash
    cd ../content-api
@@ -357,7 +357,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
    ![In this screenshot of the console window, ll has been typed and run at the command prompt. The files in the folder are listed in the window. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image55.png)
 
-2. Create a new file named "Dockerfile" and note the casing in the name. Use the
+2. Create a new file named `Dockerfile` and note the casing in the name. Use the
    following Vim command to create a new file. The cloud shell window should
    look as shown in the following screenshot.
 
@@ -367,7 +367,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
    ![This is a screenshot of a new file named Dockerfile in the console window.](media/image56.png)
 
-3. Select "i" on your keyboard. You will see the bottom of the window showing INSERT mode.
+3. Select `i` on your keyboard. You will see the bottom of the window showing INSERT mode.
 
    ![-- INSERT -- appears at the bottom of the Dockerfile window.](media/image57.png)
 
@@ -385,11 +385,11 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
    - The build stage contains all the tools and intermediate files needed to create the application.
 
-     - Creates a new Docker image from node:argon.
+     - Creates a new Docker image from `node:argon`.
 
      - Creates a directory on the image where the application files can be copied.
 
-     - Copies package.json to the working directory.
+     - Copies `package.json` to the working directory.
 
      - Runs npm install to initialize the node application environment.
 
@@ -427,7 +427,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
    CMD [ "npm", "start" ]
    ```
 
-5. When you are finished typing, hit the Esc key and type ":wq" and hit the Enter key to save the changes and close the file.
+5. When you are finished typing, hit the Esc key and type `:wq` and hit the Enter key to save the changes and close the file.
 
    ```bash
    <Esc>
@@ -506,7 +506,7 @@ In this task, you will create Docker images for the application --- one for the 
    cat Dockerfile
    ```
 
-   Notice that the content-web Dockerfile build stage includes additional tools for a front-end Angular application in addition to installing npm packages.
+   Notice that the `content-web` Dockerfile build stage includes additional tools for a front-end Angular application in addition to installing npm packages.
 
 7. Type the following command to create a Docker image for the web application.
 
@@ -568,7 +568,7 @@ The web application container will be calling endpoints exposed by the API appli
    docker container run --name api --net fabmedical -p 3001:3001 -e MONGODB_CONNECTION=mongodb://mongo:27017/contentdb -d content-api
    ```
 
-4. Enter the command to show running containers. You will observe that the "api" container is in the list. Use the docker logs command to see that the API application has connected to mongodb.
+4. Enter the command to show running containers. You will observe that the `api` container is in the list. Use the docker logs command to see that the API application has connected to mongodb.
 
    ```bash
    docker container ls
@@ -614,7 +614,7 @@ In this task, you will configure the **web** container to communicate with the A
    docker container rm web
    ```
 
-2. Validate that the web container is no longer running or present by using the -a flag as shown in this command. You will see that the "web" container is no longer listed.
+2. Validate that the web container is no longer running or present by using the `-a` flag as shown in this command. You will see that the `web` container is no longer listed.
 
    ```bash
    docker container ls -a
@@ -626,7 +626,7 @@ In this task, you will configure the **web** container to communicate with the A
    cat app.js
    ```
 
-4. Observe that the contentApiUrl variable can be set with an environment variable.
+4. Observe that the `contentApiUrl` variable can be set with an environment variable.
 
    ```javascript
    const contentApiUrl = process.env.CONTENT_API_URL || "http://localhost:3001";
@@ -757,7 +757,7 @@ for several containers and run them together.
          - "3000:3000"
    ```
 
-   Press the Escape key and type ":wq" and then press the Enter key to save and close the file.
+   Press the Escape key and type `:wq` and then press the Enter key to save and close the file.
 
    ```text
    <Esc>
@@ -853,7 +853,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 1. In the [Azure Portal](https://portal.azure.com/), navigate to the ACR you created in Before the hands-on lab.
 
-2. Select Access keys under Settings on the left-hand menu.
+2. Select **Access keys** under **Settings** on the left-hand menu.
 
    ![In this screenshot of the left-hand menu, Access keys is highlighted below Settings.](media/image64.png)
 
@@ -911,7 +911,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
-10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
+10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the latest tag and the `v1` tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
     docker image tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
@@ -921,11 +921,11 @@ In this task, you will push images to your ACR account, version images with tagg
 
     ![In this screenshot of the console window is an example of tags being added and displayed.](media/image70.png)
 
-11. Repeat Step 7 to push the images to ACR again so that the newly tagged v1 images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
+11. Repeat Step 7 to push the images to ACR again so that the newly tagged `v1` images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
     ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right. In the Tags blade, latest and v1 appear under Tags.](media/image71.png)
 
-12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with "latest." You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
+12. Run the following commands to pull an image from the repository. Note that the default behavior is to pull images tagged with `latest`. You can pull a specific version using the version tag. Also, note that since the images already exist on the build agent, nothing is downloaded.
 
     ```bash
     docker image pull [LOGINSERVER]/content-web
@@ -1944,7 +1944,7 @@ In this task, you will restart containers and validate that the restart does not
 
 3. From the API deployment view, select **Scale** and from the dialog presented, and enter 4 for the desired number of pods. Select **OK**.
 
-4. From the navigation menu, select Workloads>Replica Sets. Select the api replica set, and from the Replica Set view, you will see that two pods cannot deploy.
+4. From the navigation menu, select **Workloads** -> **Replica Sets**. Select the api replica set, and from the **Replica Set** view, you will see that two pods cannot deploy.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right are the Details and Pods boxes. In the Pods box, two pods have exclamation point (!) alerts and messages indicating that they cannot deploy.](media/image125.png)
 
@@ -1966,9 +1966,9 @@ In this task, you will restart containers and validate that the restart does not
 
    ![The first row of the Pods box is highlighted, and the pod has a green check mark and is running.](media/image129.png)
 
-10. From the navigation menu, select Deployments under Workloads. From the view's Deployments list, select the API deployment.
+10. From the navigation menu, select **Deployments** under **Workloads**. From the view's Deployments list, select the **API** deployment.
 
-11. From the API Deployment view, select Scale and enter 1 as the desired number of pods. Select OK.
+11. From the API Deployment view, select Scale and enter `1` as the desired number of pods. Select **OK**.
 
     ![In the Scale a Deployment dialog box, 1 is entered in the Desired number of pods box.](media/image130.png)
 
@@ -1976,7 +1976,7 @@ In this task, you will restart containers and validate that the restart does not
 
     ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right are the Details and Pods boxes. Only one API host name, which has a green check mark and is listed as running, appears in the Pods box.](media/image131.png)
 
-13. From the navigation menu, select Workloads. From this view, note that there is only one API pod now.
+13. From the navigation menu, select **Workloads**. From this view, note that there is only one API pod now.
 
     ![Workloads is selected in the navigation menu on the left. On the right are the Deployment, Pods, and Replica Sets boxes.](media/image132.png)
 
@@ -2048,7 +2048,7 @@ In this task, you will modify the CPU requirements for the web service so that i
 
 4. Select **Update** to save the changes and update the deployment.
 
-5. From the navigation menu, select Replica Sets under Workloads. From the view's Replica Sets list select the web replica set.
+5. From the navigation menu, select **Replica Sets** under **Workloads**. From the view's Replica Sets list select the web replica set.
 
 6. When the deployment update completes, four web pods should be shown in running state.
 
@@ -2081,7 +2081,7 @@ In this task, you will edit the web application source code to add Application I
    npm install applicationinsights --save
    ```
 
-4. Open the app.js file:
+4. Open the `app.js` file:
 
    ```bash
    code app.js
@@ -2253,7 +2253,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     code certificate.yml
     ```
 
-    Use the following as the contents and update the [SUFFIX] and [AZURE-REGION] to match your ingress DNS name
+    Use the following as the contents and update the `[SUFFIX]` and `[AZURE-REGION]` to match your ingress DNS name
 
     ```yaml
     apiVersion: certmanager.k8s.io/v1alpha1
@@ -2359,7 +2359,7 @@ In this exercise, you will de-provision any Azure resources created in support o
 
 1. Delete the Resource Groups in which you placed all your Azure resources.
 
-   - From the Portal, navigate to the blade of your Resource Group and then select Delete in the command bar at the top.
+   - From the Portal, navigate to the blade of your **Resource Group** and then select **Delete** in the command bar at the top.
 
    - Confirm the deletion by re-typing the resource group name and selecting Delete.
 
