@@ -78,7 +78,7 @@ You should follow all of the steps provided in this section _before_ taking part
 
    ![The cloud shell icon is highlighted on the menu bar.](media/b4-image35.png)
 
-2. The cloud shell opens in the browser window. Choose "Bash" if prompted or use the left-hand dropdown on the shell menu bar to choose "Bash" (as shown).
+2. The cloud shell opens in the browser window. Choose **Bash** if prompted or use the left-hand dropdown on the shell menu bar to choose **Bash** (as shown).
 
    ![This is a screenshot of the cloud shell opened in a browser window. Bash was selected.](media/b4-image36.png)
 
@@ -164,7 +164,7 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
    mkdir .ssh
    ```
 
-2. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace "admin" with your preferred name or handle.
+2. From the cloud shell command line, enter the following command to generate an SSH key pair. You can replace `admin` with your preferred name or handle.
 
    ```bash
    ssh-keygen -t RSA -b 2048 -C admin@fabmedical
@@ -174,7 +174,7 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
 
 4. Enter a passphrase when prompted, and **don't forget it**!
 
-5. Because you entered ".ssh/fabmedical", ssh-keygen generates the file in the ".ssh" folder in your user folder, where the cloud shell opens by default.
+5. Because you entered `.ssh/fabmedical`e, ssh-keygen generates the file in the `.ssh` folder in your user folder, where the cloud shell opens by default.
 
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
 
@@ -241,9 +241,9 @@ In this section, you configure and execute an ARM template that creates all the 
    - **Suffix**: Enter a shortened version of your SUFFIX with a max of 3 chars.
    - **VirtualMachineAdminUsernameLinux**: The Linux Build Agent VM admin username (example: `"adminfabmedical"`).
    - **VirtualMachineAdminPublicKeyLinux**: The Linux Build Agent VM admin ssh public key. You find this value in the `.ssh/fabmedical.pub` file created previously (example: `"ssh-rsa AAAAB3N(...)vPiybQV admin@fabmedical"`).
-   - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal “appId” from a previous step.
-   - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal “password” from a previous step.
-   - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal “objectId” from a previous step.
+   - **KubernetesServicePrincipalClientId**: The Kubernetes Cluster Service Principal Client Id. Use the service principal **appId** from a previous step.
+   - **KubernetesServicePrincipalClientSecret**: The Kubernetes Cluster Service Principal Client Secret. Use the service principal **password** from a previous step.
+   - **KubernetesServicePrincipalObjectId**: The Kubernetes Cluster Service Principal Object Id. Use the service principal **objectId** from a previous step.
    - **CosmosLocation**: The primary location of the Azure Cosmos DB. Use the same location as the resource group previously created (example: `"eastus"`).
    - **CosmosLocationName**: The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
@@ -344,21 +344,20 @@ FabMedical has provided starter files for you. They have taken a copy of the web
    If you have never logged into this account, Azure DevOps takes you through a first-run experience:
 
    - Confirm your contact information and select next.
-   - Select "Create new account".
+   - Select **Create new account**.
    - Enter a fabmedical-SUFFIX for your account name and select Continue.
 
 7. Create an Azure DevOps Project.
 
-   - Enter fabmedical as the project name.
+   - Enter `fabmedical` as the project name.
    - Ensure the project is Private.
-   - Choose the "Advanced" dropdown.
+   - Choose the **Advanced** dropdown.
    - Ensure the Version control is set to Git.
-   - Select the "Create" button.
+   - Select the **Create** button.
 
    ![Create Project Dialog with an arrow pointing at the Create button](media/b4-image51.png)
 
-8. Next, add an Azure Service Connection to your Azure DevOps Project. Select the
-   Project settings gear icon in the bottom left to access your settings. Then select Service Connections.
+8. Next, add an Azure Service Connection to your Azure DevOps Project. Select the Project settings gear icon in the bottom left to access your settings. Then select Service Connections.
 
 9. Choose **Create service connection**, then pick **Azure Resource Manager** from
     the menu, and select **Next**.
@@ -369,8 +368,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
    ![Service principal (manual) is selected](media/vso-service-connection-service-principal-manual.png "Service principal (manual) is selected")
 
-11. Enter the required information using the service principal information you
-    created earlier.
+11. Enter the required information using the service principal information you created earlier.
 
     - **Environment**: Azure Cloud
     - **Scope Level**: Subscription
@@ -393,8 +391,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![Docker Registry is selected](media/2020-06-23-15-58-56.png "Docker Registry is selected")
 
-15. Enter the required information using the service principal information you
-    created earlier.
+15. Enter the required information using the service principal information you created earlier.
 
     - **Registry type**: Azure Container Registry
 
@@ -408,8 +405,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
 16. Select **Save**.
 
-17. Next, choose **Repos** then use the repository dropdown to create a new
-    repository by selecting **+ New repository**.
+17. Next, choose **Repos** then use the repository dropdown to create a new repository by selecting **+ New repository**.
 
     ![The repository dropdown is displayed with the + New repository item selected.](media/b4-image53.png)
 
@@ -479,8 +475,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 In this section, you validate that you can connect to the new build agent
 VM.
 
-1. Open a **new** Azure Cloud Shell console and run the following command to find the IP address for
-   the build agent VM provisioned when you ran the ARM deployment:
+1. Open a **new** Azure Cloud Shell console and run the following command to find the IP address for the build agent VM provisioned when you ran the ARM deployment:
 
    > **Note**: If you don't have a cloud shell available, refer back to [Task 1: Setup Azure Cloud Shell](#task-1-setup-azure-cloud-shell).
 
@@ -506,17 +501,17 @@ VM.
 
    Replace the bracketed values in the command as follows:
 
-   - [PRIVATEKEYNAME]: Use the private key name ".ssh/fabmedical," created above.
+   - `[PRIVATEKEYNAME]`: Use the private key name `.ssh/fabmedical`, created above.
 
-   - [BUILDAGENTUSERNAME]: Use the username for the VM, such as adminfabmedical.
+   - `[BUILDAGENTUSERNAME]`: Use the username for the VM, such as adminfabmedical.
 
-   - [BUILDAGENTIP]: The IP address for the build agent VM, retrieved in the previous step.
+   - `[BUILDAGENTIP]`: The IP address for the build agent VM, retrieved in the previous step.
 
    ```bash
    ssh -i .ssh/fabmedical adminfabmedical@52.174.141.11
    ```
 
-4. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type "yes".
+4. When asked to confirm if you want to connect, as the authenticity of the connection cannot be validated, type `yes`.
 
 5. When asked for the passphrase for the private key you created previously, enter this value.
 
@@ -534,7 +529,7 @@ In this task, you update the packages and install the Docker engine.
 
 1. Go to the cloud shell window that has the SSH connection open to the build agent VM.
 
-2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. Respond by typing "Y" and pressing enter, if asked if you would like to proceed.
+2. Update the Ubuntu packages and install curl and support for repositories over HTTPS in a single step by typing the following in a single line command. Respond by typing `Y` and pressing enter, if asked if you would like to proceed.
 
    ```bash
    sudo apt-get update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -552,7 +547,7 @@ In this task, you update the packages and install the Docker engine.
    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
    ```
 
-5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js, and the node package manager by typing the following commands, each on their own line. If asked if you would like to proceed, respond by typing "Y" and pressing enter.
+5. Add NodeJs PPA to use NodeJS LTS release and update the Ubuntu packages and install Docker engine, node.js, and the node package manager by typing the following commands, each on their own line. If asked if you would like to proceed, respond by typing `Y` and pressing enter.
 
    ```bash
    sudo apt-get install curl python-software-properties -y
@@ -562,7 +557,7 @@ In this task, you update the packages and install the Docker engine.
    sudo apt-get update && sudo apt-get install -y docker-ce nodejs mongodb-clients
    ```
 
-6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. If asked if you would like to proceed, respond by typing "Y" and pressing enter.
+6. Now, upgrade the Ubuntu packages to the latest version by typing the following in a single line command. If asked if you would like to proceed, respond by typing `Y` and pressing enter.
 
    ```bash
    sudo apt-get upgrade
@@ -606,8 +601,7 @@ In this task, you update the packages and install the Docker engine.
     ![In this screenshot of a Cloud Shell window, sudo usermod -aG docker $USER has been typed and run at the command prompt. Errors appear in the window.](media/b4-image29.png)
 
 12. For the user permission changes to take effect, exit the SSH
-    session by typing 'exit', then press \<Enter\>. Reconnect to the build agent
-    VM using SSH as you did in the previous task.
+    session by typing `exit`, then press \<Enter\>. Reconnect to the build agent VM using SSH as you did in the previous task.
 
 13. Repeat the Docker version command, and note the output now shows the server version as well.
 
@@ -633,11 +627,9 @@ In this task, you update the packages and install the Docker engine.
 
 ### Task 10: Clone Repositories to the Build Agent
 
-In this task, you clone your repositories from Azure DevOps so you can work
-with them on the build agent.
+In this task, you clone your repositories from Azure DevOps so you can work with them on the build agent.
 
-1. As you previously did in cloud shell, set your username and email which are
-   used for git commits.
+1. As you previously did in cloud shell, set your username and email which are used for git commits.
 
    ```bash
    git config --global user.email "you@example.com"
