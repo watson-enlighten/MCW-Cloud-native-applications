@@ -356,7 +356,7 @@ In this task, you will create Docker images for the application --- one for the 
    cat Dockerfile
    ```
 
-   Notice that the content-web Dockerfile build stage includes additional tools for a front-end Angular application in addition to installing npm packages.
+   > Notice that the `content-web` Dockerfile build stage includes additional tools for a front-end Angular application in addition to installing npm packages.
 
 6. Type the following command to create a Docker image for the web application.
 
