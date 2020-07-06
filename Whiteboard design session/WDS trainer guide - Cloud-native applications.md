@@ -266,15 +266,15 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Provide a vendor neutral solution so that a specific on-premises or cloud environment does not become a new dependency.
 
-4. Migrate data from MongoDB on-premises to Azure CosmosDB with the least change possible to the application code.
+4. Migrate data from MongoDB on-premises to Azure Cosmos DB with the least change possible to the application code.
 
-5. Continue to use Git repositories for source control and integrate into a CICD workflow.
+5. Continue to use Git repositories for source control and integrate into a CI/CD workflow.
 
 6. Prefer a complete suite of operational management tools with:
 
     - UI for manual deployment and management during development and initial POC work.
 
-    - APIs for integrated CICD automation.
+    - APIs for integrated CI/CD automation.
 
     - Container scheduling and orchestration.
 
@@ -290,7 +290,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
 2. Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements?
 
-3. We heard Azure CosmosDB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
+3. We heard Azure Cosmos DB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
 
 ### Infographic for common scenarios
 
@@ -302,7 +302,7 @@ _Kubernetes Architecture_
 
 <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
 
-_CICD to Azure Kubernetes Service with Azure DevOps_
+_CI/CD to Azure Kubernetes Service with Azure DevOps_
 
 ![A diagram showing the Azure DevOps workflow to build Docker images from source code, push images to Azure Container Registry, and deploy to Azure Kubernetes Service.](media/azure-devops-aks.png)
 
@@ -507,7 +507,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
     The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below. The data tier is provided by Cosmos DB outside of the container platform:
 
-![A diagram showing the solution, using Azure Kubernetes Service with a CosmosDB back end.](media/solution-topology.png)
+![A diagram showing the solution, using Azure Kubernetes Service with a Cosmos DB back end.](media/solution-topology.png)
 
 *Choosing a container platform on Azure*
 
@@ -569,11 +569,11 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
    - POST a service definition file (JSON) to the REST API using `kubectl` from the command line. This process can also be automated as part of a CD process using Azure DevOps release pipelines.
 
-   - Create Azure DevOps CICD build and release pipelines to automate building images and deploying them to run in the cluster.
+   - Create Azure DevOps CI/CD build and release pipelines to automate building images and deploying them to run in the cluster.
 
 2. What options does the customer have for a Docker image registry, and what would you recommend?
 
-   The image registry is core to the CICD workflow and must be a production worthy implementation as it is the source of container images, versioning, deployment, upgrade, and rollback strategies. Registry images can also be used for cross-environment promotion (between development, test, staging, and production for example).
+   The image registry is core to the CI/CD workflow and must be a production worthy implementation as it is the source of container images, versioning, deployment, upgrade, and rollback strategies. Registry images can also be used for cross-environment promotion (between development, test, staging, and production for example).
 
    The following are a few natural options for image registries that could support Azure container deployments:
 
@@ -627,7 +627,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
     With Kubernetes you will have additional features at your fingertips beyond the pure Docker approach including:
 
-    - The Kubernetes dashboard includes web interface and remote APIs for managing, running, and scaling containers, including CICD integration options.
+    - The Kubernetes dashboard includes web interface and remote APIs for managing, running, and scaling containers, including CI/CD integration options.
 
     - The kubectl command line tool for engaging remote Kubernetes APIs and assisting with automation.
 
@@ -641,12 +641,12 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
     Azure Kubernetes Service (AKS) provides a fully managed service with the full set of orchestration and management tools. This is the best possible choice for reduced management overhead while still having access to the features provided with orchestration platforms like Kubernetes.
 
-3. We heard Azure CosmosDB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
+3. We heard Azure Cosmos DB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
 
-    Azure CosmosDB supports multiple NoSQL data models; including supporting a MongoDB API. This provides compatibility for code written for MongoDB to communicate with CosmosDB without code changes; for easier migration and interoperability.
+    Azure Cosmos DB supports multiple NoSQL data models; including supporting a MongoDB API. This provides compatibility for code written for MongoDB to communicate with Cosmos DB without code changes; for easier migration and interoperability.
 
 ## Customer quote (to be read back to the attendees at the end)
 
-"With Azure Kubernetes Service (AKS) we feel confident we can make the move to a container-based platform with the right DevOps support in place to be successful with a small team."
+"With Azure Kubernetes Service (AKS) and Cosmos DB we feel confident we can make the move to a cloud-native, container-based platform with the right DevOps support in place to be successful with a small team."
 
 - Arthur Block, VP of Engineering at Fabrikam Medical Conferences
