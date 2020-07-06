@@ -202,9 +202,9 @@ The conference sites are currently hosted on-premises with the following topolog
 
 - The conference web sites are built with the MEAN stack (Mongo, Express, Angular, Node.js).
 
-- Web sites and APIs are hosted on Windows Server machines.
+- Web sites and APIs are built as microservices hosted on Linux servers.
 
-- MongoDB is also running on a separate cluster of Windows Server machines.
+- The on-prem data backend is MongoDB; also running on a separate cluster of Linux servers.
 
 Customers are considered "tenants", and each tenant is treated as a unique deployment whereby the following happens:
 
@@ -222,7 +222,7 @@ Customers are considered "tenants", and each tenant is treated as a unique deplo
 
   - They have the ability to add new events and isolate speakers, sessions, workshops, and other details.
 
-- The tenant's code (conference and admin web site) is deployed to a specific group of load balanced Windows Server machines dedicated to one or more tenant. Each group of machines hosts a specific set of tenants, and this is distributed according to scale requirements of the tenant.
+- The tenant's code (conference and admin web site) is deployed to a specific group of load balanced Linux servers dedicated to one or more tenant. Each group of machines hosts a specific set of tenants, and this is distributed according to scale requirements of the tenant.
 
 - Once the conference site is live, the inevitable requests for changes to the web site pages, styles, registration requirements, and any number of custom requests begin.
 
@@ -522,10 +522,6 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
     **Azure Web App for Containers**
 
     Azure Web App for Containers specifically targets container deployments, which makes it easy to run containers in a fully managed App Service Plan. This option is ideal for solutions that do not require the features offered by an orchestration platform such as Kubernetes.
-
-    **Windows Server Containers on Windows Server**
-
-    Windows Server Containers allow Windows applications to be containerized. Windows Server 2016 or later versions support the installation of Docker Engine to run containers. For orchestration features you can also set up a cluster with an orchestration platform such as Docker Engine (Community or Enterprise), Kubernetes or other platforms - if you want to take responsibility for managing the clustering and related configurations.
 
 2. Which would you recommend and why?
 
