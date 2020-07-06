@@ -266,7 +266,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Provide a vendor neutral solution so that a specific on-premises or cloud environment does not become a new dependency.
 
-4. Migrate data from MongoDB on-premises to CosmosDB with the least change possible to the application code.
+4. Migrate data from MongoDB on-premises to Azure CosmosDB with the least change possible to the application code.
 
 5. Continue to use Git repositories for source control and integrate into a CICD workflow.
 
@@ -289,6 +289,8 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 1. There are many ways to deploy Docker containers on Azure. How do those options compare and what are motivations for each?
 
 2. Is there an option in Azure that provides container orchestration platform features that are easy to manage and migrate to, that can also handle our scale and management workflow requirements?
+
+3. We heard Azure CosmosDB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
 
 ### Infographic for common scenarios
 
@@ -581,7 +583,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
    - You can optionally pay for a private repository on Docker Hub, which enables you to control who can access your repository. This comes at a reasonable cost and is fully managed.
 
-   - You can deploy and manage your own Docker Registry in Azure VMs---which would have to be clustered for high availability and this is not trivial to set up. This is not a recommended option when a hosted repository can fit solution requirements.
+   - You can deploy and manage your own Docker Registry in Azure VMs --- which would have to be clustered for high availability and this is not trivial to set up. This is not a recommended option when a hosted repository can fit solution requirements.
 
    Deploying and configuring a Docker Registry, clustered or not, is a complex and time-consuming task. We recommend the use of Azure Container Registry where possible for Azure solutions.
 
@@ -638,6 +640,10 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
     Azure Container Instances also provide a simple way to manage individual containers without management tooling.
 
     Azure Kubernetes Service (AKS) provides a fully managed service with the full set of orchestration and management tools. This is the best possible choice for reduced management overhead while still having access to the features provided with orchestration platforms like Kubernetes.
+
+3. We heard Azure CosmosDB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
+
+    Azure CosmosDB supports multiple NoSQL data models; including supporting a MongoDB API. This provides compatibility for code written for MongoDB to communicate with CosmosDB without code changes; for easier migration and interoperability.
 
 ## Customer quote (to be read back to the attendees at the end)
 
