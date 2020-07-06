@@ -251,7 +251,7 @@ The purpose of this task is to make sure you can run the application successfull
 
     ![In this screenshot, made a curl request to view speakers.](media/image47_1.png)
 
-13. Navigate to the web application directory, run npm install and ng build.
+13. Navigate to the web application directory, run `npm install` and `ng build`.
 
     ```bash
     cd ../content-web
@@ -381,7 +381,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
      - Creates a directory on the image where the application files can be copied.
 
-     - Exposes application port 3001 to the container environment so that the application can be reached at port 3001.
+     - Exposes application port `3001` to the container environment so that the application can be reached at port `3001`.
 
    - The build stage contains all the tools and intermediate files needed to create the application.
 
@@ -589,7 +589,7 @@ The web application container will be calling endpoints exposed by the API appli
    docker container run --name web --net fabmedical -P -d content-web
    ```
 
-7. Enter the command to show running containers again, and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port 3000.
+7. Enter the command to show running containers again, and you will observe that both the API and web containers are in the list. The web container shows a dynamically assigned port mapping to its internal container port `3000`.
 
    ```bash
    docker container ls
@@ -674,7 +674,7 @@ In this task, you will configure the **web** container to communicate with the A
     curl http://localhost:[PORT]/speakers.html
     ```
 
-11. You will not be able to browse to the web application on the ephemeral port because the VM only exposes a limited port range. Now you will stop the web container and restart it using port 3000 to test in the browser. Type the following commands to stop the container, remove it, and run it again using explicit settings for the port.
+11. You will not be able to browse to the web application on the ephemeral port because the VM only exposes a limited port range. Now you will stop the web container and restart it using port `3000` to test in the browser. Type the following commands to stop the container, remove it, and run it again using explicit settings for the port.
 
     ```bash
     docker container stop web
@@ -688,7 +688,7 @@ In this task, you will configure the **web** container to communicate with the A
     curl http://localhost:3000/speakers.html
     ```
 
-13. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace `[BUILDAGENTIP]` with the **IP address** you used previously.
+13. You can now use a web browser to navigate to the website and successfully view the application at port `3000`. Replace `[BUILDAGENTIP]` with the **IP address** you used previously.
 
     ```bash
     http://[BUILDAGENTIP]:3000
@@ -1920,7 +1920,7 @@ In this task, you will try to increase the number of instances for the API servi
 
     ![Workloads is selected in the navigation menu. At right, an exclamation point (!) appears next to the api deployment listing in the Deployments box.](media/image121.png)
 
-    > **Note**: This message indicates that there were not enough available resources to match the requirements for a new pod instance. In this case, this is because the instance requires port 3001, and since there are only 2 nodes available in the cluster, only two api instances can be scheduled. The third and fourth pod instances will wait for a new node to be available that can run another instance using that port.
+    > **Note**: This message indicates that there were not enough available resources to match the requirements for a new pod instance. In this case, this is because the instance requires port `3001`, and since there are only 2 nodes available in the cluster, only two api instances can be scheduled. The third and fourth pod instances will wait for a new node to be available that can run another instance using that port.
 
 12. Reduce the number of requested pods to `2` using the **Scale** button.
 
@@ -2006,7 +2006,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
 4. Select **Update**. New pods will now choose a dynamic port.
 
-5. The API service can now scale to 4 pods since it is no longer constrained to an instance per node -- a previous limitation while using port 3001.
+5. The API service can now scale to 4 pods since it is no longer constrained to an instance per node -- a previous limitation while using port `3001`.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right, four pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image138.png)
 
@@ -2233,7 +2233,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 10. Save changes and close the editor.
 
-11. Create the issuer using kubectl.
+11. Create the issuer using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f clusterissuer.yml
@@ -2277,7 +2277,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 13. Save changes and close the editor.
 
-14. Create the certificate using kubectl.
+14. Create the certificate using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f certificate.yml
@@ -2335,7 +2335,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 16. Save changes and close the editor.
 
-17. Create the ingress using kubectl.
+17. Create the ingress using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f content.ingress.yml

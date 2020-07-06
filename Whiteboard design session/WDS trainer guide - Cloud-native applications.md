@@ -266,7 +266,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Provide a vendor neutral solution so that a specific on-premises or cloud environment does not become a new dependency.
 
-4. Migrate data from MongoDB on-premises to Azure Cosmos DB with the least change possible to the application code.
+4. Migrate data from MongoDB on-premises to Azure Cosmos DB with the least changes possible to the application code.
 
 5. Continue to use Git repositories for source control and integrate into a CI/CD workflow.
 
@@ -429,6 +429,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Container Security              | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/> |
 | Image Quarantine                | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>                              |
 | Container Monitoring Solution   | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>                       |
+| Azure Cosmos DB                 | <https://docs.microsoft.com/en-us/azure/cosmos-db/introduction> |
 
 # Cloud-native applications whiteboard design session trainer guide
 
@@ -505,7 +506,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
 2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-    The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below. The data tier is provided by Cosmos DB outside of the container platform:
+    The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below. The data tier is provided by Cosmos DB outside of the container platform. The deployment of the containers to AKS is managed using a DevOps workflow utilizing Azure Piplelines for CI/CD with Azure Container Registry and Helm:
 
 ![A diagram showing the solution, using Azure Kubernetes Service with a Cosmos DB back end.](media/solution-topology.png)
 
@@ -644,6 +645,8 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 3. We heard Azure Cosmos DB is compatible with MongoDB. Will this provide a migration that minimizes code changes?
 
     Azure Cosmos DB supports multiple NoSQL data models; including supporting a MongoDB API. This provides compatibility for code written for MongoDB to communicate with Cosmos DB without code changes; for easier migration and interoperability.
+
+    With the existing source code written for MongoDB, it can be pointed towards Azure Cosmos DB using the MongoDB API. The Cosmos DB Emulator can be used for local development, however, the emulator does not support the MongoDB API yet when running on Linux. As a result, when using Linux for development, MongoDB will still need to be used for local development, and Azure Cosmos DB used for data storage in the cloud. This allows existing source cdoe for MongoDB to continue to be used without requiring changes.
 
 ## Customer quote (to be read back to the attendees at the end)
 

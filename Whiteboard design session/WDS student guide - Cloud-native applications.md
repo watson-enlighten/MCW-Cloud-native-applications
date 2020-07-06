@@ -140,7 +140,7 @@ While multi-tenancy is a goal for the code base, even with this in place, Arthur
 
     - Provide a vendor neutral solution so that a specific on-premises or cloud environment does not become a new dependency.
 
-4. Migrate data from MongoDB on-premises to Azure Cosmos DB with the least change possible to the application code.
+4. Migrate data from MongoDB on-premises to Azure Cosmos DB with the least changes possible to the application code.
 
 5. Continue to use Git repositories for source control and integrate into a CI/CD workflow.
 
@@ -303,3 +303,4 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Container Security              | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/> |
 | Image Quarantine                | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>                              |
 | Container Monitoring Solution   | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>                       |
+| Azure Cosmos DB                 | <https://docs.microsoft.com/en-us/azure/cosmos-db/introduction> |

@@ -520,13 +520,13 @@ In this task, you will configure the `web` container to communicate with the API
     docker container run --name web --net fabmedical -p 3000:3000 -d -e CONTENT_API_URL=http://api:3001 content-web
    ```
 
-10. Curl the speaker path again, using port 3000. You will see the same HTML returned.
+10. Curl the speaker path again, using port `3000`. You will see the same HTML returned.
 
     ```bash
     curl http://localhost:3000/speakers.html
     ```
 
-11. You can now use a web browser to navigate to the website and successfully view the application at port 3000. Replace [BUILDAGENTIP] with the IP address you used previously.
+11. You can now use a web browser to navigate to the website and successfully view the application at port `3000`. Replace `[BUILDAGENTIP]` with the IP address you used previously.
 
     ```bash
     http://[BUILDAGENTIP]:3000
@@ -739,15 +739,15 @@ In this task, you will push images to your ACR account, version images with tagg
 
    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/content-web.](media/image67.png)
 
-8. In the Azure Portal, navigate to your ACR account, and select Repositories under Services on the left-hand menu. You will now see two, one for each image.
+8. In the Azure Portal, navigate to your ACR account, and select **Repositories** under **Services** on the left-hand menu. You will now see two, one for each image.
 
    ![In this screenshot, content-api and content-web each appear on their own lines below Repositories.](media/image68.png)
 
-9. Select content-api. You will see the latest tag is assigned.
+9. Select `content-api`. You will see the latest tag is assigned.
 
    ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
 
-10. From the cloud shell session attached to the VM, assign the v1 tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the latest tag and the v1 tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
+10. From the cloud shell session attached to the VM, assign the `v1` tag to each image with the following commands. Then list the Docker images to note that there are now two entries for each image: showing the `latest` tag and the `v1` tag. Also note that the image ID is the same for the two entries, as there is only one copy of the image.
 
     ```bash
     docker image tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
@@ -975,7 +975,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
    ![In the Advanced options dialog box, the above information has been entered. At the bottom of the dialog box is a Deploy button.](media/image79.png)
 
-4. Select Deploy to initiate the service deployment based on the image. This can take a few minutes. In the meantime, you will be redirected to the Overview dashboard. Select the API deployment from the Overview dashboard to see the deployment in progress.
+4. Select Deploy to initiate the service deployment based on the image. This can take a few minutes. In the meantime, you will be redirected to the Overview dashboard. Select the **API** deployment from the **Overview** dashboard to see the deployment in progress.
 
    ![This is a screenshot of the Kubernetes management dashboard. Overview is highlighted on the left, and at right, a red arrow points to the api deployment.](media/image80.png)
 
@@ -1377,7 +1377,7 @@ In this task, deploy the web service using a helm chart.
 
     ![In this screenshot of the console, helm install web ./web has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/Ex2-Task4.24.png)
 
-24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select Services view under Discovery and Load Balancing. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
+24. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select **Services** view under **Discovery and Load Balancing**. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
     ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. "External endpoints" is highlighted to show that an external endpoint has been created.](media/image94.png)
 
@@ -1526,7 +1526,7 @@ In this task, you will use Azure DevOps to automate the process for deploying th
 
    ![A screenshot that shows the jobs, Helm is complete, Docker is still running](media/hol-2019-10-02_10-57-42.png)
 
-5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the SUFFIX values:
+5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the `SUFFIX` values:
 
    > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces and line up with the `stage` node for the `Build` stage.
 
@@ -1650,7 +1650,7 @@ In this task, you will increase the number of instances for the API deployment i
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left, and at right, Pods status: 1 pending, 1 running is highlighted. Below that, a red arrow points at the API deployment in the Pods box.](media/image117.png)
 
-5. From the navigation menu, select **Deployments** from the list. Note that the api service has a pending status indicated by the grey timer icon, and it shows a pod count 1 of 2 instances (shown as "1/2").
+5. From the navigation menu, select **Deployments** from the list. Note that the api service has a pending status indicated by the grey timer icon, and it shows a pod count 1 of 2 instances (shown as `1/2`).
 
    ![In the Deployments box, the api service is highlighted with a grey timer icon at left and a pod count of 1/2 listed at right.](media/image118.png)
 
@@ -1664,7 +1664,7 @@ In this task, you will increase the number of instances for the API deployment i
 
 7. Navigate to the web application from the browser again. The application should still work without errors as you navigate to Speakers and Sessions pages
 
-   - Navigate to the /stats page. You will see information about the environment including:
+   - Navigate to the `/stats` page. You will see information about the environment including:
 
      - **webTaskId:** The task identifier for the web service instance.
 
@@ -1696,7 +1696,7 @@ In this task, you will try to increase the number of instances for the API servi
 
    ![Screenshot of the Edit a Deployment dialog box that displays JSON data.](media/image82.png)
 
-4. Paste the contents into the text editor of your choice (notepad is shown here, macOS users can use TextEdit).
+4. Paste the contents into the text editor of your choice _(notepad is shown here, macOS users can use TextEdit)_.
 
    ![Screenshot of the Edit a Deployment contents pasted into Notepad text editor.](media/image83.png)
 
@@ -1835,7 +1835,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
 4. Select **Update**. New pods will now choose a dynamic port.
 
-5. The API service can now scale to 4 pods since it is no longer constrained to an instance per node -- a previous limitation while using port 3001.
+5. The API service can now scale to 4 pods since it is no longer constrained to an instance per node -- a previous limitation while using port `3001`.
 
    ![Replica Sets is selected under Workloads in the navigation menu on the left. On the right, four pods are listed in the Pods box, and all have green check marks and are listed as Running.](media/image138.png)
 
@@ -2062,7 +2062,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 10. Save changes and close the editor.
 
-11. Create the issuer using kubectl.
+11. Create the issuer using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f clusterissuer.yml
@@ -2106,7 +2106,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 13. Save changes and close the editor.
 
-14. Create the certificate using kubectl.
+14. Create the certificate using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f certificate.yml
@@ -2164,7 +2164,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 
 16. Save changes and close the editor.
 
-17. Create the ingress using kubectl.
+17. Create the ingress using `kubectl`.
 
     ```bash
     kubectl create --save-config=true -f content.ingress.yml
