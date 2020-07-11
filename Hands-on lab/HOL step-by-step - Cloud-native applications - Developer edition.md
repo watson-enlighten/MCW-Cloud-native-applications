@@ -158,6 +158,8 @@ The purpose of this task is to make sure you can run the application successfull
    docker container run --name mongo --net fabmedical -p 27017:27017 -d mongo
    ```
 
+   > **Note**:  With the existing source code written for MongoDB, it can be pointed towards the Azure Cosmos DB MongoDB API endpoint. The Azure Cosmos DB Emulator could be used for local development on Windows, however, the Cosmos DB emulator does not support Linux. As a result, when using Linux for development, MongoDB is still needed for local development environments; with Azure Cosmos DB used for data storage in the cloud. This allows existing source code written for MongoDB storage to be easily mirated to using Azure Cosmos DB backend.
+
 4. Confirm that the mongo container is running and ready.
 
    ```bash

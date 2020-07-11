@@ -646,7 +646,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
     Azure Cosmos DB supports multiple NoSQL data models; including supporting a MongoDB API. This provides compatibility for code written for MongoDB to communicate with Cosmos DB without code changes; for easier migration and interoperability.
 
-    With the existing source code written for MongoDB, it can be pointed towards Azure Cosmos DB using the MongoDB API. The Cosmos DB Emulator can be used for local development, however, the emulator does not support the MongoDB API yet when running on Linux. As a result, when using Linux for development, MongoDB will still need to be used for local development, and Azure Cosmos DB used for data storage in the cloud. This allows existing source cdoe for MongoDB to continue to be used without requiring changes.
+    With the existing source code written for MongoDB, it can be pointed towards the Azure Cosmos DB MongoDB API endpoint. The Azure Cosmos DB Emulator could be used for local development on Windows, however, the Cosmos DB emulator does not support Linux. As a result, when using Linux for development, MongoDB is still needed for local development environments; with Azure Cosmos DB used for data storage in the cloud. This allows existing source code written for MongoDB storage to be easily mirated to using Azure Cosmos DB backend.
 
 ## Customer quote (to be read back to the attendees at the end)
 
