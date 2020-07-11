@@ -357,7 +357,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
    ![Create Project Dialog with an arrow pointing at the Create button](media/b4-image51.png)
 
-8. Next, add an Azure Service Connection to your Azure DevOps Project. Select the Project settings gear icon in the bottom left to access your settings. Then select Service Connections.
+8. Next, add an Azure Service Connection to your Azure DevOps Project. Select the **Project settings** gear icon in the bottom left to access your settings. Then select **Service connections**.
 
 9. Choose **Create service connection**, then pick **Azure Resource Manager** from
     the menu, and select **Next**.
@@ -409,7 +409,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![The repository dropdown is displayed with the + New repository item selected.](media/b4-image53.png)
 
-    - Enter `content-web` as the repository name, uncheck the "Add a README" option, then select **Create**.
+    - Enter `content-web` as the repository name, **uncheck** the **Add a README** option, then select **Create**.
 
     ![Create a reposistory dialog](media/2020-06-23-16-14-13.png "Create a reposistory dialog")
 
