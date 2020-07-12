@@ -847,14 +847,13 @@ image and pushes it to your ACR instance automatically.
 
    ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button](media/hol-2019-10-01_19-50-16.png)
 
-5. Azure DevOps will automatically detect the pipeline YAML you added. You can
-   make additional edits here if needed. Select **Run** when you are ready to
-   execute the pipeline.
+5. Azure DevOps will automatically detect the pipeline YAML you added. You can make additional edits here if needed. Select **Run** when you are ready to execute the pipeline.
 
    ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button](media/hol-2019-10-02_07-33-16.png)
 
-6. Azure DevOps will queue your first build and execute the pipeline when an
-   agent becomes available.
+   > **Note**: If Azure DevOps does not automatically detect the pipeline YAML, then select the **Existing Azure Pipelines YAML file** option, select the `/azure-pipelines.yml` file, then select **Run**.
+
+6. Azure DevOps will queue your first build and execute the pipeline when an agent becomes available.
 
    ![A screenshot of Azure DevOps Pipeline with a queued job.](media/hol-2019-10-02_07-39-24.png)
 
