@@ -335,6 +335,18 @@ In this task, you will create Docker images for the application --- one for the 
    docker image build -t content-api .
    ```
 
+2. From the `content-init` folder containing the API application files and the new `Dockerfile` you created, type the following command to create a Docker image for the Init application. This command does the following:
+
+   - Executes the Docker build command to produce the image
+
+   - Tags the resulting image with the name content-init (-t)
+
+   - The final dot (`.`) indicates to use the Dockerfile in this current directory context. By default, this file is expected to have the name `Dockerfile` (case sensitive).
+
+   ```bash
+   docker image build -t content-init .
+   ```
+
 3. Once the image is successfully built, run the Docker images listing command again. You will see several new images: the node images and your container image.
 
    ```bash
@@ -722,6 +734,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image tag content-web [LOGINSERVER]/content-web
    docker image tag content-api [LOGINSERVER]/content-api
+   docker image tag content-api [LOGINSERVER]/content-init
    ```
 
 6. List your docker images and look at the repository and tag. Note that the repository is prefixed with your ACR login server name, such as the sample shown in the screenshot below.
@@ -737,6 +750,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image push [LOGINSERVER]/content-web
    docker image push [LOGINSERVER]/content-api
+   docker image push [LOGINSERVER]/content-init
    ```
 
    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/content-web.](media/image67.png)
@@ -744,7 +758,7 @@ In this task, you will push images to your ACR account, version images with tagg
 8. In the Azure Portal, navigate to your ACR account, and select **Repositories** under **Services** on the left-hand menu. You will now see two, one for each image.
 
    ![In this screenshot, content-api and content-web each appear on their own lines below Repositories.](media/image68.png)
-
+   
 9. Select `content-api`. You will see the latest tag is assigned.
 
    ![In this screenshot, content-api is selected under Repositories, and the Tags blade appears on the right.](media/image69.png)
@@ -1223,7 +1237,7 @@ In this task, deploy the web service using a helm chart.
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
-3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select "Services".
+3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select **Services**.
 
 4. Select the triple vertical dots on the right of the **web** service and then choose **Delete**. When prompted, select **Delete** again.
 
@@ -1234,7 +1248,7 @@ In this task, deploy the web service using a helm chart.
 6. Update your starter files by pulling the latest changes from Azure DevOps
 
    ```bash
-    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
+    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/infrastructure/content-web
     git pull
    ```
 
@@ -1635,7 +1649,7 @@ At this point, you have deployed a single instance of the web and API service co
 
 In this task, you will increase the number of instances for the API deployment in the Kubernetes management dashboard. While it is deploying, you will observe the changing status.
 
-1. From the navigation menu, select **Workloads** -> **Deployments**, and then select the API deployment.
+1. From the navigation menu, select **Workloads** -> **Deployments**, and then select the **API** deployment.
 
 2. Select **SCALE**.
 
@@ -1846,7 +1860,7 @@ In this task, we will reconfigure the API deployment so that it will produce pod
 
 In this task, you will update the web service so that it supports dynamic discovery through the Azure load balancer.
 
-1. From the navigation menu, select **Deployments** under **Workloads**. From the view's Deployments list, select the web deployment.
+1. From the navigation menu, select **Deployments** under **Workloads**. From the view's Deployments list, select the **web** deployment.
 
 2. Select **Edit**.
 
@@ -1901,7 +1915,7 @@ In this task, you will edit the web application source code to add Application I
 2. Update your starter files by pulling the latest changes from Azure DevOps.
 
    ```bash
-   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
+   cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/infrastructure/content-web
    git pull
    ```
 
