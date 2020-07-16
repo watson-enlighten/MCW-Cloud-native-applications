@@ -1385,7 +1385,7 @@ In this task, deploy the web service using `kubectl`.
 
 ### Task 4: Deploy a service using a Helm chart
 
-In this task, deploy the web service using a helm chart.
+In this task, you will deploy the web service using a [Helm](https://helm.sh/) chart to streamline the installing and managing the container-based application on the Azure Kubernetes cluster.
 
 1. From the Kubernetes dashboard, under **Workloads**, select **Deployments**.
 
