@@ -1984,11 +1984,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2 --generate-name
    ```
 
-3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
-
-   ```text
-   service?namespace=kube-system
-   ```
+3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select **Services**, then copy the IP Address for the **External endpoints** for the ingress-controller-nginx service.
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 
@@ -1998,7 +1994,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     > kubectl get svc --namespace kube-system
     > ```
     >
-    > ![A screenshot of Azure Cloud Shell showing the command output.](media/Ex4-Task5.5a.png)
+    > ![A screenshot of Azure Cloud Shell showing the command output.](media/Ex4-Task5.5a.png) 
 
 4. Create a script to update the public DNS name for the IP.
 
@@ -2025,6 +2021,11 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    ```
 
    ![A screenshot of cloud shell editor showing the updated file.](media/Ex4-Task5.6.png)
+
+   Be sure to replace the following placeholders in the script:
+
+   - `[INGRESS PUBLIC IP]`: replace this with the IP Address copied previously.
+   - `[SUFFIX]`: replace this with the same SUFFIX value used previously for this lab
 
 5. Save changes and close the editor.
 
