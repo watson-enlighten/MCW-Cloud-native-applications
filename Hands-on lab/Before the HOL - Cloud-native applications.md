@@ -248,35 +248,11 @@ In this section, you configure and execute an ARM template that creates all the 
    - **CosmosLocationName**: The name of the primary location of the Azure Cosmos DB. Use the name of the same location as the resource group previously created (example: `"East US"`).
    - **CosmosPairedLocation**: The secondary location of the Azure Cosmos DB. Use a location from the list below (example: `"westus"`).
    - **CosmosPairedLocationName**: The name of the secondary location of the Azure Cosmos DB. Use the location name from the list below that matches the secondary location defined in the previous key (example: `"West US"`).
-   
 
-   | Location           | Location Name       |
-   | ------------------ | ------------------- |
-   | canadacentral      | Canada Central      |
-   | canadaeast         | Canada East         |
-   | northcentralus     | North Central US    |
-   | centralus          | Central US          |
-   | southcentralus     | South Central US    |
-   | eastus             | East US             |
-   | eastus2            | East US 2           |
-   | westus             | West US             |
-   | westus2            | West US 2           |
-   | westcentralus      | West Central US     |
-   | francecentral      | France Central      |
-   | uksouth            | UK South            |
-   | ukwest             | UK West             |
-   | northeurope        | North Europe        |
-   | westeurope         | West Europe         |
-   | australiaeast      | Australia East      |
-   | australiasoutheast | Australia Southeast |
-   | brazilsouth        | Brazil South        |
-   | centralindia       | Central India       |
-   | southindia         | South India         |
-   | japaneast          | Japan East          |
-   | japanwest          | Japan West          |
-   | koreacentral       | Korea Central       |
-   | southeastasia      | Southeast Asia      |
-   | eastasia           | East Asia           |
+   > **Note**: You can run the following Azure CLI command from the Azure Cloud Shell to list out the available Azure Regions:
+   > ```
+   > az account list-locations -o table
+   > ```
 
 4. Select the **...** button and select **Save**.
 
