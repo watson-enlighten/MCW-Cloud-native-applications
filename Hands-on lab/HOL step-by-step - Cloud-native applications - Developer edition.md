@@ -884,6 +884,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image tag content-web [LOGINSERVER]/content-web
    docker image tag content-api [LOGINSERVER]/content-api
+   docker image tag content-api [LOGINSERVER]/content-init
    ```
 
    > **Note**: Be sure to replace the `[LOGINSERVER]` of your ACR instance.
@@ -901,6 +902,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image push [LOGINSERVER]/content-web
    docker image push [LOGINSERVER]/content-api
+   docker image push [LOGINSERVER]/content-init
    ```
 
    ![In this screenshot of the console window, an example of images being pushed to an ACR account results from typing and running the following at the command prompt: docker push [LOGINSERVER]/content-web.](media/image67.png)
