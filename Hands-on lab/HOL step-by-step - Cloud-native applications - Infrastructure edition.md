@@ -1976,7 +1976,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
 2. Install the ingress controller resource to handle ingress requests as they come in. The ingress controller will receive a public IP of its own on the Azure Load Balancer and be able to handle requests for multiple services over port 80 and 443.
 
    ```bash
-   helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2
+   helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2 --generate-name
    ```
 
 3. Set a DNS prefix on the IP address allocated to the ingress controller. Visit the `kube-system` namespace in your Kubernetes dashboard to find the IP. Append the following path after the `#!/` marker in the URL:
