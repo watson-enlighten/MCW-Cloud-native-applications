@@ -300,7 +300,7 @@ _Kubernetes Architecture_
 
 ![A diagram of Azure Kubernetes Service managed components with master and agent nodes.](media/azure-kubernetes-components.png)
 
-<https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes>
+<https://docs.microsoft.com/azure/aks/intro-kubernetes>
 
 _CI/CD to Azure Kubernetes Service with Azure DevOps_
 
@@ -419,17 +419,17 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 |                                 |                                                                                                  |
 | ------------------------------- | :----------------------------------------------------------------------------------------------- |
 | **Description**                 | **Links**                                                                                        |
-| Azure Kubernetes Services (AKS) | <https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes/>                                   |
+| Azure Kubernetes Services (AKS) | <https://docs.microsoft.com/azure/aks/intro-kubernetes/>                                   |
 | Kubernetes                      | <https://kubernetes.io/docs/home/>                                                               |
-| AKS FAQ                         | <https://docs.microsoft.com/en-us/azure/aks/faq>                                                   |
+| AKS FAQ                         | <https://docs.microsoft.com/azure/aks/faq>                                                   |
 | Autoscaling AKS                 | <https://github.com/kubernetes/autoscaler>                                                         |
-| AKS Cluster Autoscaler          | <https://docs.microsoft.com/en-us/azure/aks/cluster-autoscaler>                                    |
-| Upgrading an AKS cluster        | <https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster>                                       |
-| Azure Pipelines                 | <https://docs.microsoft.com/en-us/azure/devops/pipelines/>                                       |
-| Container Security              | <https://docs.microsoft.com/en-us/azure/container-instances/container-instances-image-security/> |
+| AKS Cluster Autoscaler          | <https://docs.microsoft.com/azure/aks/cluster-autoscaler>                                    |
+| Upgrading an AKS cluster        | <https://docs.microsoft.com/azure/aks/upgrade-cluster>                                       |
+| Azure Pipelines                 | <https://docs.microsoft.com/azure/devops/pipelines/>                                       |
+| Container Security              | <https://docs.microsoft.com/azure/container-instances/container-instances-image-security/> |
 | Image Quarantine                | <https://github.com/Azure/acr/tree/master/docs/preview/quarantine/>                              |
-| Container Monitoring Solution   | <https://docs.microsoft.com/en-us/azure/azure-monitor/insights/containers>                       |
-| Azure Cosmos DB                 | <https://docs.microsoft.com/en-us/azure/cosmos-db/introduction> |
+| Container Monitoring Solution   | <https://docs.microsoft.com/azure/azure-monitor/insights/containers>                       |
+| Azure Cosmos DB                 | <https://docs.microsoft.com/azure/cosmos-db/introduction> |
 
 # Cloud-native applications whiteboard design session trainer guide
 

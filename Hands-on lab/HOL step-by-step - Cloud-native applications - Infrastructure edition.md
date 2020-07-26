@@ -108,10 +108,10 @@ Each tenant will have the following containers:
 
    - To complete this lab, ensure your account has the following roles:
 
-     - The [Owner](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#owner)
+     - The [Owner](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#owner)
        built-in role for the subscription you will use.
 
-     - Is a [Member](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
+     - Is a [Member](https://docs.microsoft.com/azure/active-directory/fundamentals/users-default-permissions#member-and-guest-users) user in the Azure AD tenant you will use. (Guest users will not have the necessary permissions).
 
      > **Note** If you do not meet these requirements, you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
 
