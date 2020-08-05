@@ -802,8 +802,10 @@ image and pushes it to your ACR instance automatically.
    vi azure-pipelines.yml
    ```
 
-   Add the following as the content (replacing `SHORT_SUFFIX` with your short
-   suffix such as `SOL`):
+   Add the following as the content. Be sure to replace the following placeholders:
+
+   - replace `[SHORT_SUFFIX]` with your short suffix such as `SOL`.
+   - replace `[ACR_USERNAME]` and `[ACR_PASSWORD]` with the Azure Container Registry username and password that was copied previously.
 
    ```yaml
    name: 0.1.$(Rev:r)
@@ -817,11 +819,15 @@ image and pushes it to your ACR instance automatically.
    variables:
      dockerRegistryServiceConnection: "Fabmedical ACR"
      imageRepository: "content-web"
+     resourceGroupName: "Fabmedical-[SHORT_SUFFIX]"
      containerRegistry: "$(containerRegistryName).azurecr.io"
      containerRegistryName: "fabmedical[SHORT_SUFFIX]"
+     containerRegistryUsername: "[ACR_USERNAME]"
+     containerRegistryPassword: "[ACR_PASSWORD]"
      dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
      tag: "$(Build.BuildNumber)"
      vmImageName: "ubuntu-latest"
+     HELM_EXPERIMENTAL_OCI: 1
 
    stages:
      - stage: Build
@@ -1512,27 +1518,14 @@ In this task, you will use Azure DevOps to automate the process for deploying th
         displayName: 'Helm Install'
 
       - task: HelmDeploy@0
-        inputs:
-          connectionType: 'None'
-          command: 'package'
-          chartPath: 'charts/web'
-          chartVersion: '$(Build.BuildNumber)'
-          save: false
-        displayName: 'Helm Package'
-
-      - task: AzureCLI@1
-        inputs:
-          azureSubscription: 'azurecloud'
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            set -euo pipefail
-
-            az acr helm push \
-              --name $(containerRegistryName) \
-              $(Build.ArtifactStagingDirectory)/web-$(Build.BuildNumber).tgz
-
-          failOnStandardError: true
-        displayName: 'Helm Push'
+         inputs:
+            azureSubscriptionForACR: 'azurecloud'
+            azureResourceGroupForACR: '$(resourceGroupName)'
+            azureContainerRegistry: '$(containerRegistryName).azurecr.io'
+            command: 'save'
+            chartNameForACR: 'web:$(Build.BuildNumber)'
+            chartPathForACR: 'charts/web'
+         displayName: "Helm Deploy"
    ```
 
    ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
@@ -1565,17 +1558,15 @@ In this task, you will use Azure DevOps to automate the process for deploying th
                      helmVersionToInstall: "latest"
                    displayName: "Helm Install"
 
-                 - task: AzureCLI@1
-                   inputs:
-                     azureSubscription: "azurecloud"
-                     scriptLocation: "inlineScript"
-                     inlineScript: |
-                       set -euo pipefail
-
-                       az acr helm repo add --name $(containerRegistryName)
-
-                     failOnStandardError: true
-                   displayName: "Helm repo update"
+                 - task: HelmDeploy@0
+                  inputs:
+                    connectionType: "Azure Resource Manager"
+                    azureSubscription: "azurecloud"
+                    azureResourceGroup: "fabmedical-cp222"
+                    kubernetesCluster: "fabmedical-cp222"
+                    command: "repo"
+                    arguments: add $(containerRegistryName) https://$(containerRegistry)/helm/v1/repo --username "$(containerRegistryUsername)" --password "$(containerRegistryPassword)"
+                  displayName: "Helm repo update"
 
                  - task: HelmDeploy@0
                    inputs:
