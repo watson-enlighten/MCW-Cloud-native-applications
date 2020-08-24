@@ -483,7 +483,7 @@ The primary audience is the technical strategic decision-maker with influential 
 
 After evaluating the options for container platforms on Azure and discussing Azure Kubernetes Service (AKS) features with the team at Microsoft, Fabrikam Medical Conferences decided to move forward with Azure Kubernetes Service (AKS).
 
-They also decided to move forward with Azure DevOps for container DevOps workflows.
+They also decided to move forward with GitHub Actions for container DevOps workflows.
 
 **Design**
 
@@ -506,7 +506,7 @@ They also decided to move forward with Azure DevOps for container DevOps workflo
 
 2. Without getting into the details (the following sections will address the particular details), diagram your initial vision of the container platform, the containers that should be deployed (for a single tenant), and the data tier.
 
-    The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below. The data tier is provided by Cosmos DB outside of the container platform. The deployment of the containers to AKS is managed using a DevOps workflow utilizing Azure Piplelines for CI/CD with Azure Container Registry and Helm:
+    The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below. The data tier is provided by Cosmos DB outside of the container platform. The deployment of the containers to AKS is managed using a DevOps workflow utilizing GitHub Actions for CI/CD with Azure Container Registry and Helm:
 
 ![A diagram showing the solution, using Azure Kubernetes Service with a Cosmos DB back end.](media/solution-topology.png)
 
