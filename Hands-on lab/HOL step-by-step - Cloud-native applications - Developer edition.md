@@ -185,7 +185,7 @@ The purpose of this task is to make sure you can run the application successfull
 6. To initialize the local database with test content, first navigate to the content-init directory and run npm install.
 
    ```bash
-   cd content-init
+   cd ~/Fabmedical/content-init
    npm install
    ```
 
