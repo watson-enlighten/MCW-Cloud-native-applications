@@ -960,6 +960,68 @@ image and pushes it to your ACR instance automatically.
     ```bash
     cd ~/Fabmedical/.github/workflows
     ```
+4. Next create the workflow YAML file.
+
+    ```dotnetcli
+    vi content-web.yml
+    ```
+
+   Add the following as the content. Be sure to replace the following placeholders:
+
+   - replace `[SHORT_SUFFIX]` with your short suffix such as `SOL`.
+   - ??? replace `[ACR_USERNAME]` and `[ACR_PASSWORD]` with the Azure Container Registry username and password that was copied previously.
+
+    ```yml
+    name: content-web
+
+    # This workflow is triggered on push to the 'content-web' directory of the  master branch of the repository
+    on:
+      push:
+        branches:
+        - master
+        paths:
+        - 'content-web/**'
+
+      workflow_dispatch:
+        inputs:
+          logLevel:
+            description: 'Log level'
+            required: true
+            default: 'warning'
+
+    # Environment variables are defined so that they can be used throughout the job definitions.
+    env:
+      imageRepository: 'content-web'
+      resourceGroupName: 'Fabmedical-[SHORT-SUFFIX]'
+      containerRegistry: 'fabmedical[SHORT_SUFFIX].azureco.io'
+      dockerfilePath: './content-web/Dockerfile'
+      tag: '${{ github.run_id  }}'
+
+    # Jobs define the actions that take place when code is pushed to the master branch
+    jobs:
+
+      build-and-publish-docker-image:
+        name: Build and Push Docker Image
+        runs-on: ubuntu-latest
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
+
+        - name: Build and push an image to container registry
+          uses: docker/build-push-action@v1
+          with:
+            username: ${{ secrets.ACR_USERNAME }}
+            password: ${{ secrets.ACR_PASSWORD }}
+            dockerfile: 'Dockerfile'
+            registry: ${{ env.containerRegistry }}
+            repository: ${{ env.imageRepository }}
+            tags: ${{ env.tag }},latest
+    ```
+
+
+1. ???
+
+1. ??? SETUP GITHUB SECRETS
 
 1. ???
 
