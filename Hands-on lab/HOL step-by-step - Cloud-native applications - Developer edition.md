@@ -741,7 +741,7 @@ for several containers and run them together.
        restart: always
 
      api:
-       build: ./content-api
+       build: ./Fabmedical/content-api
        image: content-api
        depends_on:
          - mongo
@@ -749,7 +749,7 @@ for several containers and run them together.
          MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
 
      web:
-       build: ./content-web
+       build: ./Fabmedical/content-web
        image: content-web
        depends_on:
          - api
@@ -813,7 +813,7 @@ for several containers and run them together.
 
    services:
      init:
-       build: ./content-init
+       build: ./Fabmedical/content-init
        image: content-init
        depends_on:
          - mongo
