@@ -884,7 +884,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image tag content-web [LOGINSERVER]/content-web
    docker image tag content-api [LOGINSERVER]/content-api
-   docker image tag content-api [LOGINSERVER]/content-init
+   docker image tag content-init [LOGINSERVER]/content-init
    ```
 
    > **Note**: Be sure to replace the `[LOGINSERVER]` of your ACR instance.
@@ -920,6 +920,7 @@ In this task, you will push images to your ACR account, version images with tagg
     ```bash
     docker image tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
     docker image tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
+    docker image tag [LOGINSERVER]/content-init:latest [LOGINSERVER]/content-init:v1
     docker image ls
     ```
 
@@ -941,14 +942,28 @@ In this task, you will push images to your ACR account, version images with tagg
 In this task, you will use YAML to define a pipeline that builds your Docker
 image and pushes it to your ACR instance automatically.
 
-1. In your cloud shell session connected to the build agent VM, navigate to the
-   `content-web` directory:
+1. In your Azure Cloud Shell session connected to the build agent VM, navigate to the `~/Fabmedical` directory:
 
    ```bash
-   cd ~/content-web
+   cd ~/Fabmedical
    ```
 
-2. Next create the pipeline YAML file.
+2. Before the GitHub Actions workflows can be setup, the `.github/workflows` directory needs to be created. Do this by running the following commands:
+
+    ```bash
+    mkdir ~/Fabmedical/.github
+    mkdir ~/Fabmedical/.github/workflows
+    ```
+
+3. Navigate to the `.github/workflows` directory:
+
+    ```bash
+    cd ~/Fabmedical/.github/workflows
+    ```
+
+1. ???
+
+1. Next create the pipeline YAML file.
 
    ```bash
    vi azure-pipelines.yml
