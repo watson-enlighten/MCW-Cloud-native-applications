@@ -998,6 +998,14 @@ image and pushes it to your ACR instance automatically.
         paths:
         - 'content-web/**'
 
+      # Configure workflow to also support triggering manually
+      workflow_dispatch:
+        inputs:
+          logLevel:
+            description: 'Log level'
+            required: true
+            default: 'warning'
+
     # Environment variables are defined so that they can be used throughout the job definitions.
     env:
       imageRepository: 'content-web'
@@ -1038,6 +1046,10 @@ image and pushes it to your ACR instance automatically.
    git commit -m "Added workflow YAML"
    git push
    ```
+
+1. ???
+
+12. Go to GitHub Action, and trigger manually if necessary
 
 1. ???
 
