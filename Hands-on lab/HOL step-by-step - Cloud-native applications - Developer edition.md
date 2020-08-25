@@ -1010,6 +1010,7 @@ image and pushes it to your ACR instance automatically.
     env:
       imageRepository: 'content-web'
       resourceGroupName: 'Fabmedical-[SHORT_SUFFIX]'
+      containerRegistryName: 'fabmedical[SHORT_SUFFIX]'
       containerRegistry: 'fabmedical[SHORT_SUFFIX].azurecr.io'
       dockerfilePath: './content-web'
       tag: '${{ github.run_id  }}'
@@ -1410,7 +1411,7 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
-3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
+3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select **Services**.
 
 4. Select the triple vertical dots on the right of the **web** service and then choose **Delete**. When prompted, select **Delete** again.
 
@@ -1660,44 +1661,63 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will use Azure DevOps to automate the process for deploying the web image to the AKS cluster. You will update the DevOps Pipeline and configure a deployment stage so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
+In this task, you will use GitHub Actions to automate the process for deploying the web image to the AKS cluster. You will update the workflow and configure a job so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
 
-1. Login to your Azure DevOps account, access the `fabmedical` project you created earlier, then select **Pipelines**.
+1. Navigate to the `.github/workflows` folder of the git repository, and open the `content-web.yml` workflow using `vi`:
 
-2. From the pipelines list, select the `content-web` pipeline and select `Edit.`
+    ```bash
+    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/.github/workflows
+    vi content-web.yml
+    ```
 
-   ![A screenshot with the `content-web` pipeline selected and the `Edit` button highlighted.](media/hol-2019-10-02_10-06-57.png)
+2. You will add a second job to the bottom of the `content-web.yml` workflow. Paste the following at the end of the file:
 
-3. You will add a second job to the `Build and Push` stage, below the existing `Docker` job. Paste the following into the pipeline editor:
+    > **Note**: Be careful to check your indenting when pasting. The `build-and-pusl-helm-chart` node should be indented with 2 spaces and line up with the node for the `build-and-publish-docker-image` job.
 
-   > **Note**: Be careful to check your indenting when pasting. The `job` node should be indented with 2 spaces and line up with the `job` node for the `Docker` job.
+    ```yaml
+      build-and-push-helm-chart:
+        name: Build and Push Helm Chart
+        runs-on: ubuntu-latest
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
 
-   ```yaml
-   - job: Helm
-    displayName: Build and Push Helm Chart
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-      - checkout: self
-        fetchDepth: 1
+        - name: Azure Login
+          uses: azure/login@v1.1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - task: HelmInstaller@1
-        inputs:
-          helmVersionToInstall: 'latest'
-        displayName: 'Helm Install'
+        - name: ACR Login
+          run: az acr login --name ${{ env.containerRegistryName }}
 
-      - task: HelmDeploy@0
-         inputs:
-            azureSubscriptionForACR: 'azurecloud'
-            azureResourceGroupForACR: '$(resourceGroupName)'
-            azureContainerRegistry: '$(containerRegistryName).azurecr.io'
-            command: 'save'
-            chartNameForACR: 'web:$(Build.BuildNumber)'
-            chartPathForACR: 'charts/web'
-         displayName: "Helm Deploy"
-   ```
+        - name: Helm Install
+          uses: azure/setup-helm@v1
 
-   ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
+        - name: Helm Chart Save
+          run: |
+            cd ./content-web/charts
+            helm chart save . content-web:${{ env.tag }}
+            helm chart save . ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
+
+            # list out saved charts
+            helm chart list
+           env:
+             HELM_EXPERIMENTAL_OCI: 1
+
+        - name: Helm Chart Push
+          run: helm chart push ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
+    ```
+
+3. Save the file.
+
+1. ???
+1. TODO: Create GitHub SP: 
+    az ad sp create-for-rbac --name"GitHub Actions" --role Contributor --scopes /subscriptions/5461187e-57bf-4442-92ef-24d66fd0698d --sdk-auth
+1. TODO: Azure Login step --- https://github.com/marketplace/actions/azure-login
+1. TODO: Cloud Shell - Copy contents of "~/.kube/config"
+1. TODO: Add "KUBECONFIG" Secret to the GitHub Repo - paste in contents from "~/.kube/config"
+1. ???
+
 
 4. Choose **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
 
