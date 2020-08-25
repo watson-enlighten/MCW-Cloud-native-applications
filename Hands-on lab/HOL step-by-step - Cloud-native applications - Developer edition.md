@@ -1039,37 +1039,8 @@ image and pushes it to your ACR instance automatically.
    git commit -m "Added workflow YAML"
    git push
    ```
+
 1. ???
-
-1. Now login to Azure DevOps to create your first build. Navigate to the
-   `content-web` repository and choose **Set up Build**.
-
-   ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
-
-5. Choose **Existing Azure Pipelines YAML file**.
-
-6. On the **Select an existing YAML file** dialog, select the `azure-pipelines.yml` file that you added, then select **Continue**.
-
-   ![Select an existing YAML file](media/2020-06-26-13-14-42.png "Select an existing YAML file")
-
-5. Azure DevOps will automatically detect the pipeline YAML you added. You can
-   make additional edits here if needed. Select **Run** when you are ready to
-   execute the pipeline.
-
-   ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button.](media/hol-2019-10-02_07-33-16.png)
-
-6. The pipeline will now be queued to run within a minute or two.
-
-   ![A screenshot of Azure DevOps Pipeline with a queued job.](media/hol-2019-10-02_07-39-24.png)
-
-7. The build should take about five minutes to complete.
-
-   ![A screenshot of Azure DevOps Pipeline with a completed job.](media/hol-2019-10-02_08-28-49.png)
-
-   > **Note**: The build may fail due to an authorization error related to the
-   > Docker Registry Service connection. If this is the case, then select
-   > "Authorize Resources" and run the build again.
-   > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
 
 8. Next, create the `content-api` build. Select the `content-api` repository.
    This repository already includes `azure-pipelines.yaml`. Choose **Set up
