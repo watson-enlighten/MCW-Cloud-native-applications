@@ -942,25 +942,42 @@ In this task, you will push images to your ACR account, version images with tagg
 In this task, you will use YAML to define a pipeline that builds your Docker
 image and pushes it to your ACR instance automatically.
 
-1. In your Azure Cloud Shell session connected to the build agent VM, navigate to the `~/Fabmedical` directory:
+1. In GitHub, return to the **Fabmedical** repository screen, and select the **Settings** tab.
+
+2. From the left menu, select **Secrets**.
+
+3. Select the **New secret** button.
+
+    ![Settings link, Secrets link, and New secret button are highlighted](media/2020-08-24-21-45-42.png "GitHub Repository secrets")
+
+4. In the **New secret** form, enter the name `ACR_USERNAME` and for the value, paste in the Azure Container Registry **Username** that was copied previously. Select **Add secret**.
+
+    ![New secret screen with values entered](media/2020-08-24-21-48-54.png "New secret screen")
+
+5. Add another Secret, by entering the name `ACR_PASSWORD` and for the value, paste in the Azure Container Registry **Password** that was copied previously.
+
+    ![Secrets screen with both the ACR_USERNAME and ACR_PASSWORD secrets created](media/2020-08-24-21-51-24.png "Secrets screen")
+
+6. In your Azure Cloud Shell session connected to the build agent VM, navigate to the `~/Fabmedical` directory:
 
    ```bash
    cd ~/Fabmedical
    ```
 
-2. Before the GitHub Actions workflows can be setup, the `.github/workflows` directory needs to be created. Do this by running the following commands:
+7. Before the GitHub Actions workflows can be setup, the `.github/workflows` directory needs to be created. Do this by running the following commands:
 
     ```bash
     mkdir ~/Fabmedical/.github
     mkdir ~/Fabmedical/.github/workflows
     ```
 
-3. Navigate to the `.github/workflows` directory:
+8. Navigate to the `.github/workflows` directory:
 
     ```bash
     cd ~/Fabmedical/.github/workflows
     ```
-4. Next create the workflow YAML file.
+
+9. Next create the workflow YAML file.
 
     ```dotnetcli
     vi content-web.yml
@@ -1012,80 +1029,19 @@ image and pushes it to your ACR instance automatically.
             tags: ${{ env.tag }},latest
     ```
 
+10. Save the file and exit VI by pressing `<Esc>` then `:wq`.
 
-1. ???
-
-1. ??? SETUP GITHUB SECRETS
-
-1. ???
-
-1. Next create the pipeline YAML file.
-
-   ```bash
-   vi azure-pipelines.yml
-   ```
-
-   Add the following as the content. Be sure to replace the following placeholders:
-
-   - replace `[SHORT_SUFFIX]` with your short suffix such as `SOL`.
-   - replace `[ACR_USERNAME]` and `[ACR_PASSWORD]` with the Azure Container Registry username and password that was copied previously.
-
-   ```yaml
-   name: 0.1.$(Rev:r)
-
-   trigger:
-     - master
-
-   resources:
-     - repo: self
-
-   variables:
-     dockerRegistryServiceConnection: "Fabmedical ACR"
-     imageRepository: "content-web"
-     resourceGroupName: "Fabmedical-[SHORT_SUFFIX]"
-     containerRegistry: "$(containerRegistryName).azurecr.io"
-     containerRegistryName: "fabmedical[SHORT_SUFFIX]"
-     containerRegistryUsername: "[ACR_USERNAME]"
-     containerRegistryPassword: "[ACR_PASSWORD]"
-     dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
-     tag: "$(Build.BuildNumber)"
-     vmImageName: "ubuntu-latest"
-     HELM_EXPERIMENTAL_OCI: 1
-
-   stages:
-     - stage: Build
-       displayName: Build and Push
-       jobs:
-         - job: Docker
-           displayName: Build and Push Docker Image
-           pool:
-             vmImage: $(vmImageName)
-           steps:
-             - checkout: self
-               fetchDepth: 1
-
-             - task: Docker@2
-               displayName: Build and push an image to container registry
-               inputs:
-                 command: buildAndPush
-                 repository: $(imageRepository)
-                 dockerfile: $(dockerfilePath)
-                 containerRegistry: $(dockerRegistryServiceConnection)
-                 tags: |
-                   $(tag)
-                   latest
-   ```
-
-3. Save the pipeline YAML, then commit and push it to the Azure DevOps
+11. Save the pipeline YAML, then commit and push it to the Azure DevOps
    repository:
 
    ```bash
-   git add azure-pipelines.yml
-   git commit -m "Added pipeline YAML"
+   git add .
+   git commit -m "Added workflow YAML"
    git push
    ```
+1. ???
 
-4. Now login to Azure DevOps to create your first build. Navigate to the
+1. Now login to Azure DevOps to create your first build. Navigate to the
    `content-web` repository and choose **Set up Build**.
 
    ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
