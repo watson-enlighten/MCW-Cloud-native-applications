@@ -1066,18 +1066,9 @@ image and pushes it to your ACR instance automatically.
 
     ![Screenshot of content-api.yml with the environment variables highlighted](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
 
-19. Save the file, then navigate to the repositories GitHub Actions page and manually run the **content-api** workflow.
+19. Save the file, then navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
 
-1. ???
-
-10. When you are finished editing, select **Save and run** to execute the pipeline.
-
-11. While the `content-api` build runs, setup one last build for `content-init` by following the same steps as the previous `content-api` build, remembering to update the `[SHORT_SUFFIX]` value on the "Review your pipeline YAML" step.
-
-12. Visit your ACR instance in the Azure portal, you should see new containers
-    tagged with the Azure DevOps build number.
-
-    ![A screenshot of the container images in ACR.](media/Ex1-Task7.28.png)
+20. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
 
 ## Exercise 2: Deploy the solution to Azure Kubernetes Service
 
