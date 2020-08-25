@@ -1038,28 +1038,37 @@ image and pushes it to your ACR instance automatically.
 
 10. Save the file and exit VI by pressing `<Esc>` then `:wq`.
 
-11. Save the pipeline YAML, then commit and push it to the Azure DevOps
-   repository:
+11. Save the pipeline YAML, then commit and push it to the Azure DevOps repository:
 
-   ```bash
-   git add .
-   git commit -m "Added workflow YAML"
-   git push
-   ```
+    ```bash
+    git add .
+    git commit -m "Added workflow YAML"
+    git push
+    ```
+
+12. In GitHub, return to the **Fabmedical** repository screen, and select the **Actions** tab.
+
+13. On the **Actions** page, select the **content-web** workflow.
+
+14. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
+
+    ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
+
+15. After a second, the newly triggered workflow execution will display in the list. Select the new **content-web** execution to view it's status.
+
+16. Selecting the **Build and Push Docker Image** job of the workflow will display it's execution status.
+
+    ![Build and Push Docker Image job](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
+
+17. Next, setup the `content-api` workflow. This repository already includes `content-api.yaml` located within the `.github/workflows` directory. Open the `.github/workflows/content-api.yaml` file for editing.
+
+18. Edit the `resourceGroupName` and `containerRegistry` environment values to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name and resource group.
+
+    ![Screenshot of content-api.yml with the environment variables highlighted](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
+
+19. Save the file, then navigate to the repositories GitHub Actions page and manually run the **content-api** workflow.
 
 1. ???
-
-12. Go to GitHub Action, and trigger manually if necessary
-
-1. ???
-
-8. Next, create the `content-api` build. Select the `content-api` repository.
-   This repository already includes `azure-pipelines.yaml`. Choose **Set up
-   Build**.
-
-9. In the **Review your pipeline YAML** step, edit the `containerRegistryName` value to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name.
-
-   ![A screenshot of the "Review your pipeline YAML" step, with the containerRegistryName property highlighted.](media/hol-2019-10-18_06-32-34.png)
 
 10. When you are finished editing, select **Save and run** to execute the pipeline.
 
