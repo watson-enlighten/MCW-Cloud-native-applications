@@ -986,7 +986,6 @@ image and pushes it to your ACR instance automatically.
    Add the following as the content. Be sure to replace the following placeholders:
 
    - replace `[SHORT_SUFFIX]` with your short suffix such as `SOL`.
-   - ??? replace `[ACR_USERNAME]` and `[ACR_PASSWORD]` with the Azure Container Registry username and password that was copied previously.
 
     ```yml
     name: content-web
