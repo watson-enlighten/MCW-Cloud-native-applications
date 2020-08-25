@@ -982,19 +982,12 @@ image and pushes it to your ACR instance automatically.
         paths:
         - 'content-web/**'
 
-      workflow_dispatch:
-        inputs:
-          logLevel:
-            description: 'Log level'
-            required: true
-            default: 'warning'
-
     # Environment variables are defined so that they can be used throughout the job definitions.
     env:
       imageRepository: 'content-web'
-      resourceGroupName: 'Fabmedical-[SHORT-SUFFIX]'
-      containerRegistry: 'fabmedical[SHORT_SUFFIX].azureco.io'
-      dockerfilePath: './content-web/Dockerfile'
+      resourceGroupName: 'Fabmedical-[SHORT_SUFFIX]'
+      containerRegistry: 'fabmedical[SHORT_SUFFIX].azurecr.io'
+      dockerfilePath: './content-web'
       tag: '${{ github.run_id  }}'
 
     # Jobs define the actions that take place when code is pushed to the master branch
@@ -1012,7 +1005,8 @@ image and pushes it to your ACR instance automatically.
           with:
             username: ${{ secrets.ACR_USERNAME }}
             password: ${{ secrets.ACR_PASSWORD }}
-            dockerfile: 'Dockerfile'
+            path: ${{ env.dockerfilePath  }}
+            dockerfile: '${{ env.dockerfilePath }}/Dockerfile'
             registry: ${{ env.containerRegistry }}
             repository: ${{ env.imageRepository }}
             tags: ${{ env.tag }},latest
