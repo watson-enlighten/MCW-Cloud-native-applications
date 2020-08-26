@@ -1695,8 +1695,10 @@ In this task, you will use GitHub Actions workflows to automate the process for 
         - name: Helm Chart Save
           run: |
             cd ./content-web/charts/web
+
             helm chart save . content-web:v${{ env.tag }}
             helm chart save . ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
+
             # list out saved charts
             helm chart list
           env:
@@ -1743,10 +1745,19 @@ In this task, you will use GitHub Actions workflows to automate the process for 
         - name: kubeconfig
           run: echo "${{ secrets.KUBECONFIG }}" >> kubeconfig
 
+        - name: Helm Repo Add
+          run: |
+            helm repo add ${{ env.containerRegistry }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm repo update
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
+
         - name: Helm Upgrade
           run: |
             helm registry login ${{ env.containerRegistry }} --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
-            helm upgrade web ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }} --devel
+            helm chart pull ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
+            helm chart export ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }} --destination ./upgrade
+            helm upgrade web ./upgrade/web
           env:
             KUBECONFIG: './kubeconfig'
             HELM_EXPERIMENTAL_OCI: 1
