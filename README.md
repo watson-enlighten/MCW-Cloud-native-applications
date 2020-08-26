@@ -35,7 +35,7 @@ At the end of this lab, you will be better able to build and deploy containerize
 
 - Azure Kubernetes Service (AKS)
 - Azure Container Registry
-- Azure DevOps
+- GitHub
 - Docker
 - Cosmos DB (including MongoDB API)
 

@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-June 2020
+September 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -86,7 +86,7 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
 The solution will use Azure Kubernetes Service (AKS), which means that the container cluster topology is provisioned according to the number of requested nodes. The proposed containers deployed to the cluster are illustrated below with Cosmos DB as a managed service:
 
-![A diagram showing the solution, using Azure Kubernetes Service with a Cosmos DB back end.](media/image3.png)
+![A diagram showing the solution, using Azure Kubernetes Service with a Cosmos DB back end.](media/solution-topology.png)
 
 Each tenant will have the following containers:
 
@@ -185,7 +185,7 @@ The purpose of this task is to make sure you can run the application successfull
 6. To initialize the local database with test content, first navigate to the content-init directory and run npm install.
 
    ```bash
-   cd content-init
+   cd ~/Fabmedical/content-init
    npm install
    ```
 
@@ -741,7 +741,7 @@ for several containers and run them together.
        restart: always
 
      api:
-       build: ./content-api
+       build: ./Fabmedical/content-api
        image: content-api
        depends_on:
          - mongo
@@ -749,7 +749,7 @@ for several containers and run them together.
          MONGODB_CONNECTION: mongodb://mongo:27017/contentdb
 
      web:
-       build: ./content-web
+       build: ./Fabmedical/content-web
        image: content-web
        depends_on:
          - api
@@ -813,7 +813,7 @@ for several containers and run them together.
 
    services:
      init:
-       build: ./content-init
+       build: ./Fabmedical/content-init
        image: content-init
        depends_on:
          - mongo
@@ -884,7 +884,7 @@ In this task, you will push images to your ACR account, version images with tagg
    ```bash
    docker image tag content-web [LOGINSERVER]/content-web
    docker image tag content-api [LOGINSERVER]/content-api
-   docker image tag content-api [LOGINSERVER]/content-init
+   docker image tag content-init [LOGINSERVER]/content-init
    ```
 
    > **Note**: Be sure to replace the `[LOGINSERVER]` of your ACR instance.
@@ -920,6 +920,7 @@ In this task, you will push images to your ACR account, version images with tagg
     ```bash
     docker image tag [LOGINSERVER]/content-web:latest [LOGINSERVER]/content-web:v1
     docker image tag [LOGINSERVER]/content-api:latest [LOGINSERVER]/content-api:v1
+    docker image tag [LOGINSERVER]/content-init:latest [LOGINSERVER]/content-init:v1
     docker image ls
     ```
 
@@ -938,128 +939,137 @@ In this task, you will push images to your ACR account, version images with tagg
 
 ### Task 9: Setup CI Pipeline to Push Images
 
-In this task, you will use YAML to define a pipeline that builds your Docker
+In this task, you will use YAML to define a GitHub Actions workflow that builds your Docker
 image and pushes it to your ACR instance automatically.
 
-1. In your cloud shell session connected to the build agent VM, navigate to the
-   `content-web` directory:
+1. In GitHub, return to the **Fabmedical** repository screen, and select the **Settings** tab.
+
+2. From the left menu, select **Secrets**.
+
+3. Select the **New secret** button.
+
+    ![Settings link, Secrets link, and New secret button are highlighted](media/2020-08-24-21-45-42.png "GitHub Repository secrets")
+
+4. In the **New secret** form, enter the name `ACR_USERNAME` and for the value, paste in the Azure Container Registry **Username** that was copied previously. Select **Add secret**.
+
+    ![New secret screen with values entered](media/2020-08-24-21-48-54.png "New secret screen")
+
+5. Add another Secret, by entering the name `ACR_PASSWORD` and for the value, paste in the Azure Container Registry **Password** that was copied previously.
+
+    ![Secrets screen with both the ACR_USERNAME and ACR_PASSWORD secrets created](media/2020-08-24-21-51-24.png "Secrets screen")
+
+6. In your Azure Cloud Shell session connected to the build agent VM, navigate to the `~/Fabmedical` directory:
 
    ```bash
-   cd ~/content-web
+   cd ~/Fabmedical
    ```
 
-2. Next create the pipeline YAML file.
+7. Before the GitHub Actions workflows can be setup, the `.github/workflows` directory needs to be created. Do this by running the following commands:
 
-   ```bash
-   vi azure-pipelines.yml
-   ```
+    ```bash
+    mkdir ~/Fabmedical/.github
+    mkdir ~/Fabmedical/.github/workflows
+    ```
+
+8. Navigate to the `.github/workflows` directory:
+
+    ```bash
+    cd ~/Fabmedical/.github/workflows
+    ```
+
+9. Next create the workflow YAML file.
+
+    ```dotnetcli
+    vi content-web.yml
+    ```
 
    Add the following as the content. Be sure to replace the following placeholders:
 
    - replace `[SHORT_SUFFIX]` with your short suffix such as `SOL`.
-   - replace `[ACR_USERNAME]` and `[ACR_PASSWORD]` with the Azure Container Registry username and password that was copied previously.
 
-   ```yaml
-   name: 0.1.$(Rev:r)
+    ```yml
+    name: content-web
 
-   trigger:
-     - master
+    # This workflow is triggered on push to the 'content-web' directory of the  master branch of the repository
+    on:
+      push:
+        branches:
+        - master
+        paths:
+        - 'content-web/**'
 
-   resources:
-     - repo: self
+      # Configure workflow to also support triggering manually
+      workflow_dispatch:
+        inputs:
+          logLevel:
+            description: 'Log level'
+            required: true
+            default: 'warning'
 
-   variables:
-     dockerRegistryServiceConnection: "Fabmedical ACR"
-     imageRepository: "content-web"
-     resourceGroupName: "Fabmedical-[SHORT_SUFFIX]"
-     containerRegistry: "$(containerRegistryName).azurecr.io"
-     containerRegistryName: "fabmedical[SHORT_SUFFIX]"
-     containerRegistryUsername: "[ACR_USERNAME]"
-     containerRegistryPassword: "[ACR_PASSWORD]"
-     dockerfilePath: "$(Build.SourcesDirectory)/Dockerfile"
-     tag: "$(Build.BuildNumber)"
-     vmImageName: "ubuntu-latest"
-     HELM_EXPERIMENTAL_OCI: 1
+    # Environment variables are defined so that they can be used throughout the job definitions.
+    env:
+      imageRepository: 'content-web'
+      resourceGroupName: 'Fabmedical-[SHORT_SUFFIX]'
+      containerRegistryName: 'fabmedical[SHORT_SUFFIX]'
+      containerRegistry: 'fabmedical[SHORT_SUFFIX].azurecr.io'
+      dockerfilePath: './content-web'
+      tag: '${{ github.run_id  }}'
 
-   stages:
-     - stage: Build
-       displayName: Build and Push
-       jobs:
-         - job: Docker
-           displayName: Build and Push Docker Image
-           pool:
-             vmImage: $(vmImageName)
-           steps:
-             - checkout: self
-               fetchDepth: 1
+    # Jobs define the actions that take place when code is pushed to the master branch
+    jobs:
 
-             - task: Docker@2
-               displayName: Build and push an image to container registry
-               inputs:
-                 command: buildAndPush
-                 repository: $(imageRepository)
-                 dockerfile: $(dockerfilePath)
-                 containerRegistry: $(dockerRegistryServiceConnection)
-                 tags: |
-                   $(tag)
-                   latest
-   ```
+      build-and-publish-docker-image:
+        name: Build and Push Docker Image
+        runs-on: ubuntu-latest
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
 
-3. Save the pipeline YAML, then commit and push it to the Azure DevOps
-   repository:
+        - name: Build and push an image to container registry
+          uses: docker/build-push-action@v1
+          with:
+            username: ${{ secrets.ACR_USERNAME }}
+            password: ${{ secrets.ACR_PASSWORD }}
+            path: ${{ env.dockerfilePath  }}
+            dockerfile: '${{ env.dockerfilePath }}/Dockerfile'
+            registry: ${{ env.containerRegistry }}
+            repository: ${{ env.imageRepository }}
+            tags: ${{ env.tag }},latest
+    ```
 
-   ```bash
-   git add azure-pipelines.yml
-   git commit -m "Added pipeline YAML"
-   git push
-   ```
+10. Save the file and exit VI by pressing `<Esc>` then `:wq`.
 
-4. Now login to Azure DevOps to create your first build. Navigate to the
-   `content-web` repository and choose **Set up Build**.
+11. Save the pipeline YAML, then commit and push it to the Git repository:
 
-   ![A screenshot of the content-web repository with an arrow pointed at the Set up Build button.](media/hol-2019-10-01_19-50-16.png)
+    ```bash
+    git add .
+    git commit -m "Added workflow YAML"
+    git push
+    ```
 
-5. Choose **Existing Azure Pipelines YAML file**.
+12. In GitHub, return to the **Fabmedical** repository screen, and select the **Actions** tab.
 
-6. On the **Select an existing YAML file** dialog, select the `azure-pipelines.yml` file that you added, then select **Continue**.
+13. On the **Actions** page, select the **content-web** workflow.
 
-   ![Select an existing YAML file](media/2020-06-26-13-14-42.png "Select an existing YAML file")
+14. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
 
-5. Azure DevOps will automatically detect the pipeline YAML you added. You can
-   make additional edits here if needed. Select **Run** when you are ready to
-   execute the pipeline.
+    ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
 
-   ![A screenshot of the "Review your pipeline YAML" page.  An arrow points at the Run button.](media/hol-2019-10-02_07-33-16.png)
+15. After a second, the newly triggered workflow execution will display in the list. Select the new **content-web** execution to view it's status.
 
-6. The pipeline will now be queued to run within a minute or two.
+16. Selecting the **Build and Push Docker Image** job of the workflow will display it's execution status.
 
-   ![A screenshot of Azure DevOps Pipeline with a queued job.](media/hol-2019-10-02_07-39-24.png)
+    ![Build and Push Docker Image job](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
 
-7. The build should take about five minutes to complete.
+17. Next, setup the `content-api` workflow. This repository already includes `content-api.yaml` located within the `.github/workflows` directory. Open the `.github/workflows/content-api.yaml` file for editing.
 
-   ![A screenshot of Azure DevOps Pipeline with a completed job.](media/hol-2019-10-02_08-28-49.png)
+18. Edit the `resourceGroupName` and `containerRegistry` environment values to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name and resource group.
 
-   > **Note**: The build may fail due to an authorization error related to the
-   > Docker Registry Service connection. If this is the case, then select
-   > "Authorize Resources" and run the build again.
-   > ![A screenshot showing an authorization failure error. An arrow points to the Authorize Resources button.](media/hol-2019-10-02_07-30-37.png)
+    ![Screenshot of content-api.yml with the environment variables highlighted](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
 
-8. Next, create the `content-api` build. Select the `content-api` repository.
-   This repository already includes `azure-pipelines.yaml`. Choose **Set up
-   Build**.
+19. Save the file, then navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
 
-9. In the **Review your pipeline YAML** step, edit the `containerRegistryName` value to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name.
-
-   ![A screenshot of the "Review your pipeline YAML" step, with the containerRegistryName property highlighted.](media/hol-2019-10-18_06-32-34.png)
-
-10. When you are finished editing, select **Save and run** to execute the pipeline.
-
-11. While the `content-api` build runs, setup one last build for `content-init` by following the same steps as the previous `content-api` build, remembering to update the `[SHORT_SUFFIX]` value on the "Review your pipeline YAML" step.
-
-12. Visit your ACR instance in the Azure portal, you should see new containers
-    tagged with the Azure DevOps build number.
-
-    ![A screenshot of the container images in ACR.](media/Ex1-Task7.28.png)
+20. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow for the `content-init.yml` file, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
 
 ## Exercise 2: Deploy the solution to Azure Kubernetes Service
 
@@ -1401,7 +1411,7 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
 
    ![A screenshot of the Kubernetes management dashboard showing how to delete a deployment.](media/Ex2-Task4.2.png)
 
-3. From the Kubernetes dashboard, under "Discovery and Load Balancing", select "Services".
+3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select **Services**.
 
 4. Select the triple vertical dots on the right of the **web** service and then choose **Delete**. When prompted, select **Delete** again.
 
@@ -1409,7 +1419,7 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
 
 5. Open a **new** Azure Cloud Shell console.
 
-6. Update your starter files by pulling the latest changes from Azure DevOps.
+6. Update your starter files by pulling the latest changes from the Git repository:
 
     ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
@@ -1651,102 +1661,117 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will use Azure DevOps to automate the process for deploying the web image to the AKS cluster. You will update the DevOps Pipeline and configure a deployment stage so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
+In this task, you will use GitHub Actions workflows to automate the process for deploying the web image to the AKS cluster. You will update the workflow and configure a job so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
 
-1. Login to your Azure DevOps account, access the `fabmedical` project you created earlier, then select **Pipelines**.
+1. Navigate to the `.github/workflows` folder of the git repository, and open the `content-web.yml` workflow using `vi`:
 
-2. From the pipelines list, select the `content-web` pipeline and select `Edit.`
+    ```bash
+    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/.github/workflows
+    vi content-web.yml
+    ```
 
-   ![A screenshot with the `content-web` pipeline selected and the `Edit` button highlighted.](media/hol-2019-10-02_10-06-57.png)
+2. You will add a second job to the bottom of the `content-web.yml` workflow. Paste the following at the end of the file:
 
-3. You will add a second job to the `Build and Push` stage, below the existing `Docker` job. Paste the following into the pipeline editor:
+    > **Note**: Be careful to check your indenting when pasting. The `build-and-push-helm-chart` node should be indented with 2 spaces and line up with the node for the `build-and-publish-docker-image` job.
 
-   > **Note**: Be careful to check your indenting when pasting. The `job` node should be indented with 2 spaces and line up with the `job` node for the `Docker` job.
+    ```yaml
+      build-and-push-helm-chart:
+        name: Build and Push Helm Chart
+        runs-on: ubuntu-latest
+        needs: [build-and-publish-docker-image]
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
 
-   ```yaml
-   - job: Helm
-    displayName: Build and Push Helm Chart
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-      - checkout: self
-        fetchDepth: 1
+        - name: Helm Install
+          uses: azure/setup-helm@v1
 
-      - task: HelmInstaller@1
-        inputs:
-          helmVersionToInstall: 'latest'
-        displayName: 'Helm Install'
+        - name: Helm Repo Add
+          run: |
+            helm repo add ${{ env.containerRegistryName }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
 
-      - task: HelmDeploy@0
-         inputs:
-            azureSubscriptionForACR: 'azurecloud'
-            azureResourceGroupForACR: '$(resourceGroupName)'
-            azureContainerRegistry: '$(containerRegistryName).azurecr.io'
-            command: 'save'
-            chartNameForACR: 'web:$(Build.BuildNumber)'
-            chartPathForACR: 'charts/web'
-         displayName: "Helm Deploy"
-   ```
+        - name: Helm Chart Save
+          run: |
+            cd ./content-web/charts/web
 
-   ![A screenshot that shows the new job, with a line to highlight proper indenting.](media/hol-2019-10-02_10-23-10.png)
+            helm chart save . content-web:v${{ env.tag }}
+            helm chart save . ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
 
-4. Choose **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
+            # list out saved charts
+            helm chart list
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
 
-   ![A screenshot that shows the jobs, Helm is complete, Docker is still running.](media/hol-2019-10-02_10-57-42.png)
+        - name: Helm Chart Push
+          run: |
+            helm registry login ${{ env.containerRegistry }} --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm chart push ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
+    ```
 
-5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the `SUFFIX` values:
+3. Save the file.
 
-   > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces and line up with the `stage` node for the `Build` stage.
+4. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
 
-   ```yaml
-   - stage:
-     displayName: AKS Deployment
-     jobs:
-       - deployment: DeployAKS
-         displayName: "Deployment to AKS"
-         pool:
-           vmImage: $(vmImageName)
-         environment: "aks"
-         strategy:
-           runOnce:
-             deploy:
-               steps:
-                 - checkout: none
+    ```bash
+    cat ~/.kube/config
+    ```
 
-                 - task: HelmInstaller@1
-                   inputs:
-                     helmVersionToInstall: "latest"
-                   displayName: "Helm Install"
+5. In GitHub, return to the **Fabmedical** repository screen, select the **Settings** tab, select **Secrets** from the left menu, then select the **New secret** button.
 
-                 - task: HelmDeploy@0
-                  inputs:
-                    connectionType: "Azure Resource Manager"
-                    azureSubscription: "azurecloud"
-                    azureResourceGroup: "fabmedical-cp222"
-                    kubernetesCluster: "fabmedical-cp222"
-                    command: "repo"
-                    arguments: add $(containerRegistryName) https://$(containerRegistry)/helm/v1/repo --username "$(containerRegistryUsername)" --password "$(containerRegistryPassword)"
-                  displayName: "Helm repo update"
+6. Create a new GitHub Secret with the Name of `KUBECONFIG` and paste in the contents of the `~/.kube/config` file that was previously copied.
 
-                 - task: HelmDeploy@0
-                   inputs:
-                     connectionType: "Azure Resource Manager"
-                     azureSubscription: "azurecloud"
-                     azureResourceGroup: "fabmedical-[SUFFIX]"
-                     kubernetesCluster: "fabmedical-[SUFFIX]"
-                     command: "upgrade"
-                     chartType: "Name"
-                     chartName: "$(containerRegistryName)/web"
-                     releaseName: "web"
-                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/content-web"
-                   displayName: "Helm Upgrade"
-   ```
+    ![KUBECONFI secret](media/2020-08-25-22-34-04.png "KUBECONFI secret")
 
-   ![A screenshot that shows the new stage, with a line to highlight proper indenting.](media/hol-2019-10-02_11-19-51.png)
+7. Now return to edit the `content-web.yml` workflow and paste the following at the end of the file.
 
-6. Select **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
+    > **Note**: Be careful to check your indenting when pasting. The `aks-deployment` node should be indented with 2 spaces and line up with the node for the `build-and-push-helm-chart` job.
 
-   ![A screenshot that shows the stages, expanded to also show the jobs.  Docker is running, Helm is queued, AKS Deployment is not started.](media/hol-2019-10-02_11-27-34.png)
+    ```yaml
+      aks-deployment:
+        name: AKS Deployment
+        runs-on: ubuntu-latest
+        needs: [build-and-publish-docker-image,build-and-push-helm-chart]
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
+
+        - name: Helm Install
+          uses: azure/setup-helm@v1
+
+        - name: kubeconfig
+          run: echo "${{ secrets.KUBECONFIG }}" >> kubeconfig
+
+        - name: Helm Repo Add
+          run: |
+            helm repo add ${{ env.containerRegistry }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm repo update
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
+
+        - name: Helm Upgrade
+          run: |
+            helm registry login ${{ env.containerRegistry }} --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm chart pull ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
+            helm chart export ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }} --destination ./upgrade
+            helm upgrade web ./upgrade/web
+          env:
+            KUBECONFIG: './kubeconfig'
+            HELM_EXPERIMENTAL_OCI: 1
+    ```
+
+8. Save the file.
+
+9. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
+
+    ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
+
+10. Selecting the currently running workflow will display it's status.
+
+    ![Workflow is running](media/2020-08-25-22-15-39.png "Workflow is running")
 
 ### Task 8: Review Azure Monitor for Containers
 
@@ -2063,7 +2088,7 @@ In this task, you will edit the web application source code to add Application I
 
    Copy this value. You will use it later.
 
-2. Update your starter files by pulling the latest changes from Azure DevOps.
+2. Update your starter files by pulling the latest changes from the Git repository:
 
    ```bash
    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
@@ -2094,7 +2119,7 @@ In this task, you will edit the web application source code to add Application I
 
 6. Save changes and close the editor.
 
-7. Push these changes to your repository so that Azure DevOps CI will build and deploy a new image.
+7. Push these changes to your repository so that GitHub Actions CI will build and deploy a new image.
 
    ```bash
    git add .
@@ -2102,7 +2127,7 @@ In this task, you will edit the web application source code to add Application I
    git push
    ```
 
-8. Visit your Azure DevOps pipeline for the `content-web` application and see the new image being deployed into your Kubernetes cluster.
+8. Visit the `content-web` workflow for your GitHub repository and see the new image being deployed into your Kubernetes cluster.
 
 9. While this update runs, return the Kubernetes management dashboard in the browser.
 
