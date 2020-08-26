@@ -1686,74 +1686,45 @@ In this task, you will use GitHub Actions workflows to automate the process for 
         - name: Helm Install
           uses: azure/setup-helm@v1
 
-        - name: Azure Login
-          uses: azure/login@v1.1
-          with:
-            creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-        - name: ACR Login
-          run: az acr login --name ${{ env.containerRegistryName }}
+        - name: Helm Repo Add
+          run: |
+            helm repo add ${{ env.containerRegistryName }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
 
         - name: Helm Chart Save
           run: |
             cd ./content-web/charts/web
-
-            helm chart save . content-web:${{ env.tag }}
-            helm chart save . ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
-
+            helm chart save . content-web:v${{ env.tag }}
+            helm chart save . ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
             # list out saved charts
             helm chart list
-           env:
-             HELM_EXPERIMENTAL_OCI: 1
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
 
         - name: Helm Chart Push
-          run: helm chart push ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
+          run: |
+            helm registry login ${{ env.containerRegistry }} --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm chart push ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }}
+          env:
+            HELM_EXPERIMENTAL_OCI: 1
     ```
 
 3. Save the file.
 
-4. Go to the Azure Cloud Shell, and run the following command to create an Azure AD Service Principal and credentials for GitHub Actions to use to authenticate to Azure:
-
-    Be sure to replace the `[SUBSCRIPTION-ID]` placeholder with your Azure Subscription ID.
-
-    ```bash
-    az ad sp create-for-rbac --name"GitHub Actions" --role Contributor --scopes /subscriptions/[SUBSCRIPTION-ID] --sdk-auth
-    ```
-
-5. The command will output a JSON block similar to the following. Copy the JSON output to your Azure Cloud Shell for use laster.
-
-    ```json
-    {
-      "clientId": "XXXXXXXX-XXXX-4f6f-86c3-4d03bc656cfa",
-      "clientSecret": "B59~785.Rtr~n_.YzNwndg~byi6mXVVTBR",
-      "subscriptionId": "XXXXXXXX-XXXX-4442-92ef-24d66fd0698d",
-      "tenantId": "XXXXXXXX-XXXX-4e2e-aa8d-ee093097beda",
-      "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
-      "resourceManagerEndpointUrl": "https://management.azure.com/",
-      "activeDirectoryGraphResourceId": "https://graph.windows.net/",
-      "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
-      "galleryEndpointUrl": "https://gallery.azure.com/",
-      "managementEndpointUrl": "https://management.core.windows.net/"
-    }
-    ```
-
-6. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
+4. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
 
     ```bash
     cat ~/.kube/config
     ```
 
-7. In GitHub, return to the **Fabmedical** repository screen, select the **Settings** tab, select **Secrets** from the left menu, then select the **New secret** button.
+5. In GitHub, return to the **Fabmedical** repository screen, select the **Settings** tab, select **Secrets** from the left menu, then select the **New secret** button.
 
-8. Create a new GitHub Secret with the Name of `AZURE_CREDENTIALS` and paste in the Service Principal credentials that were previously created.
-
-    ![AZURE_CREDENTIALS secret](media/2020-08-25-22-26-53.png "AZURE_CREDENTIALS secret")
-
-9. Add another GitHub Secret with the Name of `KUBECONFIG` and paste in the contents of the `~/.kube/config` file that was previously copied.
+6. Create a new GitHub Secret with the Name of `KUBECONFIG` and paste in the contents of the `~/.kube/config` file that was previously copied.
 
     ![KUBECONFI secret](media/2020-08-25-22-34-04.png "KUBECONFI secret")
 
-10. Now return to edit the `content-web.yml` workflow and paste the following at the end of the file.
+7. Now return to edit the `content-web.yml` workflow and paste the following at the end of the file.
 
     > **Note**: Be careful to check your indenting when pasting. The `aks-deployment` node should be indented with 2 spaces and line up with the node for the `build-and-push-helm-chart` job.
 
@@ -1772,22 +1743,22 @@ In this task, you will use GitHub Actions workflows to automate the process for 
         - name: kubeconfig
           run: echo "${{ secrets.KUBECONFIG }}" >> kubeconfig
 
-        - name: Helm Repo Update
-          run: |
-            helm repo add ${{ env.containerRegistryName }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
-            helm repo update
-
         - name: Helm Upgrade
-          run: helm upgrade web ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
+          run: |
+            helm registry login ${{ env.containerRegistry }} --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm upgrade web ${{ env.containerRegistry }}/helm/content-web:v${{ env.tag }} --devel
+          env:
+            KUBECONFIG: './kubeconfig'
+            HELM_EXPERIMENTAL_OCI: 1
     ```
 
-11. Save the file.
+8. Save the file.
 
-12. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
+9. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
 
     ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
 
-13. Selecting the currently running workflow will display it's status.
+10. Selecting the currently running workflow will display it's status.
 
     ![Workflow is running](media/2020-08-25-22-15-39.png "Workflow is running")
 
