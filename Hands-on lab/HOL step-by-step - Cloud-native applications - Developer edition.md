@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-September 2020
+August 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -117,12 +117,7 @@ Each tenant will have the following containers:
 
      > **Note** If you do not meet these requirements, you may have to ask another member user with subscription owner rights to login to the portal and execute the create service principal step ahead of time.
 
-   - You must have enough cores available in your subscription to create the
-     build agent and Azure Kubernetes Service cluster in Before the Hands-on
-     Lab. You will need eight cores if following the exact instructions in the
-     lab, or more if you choose additional cluster nodes or larger VM sizes.
-     If you execute the steps required before the lab, you will be able to
-     see if you need to request more cores in your sub.
+   - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in Before the Hands-on Lab. You will need eight cores if following the exact instructions in the lab, or more if you choose additional cluster nodes or larger VM sizes. If you execute the steps required before the lab, you will be able to see if you need to request more cores in your sub.
 
 2. Local machine or a virtual machine configured with:
 
@@ -142,9 +137,7 @@ In this exercise, you will take the starter files and run the node.js applicatio
 
 The purpose of this task is to make sure you can run the application successfully before applying changes to run it as a Docker application.
 
-1. From Azure Cloud Shell, connect to your build agent if you are not already
-   connected. (If you need to reconnect, please review the instructions in the
-   "Before the HOL" document.)
+1. From Azure Cloud Shell, connect to your build agent if you are not already connected. (If you need to reconnect, please review the instructions in the "Before the HOL" document.)
 
 2. Type the following command to create a Docker network named `fabmedical`:
 
@@ -158,7 +151,7 @@ The purpose of this task is to make sure you can run the application successfull
    docker container run --name mongo --net fabmedical -p 27017:27017 -d mongo
    ```
 
-   > **Note**:  With the existing source code written for MongoDB, it can be pointed towards the Azure Cosmos DB MongoDB API endpoint. The Azure Cosmos DB Emulator could be used for local development on Windows, however, the Cosmos DB emulator does not support Linux. As a result, when using Linux for development, MongoDB is still needed for local development environments; with Azure Cosmos DB used for data storage in the cloud. This allows existing source code written for MongoDB storage to be easily mirated to using Azure Cosmos DB backend.
+   > **Note**:  With the existing source code written for MongoDB, it can be pointed towards the Azure Cosmos DB MongoDB API endpoint. The Azure Cosmos DB Emulator could be used for local development on Windows, however, the Cosmos DB emulator does not support Linux. As a result, when using Linux for development, MongoDB is still needed for local development environments; with Azure Cosmos DB used for data storage in the cloud. This allows existing source code written for MongoDB storage to be easily migrated to using Azure Cosmos DB backend.
 
 4. Confirm that the mongo container is running and ready.
 
@@ -289,7 +282,7 @@ The purpose of this task is to make sure you can run the application successfull
 
     Then press **_i_** to get into the edit mode, after that replace localhost with the build machine IP address.
 
-    ![show the app.js file in vim in the build machine to update the API URL.](media/image27.png)
+    ![Show the app.js file in vim in the build machine to update the API URL.](media/image27.png)
 
     Then press **_ESC_**, write **_:wq_** to save you changes and close the file.
 
@@ -346,9 +339,7 @@ In this task, you will browse to the web application for testing.
 
 In this task, you will create a new Dockerfile that will be used to run the API application as a containerized application.
 
-> **Note**: You will be working in a Linux VM without friendly editor tools. You
-> must follow the steps very carefully to work with Vim for a few editing
-> exercises if you are not already familiar with Vim.
+> **Note**: You will be working in a Linux VM without friendly editor tools. You must follow the steps very carefully to work with Vim for a few editing exercises if you are not already familiar with Vim.
 
 1. From cloud shell, navigate to the `content-api` folder. List the files in the folder with this command. The output should look like the screenshot below.
 
@@ -455,9 +446,7 @@ In this task, you will create a new Dockerfile that will be used to run the API 
 
 In this task, you will create Docker images for the application --- one for the API application and another for the web application. Each image will be created via Docker commands that rely on a Dockerfile.
 
-1. From cloud shell connected to the build agent VM, type the following command
-   to view any Docker images on the VM. The list will only contain the mongodb
-   image downloaded earlier.
+1. From cloud shell connected to the build agent VM, type the following command to view any Docker images on the VM. The list will only contain the mongodb image downloaded earlier.
 
    ```bash
    docker image ls
@@ -798,7 +787,7 @@ for several containers and run them together.
 
    The result should look similar to the following screenshot:
 
-   ![This screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
+   ![A screenshot of the VIM edit window shows the resulting compose file.](media/Ex1-Task6.19.png)
 
 6. Next, we will add a second file to our composition so that we can initialize the mongodb data when needed.
 
@@ -924,7 +913,7 @@ In this task, you will push images to your ACR account, version images with tagg
     docker image ls
     ```
 
-    ![In this screenshot of the console window is an example of tags being added and displayed.](media/image70.png)
+    ![In this screenshot of the console window, an example of tags being added and displayed.](media/image70.png)
 
 11. Repeat Step 7 to push the images to ACR again so that the newly tagged `v1` images are pushed. Then refresh one of the repositories to see the two versions of the image now appear.
 
@@ -948,15 +937,15 @@ image and pushes it to your ACR instance automatically.
 
 3. Select the **New secret** button.
 
-    ![Settings link, Secrets link, and New secret button are highlighted](media/2020-08-24-21-45-42.png "GitHub Repository secrets")
+    ![Settings link, Secrets link, and New secret button are highlighted.](media/2020-08-24-21-45-42.png "GitHub Repository secrets")
 
 4. In the **New secret** form, enter the name `ACR_USERNAME` and for the value, paste in the Azure Container Registry **Username** that was copied previously. Select **Add secret**.
 
-    ![New secret screen with values entered](media/2020-08-24-21-48-54.png "New secret screen")
+    ![New secret screen with values are entered.](media/2020-08-24-21-48-54.png "New secret screen")
 
 5. Add another Secret, by entering the name `ACR_PASSWORD` and for the value, paste in the Azure Container Registry **Password** that was copied previously.
 
-    ![Secrets screen with both the ACR_USERNAME and ACR_PASSWORD secrets created](media/2020-08-24-21-51-24.png "Secrets screen")
+    ![Secrets screen with both the ACR_USERNAME and ACR_PASSWORD secrets created.](media/2020-08-24-21-51-24.png "Secrets screen")
 
 6. In your Azure Cloud Shell session connected to the build agent VM, navigate to the `~/Fabmedical` directory:
 
@@ -1059,13 +1048,13 @@ image and pushes it to your ACR instance automatically.
 
 16. Selecting the **Build and Push Docker Image** job of the workflow will display it's execution status.
 
-    ![Build and Push Docker Image job](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
+    ![Build and Push Docker Image job.](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
 
 17. Next, setup the `content-api` workflow. This repository already includes `content-api.yaml` located within the `.github/workflows` directory. Open the `.github/workflows/content-api.yaml` file for editing.
 
 18. Edit the `resourceGroupName` and `containerRegistry` environment values to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name and resource group.
 
-    ![Screenshot of content-api.yml with the environment variables highlighted](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
+    ![Screenshot of content-api.yml with the environment variables highlighted.](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
 
 19. Save the file, then navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
 
@@ -1383,9 +1372,7 @@ In this task, deploy the web service using `kubectl`.
 
 9. Save changes and close the editor.
 
-10. Type the following command to deploy the application described by the YAML
-    files. You will receive a message indicating the items kubectl has created a
-    web deployment and a web service.
+10. Type the following command to deploy the application described by the YAML files. You will receive a message indicating the items kubectl has created a web deployment and a web service.
 
     ```bash
     kubectl create --save-config=true -f web.deployment.yml -f web.service.yml
