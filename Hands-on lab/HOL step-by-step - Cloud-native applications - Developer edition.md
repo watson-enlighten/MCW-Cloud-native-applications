@@ -939,7 +939,7 @@ In this task, you will push images to your ACR account, version images with tagg
 
 ### Task 9: Setup CI Pipeline to Push Images
 
-In this task, you will use YAML to define a pipeline that builds your Docker
+In this task, you will use YAML to define a GitHub Actions workflow that builds your Docker
 image and pushes it to your ACR instance automatically.
 
 1. In GitHub, return to the **Fabmedical** repository screen, and select the **Settings** tab.
@@ -1069,7 +1069,7 @@ image and pushes it to your ACR instance automatically.
 
 19. Save the file, then navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
 
-20. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
+20. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow for the `content-init.yml` file, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
 
 ## Exercise 2: Deploy the solution to Azure Kubernetes Service
 
@@ -1661,7 +1661,7 @@ In this task, you will verify that you can browse to the web service you have de
 
 ### Task 7: Configure Continuous Delivery to the Kubernetes Cluster
 
-In this task, you will use GitHub Actions to automate the process for deploying the web image to the AKS cluster. You will update the workflow and configure a job so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
+In this task, you will use GitHub Actions workflows to automate the process for deploying the web image to the AKS cluster. You will update the workflow and configure a job so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
 
 1. Navigate to the `.github/workflows` folder of the git repository, and open the `content-web.yml` workflow using `vi`:
 
