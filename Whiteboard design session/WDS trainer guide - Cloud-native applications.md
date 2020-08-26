@@ -366,7 +366,7 @@ _Scalability considerations_
 
 _Automating DevOps workflows_
 
-1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
+1. Describe how GitHub Actions can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
 2. Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
 
@@ -562,15 +562,15 @@ They also decided to move forward with GitHub Actions for container DevOps workf
 
    The basic workflow is to build an image from the service source repository, push the image to a registry from which it is deployed, and run as a container.
 
-   A Dockerfile describing each container can reside in the Git repository together with the source. Using command line tools, the developers can build Docker images and push to the registry. A CI process can also automate building images and push to the registry when changes are checked in using Azure DevOps build pipelines.
+   A Dockerfile describing each container can reside in the Git repository together with the source. Using command line tools, the developers can build Docker images and push to the registry. A CI process can also automate building images and push to the registry when changes are checked in using GitHub Actions workflows.
 
    To deploy and run a container, the developer can:
 
    - Securely access the Kubernetes dashboard and create a deployment specifying an image from the repository manually
 
-   - POST a service definition file (JSON) to the REST API using `kubectl` from the command line. This process can also be automated as part of a CD process using Azure DevOps release pipelines.
+   - POST a service definition file (JSON) to the REST API using `kubectl` from the command line. This process can also be automated as part of a CD process using GitHub Actions workflows.
 
-   - Create Azure DevOps CI/CD build and release pipelines to automate building images and deploying them to run in the cluster.
+   - Create GitHub Actions CI/CD workflows to automate building images and deploying them to run in the cluster.
 
 2. What options does the customer have for a Docker image registry, and what would you recommend?
 
@@ -608,11 +608,11 @@ They also decided to move forward with GitHub Actions for container DevOps workf
 
 *Automating DevOps workflows*
 
-1. Describe how Azure DevOps can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
+1. Describe how GitHub Actions can help the customer automate their continuous integration and deployment workflows and the Azure Kubernetes Service (AKS) infrastructure.
 
-   With Azure DevOps you can create build definitions that, on commit or check-in can produce build artifacts from the latest source (for example) and build Docker images, then push them to a Docker image repository such as Azure Container Registry. This build definition can be configured to respond to specific folder changes, can build one or more Docker image based on different project folders, and tag images with build number, required image repository tags and other information useful to your image promotion workflows.
+   With GitHub Actions you can create build workflows that, on commit or check-in can produce build artifacts from the latest source (for example) and build Docker images, then push them to a Docker image repository such as Azure Container Registry. This build definition can be configured to respond to specific folder changes, can build one or more Docker image based on different project folders, and tag images with build number, required image repository tags and other information useful to your image promotion workflows.
 
-   To trigger deployment, you can also use Azure DevOps to produce release definitions that can create or update services in AKS. You may, for example, want your development cluster to always deploy the latest images as code is committed. On the other hand, for test, UAT or production clusters you may want to manually run release jobs based on a specific image tag of the environment in order to control when a new version of a service or services are released.
+   To trigger deployment, you can also use GitHub Actions to create or update services in AKS. You may, for example, want your development cluster to always deploy the latest images as code is committed. On the other hand, for test, UAT or production clusters you may want to manually run release jobs based on a specific image tag of the environment in order to control when a new version of a service or services are released.
 
 2. Describe the recommended approach for keeping Azure Kubernetes Service (AKS) nodes up to date with the latest security patches or supported Kubernetes versions.
 
