@@ -1039,7 +1039,7 @@ image and pushes it to your ACR instance automatically.
 
 10. Save the file and exit VI by pressing `<Esc>` then `:wq`.
 
-11. Save the pipeline YAML, then commit and push it to the Azure DevOps repository:
+11. Save the pipeline YAML, then commit and push it to the Git repository:
 
     ```bash
     git add .
@@ -1419,7 +1419,7 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
 
 5. Open a **new** Azure Cloud Shell console.
 
-6. Update your starter files by pulling the latest changes from Azure DevOps.
+6. Update your starter files by pulling the latest changes from the Git repository:
 
     ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
@@ -2106,7 +2106,7 @@ In this task, you will edit the web application source code to add Application I
 
    Copy this value. You will use it later.
 
-2. Update your starter files by pulling the latest changes from Azure DevOps.
+2. Update your starter files by pulling the latest changes from the Git repository:
 
    ```bash
    cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/content-web
@@ -2137,7 +2137,7 @@ In this task, you will edit the web application source code to add Application I
 
 6. Save changes and close the editor.
 
-7. Push these changes to your repository so that Azure DevOps CI will build and deploy a new image.
+7. Push these changes to your repository so that GitHub Actions CI will build and deploy a new image.
 
    ```bash
    git add .
@@ -2145,7 +2145,7 @@ In this task, you will edit the web application source code to add Application I
    git push
    ```
 
-8. Visit your Azure DevOps pipeline for the `content-web` application and see the new image being deployed into your Kubernetes cluster.
+8. Visit the `content-web` workflow for your GitHub repository and see the new image being deployed into your Kubernetes cluster.
 
 9. While this update runs, return the Kubernetes management dashboard in the browser.
 
