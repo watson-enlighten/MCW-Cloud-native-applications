@@ -1672,15 +1672,19 @@ In this task, you will use GitHub Actions to automate the process for deploying 
 
 2. You will add a second job to the bottom of the `content-web.yml` workflow. Paste the following at the end of the file:
 
-    > **Note**: Be careful to check your indenting when pasting. The `build-and-pusl-helm-chart` node should be indented with 2 spaces and line up with the node for the `build-and-publish-docker-image` job.
+    > **Note**: Be careful to check your indenting when pasting. The `build-and-push-helm-chart` node should be indented with 2 spaces and line up with the node for the `build-and-publish-docker-image` job.
 
     ```yaml
       build-and-push-helm-chart:
         name: Build and Push Helm Chart
         runs-on: ubuntu-latest
+        needs: [build-and-publish-docker-image]
         steps:
         # Checkout the repo
         - uses: actions/checkout@master
+
+        - name: Helm Install
+          uses: azure/setup-helm@v1
 
         - name: Azure Login
           uses: azure/login@v1.1
@@ -1690,12 +1694,10 @@ In this task, you will use GitHub Actions to automate the process for deploying 
         - name: ACR Login
           run: az acr login --name ${{ env.containerRegistryName }}
 
-        - name: Helm Install
-          uses: azure/setup-helm@v1
-
         - name: Helm Chart Save
           run: |
-            cd ./content-web/charts
+            cd ./content-web/charts/web
+
             helm chart save . content-web:${{ env.tag }}
             helm chart save . ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
 
@@ -1710,72 +1712,84 @@ In this task, you will use GitHub Actions to automate the process for deploying 
 
 3. Save the file.
 
-1. ???
-1. TODO: Create GitHub SP: 
-    az ad sp create-for-rbac --name"GitHub Actions" --role Contributor --scopes /subscriptions/5461187e-57bf-4442-92ef-24d66fd0698d --sdk-auth
-1. TODO: Azure Login step --- https://github.com/marketplace/actions/azure-login
-1. TODO: Cloud Shell - Copy contents of "~/.kube/config"
-1. TODO: Add "KUBECONFIG" Secret to the GitHub Repo - paste in contents from "~/.kube/config"
-1. ???
+4. Go to the Azure Cloud Shell, and run the following command to create an Azure AD Service Principal and credentials for GitHub Actions to use to authenticate to Azure:
 
+    Be sure to replace the `[SUBSCRIPTION-ID]` placeholder with your Azure Subscription ID.
 
-4. Choose **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents.
+    ```bash
+    az ad sp create-for-rbac --name"GitHub Actions" --role Contributor --scopes /subscriptions/[SUBSCRIPTION-ID] --sdk-auth
+    ```
 
-   ![A screenshot that shows the jobs, Helm is complete, Docker is still running.](media/hol-2019-10-02_10-57-42.png)
+5. The command will output a JSON block similar to the following. Copy the JSON output to your Azure Cloud Shell for use laster.
 
-5. Now return to the pipeline editor to create a deployment stage. Paste the following into the pipeline editor and update the `SUFFIX` values:
+    ```json
+    {
+      "clientId": "XXXXXXXX-XXXX-4f6f-86c3-4d03bc656cfa",
+      "clientSecret": "B59~785.Rtr~n_.YzNwndg~byi6mXVVTBR",
+      "subscriptionId": "XXXXXXXX-XXXX-4442-92ef-24d66fd0698d",
+      "tenantId": "XXXXXXXX-XXXX-4e2e-aa8d-ee093097beda",
+      "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+      "resourceManagerEndpointUrl": "https://management.azure.com/",
+      "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+      "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+      "galleryEndpointUrl": "https://gallery.azure.com/",
+      "managementEndpointUrl": "https://management.core.windows.net/"
+    }
+    ```
 
-   > **Note**: Be careful to check your indenting when pasting. The `stage` node should be indented with 0 spaces and line up with the `stage` node for the `Build` stage.
+6. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
 
-   ```yaml
-   - stage:
-     displayName: AKS Deployment
-     jobs:
-       - deployment: DeployAKS
-         displayName: "Deployment to AKS"
-         pool:
-           vmImage: $(vmImageName)
-         environment: "aks"
-         strategy:
-           runOnce:
-             deploy:
-               steps:
-                 - checkout: none
+    ```bash
+    cat ~/.kube/config
+    ```
 
-                 - task: HelmInstaller@1
-                   inputs:
-                     helmVersionToInstall: "latest"
-                   displayName: "Helm Install"
+7. In GitHub, return to the **Fabmedical** repository screen, select the **Settings** tab, select **Secrets** from the left menu, then select the **New secret** button.
 
-                 - task: HelmDeploy@0
-                  inputs:
-                    connectionType: "Azure Resource Manager"
-                    azureSubscription: "azurecloud"
-                    azureResourceGroup: "fabmedical-cp222"
-                    kubernetesCluster: "fabmedical-cp222"
-                    command: "repo"
-                    arguments: add $(containerRegistryName) https://$(containerRegistry)/helm/v1/repo --username "$(containerRegistryUsername)" --password "$(containerRegistryPassword)"
-                  displayName: "Helm repo update"
+8. Create a new GitHub Secret with the Name of `AZURE_CREDENTIALS` and paste in the Service Principal credentials that were previously created.
 
-                 - task: HelmDeploy@0
-                   inputs:
-                     connectionType: "Azure Resource Manager"
-                     azureSubscription: "azurecloud"
-                     azureResourceGroup: "fabmedical-[SUFFIX]"
-                     kubernetesCluster: "fabmedical-[SUFFIX]"
-                     command: "upgrade"
-                     chartType: "Name"
-                     chartName: "$(containerRegistryName)/web"
-                     releaseName: "web"
-                     overrideValues: "image.tag=$(Build.BuildNumber),image.repository=$(containerRegistry)/content-web"
-                   displayName: "Helm Upgrade"
-   ```
+    ![AZURE_CREDENTIALS secret](media/2020-08-25-22-26-53.png "AZURE_CREDENTIALS secret")
 
-   ![A screenshot that shows the new stage, with a line to highlight proper indenting.](media/hol-2019-10-02_11-19-51.png)
+9. Add another GitHub Secret with the Name of `KUBECONFIG` and paste in the contents of the `~/.kube/config` file that was previously copied.
 
-6. Select **Save** and commit the changes directly to the master branch. A new build will start automatically. The two jobs are independent and will run in parallel if there are enough available build agents. However, the deployment depends on the jobs and will wait for them to complete before starting.
+    ![KUBECONFI secret](media/2020-08-25-22-34-04.png "KUBECONFI secret")
 
-   ![A screenshot that shows the stages, expanded to also show the jobs.  Docker is running, Helm is queued, AKS Deployment is not started.](media/hol-2019-10-02_11-27-34.png)
+10. Now return to edit the `content-web.yml` workflow and paste the following at the end of the file.
+
+    > **Note**: Be careful to check your indenting when pasting. The `aks-deployment` node should be indented with 2 spaces and line up with the node for the `build-and-push-helm-chart` job.
+
+    ```yaml
+      aks-deployment:
+        name: AKS Deployment
+        runs-on: ubuntu-latest
+        needs: [build-and-publish-docker-image,build-and-push-helm-chart]
+        steps:
+        # Checkout the repo
+        - uses: actions/checkout@master
+
+        - name: Helm Install
+          uses: azure/setup-helm@v1
+
+        - name: kubeconfig
+          run: echo "${{ secrets.KUBECONFIG }}" >> kubeconfig
+
+        - name: Helm Repo Update
+          run: |
+            helm repo add ${{ env.containerRegistryName }} https://${{ env.containerRegistry }}/helm/v1/repo --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+            helm repo update
+
+        - name: Helm Upgrade
+          run: helm upgrade web ${{ env.containerRegistry }}/helm/content-web:${{ env.tag }}
+    ```
+
+11. Save the file.
+
+12. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
+
+    ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
+
+13. Selecting the currently running workflow will display it's status.
+
+    ![Workflow is running](media/2020-08-25-22-15-39.png "Workflow is running")
 
 ### Task 8: Review Azure Monitor for Containers
 
