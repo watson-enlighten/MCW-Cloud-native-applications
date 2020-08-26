@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-September 2020
+August 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -68,7 +68,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 ## Before the hands-on lab
 
-**Duration**: 1 hour
+**Duration**: 60 minutes
 
 You should follow all of the steps provided in this section _before_ taking part in the hands-on lab ahead of time as some of these steps take time.
 
