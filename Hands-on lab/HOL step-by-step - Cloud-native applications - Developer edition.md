@@ -2237,9 +2237,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    ```bash
    kubectl create namespace cert-manager
 
-   kubectl label namespace cert-manager certmanager.k8s.io/disable-validation=true
-
-   kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.8.1/cert-manager.yaml
+   kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
    ```
 
 9. Cert manager will need a custom ClusterIssuer resource to handle requesting SSL certificates.
@@ -2251,7 +2249,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     The following resource configuration should work as is:
 
     ```yaml
-    apiVersion: certmanager.k8s.io/v1alpha1
+    apiVersion: cert-manager.io/v1
     kind: ClusterIssuer
     metadata:
       name: letsencrypt-prod
@@ -2293,7 +2291,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     Use the following as the contents and update the `[SUFFIX]` and `[AZURE-REGION]` to match your ingress DNS name
 
     ```yaml
-    apiVersion: certmanager.k8s.io/v1alpha1
+    apiVersion: cert-manager.io/v1
     kind: Certificate
     metadata:
       name: tls-secret
