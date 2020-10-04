@@ -2256,6 +2256,8 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    ```bash
    kubectl create namespace cert-manager
 
+   kubectl label namespace cert-manager cert-manager.io/disable-validation=true
+
    kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.1/cert-manager.yaml
    ```
 
@@ -2282,7 +2284,10 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
         privateKeySecretRef:
           name: letsencrypt-prod
         # Enable HTTP01 validations
-        http01: {}
+        solvers:
+        - http01:
+            ingress:
+              class: nginx
     ```
 
 10. Save changes and close the editor.
@@ -2318,12 +2323,6 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
       secretName: tls-secret
       dnsNames:
         - fabmedical-[SUFFIX]-ingress.[AZURE-REGION].cloudapp.azure.com
-      acme:
-        config:
-          - http01:
-              ingressClass: nginx
-            domains:
-              - fabmedical-[SUFFIX]-ingress.[AZURE-REGION].cloudapp.azure.com
       issuerRef:
         name: letsencrypt-prod
         kind: ClusterIssuer
@@ -2360,7 +2359,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
     Use the following as the contents and update the `[SUFFIX]` and `[AZURE-REGION]` to match your ingress DNS name
 
     ```yaml
-    apiVersion: apps/v1
+    apiVersion: extensions/v1beta1
     kind: Ingress
     metadata:
       name: content-ingress
