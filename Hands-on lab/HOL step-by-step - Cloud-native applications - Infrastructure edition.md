@@ -371,7 +371,26 @@ In this task, you will create Docker images for the application --- one for the 
    docker image build -t content-web .
    ```
 
-7. When complete, you will see seven images now exist when you run the Docker images command.
+8. Navigate to the content-init folder again and list the files. Note that this folder already has a Dockerfile.
+
+   ```bash
+   cd ../content-init
+   ll
+   ```
+
+9. View the Dockerfile contents -- which are similar to the file you created previously in the API folder. Type the following command:
+
+   ```bash
+   cat Dockerfile
+   ```
+
+10. Type the following command to create a Docker image for the init application.
+
+   ```bash
+   docker image build -t content-init .
+   ```
+
+11. When complete, you will see seven images now exist when you run the Docker images command.
 
    ```bash
    docker image ls
@@ -1020,7 +1039,7 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
 3. Select **SHOW ADVANCED OPTIONS**
 
-   - Enter `0.125` for the CPU requirement.
+   - Enter `1` for the CPU requirement.
 
    - Enter `128` for the Memory requirement.
 
