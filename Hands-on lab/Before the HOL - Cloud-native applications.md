@@ -57,7 +57,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template). You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. Execute the steps required before the lab to see if you need to request more cores in your sub.
 
-2. An account in GitHub  
+2. An account in GitHub.  
 
 3. Local machine or a virtual machine configured with:
 
@@ -119,7 +119,7 @@ In this task, you use `git` to copy the lab content to your cloud shell so that 
 
    ![In this screenshot of a Bash window, git clone has been typed and run at the command prompt. The output from git clone is shown.](media/b4-2019-09-30_21-25-06.png)
 
-3. We'll move this lab to it's own directory. Run this command:
+3. We'll move this lab to its own directory. Run this command:
 
    ```bash
    mv AzureTrailblazerAcademy/month5/labs/app_modenization/ ~/MCW-Cloud-native-applications
@@ -322,7 +322,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git push -u origin master
     ```
 
-    > **Note**: Reference the following link for help with setting up a GitHub personal access token to use for authenticating `git` with your GitHub account: <https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token>
+    > **Note**: Reference the following link for help with setting up a GitHub personal access token to use for authenticating `git` with your GitHub account: <https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token>.
 
 ### Task 7: Connect securely to the build agent
 
