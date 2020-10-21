@@ -1069,15 +1069,23 @@ image and pushes it to your ACR instance automatically.
 
     ![Build and Push Docker Image job.](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
 
-17. Next, setup the `content-api` workflow. This repository already includes `content-api.yaml` located within the `.github/workflows` directory. Open the `.github/workflows/content-api.yaml` file for editing.
+17. Next, setup the `content-api` workflow. This repository already includes `content-api.yml` located within the `.github/workflows` directory. Open the `.github/workflows/content-api.yml` file for editing.
 
 18. Edit the `resourceGroupName` and `containerRegistry` environment values to replace `[SHORT_SUFFIX]` with your own three-letter suffix so that it matches your container registry's name and resource group.
 
     ![Screenshot of content-api.yml with the environment variables highlighted.](media/2020-08-25-15-59-56.png "Screenshot of content-api.yml with the environment variables highlighted")
 
-19. Save the file, then navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
+19. Save the file, then commit and push it to the Git repository:
 
-20. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow for the `content-init.yml` file, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
+   ```bash
+   git add .
+   git commit -m "Updating workflow YAML"
+   git push
+   ```
+
+20. Navigate to the repositories in GitHub, select Actions, and then manually run the **content-api** workflow.
+
+21. Next, setup the **content-init** workflow. Follow the same steps as the previous `content-api` workflow for the `content-init.yml` file, remembering to update the `[SHORT_SUFFIX]` value with your own three-letter suffix.
 
 ## Exercise 2: Deploy the solution to Azure Kubernetes Service
 
@@ -1260,19 +1268,21 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing the value of a secret.](media/Ex2-Task1.15.png)
 
-15. Next, download the api deployment configuration using the following command in your Azure Cloud Shell window:
+15. From the navigation menu, select Deployments. From this view, selecte the API deployment.
 
-    ```bash
-    kubectl get -o=yaml deployment api > api.deployment.yml
-    ```
+16. Configure the deployment to use the cosmosdb secret. Select Edit.
 
-16. Edit the downloaded file using cloud shell code editor:
+    ![In the Workloads > Deployments > api bar, the Edit icon is highlighted.](media/image81.png)
 
-    ```bash
-    code api.deployment.yml
-    ```
+17. In the Edit a Deployment dialog, you will see a list of settings shown in JSON format. Use the copy button to copy the text to your clipboard.
 
-    Add the following environment configuration to the container spec, below the `image` property:
+    ![Screenshot of the Edit a Deployment dialog box that displays JSON data.](media/image82.png)
+
+18. Paste the contents into the text editor of your choice (notepad is shown here, macOS users can use TextEdit).
+
+    ![Screenshot of the Edit a Deployment contents pasted into Notepad text editor.](media/image83.png)
+
+19. Add the following environment configuration to the container spec, below the `image` property:
 
     ```yaml
       env:
@@ -1285,17 +1295,19 @@ In this task, you will deploy the API application to the Azure Kubernetes Servic
 
     ![A screenshot of the Kubernetes management dashboard showing part of the deployment file.](media/Ex2-Task1.17.png)
 
-17. Save your changes and close the editor.
+20. Copy the updated JSON document from notepad into the clipboard. Return to the Kubernetes dashboard, which should still be viewing the **api** deployment.
 
-    ![A screenshot of the code editor save and close actions.](media/Ex2-Task1.17.1.png)
+    - Select Edit.
 
-18. Update the api deployment by using `kubectl` to apply the new configuration.
+    ![In the Workloads > Deployments > api bar, the Edit icon is highlighted.](media/image87.png)
 
-    ```bash
-    kubectl apply -f api.deployment.yml
-    ```
+    - Paste the updated JSON document.
 
-19. Select **Deployments** then **api** to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
+    - Select Update.
+
+    ![UPDATE is highlighted in the Edit a Deployment dialog box.](media/image88.png)
+
+21. Select **Deployments** then **api** to view the api deployment. It now has a healthy instance and the logs indicate it has connected to mongodb.
 
     ![A screenshot of the Kubernetes management dashboard showing logs output.](media/Ex2-Task1.19.png)
 
@@ -1423,9 +1435,7 @@ In this task, deploy the web service using `kubectl`.
 
     ![In this screenshot of the console, kubectl apply -f kubernetes-web.yaml has been typed and run at the command prompt. Messages about web deployment and web service creation appear below.](media/image93.png)
 
-11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select **Services** view under **Discovery and Load Balancing**. From the Services view, select the web service, and from this view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
-
-    ![In the Kubernetes management dashboard, Services is selected below Discovery and Load Balancing in the navigation menu. At right are three boxes that display various information about the web service deployment: Details, Pods, and Events. At this time, we are unable to capture all of the information in the window. Future versions of this course should address this.](media/image94.png)
+11. Return to the browser where you have the Kubernetes management dashboard open. From the navigation menu, select **Services** view under **Discovery and Load Balancing**. From the Services view, you will see the web service deploying. This deployment can take a few minutes. When it completes, you should be able to access the website via an external endpoint.
 
 12. Select the speakers and sessions links. Note that no data is displayed, although we have connected to our Cosmos DB instance, there is no data loaded. You will resolve this by running the content-init application as a Kubernetes Job in Task 5.
 
@@ -1558,6 +1568,7 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
           - name: http
+            hostPort: 3000
             containerPort: 3000
             protocol: TCP
         env:
@@ -1567,6 +1578,12 @@ In this task, you will deploy the web service using a [Helm](https://helm.sh/) c
           httpGet:
             path: /
             port: 3000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
     ```
 
 19. Save changes and close the editor.
@@ -1693,11 +1710,11 @@ In this task, you will verify that you can browse to the web service you have de
 
 In this task, you will use GitHub Actions workflows to automate the process for deploying the web image to the AKS cluster. You will update the workflow and configure a job so that when new images are pushed to the ACR, the pipeline deploys the image to the AKS cluster.
 
-1. Navigate to the `.github/workflows` folder of the git repository, and open the `content-web.yml` workflow using `vi`:
+1. Navigate to the `.github/workflows` folder of the git repository, and open the `content-web.yml` workflow using `code`:
 
     ```bash
     cd ~/MCW-Cloud-native-applications/Hands-on\ lab/lab-files/developer/.github/workflows
-    vi content-web.yml
+    code content-web.yml
     ```
 
 2. You will add a second job to the bottom of the `content-web.yml` workflow. Paste the following at the end of the file:
@@ -1742,7 +1759,7 @@ In this task, you will use GitHub Actions workflows to automate the process for 
             HELM_EXPERIMENTAL_OCI: 1
     ```
 
-3. Save the file.
+3. Save and close the file.
 
 4. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
 
@@ -1793,7 +1810,13 @@ In this task, you will use GitHub Actions workflows to automate the process for 
             HELM_EXPERIMENTAL_OCI: 1
     ```
 
-8. Save the file.
+8. Save the file, then commit and push it to the Git repository:
+
+   ```bash
+   git add .
+   git commit -m "Updating workflow YAML"
+   git push
+   ```
 
 9. On the **content-web** workflow, select **Run workflow** and manually trigger the workflow to execute.
 
@@ -1936,6 +1959,17 @@ In this task, you will try to increase the number of instances for the API servi
        "hostPort": 3001
        }
    ],
+   ```
+
+   - Update the resources section and update the values so that they match the following:
+
+   ```json
+   "resources": {
+      "requests": {
+         "cpu": "125m",
+         "memory": "128Mi"
+      }
+   },
    ```
 
    - Your container spec should now look like this:
@@ -2190,7 +2224,7 @@ In this task you will setup a Kubernetes Ingress to take advantage of path-based
    helm install stable/nginx-ingress --namespace kube-system --set controller.replicaCount=2 --generate-name
    ```
 
-3. From the Kubernetes dashboard, under **Discovery and Load Balancing**, select **Services**, then copy the IP Address for the **External endpoints** for the ingress-controller-nginx service.
+3. From the Kubernetes dashboard, under the **Namespace** dropdown, select **kube-system**, then under **Discovery and Load Balancing**, select **Services**, then copy the IP Address for the **External endpoints** for the ingress-controller-nginx service.
 
    ![A screenshot of the Kubernetes management dashboard showing the ingress controller settings.](media/Ex4-Task5.5.png)
 

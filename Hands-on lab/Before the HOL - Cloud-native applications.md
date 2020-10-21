@@ -58,7 +58,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
    - You must have enough cores available in your subscription to create the build agent and Azure Kubernetes Service cluster in [Task 6: Deploy ARM Template](#Task-6-Deploy-ARM-Template). You'll need eight cores if following the exact instructions in the lab, more if you choose additional agents or larger VM sizes. Execute the steps required before the lab to see if you need to request more cores in your sub.
 
-2. An account in Azure DevOps.
+2. An account in Github.
 
 3. Local machine or a virtual machine configured with:
 
@@ -265,7 +265,7 @@ In this section, you configure and execute an ARM template that creates all the 
    az deployment group create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
    ```
 
-   This command takes up to 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup Azure DevOps while the deployment runs.
+   This command takes up to 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup Github while the deployment runs.
 
 ### Task 7: Create a GitHub repository
 
@@ -315,7 +315,14 @@ FabMedical has provided starter files for you. They have taken a copy of the web
    content-web/
    ```
 
-9. Using the Cloud Shell, initialize a new git repository:
+9. Set your username and email, which git uses for commits.
+
+    ```bash
+    git config --global user.email "you@example.com"
+    git config --global user.name "Your Name"
+    ```
+
+10. Using the Cloud Shell, initialize a new git repository:
 
     ```bash
     git init
@@ -323,17 +330,10 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git commit -m "Initial Commit"
     ```
 
-10. Set the remote origin to the GitHub URL by issuing the following command:
+11. Set the remote origin to the GitHub URL by issuing the following command:
 
     ```bash
     git remote add origin <your GitHub URL>
-    ```
-
-11. Set your username and email, which git uses for commits.
-
-    ```bash
-    git config --global user.email "you@example.com"
-    git config --global user.name "Your Name"
     ```
 
 12. Configure git CLI to cache your credentials, so that you don't have to keep re-typing them.
@@ -508,7 +508,7 @@ In this task, you update the packages and install the Docker engine.
 
 ### Task 10: Clone Repositories to the Build Agent
 
-In this task, you clone your repositories from Azure DevOps so you can work with them on the build agent.
+In this task, you clone your repositories from Github so you can work with them on the build agent.
 
 1. As you previously did in cloud shell, set your username and email which are used for git commits.
 
