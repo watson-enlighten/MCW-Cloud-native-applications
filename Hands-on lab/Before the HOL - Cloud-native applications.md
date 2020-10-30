@@ -116,7 +116,7 @@ In this task, you use `git` to copy the lab content to your cloud shell so that 
    git clone https://github.com/microsoft/MCW-Cloud-native-applications.git
    ```
 
-   > **Note**: if you do not have enough free space, you may need to remove extra files from your cloud shell environment.  Try running `azcopy jobs clean` to remove any `azcopy` jobs and data you do not need.
+   > **Note**: If you do not have enough free space, you may need to remove extra files from your cloud shell environment.  Try running `azcopy jobs clean` to remove any `azcopy` jobs and data you do not need.
 
 2. The lab files download.
 
@@ -176,7 +176,7 @@ You create VMs during the upcoming exercises. In this section, you create an SSH
 
 4. Enter a passphrase when prompted, and **don't forget it**!
 
-5. Because you entered `.ssh/fabmedical`e, ssh-keygen generates the file in the `.ssh` folder in your user folder, where the cloud shell opens by default.
+5. Because you entered `.ssh/fabmedical` the ssh-keygen generates the file in the `.ssh` folder in your user folder, where the cloud shell opens by default.
 
    ![In this screenshot of the cloud shell window, ssh-keygen -t RSA -b 2048 -C admin@fabmedical has been typed and run at the command prompt. Information about the generated key appears in the window.](media/b4-image57.png)
 
@@ -267,7 +267,7 @@ In this section, you configure and execute an ARM template that creates all the 
    az deployment group create --resource-group {resourceGroup} --template-file azuredeploy.json --parameters azuredeploy.parameters.json
    ```
 
-   This command takes up to 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup GitHub while the deployment runs.
+   This command takes 30 to 60 minutes to deploy all lab resources. You can continue to the next task to setup GitHub while the deployment runs.
 
    > **Note** If you get an error about the Cosmos DB name, ensure that you typed the `ComsosLocation` and `CosmosPairedLocation` without any spaces. Re-run the above command after you have corrected the name.
 
@@ -275,7 +275,7 @@ In this section, you configure and execute an ARM template that creates all the 
 
 FabMedical has provided starter files for you. They have taken a copy of the websites for their customer Contoso Neuro and refactored it from a single node.js site into a website with a content API that serves up the speakers and sessions. This refactored code is a starting point to validate the containerization of their websites. Use this to help them complete a POC that validates the development workflow for running the website and API as Docker containers and managing them within the Azure Kubernetes Service environment.
 
-1. Open a web browser, and navigate to <https://www.github.com>. Log in using your GitHub account credentials.
+1. Open a web browser and navigate to <https://www.github.com>. Log in using your GitHub account credentials.
 
 2. In the upper-right corner, expand the user drop down menu and select **Your repositories**.
 
@@ -293,7 +293,7 @@ FabMedical has provided starter files for you. They have taken a copy of the web
 
     ![Quick setup screen is displayed with the copy button next to the GitHub URL textbox selected.](media/2020-08-23-18-15-45.png "Quick setup screen")
 
-6. Open a **new** Azure Cloud Shell console.  You can do this by clicking the **Open new session** button from the first console, or navigating to https://shell.azure.com and logging in with the same lab credentials.
+6. Open a **new** Azure Cloud Shell console.  You can do this by selecting the **Open new session** button from the first console, or navigating to https://shell.azure.com and logging in with the same lab credentials.
 
 7. Navigate to the FabMedical source code folder and list the contents.
 
@@ -353,11 +353,11 @@ FabMedical has provided starter files for you. They have taken a copy of the web
     git push -u origin master
     ```
 
-    > **Note**: If you have Multi-factor authentication, you will need to create a personal access token when using the cloud shell. Reference the following link for help with setting up a GitHub personal access token to use for authenticating `git` with your GitHub account: <https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token>.
+    > **Note**: If you have multi-factor authentication, you will need to create a personal access token when using the cloud shell. Reference the following link for help with setting up a GitHub personal access token to use for authenticating `git` with your GitHub account: <https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token>.
 
-   > **Note**: Once you have your personal access token, retry the above command, use your token as the password.
+    > **Note**: Once you have your personal access token, retry the above command, use your token as the password.
 
-14. Refresh your github repository, you should now see the code published.
+14. Refresh your GitHub repository, you should now see the code published.
 
 ### Task 8: Connect securely to the build agent
 
@@ -424,7 +424,7 @@ In this task, you update the packages and install the Docker engine.
    sudo apt-get update && sudo apt install apt-transport-https ca-certificates curl software-properties-common
    ```
 
-   > **Note** this is a single line.
+   > **Note**: This is a single line.
 
 3. Add Docker's official GPG key by typing the following in a single line command:
 
