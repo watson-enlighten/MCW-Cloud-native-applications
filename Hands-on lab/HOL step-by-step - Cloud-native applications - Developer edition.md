@@ -1074,9 +1074,9 @@ image and pushes it to your ACR instance automatically.
 
     ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
 
-15. After a second, the newly triggered workflow execution will display in the list. Select the new **content-web** execution to view it's status.
+15. After a second, the newly triggered workflow execution will display in the list. Select the new **content-web** execution to view its status.
 
-16. Selecting the **Build and Push Docker Image** job of the workflow will display it's execution status.
+16. Selecting the **Build and Push Docker Image** job of the workflow will display its execution status.
 
     ![Build and Push Docker Image job.](media/2020-08-25-15-42-11.png "Build and Push Docker Image job")
 
@@ -1769,7 +1769,7 @@ In this task, you will use GitHub Actions workflows to automate the process for 
 
 3. Save the file.
 
-4. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously, and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
+4. In the Azure Cloud Shell, use the following command to output the `/.kube/config` file that contains the credentials for authenticating with Azure Kubernetes Service. These credentials were retrieved previously and will also be needed by GitHub Actions to deploy to AKS. Then copy the contents of the file.
 
     ```bash
     cat ~/.kube/config
@@ -1836,7 +1836,7 @@ In this task, you will use GitHub Actions workflows to automate the process for 
 
     ![The content-web Action is shown with the Actions, content-web, and Run workflow links highlighted.](media/2020-08-25-15-38-06.png "content-web workflow")
 
-12. Selecting the currently running workflow will display it's status.
+12. Selecting the currently running workflow will display its status.
 
     ![Workflow is running](media/2020-08-25-22-15-39.png "Workflow is running")
 
@@ -1896,7 +1896,7 @@ In this task, you will increase the number of instances for the API deployment i
 
 2. From the navigation menu, select **Workloads** -\> **Deployments**, and then select the **API** deployment.
 
-3. Select the virtical ellipses, then select **SCALE**.
+3. Select the vertical ellipses, then select **SCALE**.
 
 4. Change the number of replicas to **2**, and then select **Scale**.
 
